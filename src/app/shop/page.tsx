@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import SmoothScroll from "@/components/layout/SmoothScroll";
-import PageTransition from "@/components/animations/PageTransition";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
@@ -15,16 +14,13 @@ export const metadata: Metadata = {
 
 export default function ShopPage() {
   return (
-    <SmoothScroll>
-      <PageTransition>
-        <Navbar />
+    <>
         <main className="relative z-10 mb-[60vh] bg-background">
           <ShopHero />
           <ShopContent />
         </main>
         <Footer />
         <BackToTop />
-      </PageTransition>
-    </SmoothScroll>
+    </>
   );
 }

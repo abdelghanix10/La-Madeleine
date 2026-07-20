@@ -1,8 +1,4 @@
 import dynamic from "next/dynamic";
-import SmoothScroll from "@/components/layout/SmoothScroll";
-import LoadingWrapper from "@/components/layout/LoadingWrapper";
-import PageTransition from "@/components/animations/PageTransition";
-import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import HeroSection from "@/components/home/HeroSection";
@@ -17,25 +13,20 @@ import Newsletter from "@/components/home/Newsletter";
 
 export default function Home() {
   return (
-    <LoadingWrapper>
-      <SmoothScroll>
-        <PageTransition>
-          <Navbar />
-          <main className="relative z-10 mb-[60vh] bg-background">
-            <HeroSection />
-            <CategorySection />
-            <TodaysSpecials />
-            <CoffeeMenuPreview />
-            <BakeryStory />
-            <Testimonials />
-            <Locations />
-            <InstagramGallery />
-            <Newsletter />
-          </main>
-          <Footer />
-          <BackToTop />
-        </PageTransition>
-      </SmoothScroll>
-    </LoadingWrapper>
+    <>
+      <main className="relative z-10 mb-[60vh] bg-background">
+        <HeroSection />
+        <CategorySection />
+        <TodaysSpecials />
+        <CoffeeMenuPreview />
+        <BakeryStory />
+        <Testimonials />
+        <Locations />
+        <InstagramGallery />
+        <Newsletter />
+      </main>
+      <Footer />
+      <BackToTop />
+    </>
   );
 }

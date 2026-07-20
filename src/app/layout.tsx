@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, Great_Vibes } from "next/font/google";
 import "./globals.css";
+import SmoothScroll from "@/components/layout/SmoothScroll";
+import Navbar from "@/components/layout/Navbar";
+import TransitionProvider from "@/providers/TransitionProvider";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -92,7 +95,12 @@ export default function RootLayout({
         <link rel="canonical" href="https://lamadeleine.com" />
       </head>
       <body className="min-h-screen bg-background text-text font-sans antialiased">
-        {children}
+          <TransitionProvider>
+            <SmoothScroll>
+              <Navbar />
+              {children}
+            </SmoothScroll>
+          </TransitionProvider>
       </body>
     </html>
   );
