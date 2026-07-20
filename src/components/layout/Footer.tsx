@@ -53,7 +53,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-dark text-cream/70 relative overflow-hidden">
-      <div className="h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+      <div className="h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">

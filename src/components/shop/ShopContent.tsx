@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Search, SlidersHorizontal, Star, ShoppingCart } from "lucide-react";
+import { Search, Star, ShoppingCart } from "lucide-react";
 import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
