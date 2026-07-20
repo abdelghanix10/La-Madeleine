@@ -21,7 +21,7 @@ export default function Home() {
       <SmoothScroll>
         <PageTransition>
           <Navbar />
-          <main>
+          <main className="relative z-10 mb-[60vh] bg-background">
             <HeroSection />
             <CategorySection />
             <TodaysSpecials />

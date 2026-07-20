@@ -18,7 +18,7 @@ export default function ShopPage() {
     <SmoothScroll>
       <PageTransition>
         <Navbar />
-        <main>
+        <main className="relative z-10 mb-[60vh] bg-background">
           <ShopHero />
           <ShopContent />
         </main>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, ArrowUp } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 import { siteConfig } from "@/lib/data";
 
 function InstagramIcon({ size = 16 }: { size?: number }) {
@@ -47,16 +47,12 @@ const footerLinks = {
 };
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
-    <footer className="bg-dark text-cream/70 relative overflow-hidden">
+    <footer className="fixed bottom-0 left-0 w-full h-[60vh] bg-dark text-cream/70 z-0 overflow-hidden flex flex-col">
       <div className="h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-8 flex-1 flex flex-col">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 flex-1">
           <div className="lg:col-span-1">
             <h3 className="font-serif text-3xl text-cream tracking-wider mb-4">
               La Madeleine
@@ -167,14 +163,9 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} {siteConfig.name}. All rights
             reserved.
           </p>
-          <motion.button
-            onClick={scrollToTop}
-            className="w-10 h-10 rounded-full border border-cream/20 flex items-center justify-center hover:border-primary hover:text-primary transition-all duration-300"
-            whileHover={{ scale: 1.1, y: -2 }}
-            aria-label="Back to top"
-          >
-            <ArrowUp size={16} />
-          </motion.button>
+          <p className="text-xs text-cream/40">
+            Crafted with passion in Paris
+          </p>
         </div>
       </div>
     </footer>
