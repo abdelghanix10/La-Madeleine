@@ -13,9 +13,7 @@ export const siteConfig = {
     pinterest: "https://pinterest.com/lamadeleine",
   },
   hours: [
-    { day: "Monday — Friday", time: "6:00 AM — 8:00 PM" },
-    { day: "Saturday", time: "7:00 AM — 9:00 PM" },
-    { day: "Sunday", time: "7:00 AM — 3:00 PM" },
+    { day: "Monday — Sunday", time: "6:00 AM — 10:00 PM" },
   ],
 };
 
@@ -478,15 +476,7 @@ export const locations = [
     name: "La Madeleine — Montmartre",
     address: "127 Rue de Paris, 75018 Paris",
     phone: "+1 (555) 234-5678",
-    hours: "Mon–Fri 6am–8pm, Sat 7am–9pm, Sun 7am–3pm",
-    mapUrl: "#",
-  },
-  {
-    id: 2,
-    name: "La Madeleine — Le Marais",
-    address: "45 Rue de Rivoli, 75004 Paris",
-    phone: "+1 (555) 345-6789",
-    hours: "Mon–Fri 6:30am–7:30pm, Sat–Sun 7am–6pm",
+    hours: "Mon–Sun 6am–10pm",
     mapUrl: "#",
   },
 ];
@@ -497,7 +487,7 @@ export const faqData = [
     category: "General",
     question: "What are your opening hours?",
     answer:
-      "We're open Monday to Friday from 6:00 AM to 8:00 PM, Saturday from 7:00 AM to 9:00 PM, and Sunday from 7:00 AM to 3:00 PM. Our Montmartre location stays open one hour later on weekdays.",
+      "We're open Monday to Sunday from 6:00 AM to 10:00 PM. Our Montmartre location stays open one hour later on weekdays.",
   },
   {
     id: 2,

@@ -49,7 +49,7 @@ export default function Testimonials() {
           </h2>
         </ScrollReveal>
 
-        <div className="relative min-h-[320px] flex items-center">
+        <div className="relative min-h-[320px] flex items-center justify-center">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={current}
