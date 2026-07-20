@@ -51,7 +51,7 @@ export default function ShopContent() {
                   <button
                     key={cat}
                     onClick={() => setCategory(cat)}
-                    className={`px-4 py-2 text-xs tracking-wider uppercase transition-all duration-300 border ${
+                    className={`px-4 py-2 text-xs tracking-wider uppercase transition-all cursor-pointer duration-300 border ${
                       category === cat
                         ? "bg-dark text-cream border-dark"
                         : "bg-transparent text-dark/50 border-dark/10 hover:border-dark/30"

@@ -32,32 +32,10 @@ export default function Locations() {
                 </p>
               </div>
             </div>
-            {/* Map pins */}
-            {locations.map((loc, i) => (
-              <motion.div
-                key={loc.id}
-                className="absolute"
-                style={{
-                  top: `${35 + i * 20}%`,
-                  left: `${30 + i * 25}%`,
-                }}
-                animate={{ y: [0, -6, 0] }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 0.3,
-                  ease: "easeInOut",
-                }}
-              >
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-lg">
-                  <MapPin size={14} className="text-dark" />
-                </div>
-              </motion.div>
-            ))}
           </div>
         </ScrollReveal>
 
-        <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 gap-8" staggerDelay={0.15}>
+        <StaggerChildren className="grid grid-cols-1 md:grid-cols-1 gap-8" staggerDelay={0.15}>
           {locations.map((loc) => (
             <StaggerItem key={loc.id}>
               <motion.div

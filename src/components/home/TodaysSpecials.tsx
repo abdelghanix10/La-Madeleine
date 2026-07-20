@@ -60,13 +60,6 @@ export default function TodaysSpecials() {
                     <span className="font-serif text-2xl text-primary">
                       ${item.price.toFixed(2)}
                     </span>
-                    <button className="flex items-center gap-2 text-cream/60 text-sm tracking-wider uppercase group-hover:text-primary transition-colors duration-300">
-                      Order
-                      <ArrowRight
-                        size={14}
-                        className="group-hover:translate-x-1 transition-transform duration-300"
-                      />
-                    </button>
                   </div>
                 </div>
               </motion.div>

@@ -7,7 +7,6 @@ import BackToTop from "@/components/layout/BackToTop";
 import AboutHero from "@/components/about/AboutHero";
 import AboutStory from "@/components/about/AboutStory";
 import AboutTimeline from "@/components/about/AboutTimeline";
-import AboutTeam from "@/components/about/AboutTeam";
 import AboutWhyChoose from "@/components/about/AboutWhyChoose";
 import AboutCTA from "@/components/about/AboutCTA";
 
@@ -26,7 +25,6 @@ export default function AboutPage() {
           <AboutHero />
           <AboutStory />
           <AboutTimeline />
-          <AboutTeam />
           <AboutWhyChoose />
           <AboutCTA />
         </main>
