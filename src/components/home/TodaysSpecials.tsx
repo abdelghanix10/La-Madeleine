@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
@@ -35,10 +35,15 @@ export default function TodaysSpecials() {
                 className="group bg-background/5 backdrop-blur-sm border border-cream/10 overflow-hidden hover:border-primary/30 transition-all duration-500"
                 whileHover={{ y: -5 }}
               >
-                {/* Image placeholder */}
-                <div className="relative h-64 md:h-72 bg-gradient-to-br from-cream/10 to-cream/5 overflow-hidden">
+                <div className="relative h-64 md:h-72 bg-linear-to-br from-cream/10 to-cream/5 overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
                   <div className="absolute inset-0 bg-dark/20 group-hover:bg-dark/10 transition-all duration-500" />
-                  {/* Decorative text */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="font-serif text-6xl text-cream/10 italic group-hover:text-cream/20 transition-all duration-500 group-hover:scale-110 transform">
                       {item.category}

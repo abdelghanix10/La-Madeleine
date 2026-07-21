@@ -6,10 +6,27 @@ import ScrollReveal from "@/components/animations/ScrollReveal";
 import { siteConfig } from "@/lib/data";
 
 const contactDetails = [
-  { icon: Phone, label: "Phone", value: siteConfig.phone, href: `tel:${siteConfig.phone}` },
-  { icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: siteConfig.phone,
+    href: `tel:${siteConfig.phone}`,
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    value: siteConfig.email,
+    href: `mailto:${siteConfig.email}`,
+  },
   { icon: MapPin, label: "Address", value: siteConfig.address, href: "#" },
-  { icon: Clock, label: "Hours", value: "Mon–Sun 6am–10pm", href: "#" },
+  {
+    icon: Clock,
+    label: "Hours",
+    value: Array.isArray(siteConfig.hours)
+      ? siteConfig.hours.map((h) => `${h.day}: ${h.time}`).join(" | ")
+      : `${(siteConfig.hours as { day: string; time: string }).day}: ${(siteConfig.hours as { day: string; time: string }).time}`,
+    href: "#",
+  },
 ];
 
 export default function Newsletter() {

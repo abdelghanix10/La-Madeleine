@@ -53,7 +53,7 @@ export default function FAQContent() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 text-xs tracking-[0.15em] uppercase transition-all duration-300 border ${
+                className={`px-5 py-2 text-xs tracking-[0.15em] cursor-pointer uppercase transition-all duration-300 border ${
                   activeCategory === cat
                     ? "bg-dark text-cream border-dark"
                     : "bg-transparent text-dark/50 border-dark/10 hover:border-dark/30 hover:text-dark"
@@ -82,7 +82,7 @@ export default function FAQContent() {
                 >
                   <button
                     onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
-                    className="w-full flex items-center justify-between p-6 text-left group"
+                    className="w-full flex items-center justify-between p-6 text-left group cursor-pointer"
                   >
                     <div className="flex items-center gap-4">
                       <span className="font-serif text-primary text-lg shrink-0">
@@ -107,7 +107,10 @@ export default function FAQContent() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                        transition={{
+                          duration: 0.4,
+                          ease: [0.25, 0.1, 0.25, 1],
+                        }}
                       >
                         <div className="px-6 pb-6 pl-16">
                           <p className="text-dark/60 leading-relaxed">

@@ -22,10 +22,27 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const contactInfo = [
-  { icon: Phone, label: "Phone", value: siteConfig.phone, href: `tel:${siteConfig.phone}` },
-  { icon: Mail, label: "Email", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
+  {
+    icon: Phone,
+    label: "Phone",
+    value: siteConfig.phone,
+    href: `tel:${siteConfig.phone}`,
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    value: siteConfig.email,
+    href: `mailto:${siteConfig.email}`,
+  },
   { icon: MapPin, label: "Address", value: siteConfig.address, href: "#" },
-  { icon: Clock, label: "Hours", value: "Mon–Fri 6am–8pm", href: "#" },
+  {
+    icon: Clock,
+    label: "Hours",
+    value: Array.isArray(siteConfig.hours)
+      ? siteConfig.hours.map((h) => `${h.day}: ${h.time}`).join(" | ")
+      : `${(siteConfig.hours as { day: string; time: string }).day}: ${(siteConfig.hours as { day: string; time: string }).time}`,
+    href: "#",
+  },
 ];
 
 export default function ContactContent() {
@@ -50,7 +67,10 @@ export default function ContactContent() {
     <section className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         {/* Contact info cards */}
-        <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20" staggerDelay={0.1}>
+        <StaggerChildren
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20"
+          staggerDelay={0.1}
+        >
           {contactInfo.map((info) => (
             <StaggerItem key={info.label}>
               <motion.a
@@ -103,7 +123,8 @@ export default function ContactContent() {
                 </div>
                 <p className="font-serif text-2xl text-dark mb-2">Merci!</p>
                 <p className="text-dark/50">
-                  Your message has been sent. We&apos;ll get back to you within 24 hours.
+                  Your message has been sent. We&apos;ll get back to you within
+                  24 hours.
                 </p>
               </motion.div>
             ) : (
@@ -116,7 +137,9 @@ export default function ContactContent() {
                       className="w-full px-4 py-3.5 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors"
                     />
                     {errors.name && (
-                      <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.name.message}
+                      </p>
                     )}
                   </div>
                   <div>
@@ -127,7 +150,9 @@ export default function ContactContent() {
                       className="w-full px-4 py-3.5 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors"
                     />
                     {errors.email && (
-                      <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.email.message}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -138,7 +163,9 @@ export default function ContactContent() {
                     className="w-full px-4 py-3.5 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors"
                   />
                   {errors.subject && (
-                    <p className="text-red-500 text-xs mt-1">{errors.subject.message}</p>
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.subject.message}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -149,7 +176,9 @@ export default function ContactContent() {
                     className="w-full px-4 py-3.5 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors resize-none"
                   />
                   {errors.message && (
-                    <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors.message.message}
+                    </p>
                   )}
                 </div>
                 <motion.button

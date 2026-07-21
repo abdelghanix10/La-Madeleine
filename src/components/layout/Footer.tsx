@@ -41,7 +41,7 @@ const footerLinks = {
   help: [
     { label: "FAQ", href: "/faq" },
     { label: "Contact Us", href: "/contact" },
-    { label: "Careers", href: "/about" },
+    { label: "Cookie Policy", href: "#" },
     { label: "Privacy Policy", href: "#" },
   ],
 };
@@ -162,9 +162,6 @@ export default function Footer() {
           <p className="text-xs text-cream/40">
             &copy; {new Date().getFullYear()} {siteConfig.name}. All rights
             reserved.
-          </p>
-          <p className="text-xs text-cream/40">
-            Crafted with passion in Paris
           </p>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { menuCategories, menuItems } from "@/lib/data";
 
@@ -24,7 +25,7 @@ export default function MenuContent() {
               <button
                 key={cat}
                 onClick={() => setActive(cat)}
-                className={`px-5 py-2.5 text-sm tracking-[0.15em] uppercase transition-all duration-300 border ${
+                className={`px-5 py-2.5 text-sm tracking-[0.15em] uppercase cursor-pointer transition-all duration-300 border ${
                   active === cat
                     ? "bg-dark text-cream border-dark"
                     : "bg-transparent text-dark/50 border-dark/10 hover:border-dark/30 hover:text-dark"
@@ -55,7 +56,17 @@ export default function MenuContent() {
                     transition={{ duration: 0.3 }}
                   >
                     <div className="w-12 h-12 rounded-full bg-cream flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors duration-300 overflow-hidden">
-                      <span className="text-xl">🍽️</span>
+                      {item.image ? (
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          width={48}
+                          height={48}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      ) : (
+                        <span className="text-xl">🍽️</span>
+                      )}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-baseline gap-3">

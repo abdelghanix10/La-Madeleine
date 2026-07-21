@@ -2,14 +2,18 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Search, Star, ShoppingCart } from "lucide-react";
+import Image from "next/image";
+import { Search, Star } from "lucide-react";
 import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
 import { shopProducts } from "@/lib/data";
 
-const allCategories = ["All", ...Array.from(new Set(shopProducts.map((p) => p.category)))];
+const allCategories = [
+  "All",
+  ...Array.from(new Set(shopProducts.map((p) => p.category))),
+];
 
 export default function ShopContent() {
   const [category, setCategory] = useState("All");
@@ -18,11 +22,18 @@ export default function ShopContent() {
 
   const filtered = useMemo(() => {
     let items = shopProducts;
-    if (category !== "All") items = items.filter((p) => p.category === category);
-    if (search) items = items.filter((p) => p.name.toLowerCase().includes(search.toLowerCase()));
-    if (sort === "price-asc") items = [...items].sort((a, b) => a.price - b.price);
-    if (sort === "price-desc") items = [...items].sort((a, b) => b.price - a.price);
-    if (sort === "name") items = [...items].sort((a, b) => a.name.localeCompare(b.name));
+    if (category !== "All")
+      items = items.filter((p) => p.category === category);
+    if (search)
+      items = items.filter((p) =>
+        p.name.toLowerCase().includes(search.toLowerCase()),
+      );
+    if (sort === "price-asc")
+      items = [...items].sort((a, b) => a.price - b.price);
+    if (sort === "price-desc")
+      items = [...items].sort((a, b) => b.price - a.price);
+    if (sort === "name")
+      items = [...items].sort((a, b) => a.name.localeCompare(b.name));
     return items;
   }, [category, search, sort]);
 
@@ -34,7 +45,10 @@ export default function ShopContent() {
           <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
             {/* Search */}
             <div className="relative w-full md:w-80">
-              <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-dark/40" />
+              <Search
+                size={16}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-dark/40"
+              />
               <input
                 type="text"
                 placeholder="Search products..."
@@ -83,7 +97,10 @@ export default function ShopContent() {
         </p>
 
         {/* Products grid */}
-        <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.1}>
+        <StaggerChildren
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          staggerDelay={0.1}
+        >
           {filtered.map((product) => (
             <StaggerItem key={product.id}>
               <motion.div
@@ -92,28 +109,27 @@ export default function ShopContent() {
               >
                 {/* Image */}
                 <div className="aspect-square bg-background relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-serif text-5xl text-dark/10 group-hover:text-primary/20 transition-colors duration-500">
-                      {product.name.charAt(0)}
-                    </span>
-                  </div>
+                  {product.image ? (
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="font-serif text-5xl text-dark/10 group-hover:text-primary/20 transition-colors duration-500">
+                        {product.name.charAt(0)}
+                      </span>
+                    </div>
+                  )}
                   {/* Sale badge */}
                   {product.salePrice && (
                     <div className="absolute top-4 left-4 bg-primary text-dark text-xs tracking-wider uppercase px-3 py-1 font-medium">
                       Sale
                     </div>
                   )}
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/40 transition-all duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                    <motion.button
-                      className="bg-cream text-dark px-6 py-3 text-xs tracking-wider uppercase font-medium flex items-center gap-2"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <ShoppingCart size={14} />
-                      Add to Cart
-                    </motion.button>
-                  </div>
                 </div>
 
                 {/* Info */}
@@ -123,7 +139,7 @@ export default function ShopContent() {
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star
                         key={i}
-                        size={12}
+                        size={15}
                         className={
                           i < product.rating
                             ? "text-primary fill-primary"
@@ -133,7 +149,7 @@ export default function ShopContent() {
                     ))}
                   </div>
 
-                  <h3 className="font-serif text-lg text-dark tracking-wide mb-2">
+                  <h3 className="font-serif text-2xl text-dark tracking-wide mb-2">
                     {product.name}
                   </h3>
 
@@ -143,7 +159,7 @@ export default function ShopContent() {
                         ${product.salePrice.toFixed(2)}
                       </span>
                     )}
-                    <span className="font-serif text-lg text-primary">
+                    <span className="font-serif text-2xl text-primary">
                       ${product.price.toFixed(2)}
                     </span>
                   </div>

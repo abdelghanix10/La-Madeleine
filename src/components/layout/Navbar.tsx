@@ -21,7 +21,7 @@ function MenuIcon() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 29.5"
-      className="w-8 h-8 fill-current"
+      className="w-8 h-8 fill-current hover:text-primary transition-colors duration-300"
     >
       <g>
         <path d="M8.7,10.1c-0.3,1.2,0.3,2.6-0.3,3.5c-1.1-0.1-3.1,0.3-3.3-1.1c0.3-0.8,0-1.5,0.2-2.3C6,9.9,7.6,10.1,8.7,10.1z M6.2,12c0.2-0.4,0.5-0.6,0.5-1C6.2,11,6,11.7,6.2,12z M6.5,12.3c0.3-0.3,0.7-0.8,0.7-1.2C6.9,11.5,6.6,11.8,6.5,12.3z M6.9,12.7c0.1,0,0.3,0,0.4,0c0.2-0.3,0.5-1.1,0.4-1.4C7.6,11.9,6.9,12,6.9,12.7z" />
@@ -40,7 +40,7 @@ function LocationIcon() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 22 28"
-      className="w-8 h-8 fill-current"
+      className="w-8 h-8 fill-current hover:text-primary transition-colors duration-300"
     >
       <g>
         <path
@@ -104,6 +104,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const hours = siteConfig.hours[0];
 
   useEffect(() => {
     if (mobileOpen) {
@@ -147,9 +148,9 @@ export default function Navbar() {
             </span>
           </div>
           <div className="flex items-center gap-6">
-            <span>Mon–Fri: 6am–8pm</span>
-            <span className="text-primary">|</span>
-            <span>Sat: 7am–9pm</span>
+            <span>
+              {hours.day}: {hours.time}
+            </span>
           </div>
         </div>
       </div>
@@ -240,7 +241,7 @@ export default function Navbar() {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 32 29.5"
-                      className="w-7 h-7 fill-current"
+                      className="w-7 h-7 fill-current cursor-pointer hover:text-primary transition-colors duration-300"
                     >
                       <path
                         d="M28.7,6.4c-0.1,0.1-0.1,0.2-0.2,0.2c0.1,0.3,0.4,0.5,0.5,0.8c-0.2,0.1-0.2,0.4-0.2,0.7
@@ -280,7 +281,7 @@ export default function Navbar() {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 32 26.5"
-                      className="w-7 h-7 fill-current text-dark"
+                      className="w-7 h-7 fill-current text-dark cursor-pointer hover:text-primary transition-colors duration-300"
                     >
                       <path
                         d="M31.3,0.8c1.2,1.4-0.4,3.5,0.1,5.5c-0.6,0.2-1,0.5-1.9,0.4c-0.2,0-0.7,0-1-0.1c0,0-0.1-0.1-0.1-0.1
@@ -481,7 +482,7 @@ export default function Navbar() {
 
               {/* Bottom info */}
               <motion.div
-                className="absolute bottom-10 left-8 right-8 flex justify-between items-end"
+                className="absolute bottom-10 left-8 right-8 flex justify-between items-end gap-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -492,8 +493,9 @@ export default function Navbar() {
                   <p className="mt-1">{siteConfig.address}</p>
                 </div>
                 <div className="text-cream/50 text-sm tracking-widest font-sans">
-                  <p>Mon–Fri: 6am–8pm</p>
-                  <p className="mt-1">Sat: 7am–9pm</p>
+                  <p>
+                    {hours.day}: {hours.time}
+                  </p>
                 </div>
               </motion.div>
             </motion.div>
