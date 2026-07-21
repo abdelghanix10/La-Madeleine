@@ -1,20 +1,16 @@
 export const siteConfig = {
-  name: "La Boulangerie La Madeleine",
+  name: "LaMadeleine Agadir",
   tagline: "Artisan Bakery & Coffee House",
   description:
-    "Handcrafted pastries, artisan bread, and exceptional coffee — an authentic French bakery experience since 1987.",
-  phone: "+1 (555) 234-5678",
-  email: "bonjour@lamadeleine.com",
-  address: "127 Rue de Paris, Montmartre, Paris 75018",
+    "Handcrafted pastries, artisan bread, and exceptional coffee — an authentic French & Moroccan bakery experience since 2017.",
+  phone: "05.28.26.43.44",
+  email: "contact@lamadeleine.ma",
+  address: "Av. Al Oulfa, Tilila, Agadir 80000",
   social: {
-    instagram: "https://instagram.com/lamadeleine",
-    facebook: "https://facebook.com/lamadeleine",
-    twitter: "https://twitter.com/lamadeleine",
-    pinterest: "https://pinterest.com/lamadeleine",
+    instagram: "https://instagram.com/lamadeleine.agadir",
+    facebook: "https://facebook.com/lamadeleine.agadir",
   },
-  hours: [
-    { day: "Monday — Sunday", time: "6:00 AM — 10:00 PM" },
-  ],
+  hours: [{ day: "Monday — Sunday", time: "6:00 AM — 10:00 PM" }],
 };
 
 export const heroSlides = [
@@ -54,21 +50,21 @@ export const categories = [
   {
     id: 1,
     name: "Breakfast",
-    description: "Start your day the French way",
+    description: "Start your day the Moroccan way",
     icon: "sunrise",
     image: "/images/cat-breakfast.jpg",
   },
   {
     id: 2,
     name: "Artisan Bread",
-    description: "Traditional French breads",
+    description: "Traditional French & Moroccan breads",
     icon: "wheat",
     image: "/images/cat-bread.jpg",
   },
   {
     id: 3,
     name: "Pastries",
-    description: "Delicate French pâtisserie",
+    description: "Delicate French & Moroccan pâtisserie",
     icon: "cake",
     image: "/images/cat-pastries.jpg",
   },
@@ -95,15 +91,24 @@ export const categories = [
   },
 ];
 
-export const todaysSpecials = [
+type TodaysSpecial = {
+  id: number;
+  name: string;
+  category: string;
+  description: string;
+  price: number;
+  image: string;
+};
+
+export const todaysSpecials: TodaysSpecial[] = [
   {
     id: 1,
     name: "Pain au Chocolat",
     category: "Pastry",
     description:
       "Buttery, flaky layers wrapped around two bars of premium dark chocolate — the quintessential French breakfast pastry.",
-    price: 4.50,
-    image: "/images/special-pain-chocolat.jpg",
+    price: 4.5,
+    image: "/images/today-specials/today-3.jpg",
   },
   {
     id: 2,
@@ -111,17 +116,44 @@ export const todaysSpecials = [
     category: "Breakfast",
     description:
       "Golden, impossibly light croissant made with 84% fat Norman butter. 72-hour ferment for perfect lamination.",
-    price: 3.80,
-    image: "/images/special-croissant.jpg",
+    price: 3.8,
+    image: "/images/today-specials/today-1.jpg",
   },
   {
     id: 3,
+    name: "Sandwich Croissant",
+    category: "Breakfast",
+    description:
+      "A classic French breakfast pastry filled with a rich, buttery cream and finished with a light dusting of powdered sugar.",
+    price: 3.8,
+    image: "/images/today-specials/today-2.jpg",
+  },
+  {
+    id: 4,
     name: "Tarte aux Fruits",
     category: "Dessert",
     description:
       "Seasonal fruits arranged on vanilla pastry cream, nestled in a crisp, caramelized tart shell.",
-    price: 7.50,
-    image: "/images/special-tarte.jpg",
+    price: 7.5,
+    image: "/images/today-specials/today-4.jpg",
+  },
+  {
+    id: 5,
+    name: "Amande Mille-Feuille",
+    category: "Dessert",
+    description:
+      "Three layers of caramelized puff pastry alternating with a light, almond cream, topped with toasted almond flakes and a dusting of powdered sugar.",
+    price: 6.2,
+    image: "/images/today-specials/today-5.jpg",
+  },
+  {
+    id: 6,
+    name: "MadLine Signature Cortado",
+    category: "Coffee",
+    description:
+      "Equal parts intensely rich espresso and perfectly textured steamed milk, dusted with a hint of warm spices.",
+    price: 4.0,
+    image: "/images/today-specials/today-6.jpg",
   },
 ];
 
@@ -137,7 +169,7 @@ export const coffeeMenu = [
     id: 2,
     name: "Cappuccino",
     description: "Espresso, steamed milk, silky foam",
-    price: 5.00,
+    price: 5.0,
     icon: "☕",
   },
   {
@@ -202,7 +234,7 @@ export const menuItems = [
     name: "Croissant au Beurre",
     category: "Croissants",
     description: "Classic French butter croissant, golden and flaky",
-    price: 3.80,
+    price: 3.8,
     popular: true,
     image: "/images/menu-croissant.jpg",
   },
@@ -211,7 +243,7 @@ export const menuItems = [
     name: "Pain au Chocolat",
     category: "Croissants",
     description: "Buttery croissant with dark chocolate filling",
-    price: 4.50,
+    price: 4.5,
     popular: true,
     image: "/images/menu-pain-chocolat.jpg",
   },
@@ -220,7 +252,7 @@ export const menuItems = [
     name: "Pain aux Raisins",
     category: "Croissants",
     description: "Swirl of crème pâtissière and plump raisins",
-    price: 4.20,
+    price: 4.2,
     popular: false,
     image: "/images/menu-pain-raisins.jpg",
   },
@@ -229,7 +261,7 @@ export const menuItems = [
     name: "Baguette Tradition",
     category: "Bread",
     description: "48-hour fermented sourdough baguette",
-    price: 3.50,
+    price: 3.5,
     popular: true,
     image: "/images/menu-baguette.jpg",
   },
@@ -238,7 +270,7 @@ export const menuItems = [
     name: "Pain de Campagne",
     category: "Bread",
     description: "Rustic country loaf with a thick crust",
-    price: 5.00,
+    price: 5.0,
     popular: false,
     image: "/images/menu-campagne.jpg",
   },
@@ -247,7 +279,7 @@ export const menuItems = [
     name: "Sourdough Boule",
     category: "Bread",
     description: "72-hour sourdough with wild levain",
-    price: 6.50,
+    price: 6.5,
     popular: true,
     image: "/images/menu-sourdough.jpg",
   },
@@ -256,7 +288,7 @@ export const menuItems = [
     name: "Espresso",
     category: "Coffee",
     description: "Double shot, pure and intense",
-    price: 3.50,
+    price: 3.5,
     popular: true,
     image: "/images/menu-espresso.jpg",
   },
@@ -265,7 +297,7 @@ export const menuItems = [
     name: "Cappuccino",
     category: "Coffee",
     description: "Espresso with steamed milk and silky foam",
-    price: 5.00,
+    price: 5.0,
     popular: true,
     image: "/images/menu-cappuccino.jpg",
   },
@@ -274,7 +306,7 @@ export const menuItems = [
     name: "Café au Lait",
     category: "Coffee",
     description: "Equal parts coffee and steamed milk",
-    price: 4.50,
+    price: 4.5,
     popular: false,
     image: "/images/menu-cafe-lait.jpg",
   },
@@ -283,7 +315,7 @@ export const menuItems = [
     name: "Matcha Latte",
     category: "Tea",
     description: "Ceremonial grade matcha with oat milk",
-    price: 5.50,
+    price: 5.5,
     popular: true,
     image: "/images/menu-matcha.jpg",
   },
@@ -292,7 +324,7 @@ export const menuItems = [
     name: "Earl Grey",
     category: "Tea",
     description: "Classic bergamot-scented black tea",
-    price: 4.00,
+    price: 4.0,
     popular: false,
     image: "/images/menu-earl-grey.jpg",
   },
@@ -301,7 +333,7 @@ export const menuItems = [
     name: "Oeufs en Cocotte",
     category: "Breakfast",
     description: "Baked eggs with crème fraîche and herbs",
-    price: 9.50,
+    price: 9.5,
     popular: true,
     image: "/images/menu-oeufs.jpg",
   },
@@ -310,7 +342,7 @@ export const menuItems = [
     name: "Tartine Avocat",
     category: "Breakfast",
     description: "Sourdough with smashed avocado and poached egg",
-    price: 11.00,
+    price: 11.0,
     popular: true,
     image: "/images/menu-tartine.jpg",
   },
@@ -319,7 +351,7 @@ export const menuItems = [
     name: "Granola Bowl",
     category: "Breakfast",
     description: "House granola with Greek yogurt and seasonal fruits",
-    price: 8.50,
+    price: 8.5,
     popular: false,
     image: "/images/menu-granola.jpg",
   },
@@ -328,7 +360,7 @@ export const menuItems = [
     name: "Croque Monsieur",
     category: "Sandwiches",
     description: "Classic ham and gruyère, baked until golden",
-    price: 10.50,
+    price: 10.5,
     popular: true,
     image: "/images/menu-croque.jpg",
   },
@@ -337,7 +369,7 @@ export const menuItems = [
     name: "Jambon-Beurre",
     category: "Sandwiches",
     description: "Parisian ham and butter on fresh baguette",
-    price: 8.50,
+    price: 8.5,
     popular: false,
     image: "/images/menu-jambon.jpg",
   },
@@ -346,7 +378,7 @@ export const menuItems = [
     name: "Margherita",
     category: "Pizza",
     description: "San Marzano, fresh mozzarella, basil",
-    price: 14.00,
+    price: 14.0,
     popular: true,
     image: "/images/menu-margherita.jpg",
   },
@@ -355,7 +387,7 @@ export const menuItems = [
     name: "Tarte au Citron",
     category: "Desserts",
     description: "Tangy lemon curd in a crisp tart shell",
-    price: 7.50,
+    price: 7.5,
     popular: true,
     image: "/images/menu-citron.jpg",
   },
@@ -364,7 +396,7 @@ export const menuItems = [
     name: "Mille-feuille",
     category: "Desserts",
     description: "Layers of puff pastry and vanilla cream",
-    price: 8.00,
+    price: 8.0,
     popular: true,
     image: "/images/menu-mille-feuille.jpg",
   },
@@ -373,7 +405,7 @@ export const menuItems = [
     name: "Paris-Brest",
     category: "Desserts",
     description: "Choux ring with praline mousseline cream",
-    price: 9.00,
+    price: 9.0,
     popular: false,
     image: "/images/menu-paris-brest.jpg",
   },
@@ -444,38 +476,37 @@ export const shopProducts = [
 export const testimonials = [
   {
     id: 1,
-    name: "Marie Dubois",
-    role: "Food Critic, Le Monde",
+    name: "Ryu Zaki",
+    role: "Regular Customer",
     quote:
-      "La Madeleine captures the soul of Parisian baking. Every bite transports you to a cobblestone street café. Truly exceptional craftsmanship.",
+      "A lovely tea room serving very good baked goods and pastries. The fruit juices are excellent.",
     rating: 5,
   },
   {
     id: 2,
-    name: "Jean-Pierre Laurent",
+    name: "Halima Elmkiess",
     role: "Regular Customer",
     quote:
-      "I've been coming here for fifteen years. The croissants are better than any I've had in France — and I say that as a Parisian.",
+      "A great place where you can find everything you want. The staff is wonderful 😊 Very clean establishment. The food is absolutely delicious. I really, really love it. Thank you so much for your service! ☺️",
     rating: 5,
   },
   {
     id: 3,
-    name: "Sophie Chen",
-    role: "Culinary Blogger",
-    quote:
-      "The attention to detail here is remarkable. From the perfectly laminated dough to the exquisite coffee, everything speaks of passion and mastery.",
-    rating: 5,
+    name: "Soufiane Driver",
+    role: "Regular Customer",
+    quote: "A very calm place with good service and friendly people !",
+    rating: 4,
   },
 ];
 
 export const locations = [
   {
     id: 1,
-    name: "La Madeleine — Montmartre",
-    address: "127 Rue de Paris, 75018 Paris",
-    phone: "+1 (555) 234-5678",
+    name: "La Madeleine — Tilila",
+    address: "Av. Al Oulfa, Tilila, Agadir 80000",
+    phone: "05.28.26.43.44",
     hours: "Mon–Sun 6am–10pm",
-    mapUrl: "#",
+    mapUrl: "https://maps.app.goo.gl/Z5memQUhJrBtShyx7",
   },
 ];
 

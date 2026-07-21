@@ -1,12 +1,31 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-function InstagramIcon({ size = 24, className }: { size?: number; className?: string }) {
+import { siteConfig } from "@/lib/data";
+
+function InstagramIcon({
+  size = 24,
+  className,
+}: {
+  size?: number;
+  className?: string;
+}) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
     </svg>
   );
 }
@@ -15,17 +34,33 @@ import ScrollReveal, {
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
 
-const galleryItems = Array.from({ length: 6 }).map((_, i) => ({
-  id: i + 1,
-  color: [
-    "from-primary/20 to-cream",
-    "from-dark/10 to-cream",
-    "from-primary/10 to-cream",
-    "from-dark/5 to-primary/10",
-    "from-cream to-primary/15",
-    "from-primary/5 to-dark/10",
-  ][i],
-}));
+const galleryItems = [
+  {
+    id: 1,
+    src: "/images/gallery/gallery-1.jpg",
+    alt: "Fresh croissants cooling on a tray",
+  },
+  {
+    id: 2,
+    src: "/images/gallery/gallery-2.jpg",
+    alt: "A tray of assorted pastries being served",
+  },
+  {
+    id: 3,
+    src: "/images/gallery/gallery-3.jpg",
+    alt: "Chocolate chip cookies beside a coffee cup",
+  },
+  {
+    id: 4,
+    src: "/images/gallery/gallery-4.jpg",
+    alt: "Two croissants with chocolate drizzle",
+  },
+  {
+    id: 5,
+    src: "/images/gallery/gallery-5.jpg",
+    alt: "Espresso machine pouring a fresh cup of coffee",
+  },
+];
 
 export default function InstagramGallery() {
   return (
@@ -40,20 +75,28 @@ export default function InstagramGallery() {
           </h2>
         </ScrollReveal>
 
-        <StaggerChildren className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" staggerDelay={0.08}>
+        <StaggerChildren
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
+          staggerDelay={0.08}
+        >
           {galleryItems.map((item) => (
             <StaggerItem key={item.id}>
               <motion.a
-                href="https://instagram.com"
+                href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block aspect-square bg-gradient-to-br overflow-hidden group relative"
+                className="block aspect-square bg-linear-to-br overflow-hidden group relative"
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.3 }}
               >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${item.color}`}
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
                 />
+                <div className="absolute inset-0 bg-linear-to-br from-dark/10 via-transparent to-dark/20" />
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/60 transition-all duration-500 flex items-center justify-center">
                   <InstagramIcon

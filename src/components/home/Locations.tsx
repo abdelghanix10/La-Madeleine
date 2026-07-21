@@ -24,14 +24,16 @@ export default function Locations() {
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
           <ScrollReveal className="w-full lg:flex-7">
             <div className="relative h-64 md:h-96 bg-cream overflow-hidden border border-dark/5">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin size={48} className="text-primary/40 mx-auto mb-4" />
-                  <p className="text-dark/40 text-sm tracking-wider">
-                    Interactive Map
-                  </p>
-                </div>
-              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15843.858666837468!2d-9.528228968629396!3d30.402064943861852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3c9965a5026d3%3A0x736a8bf5957eefa9!2sCaf%C3%A9%20%26%20P%C3%A2tisserie%20Lamadeleine!5e1!3m2!1sen!2sma!4v1784648271235!5m2!1sen!2sma"
+                width="600"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                className="absolute inset-0 h-full w-full"
+              />
             </div>
           </ScrollReveal>
 

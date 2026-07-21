@@ -37,6 +37,44 @@ export default function MenuContent() {
           </div>
         </ScrollReveal>
 
+        <AnimatePresence mode="wait">
+          {active === "Coffee" && (
+            <motion.div
+              key="coffee-slide"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -24 }}
+              transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
+              className="mb-12 overflow-hidden border border-dark/10 bg-dark"
+            >
+              <div className="relative min-h-65 md:min-h-90">
+                <Image
+                  src="/images/background/bg-coffee.jpg"
+                  alt="Coffee slide background"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 80vw"
+                />
+                <div className="absolute inset-0 bg-linear-to-r from-dark/75 via-dark/40 to-dark/15" />
+                <div className="absolute inset-0 flex items-center">
+                  <div className="max-w-xl px-6 md:px-12 lg:px-16">
+                    <p className="text-primary font-script text-2xl md:text-3xl mb-3">
+                      Coffee House
+                    </p>
+                    <h3 className="font-serif text-4xl md:text-5xl text-cream tracking-wide mb-4">
+                      Brewed to slow the moment.
+                    </h3>
+                    <p className="text-cream/75 max-w-lg leading-relaxed">
+                      Explore our espresso drinks, milk-based classics, and rich
+                      signature brews crafted for every coffee mood.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Menu items */}
         <div className="max-w-4xl mx-auto">
           <AnimatePresence mode="wait">

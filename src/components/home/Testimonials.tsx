@@ -35,7 +35,7 @@ export default function Testimonials() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/images/background-testimonials.jpg')",
+          backgroundImage: "url('/images/background/background-testimonials.jpg')",
           backgroundAttachment: "fixed",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -55,7 +55,7 @@ export default function Testimonials() {
           </h2>
         </ScrollReveal>
 
-        <div className="relative min-h-[320px] flex items-center justify-center">
+        <div className="relative min-h-80 flex items-center justify-center">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={current}
