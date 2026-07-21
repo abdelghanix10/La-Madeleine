@@ -48,7 +48,7 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="fixed bottom-0 left-0 w-full h-[60vh] bg-dark text-cream/70 z-0 overflow-hidden flex flex-col">
+    <footer className="relative lg:fixed lg:bottom-0 lg:left-0 w-full lg:h-[60vh] bg-dark text-cream/70 z-0 lg:overflow-hidden flex flex-col">
       <div className="h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-8 flex-1 flex flex-col">

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function MenuPage() {
   return (
     <>
-        <main className="relative z-10 mb-[60vh] bg-background">
+        <main className="relative z-10 lg:mb-[60vh] bg-background">
           <MenuHero />
           <MenuContent />
         </main>

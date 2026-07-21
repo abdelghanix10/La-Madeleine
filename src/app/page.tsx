@@ -14,7 +14,7 @@ import Newsletter from "@/components/home/Newsletter";
 export default function Home() {
   return (
     <>
-      <main className="relative z-10 mb-[60vh] bg-background">
+      <main className="relative z-10 lg:mb-[60vh] bg-background">
         <HeroSection />
         <CategorySection />
         <TodaysSpecials />
