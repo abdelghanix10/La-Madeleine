@@ -1,10 +1,22 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { heroSlides } from "@/lib/data";
+import { heroSlides, siteConfig } from "@/lib/data";
+
+function BrushArrow({ direction = "right" }: { direction?: "left" | "right" }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 269 38.6"
+      aria-hidden="true"
+      className={`h-3 w-16 fill-current ${direction === "left" ? "rotate-180" : ""}`}
+    >
+      <path d="M238.3,21.2c0.2,0,0.3,0.1,0.5,0.1c0.3,0,0.6,0.1,0.7-0.2c0-0.1,0.3-0.2,0.5-0.3c0.2-0.1,0.5-0.2,0.7-0.4c-0.2,0-0.5,0.1-0.8,0.2c0.2-0.6,1-0.7,1.7-0.8c0.1,0.1,0.2,0.2,0.3,0.2c-0.3,0.1-0.5,0.2-0.7,0.3c0,0,0,0.1,0.1,0.1c0.3,0,0.5-0.1,0.8-0.1c0.4-0.1,0.7-0.3,1.1-0.4c-0.1,0-0.2-0.1-0.4-0.2c0.3-0.1,0.6-0.2,0.8-0.3c0,0,0,0,0-0.1c-1,0.1-2,0.1-3,0.2c-1.6,0.1-3.1,0.2-4.7,0.3c-2.1,0.1-4.2,0.2-6.3,0.3c-1.1,0-2.3,0.1-3.4,0.2c-0.7,0-1.4,0-2.1,0c-2.4,0.1-4.8,0.3-7.2,0.4c-2.3,0.1-4.6,0.2-6.8,0.3c-1.6,0.1-3.2,0.2-4.8,0.3c-1.2,0.1-2.4,0.1-3.6,0.2c-2.6,0.1-5.2,0.3-7.8,0.5c-1.3,0.1-2.6,0.1-4,0.2c-1,0.1-2,0.2-3,0.2c-2.6,0.1-5.1,0.2-7.7,0.4c-0.8,0-1.5,0.1-2.3,0.2c-1.1,0.1-2.2,0.1-3.3,0.2c-1.6,0.1-3.2,0.2-4.7,0.3c-0.7,0-1.5-0.1-2.2-0.1c-0.2,0-0.3,0-0.6,0c0.2,0.1,0.3,0.1,0.5,0.2c-0.3,0-0.5,0.1-0.7,0.1c-1.1,0-2.2,0.1-3.4,0.1c-0.4,0-0.8-0.1-1.2,0c-0.3,0-0.7,0.1-1,0.1c-1.7,0.1-3.4,0.2-5.1,0.3c-1.1,0.1-2.1,0.1-3.2,0.2c-1.8,0.1-3.6,0.1-5.4,0.2c-1.1,0-2.3,0.2-3.4,0.2c-0.6,0-1.1,0-1.7,0c-1.1,0-2.2,0.1-3.3,0.1c-0.9,0-1.8,0.1-2.8,0.1c0.1-0.1,0.2-0.1,0.3-0.2c0,0,0,0,0-0.1c-0.2,0.1-0.4,0.1-0.6,0.2c-0.6,0.1-1.1,0.1-1.7,0.1c-1.8,0-3.5,0.1-5.3,0.2c-1.7,0.1-3.4,0.1-5,0.2c-1,0-2,0-2.9,0c-0.7,0-1.4,0.1-2.2,0.1c-1.4,0-2.8,0-4.2,0.1c-0.6,0-1.2-0.1-1.9,0c-0.9,0.1-1.9,0.1-2.9,0.1c-1.5,0-2.9,0.1-4.4,0.1c-1,0-2,0-2.9,0c-1.1,0-2.1,0.1-3.2,0.1c-1.5,0-3,0-4.6,0c-1.4,0-2.8,0-4.3,0c-0.8,0-1.7,0.1-2.5,0.1c-1.4,0-2.7,0-4.1,0c-1.1,0-2.3,0-3.4-0.1c-0.7,0-1.5,0-2.2,0c-1.1,0-2.2,0-3.3,0c-1,0-1.9,0.1-2.9,0.1c-2.1,0-4.2-0.1-6.3-0.1c-2,0-4,0-6,0c-1.5,0-3,0-4.5,0c-1.6,0-3.1,0-4.7,0.1c-1.1,0-2.3,0-3.4,0c-1.6,0-3.2,0.1-4.8,0.1c-1.6,0-3.3-0.1-4.9-0.1c-1.1,0-2.2,0-3.3,0c-0.7,0-1.3,0-2,0c-1.2,0-2.4,0-3.7,0c-0.8,0-1.6,0-2.3,0c-1.5,0-2.9,0.1-4.4,0.2c-0.4,0-0.7,0-1.1-0.1c-0.1,0-0.1,0-0.2,0C18,26,17,26,15.9,26.1c-1.8,0.1-3.5,0.1-5.3,0.2c-0.9,0-1.8,0.1-2.6,0.1c-0.1,0-0.2,0-0.2,0c-0.5,0.4-1.2,0.2-2,0.1c-0.5-0.1-1.1-0.1-1.5-0.4c-0.5-0.3-1.1-0.6-1.2-1.1c-0.1-0.5-0.1-0.8,0.1-1.3c0.2-0.3,0.2-0.7,0.4-1.1c0.2-0.5,0.5-0.9,0.7-1.4c0.2-0.4,0.5-0.9,0.9-1.3c0,0,0.1-0.1,0.1-0.1c-0.2-0.3,0.1-0.5,0.4-0.7C6,19.2,6.5,19.1,7,19.1c1,0,2.1,0,3.1,0c1.2,0,2.4,0,3.5,0c1.5,0,3-0.1,4.6-0.1c0.6,0,1.2,0,1.8,0c1.6,0,3.2,0,4.7,0c0.8,0,1.5-0.1,2.2-0.1c0.9,0,1.9,0,2.8,0.1c0.7,0,1.4,0,2.1,0c1.7,0,3.5,0,5.2,0c1.1,0,2.2-0.1,3.3-0.1c1.2,0,2.3,0,3.5,0.1c0.3,0,0.6,0,0.9,0c1.4,0,2.7-0.1,4.1-0.1c1.9,0,3.8,0.1,5.6,0.1c1.5,0,2.9-0.1,4.4-0.1c1.4,0,2.7,0,4.1,0c2.2,0,4.4,0,6.6,0c2.3,0,4.5-0.1,6.8-0.1c1.4,0,2.9,0,4.4,0c0.6,0,1.1-0.1,1.7-0.1c0.8,0,1.6,0,2.4,0c0.5,0,0.9,0,1.4,0c1.3,0,2.7,0,4,0c1.1,0,2.1,0,3.2-0.1c1,0,2,0,3,0c2.2,0,4.4-0.1,6.5-0.1c0.6,0,1.1,0.1,1.7,0.1c0.2,0,0.4,0,0.5,0c0.8-0.1,1.7,0.1,2.3-0.2c0,0,0.1,0,0.2,0c1,0.1,1.9,0,2.9,0c0.9,0,1.8,0,2.7,0c1.1,0,2.2,0,3.2-0.1c1.2,0,2.3,0,3.5,0c1.1,0,2.2-0.1,3.4-0.2c0.7,0,1.5,0,2.2-0.1c0.3,0,0.5,0,0.8,0c0.4,0,0.8-0.1,1.3,0.1c0,0,0.1,0,0.1,0c0.5-0.1,1.1-0.1,1.7-0.2c0.4,0.3,0.8,0.1,1.2,0c0.6,0,1.1-0.1,1.7-0.1c0.9,0,1.8,0,2.6,0c0.3,0,0.5-0.1,0.8-0.2c0.2,0,0.4,0.1,0.6,0.1c0.5,0,1.1-0.1,1.6-0.2c0.2,0,0.4,0,0.5,0c1,0.2,2,0,2.9-0.1c0.7-0.1,1.5-0.1,2.3-0.1c0.4,0,0.7,0,1.1,0c0.1,0,0.1,0,0.2,0c0.6-0.4,1.5,0,2.2-0.1c0.3,0,0.6,0,0.9-0.1c1.7-0.1,3.3-0.2,5-0.3c0.5,0,1,0,1.5,0c0.4,0,0.7,0.1,1-0.1c0.2-0.1,0.5,0,0.8,0c0.6,0,1.2-0.3,2,0c0.1,0,0.3,0,0.3,0c0.2-0.3,0.6-0.1,1-0.1c0.6,0,1.3,0.1,1.7-0.1c0.4-0.2,0.8,0.1,1.2,0c0.4-0.1,0.9,0,1.4-0.1c0.1,0,0.2,0,0.3,0c0.5-0.3,1.2-0.1,1.8-0.2c0.6-0.1,1.2,0,1.8-0.1c1-0.2,2,0,3-0.1c0,0,0.1,0,0.1,0c0.5-0.1,0.9-0.1,1.4-0.2c0.2,0,0.4,0,0.6,0c0.6,0,1.3-0.2,1.8-0.1c0.7,0.1,1.2,0.1,1.8,0c0.3,0,0.6-0.1,0.9-0.1c0,0,0.2,0.1,0.2,0.1c0.3,0,0.8,0.1,0.8-0.3c0.1,0.1,0.1,0.2,0.1,0.2c0.9-0.1,1.6-0.1,2.4-0.2c0.6,0,1.3-0.1,1.9-0.2c0.2,0,0.3,0,0.5,0c0.1,0,0.4,0.1,0.4,0c0.4-0.3,1.2-0.3,1.7-0.2c0.7,0.1,1.3-0.1,1.9-0.1c0.7,0,1.3,0,2,0c0.1,0,0.1,0,0.2,0c0.8-0.2,1.8,0,2.7-0.1c0.6,0,1.3-0.1,1.9-0.2c0-0.1-0.1-0.1-0.2-0.2c1.3,0,2.5,0,3.7,0c0.1,0,0.2,0,0.2,0c0.7-0.2,1.6,0,2.3-0.2c0.9-0.2,1.8,0,2.7-0.1c0.5,0,1-0.1,1.5-0.2c1.2-0.1,2.4-0.1,3.5-0.2c0.5,0,0.9-0.1,1.4-0.1c1.9-0.1,3.9-0.2,5.8-0.3c1.1-0.1,2.2-0.1,3.3-0.1c1.6-0.1,3.2-0.2,4.8-0.3c0.3,0,0.6,0,0.9,0c1.4-0.1,2.8-0.3,4.2-0.4c1-0.1,2-0.1,3-0.1c0.3,0,0.6-0.1,0.9-0.1c0,0,0-0.1,0-0.1c-0.5-0.1-0.9-0.1-1.4-0.2c-2.2-0.3-4.4-0.6-6.7-0.8c-1.3-0.1-2.6-0.2-3.9-0.4c-1.1-0.1-2.2-0.2-3.2-0.4c-1.2-0.1-2.5-0.3-3.7-0.4c-1.8-0.2-3.5-0.3-5.3-0.5c-0.8-0.1-1.6-0.1-2.4-0.2c-1.1-0.1-2.1-0.2-3.2-0.4c-1.3-0.1-2.6-0.2-3.9-0.3c-0.8-0.1-1.7-0.2-2.5-0.3c-0.8-0.1-1.7-0.2-2.5-0.3c-1.3-0.1-2.6-0.2-4-0.3c-0.8-0.1-1.6-0.2-2.4-0.3c-0.8-0.1-1.5-0.3-1.9-0.8c-0.1-0.1-0.2-0.1-0.5-0.2c0.4-0.1,0.7-0.2,1-0.3c0.3-0.1,0.3-0.2,0.1-0.3c-0.3-0.2-0.2-0.4,0-0.6c0.4-0.3,0.6-0.7,0.9-1.1c0,0,0,0,0,0c0.7-0.1,0.3-1,1.4-0.9c0.3,0,0.6-0.2,0.9-0.3c0.3-0.1,0.6-0.1,0.8-0.1c0.1,0,0.3,0,0.4-0.1c0-0.3,0.5-0.2,0.8-0.3c1-0.1,2-0.2,3-0.3c0.1,0,0.3,0,0.5,0c0.7,0.1,1.4,0.1,2.1,0.2c0.5,0,1.1,0,1.6,0c0.9,0,1.8,0.1,2.6,0.2c0.2,0,0.5,0.1,0.3-0.2c0.3,0,0.5-0.1,0.8-0.1c1.5,0.1,3.1,0.3,4.6,0.4c1.5,0.1,3,0.2,4.4,0.3c1.4,0.1,2.9,0.2,4.3,0.3c1.2,0.1,2.4,0.2,3.5,0.3c1.6,0.2,3.3,0.3,4.9,0.5c0.7,0.1,1.5,0.2,2.2,0.3c0.5,0.1,0.9,0.1,1.4,0.2c1.5,0.2,2.9,0.3,4.4,0.5c1.2,0.1,2.3,0.2,3.5,0.4c1,0.1,2,0.3,3.1,0.5c1,0.1,2,0.3,3,0.4c1.3,0.2,2.6,0.4,3.9,0.6c1.1,0.2,2.1,0.3,3.2,0.4c0.6,0.1,1.2,0.2,1.8,0.3c0.8,0.2,1.5,0.3,2.3,0.5c2,0.3,3.9,0.8,5.8,1.4c1.3,0.4,2.5,0.8,3.6,1.4c1.2,0.6,1.9,1.5,2.3,2.3c0.4,0.8,0.4,1.7,0.7,2.6c0,0.2,0.2,0.3,0.2,0.5c0.2,0.8,0.4,1.6,0.5,2.4c0,0.4-0.3,0.7-0.7,1c-0.9,0.7-2.2,1.2-3.4,1.6c-1.3,0.5-2.6,0.9-3.9,1.3c-1.1,0.4-2.2,0.7-3.3,1c-0.9,0.3-1.9,0.6-2.8,0.9c-1.1,0.3-2.2,0.6-3.3,1c-1,0.3-1.9,0.6-2.9,0.9c-1.2,0.4-2.5,0.7-3.7,1.1c-0.8,0.2-1.6,0.5-2.4,0.8c-1.3,0.4-2.6,0.7-3.9,1.1c-1.1,0.3-2.1,0.6-3.2,1c-1.2,0.4-2.4,0.7-3.6,1.1c-1.6,0.5-3.2,1-4.8,1.5c-1.1,0.3-2.2,0.6-3.3,1c-1.6,0.5-3.2,1.1-4.9,1.6c-1.4,0.4-2.7,0.8-4.1,1.2c-1,0.3-1.9,0.5-2.9,0.7c-0.4,0.1-1,0-1.5-0.2c-0.5-0.2-1.2-0.3-1.6-0.6c-0.3-0.4-0.7-0.7-0.5-1.1c0.3-0.6,0.3-1.2,0.4-1.8c0-0.2,0.2-0.3,0.2-0.5c0-0.5,0.3-0.8,0.6-1.2c0.5-0.6,1-1.2,1.8-1.6c0.1-0.1,0.2-0.2,0.4-0.3c-0.1-0.1-0.2-0.1-0.4-0.1c0.1-0.1,0.3-0.1,0.4-0.2c-0.1-0.1-0.3-0.1-0.4-0.2c0,0,0-0.1,0.1-0.1c1-0.3,2-0.5,3-0.8c0.5-0.1,1-0.3,1.5-0.4c1-0.3,2-0.6,3-0.9c0.5-0.2,1.1-0.3,1.7-0.4c0.3,0,0.4-0.3,0.7-0.4c0.7-0.2,1.5-0.3,2.2-0.6c0.4-0.1,0.7-0.4,1.1-0.4c0.4-0.1,0.9,0.1,1.3,0c0.5,0,0.8-0.2,1-0.5c-0.1,0-0.2-0.1-0.4-0.1c2.3-0.6,4.5-1.2,6.7-1.8c0,0,0.1,0.1,0.1,0.1c-0.1,0.1-0.1,0.2-0.2,0.2c0.7-0.1,1.4-0.2,2.1-0.3c0,0-0.2-0.1-0.4-0.2c0.5-0.1,1-0.1,1.4-0.1c0.4-0.1,0.9-0.2,1.2-0.4c0.6-0.4,1.2-0.6,2.1-0.7c0.3,0,0.6-0.2,0.9-0.3c0.4-0.1,0.9-0.3,1.3-0.4C238.2,21.4,238.2,21.3,238.3,21.2C238.3,21.2,238.3,21.2,238.3,21.2z" />
+    </svg>
+  );
+}
 
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
@@ -29,115 +41,178 @@ export default function HeroSection() {
 
   const slideVariants = {
     enter: (d: number) => ({
-      x: d > 0 ? "100%" : "-100%",
+      x: d > 0 ? 80 : -80,
       opacity: 0,
     }),
     center: { x: 0, opacity: 1 },
     exit: (d: number) => ({
-      x: d > 0 ? "-100%" : "100%",
+      x: d > 0 ? -80 : 80,
       opacity: 0,
     }),
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative min-h-[100svh] overflow-x-hidden bg-[#f4f0e7] text-text lg:min-h-190 lg:overflow-hidden">
+      <div
+        className="absolute inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 25% 20%, rgba(59,35,20,0.12) 0 1px, transparent 1.4px), radial-gradient(circle at 70% 65%, rgba(59,35,20,0.08) 0 1px, transparent 1.4px)",
+          backgroundSize: "28px 28px, 36px 36px",
+        }}
+      />
+
+      <a
+        href={`tel:${siteConfig.phone}`}
+        className="absolute -left-8 top-9 z-20 hidden rotate-[-31deg] bg-primary px-9 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-white shadow-sm before:absolute before:right-5.5 before:top-0 before:border-y-19 before:border-l-22 before:border-y-transparent before:border-l-primary md:block"
+      >
+        Call us {siteConfig.phone}
+      </a>
+
       <AnimatePresence initial={false} custom={direction} mode="wait">
         <motion.div
-          key={current}
+          key={slide.id}
           custom={direction}
           variants={slideVariants}
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="absolute inset-0"
+          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          className="relative inset-0 lg:absolute"
         >
-          {/* Background image placeholder with gradient */}
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: `linear-gradient(135deg, #3B2314 0%, rgba(59,35,20,0.8) 40%, rgba(59,35,20,0.4) 100%)`,
-            }}
-          />
-          {/* Decorative pattern overlay */}
-          <div className="absolute inset-0 opacity-[0.03]"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C89A2B' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          />
-
-          {/* Content */}
-          <div className="absolute inset-0 flex items-center">
-            <div className="max-w-7xl mx-auto px-6 w-full">
+          <div className="mx-auto grid h-full max-w-7xl grid-cols-1 items-center gap-8 px-6 pb-28 pt-20 md:px-10 md:pb-20 lg:grid-cols-[0.9fr_1.1fr] lg:gap-4 lg:pb-0 lg:pt-10">
+            <div className="relative z-10 mx-auto w-full max-w-xl lg:ml-24 lg:mt-16">
               <motion.div
-                className="max-w-2xl"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, duration: 0.45 }}
               >
-                <motion.p
-                  className="text-primary font-script text-2xl md:text-3xl mb-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.6 }}
-                >
+                <p className="font-script text-3xl leading-none text-primary sm:text-4xl md:text-5xl">
                   {slide.subtitle}
-                </motion.p>
-                <motion.h2
-                  className="font-serif text-5xl md:text-7xl lg:text-8xl text-cream leading-[0.95] mb-6"
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, duration: 0.7 }}
-                >
+                </p>
+                <h2 className="mt-2 font-serif text-4xl font-medium uppercase leading-[0.92] tracking-[0.06em] text-black sm:text-5xl md:text-7xl lg:text-[4.9rem]">
                   {slide.title}
-                </motion.h2>
-                <motion.p
-                  className="text-cream/70 text-lg md:text-xl max-w-lg mb-10 leading-relaxed"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8, duration: 0.6 }}
-                >
-                  {slide.description}
-                </motion.p>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1, duration: 0.6 }}
-                >
-                  <Link
-                    href="/menu"
-                    className="inline-flex items-center gap-3 bg-primary hover:bg-primary-light text-dark font-medium text-sm tracking-widest uppercase px-8 py-4 transition-all duration-300 group"
+                </h2>
+              </motion.div>
+
+              <div className="mt-8 space-y-8 md:mt-10 md:space-y-10">
+                {slide.products.map((product, index) => (
+                  <motion.div
+                    key={product.title}
+                    className="grid grid-cols-[64px_1fr] items-start gap-4 sm:grid-cols-[72px_1fr] sm:gap-5 md:grid-cols-[88px_1fr] md:gap-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 + index * 0.12, duration: 0.45 }}
                   >
-                    {slide.cta}
-                    <span className="w-8 h-px bg-dark group-hover:w-12 transition-all duration-300" />
-                  </Link>
-                </motion.div>
+                    <div className="relative h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24">
+                      <Image
+                        src={product.icon}
+                        alt=""
+                        fill
+                        sizes="96px"
+                        className="object-contain"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-2xl font-bold uppercase leading-none tracking-[0.02em] text-black sm:text-[2rem]">
+                        {product.title}
+                      </h3>
+                      <p className="mt-3 max-w-md text-sm leading-6 text-black/80 md:mt-4 md:text-base md:leading-7">
+                        {product.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative z-0 mx-auto h-72 w-full max-w-xl sm:h-85 sm:max-w-2xl lg:h-142.5 lg:max-w-180">
+              <motion.div
+                className="absolute left-[12%] top-[8%] hidden h-[48%] w-[78%] opacity-60 md:block lg:left-[5%] lg:top-[9%]"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 0.6, scale: 1 }}
+                transition={{ delay: 0.28, duration: 0.5 }}
+              >
+                <Image
+                  src={slide.bgText}
+                  alt=""
+                  fill
+                  sizes="(max-width: 1024px) 70vw, 620px"
+                  className="object-contain"
+                />
+              </motion.div>
+
+              <motion.div
+                className="absolute right-[8%] top-[20%] hidden h-16 w-16 md:block lg:right-[14%] lg:top-[22%]"
+                initial={{ opacity: 0, rotate: -10, scale: 0.8 }}
+                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                transition={{ delay: 0.42, duration: 0.45 }}
+              >
+                <Image
+                  src={slide.bgIcon}
+                  alt=""
+                  fill
+                  sizes="64px"
+                  className="object-contain"
+                />
+              </motion.div>
+
+              <motion.div
+                className="absolute bottom-0 left-1/2 h-[78%] w-full -translate-x-1/2 lg:h-[78%]"
+                initial={{ opacity: 0, y: 35, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.65 }}
+              >
+                <Image
+                  src={slide.image}
+                  alt={slide.title}
+                  fill
+                  sizes="(max-width: 1024px) 90vw, 720px"
+                  className="object-contain object-bottom"
+                  fetchPriority={current === 0 ? "high" : "auto"}
+                />
               </motion.div>
             </div>
           </div>
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation arrows */}
-      <div className="absolute bottom-12 right-6 md:right-12 flex items-center gap-4 z-10">
+      <button
+        onClick={prev}
+        className="absolute left-6 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-start gap-1 font-serif text-sm uppercase text-black transition-colors hover:text-primary lg:flex"
+        aria-label="Previous slide"
+      >
+        <span>Prev</span>
+        <BrushArrow direction="left" />
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-6 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-end gap-1 font-serif text-sm uppercase text-black transition-colors hover:text-primary lg:flex"
+        aria-label="Next slide"
+      >
+        <span>Next</span>
+        <BrushArrow />
+      </button>
+
+      <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3 lg:hidden">
         <button
           onClick={prev}
-          className="w-12 h-12 border border-cream/30 flex items-center justify-center text-cream hover:bg-primary hover:border-primary transition-all duration-300"
+          className="flex h-10 w-20 items-center justify-center text-black hover:text-primary"
           aria-label="Previous slide"
         >
-          <ChevronLeft size={20} />
+          <BrushArrow direction="left" />
         </button>
         <button
           onClick={next}
-          className="w-12 h-12 border border-cream/30 flex items-center justify-center text-cream hover:bg-primary hover:border-primary transition-all duration-300"
+          className="flex h-10 w-20 items-center justify-center text-black hover:text-primary"
           aria-label="Next slide"
         >
-          <ChevronRight size={20} />
+          <BrushArrow />
         </button>
       </div>
 
       {/* Slide indicators */}
-      <div className="absolute bottom-12 left-6 md:left-12 flex items-center gap-3 z-10">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 z-10">
         {heroSlides.map((_, i) => (
           <button
             key={i}
@@ -148,24 +223,12 @@ export default function HeroSection() {
             className={`transition-all duration-500 ${
               i === current
                 ? "w-10 h-0.5 bg-primary"
-                : "w-6 h-0.5 bg-cream/40 hover:bg-cream/60"
+                : "w-6 h-0.5 bg-black/40 hover:bg-black/60"
             }`}
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <span className="text-cream/40 text-xs tracking-[0.3em] uppercase">
-          Scroll
-        </span>
-        <div className="w-px h-8 bg-gradient-to-b from-cream/40 to-transparent" />
-      </motion.div>
     </section>
   );
 }

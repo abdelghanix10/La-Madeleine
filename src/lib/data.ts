@@ -16,33 +16,69 @@ export const siteConfig = {
 export const heroSlides = [
   {
     id: 1,
-    title: "L'Art du Pain",
-    subtitle: "Baked Fresh Every Morning",
-    description:
-      "Our master bakers rise before dawn to craft each loaf with time-honored French techniques and the finest ingredients.",
-    cta: "Explore Our Menu",
-    image: "/images/hero-bakery.jpg",
-    gradient: "from-dark/70 via-dark/40 to-transparent",
+    title: "CHOCO PASTRY",
+    subtitle: "Delicious",
+    image: "/images/slider/slide-1/slide-1-image.png",
+    bgText: "/images/slider/slide-1/slide-1-bg.png",
+    bgIcon: "/images/slider/slide-1/slide-1-bg-icon.png",
+    products: [
+      {
+        title: "CHOCOLATE",
+        description:
+          "Lorem ipsum dolor sit amet, quo ut paulo civibus alienum, et porro tibique apeirian eos, ex est soluta.",
+        icon: "/images/slider/slide-1/slide-1-product-1.png",
+      },
+      {
+        title: "SWEET CLASSICS",
+        description:
+          "Lorem ipsum dolor sit amet, quo ut paulo civibus alienum, et porro tibique apeirian eos, ex est soluta.",
+        icon: "/images/slider/slide-1/slide-1-product-2.png",
+      },
+    ],
   },
   {
     id: 2,
-    title: "Café d'Exception",
-    subtitle: "The Perfect Cup",
-    description:
-      "Single-origin beans, roasted in-house, paired with our signature pastries for an unforgettable experience.",
-    cta: "View Coffee Menu",
-    image: "/images/hero-coffee.jpg",
-    gradient: "from-dark/70 via-dark/40 to-transparent",
+    title: "NICE BIG BUNS.",
+    subtitle: "Delicious",
+    image: "/images/slider/slide-2/slide-2-image.png",
+    bgText: "/images/slider/slide-2/slide-2-bg.png",
+    bgIcon: "/images/slider/slide-2/slide-2-bg-icon.png",
+    products: [
+      {
+        title: "BAKE THE VERY BEST",
+        description:
+          "Lorem ipsum dolor sit amet, quo ut paulo civibus alienum, et porro tibique apeirian eos, ex est soluta.",
+        icon: "/images/slider/slide-2/slide-2-product-1.png",
+      },
+      {
+        title: "UNSPEAKABLY GOOD",
+        description:
+          "Lorem ipsum dolor sit amet, quo ut paulo civibus alienum, et porro tibique apeirian eos, ex est soluta.",
+        icon: "/images/slider/slide-2/slide-2-product-2.png",
+      },
+    ],
   },
   {
     id: 3,
-    title: "Pâtisserie Raffinée",
-    subtitle: "Sweet Artistry",
-    description:
-      "Delicate layers of butter, flour, and passion — each pastry is a small masterpiece of French pâtisserie.",
-    cta: "See Our Pastries",
-    image: "/images/hero-pastry.jpg",
-    gradient: "from-dark/70 via-dark/40 to-transparent",
+    title: "SANDWICHES",
+    subtitle: "Delicious",
+    image: "/images/slider/slide-3/slide-3-image.png",
+    bgText: "/images/slider/slide-3/slide-3-bg.png",
+    bgIcon: "/images/slider/slide-3/slide-3-bg-icon.png",
+    products: [
+      {
+        title: "BREAKFAST",
+        description:
+          "Lorem ipsum dolor sit amet, quo ut paulo civibus alienum, et porro tibique apeirian eos, ex est soluta.",
+        icon: "/images/slider/slide-3/slide-3-product-1.png",
+      },
+      {
+        title: "HEALTHY SNACK",
+        description:
+          "Lorem ipsum dolor sit amet, quo ut paulo civibus alienum, et porro tibique apeirian eos, ex est soluta.",
+        icon: "/images/slider/slide-3/slide-3-product-2.png",
+      },
+    ],
   },
 ];
 
