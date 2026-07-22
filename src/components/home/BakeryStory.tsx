@@ -8,7 +8,7 @@ import CountUp from "@/components/animations/CountUp";
 
 const stats = [
   {
-    value: new Date().getFullYear() - 2017,
+    value: new Date().getFullYear() - 2019,
     suffix: "+",
     label: "Years of Craft",
   },
@@ -50,7 +50,7 @@ export default function BakeryStory() {
                       Since
                     </p>
                     <h3 className="font-serif text-5xl md:text-7xl text-cream">
-                      2017
+                      2019
                     </h3>
                   </div>
                 </div>
@@ -58,7 +58,7 @@ export default function BakeryStory() {
               <div className="absolute -bottom-6 -right-6 bg-primary text-dark p-6 shadow-xl">
                 <span className="font-script text-3xl">Since</span>
                 <br />
-                <span className="font-serif text-4xl font-bold">2017</span>
+                <span className="font-serif text-4xl font-bold">2019</span>
               </div>
             </div>
           </ScrollReveal>
@@ -77,12 +77,11 @@ export default function BakeryStory() {
 
             <ScrollReveal variant="fadeRight" delay={0.1}>
               <p className="text-dark/60 leading-relaxed mb-6">
-                In [Insert Year], a deep love for traditional baking brought the
-                charm of a classic French salon de thé to the heart of Agadir.
-                Armed with perfected recipes, a commitment to exceptional
-                coffee, and an uncompromising dedication to quality, La Madeline
-                opened its doors to a community that appreciates the finer
-                details.
+                In 2019, a deep love for traditional baking brought the charm of
+                a classic French salon de thé to the heart of Agadir. Armed with
+                perfected recipes, a commitment to exceptional coffee, and an
+                uncompromising dedication to quality, La Madeline opened its
+                doors to a community that appreciates the finer details.
               </p>
             </ScrollReveal>
 

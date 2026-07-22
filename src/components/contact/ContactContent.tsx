@@ -57,6 +57,7 @@ export default function ContactContent() {
   });
 
   const onSubmit = async (data: ContactFormData) => {
+    void data;
     // Simulate API call
     await new Promise((r) => setTimeout(r, 1000));
     setSubmitted(true);
@@ -74,7 +75,7 @@ export default function ContactContent() {
           {contactInfo.map((info) => (
             <StaggerItem key={info.label}>
               <motion.a
-                href={info.href}
+                {...(info.href !== "#" && { href: info.href })}
                 className="block bg-cream p-6 border border-dark/5 hover:border-primary/20 transition-all duration-500 group"
                 whileHover={{ y: -3 }}
               >
@@ -95,14 +96,16 @@ export default function ContactContent() {
           {/* Map */}
           <ScrollReveal variant="fadeLeft">
             <div className="aspect-square lg:aspect-auto lg:h-full bg-cream border border-dark/5 relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin size={48} className="text-primary/40 mx-auto mb-4" />
-                  <p className="text-dark/40 text-sm tracking-wider">
-                    Interactive Map
-                  </p>
-                </div>
-              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15843.858673954102!2d-9.528229!3d30.4020649!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3c9965a5026d3%3A0x736a8bf5957eefa9!2sCaf%C3%A9%20%26%20P%C3%A2tisserie%20Lamadeleine!5e1!3m2!1sen!2sma!4v1784729579942!5m2!1sen!2sma"
+                width="600"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                className="h-full w-full"
+              />
             </div>
           </ScrollReveal>
 

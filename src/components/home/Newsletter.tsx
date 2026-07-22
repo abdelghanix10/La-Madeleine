@@ -57,7 +57,7 @@ export default function Newsletter() {
             {contactDetails.map((item) => (
               <motion.a
                 key={item.label}
-                href={item.href}
+                {...(item.href !== "#" && { href: item.href })}
                 className="block bg-background p-6 border border-dark/5 hover:border-primary/20 text-center transition-all duration-500 group"
                 whileHover={{ y: -4 }}
               >
