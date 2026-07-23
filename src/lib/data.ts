@@ -95,10 +95,10 @@ export const categories = [
   },
   {
     id: 3,
-    name: "Pastries",
-    description: "Delicate French & Moroccan pâtisserie",
-    icon: "cake",
-    image: "/images/cat-pastries.jpg",
+    name: "Desserts",
+    description: "Indulgent sweet creations",
+    icon: "cherry",
+    image: "/images/cat-desserts.jpg",
   },
   {
     id: 4,
@@ -109,10 +109,10 @@ export const categories = [
   },
   {
     id: 5,
-    name: "Desserts",
-    description: "Indulgent sweet creations",
-    icon: "cherry",
-    image: "/images/cat-desserts.jpg",
+    name: "Pastries",
+    description: "Delicate French & Moroccan pâtisserie",
+    icon: "cake",
+    image: "/images/cat-pastries.jpg",
   },
   {
     id: 6,
@@ -192,10 +192,10 @@ export const todaysSpecials: TodaysSpecial[] = [
 export const coffeeMenu = [
   {
     id: 1,
-    name: "Americano",
-    description: "Espresso diluted with hot water.",
-    price: 14.0,
-    icon: "Coffee",
+    name: "Mocha",
+    description: "Espresso combined with chocolate and steamed milk.",
+    price: 18.0,
+    icon: "Cookie",
   },
   {
     id: 2,
@@ -262,10 +262,10 @@ export const coffeeMenu = [
   },
   {
     id: 11,
-    name: "Mocha",
-    description: "Espresso combined with chocolate and steamed milk.",
-    price: 18.0,
-    icon: "Cookie",
+    name: "Americano",
+    description: "Espresso diluted with hot water.",
+    price: 14.0,
+    icon: "Coffee",
   },
   {
     id: 12,
