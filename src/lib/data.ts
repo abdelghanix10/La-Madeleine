@@ -1793,8 +1793,7 @@ export const faqData = [
     id: 1,
     category: "General",
     question: "What are your opening hours?",
-    answer:
-      "We're open Monday to Sunday from 6:00 AM to 10:00 PM. Our Montmartre location stays open one hour later on weekdays.",
+    answer: "We're open Monday to Sunday from 6:00 AM to 10:00 PM.",
   },
   {
     id: 2,
@@ -1808,41 +1807,33 @@ export const faqData = [
     category: "Products",
     question: "Are your products made with organic ingredients?",
     answer:
-      "We source the finest ingredients available. While not everything is certified organic, we prioritize quality, sustainability, and working with local farmers and suppliers who share our values.",
+      "We source the finest ingredients available. While not everything is certified organic, we prioritize quality, sustainability.",
   },
   {
     id: 4,
-    category: "Products",
-    question: "Do you have gluten-free or vegan options?",
-    answer:
-      "Yes! We offer a selection of gluten-free breads, pastries, and desserts. Our vegan range includes plant-based croissants, cookies, and dairy-free milk options for all our coffees.",
+    category: "Ordering",
+    question: "What payment methods do you accept?",
+    answer: "We currently accept cash payments only.",
   },
   {
     id: 5,
     category: "Ordering",
     question: "Can I place an order for delivery?",
     answer:
-      "Absolutely. You can order through our website or by calling us directly. We offer same-day delivery within central Paris for orders placed before 2:00 PM.",
+      "At the moment, we do not offer delivery or online ordering. To place an order, simply call us directly or visit our bakery, and our team will be happy to assist you.",
   },
   {
     id: 6,
     category: "Ordering",
     question: "Do you cater for events and weddings?",
     answer:
-      "We'd love to be part of your special day! We offer bespoke catering packages for weddings, corporate events, and private parties. Contact us at least two weeks in advance for custom orders.",
+      "We'd love to be part of your special day! We offer bespoke catering packages for weddings, corporate events, and private parties. Contact us at least one week in advance for custom orders.",
   },
   {
     id: 7,
     category: "General",
     question: "Is parking available near your bakery?",
     answer:
-      "Our Montmartre location is near the Abbesses metro station (Line 12). Street parking is available, and there's a public parking garage on Rue des Abbesses. Le Marais is easily accessible via Saint-Paul metro (Line 1).",
-  },
-  {
-    id: 8,
-    category: "Ordering",
-    question: "What payment methods do you accept?",
-    answer:
-      "We accept all major credit and debit cards, contactless payments, Apple Pay, Google Pay, and cash. For large catering orders, we also accept bank transfers.",
+      "Parking is available nearby, and our bakery is easily accessible by public transport or car.",
   },
 ];

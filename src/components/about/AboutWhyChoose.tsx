@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Leaf, Clock, Heart, Award } from "lucide-react";
+import { Leaf, Clock, Heart, Sparkles } from "lucide-react";
 import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
@@ -11,22 +11,26 @@ const reasons = [
   {
     icon: Leaf,
     title: "Finest Ingredients",
-    description: "Stone-milled flour, Normandy butter, wild yeast — we never compromise on quality.",
+    description:
+      "We select premium butter, fresh cream, Belgian chocolate, seasonal fruits, and carefully sourced ingredients to create exceptional pastries every day.",
   },
   {
     icon: Clock,
-    title: "72-Hour Ferment",
-    description: "Our doughs ferment for three days, developing depth of flavor that quick methods can't achieve.",
+    title: "Freshly Crafted Daily",
+    description:
+      "Every cake, croissant, tart, and dessert is handcrafted each morning to ensure perfect freshness, texture, and flavor.",
   },
   {
     icon: Heart,
-    title: "Handcrafted Daily",
-    description: "Every croissant is hand-rolled, every baguette scored by hand, every pastry made with devotion.",
+    title: "Signature Creations",
+    description:
+      "From elegant entremets to flaky viennoiseries and artisan desserts, each creation is made with precision, creativity, and passion.",
   },
   {
-    icon: Award,
-    title: "Award-Winning",
-    description: "Recognized as one of Paris's finest bakeries, with multiple Grand Prix de la Boulangerie awards.",
+    icon: Sparkles,
+    title: "Unforgettable Taste",
+    description:
+      "Every bite combines refined craftsmanship with premium ingredients, delivering a memorable experience for every celebration and everyday indulgence.",
   },
 ];
 
