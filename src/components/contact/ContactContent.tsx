@@ -57,11 +57,22 @@ export default function ContactContent() {
   });
 
   const onSubmit = async (data: ContactFormData) => {
-    void data;
-    // Simulate API call
-    await new Promise((r) => setTimeout(r, 1000));
-    setSubmitted(true);
-    reset();
+    const formData = {
+      access_key: "b917540a-a17f-4f5c-bd8e-d83443d2a0f4",
+      ...data,
+    };
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      setSubmitted(true);
+      reset();
+    }
   };
 
   return (
