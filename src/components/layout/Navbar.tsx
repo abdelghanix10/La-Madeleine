@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Phone } from "lucide-react";
@@ -160,16 +161,25 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 py-14 flex justify-center">
           <Link href="/" className="shrink-0">
             <motion.div
-              className="text-center"
+              className="text-center flex gap-2 items-center"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
-              <h1 className="font-serif text-5xl xl:text-6xl tracking-wider leading-none text-dark">
-                {siteConfig.name.split(" ").slice(0, 2).join(" ")}
-              </h1>
-              <p className="text-[10px] tracking-[0.4em] uppercase mt-2 text-primary">
-                {siteConfig.tagline}
-              </p>
+              <Image
+                src="/images/logo.png"
+                alt={siteConfig.name}
+                width={120}
+                height={120}
+                className="mx-auto mb-4"
+              />
+              <div>
+                <h1 className="font-serif text-5xl xl:text-6xl tracking-wider leading-none text-dark">
+                  {siteConfig.name.split(" ").slice(0, 2).join(" ")}
+                </h1>
+                <p className="text-[10px] tracking-[0.4em] uppercase mt-2 text-primary">
+                  {siteConfig.tagline}
+                </p>
+              </div>
             </motion.div>
           </Link>
         </div>
@@ -183,7 +193,16 @@ export default function Navbar() {
         <nav className="transition-all duration-500 border-b bg-background border-dark/10">
           <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
             {/* Mobile: logo left */}
-            <Link href="/" className="lg:hidden shrink-0">
+            <Link
+              href="/"
+              className="lg:hidden shrink-0 flex items-center gap-3"
+            >
+              <Image
+                src="/images/logo.png"
+                alt={siteConfig.name}
+                width={36}
+                height={36}
+              />
               <span className="font-serif text-xl tracking-wider text-dark">
                 {siteConfig.name.split(" ").slice(0, 2).join(" ")}
               </span>

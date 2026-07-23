@@ -1,12 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { Coffee, Milk, Wine, Cookie, Droplets, Sparkles } from "lucide-react";
 import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
 import { coffeeMenu } from "@/lib/data";
+
+const iconMap: Record<string, React.ElementType> = {
+  Coffee,
+  Milk,
+  Wine,
+  Cookie,
+  Droplets,
+  Sparkles,
+};
 
 export default function CoffeeMenuPreview() {
   return (
@@ -34,18 +43,11 @@ export default function CoffeeMenuPreview() {
                   whileHover={{ x: 4 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="w-12 h-12 rounded-full bg-cream flex items-center justify-center text-xl shrink-0 group-hover:bg-primary/10 transition-colors duration-300 overflow-hidden">
-                    {item.icon.startsWith("/") ? (
-                      <Image
-                        src={item.icon}
-                        alt={item.name}
-                        width={48}
-                        height={48}
-                        className="w-full h-full object-cover rounded-full"
-                      />
-                    ) : (
-                      <span aria-hidden="true">{item.icon}</span>
-                    )}
+                  <div className="w-12 h-12 rounded-full bg-cream flex items-center justify-center text-xl shrink-0 group-hover:bg-primary/10 transition-colors duration-300">
+                    {(() => {
+                      const IconComponent = iconMap[item.icon] || Coffee;
+                      return <IconComponent className="w-5 h-5 text-primary" />;
+                    })()}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline gap-3">

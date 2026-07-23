@@ -36,7 +36,7 @@ export default function BakeryStory() {
                   style={{ y: imageY }}
                 >
                   <Image
-                    src="/images/background/bg-3.jpg"
+                    src="/images/background/bg-story.jpg"
                     alt="Bakery background"
                     fill
                     className="object-cover"

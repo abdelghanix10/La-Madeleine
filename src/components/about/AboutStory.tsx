@@ -2,6 +2,9 @@
 
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import CountUp from "@/components/animations/CountUp";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const stats = [
   {
@@ -14,20 +17,48 @@ const stats = [
 ];
 
 export default function AboutStory() {
+  const imageRef = useRef<HTMLDivElement | null>(null);
+    const { scrollYProgress } = useScroll({
+      target: imageRef,
+      offset: ["start end", "end start"],
+    });
+    const imageY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+    
   return (
     <section className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <ScrollReveal variant="fadeLeft">
-            <div className="aspect-4/5 bg-linear-to-br from-dark/10 to-cream border border-dark/5 relative overflow-hidden">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <span className="font-script text-6xl text-primary/20">
-                    Est.
-                  </span>
-                  <br />
-                  <span className="font-serif text-8xl text-dark/10">2019</span>
+            <div ref={imageRef} className="relative">
+              <div className="aspect-4/5 relative overflow-hidden rounded-4xl shadow-2xl">
+                <motion.div
+                  className="absolute inset-0 will-change-transform"
+                  style={{ y: imageY }}
+                >
+                  <Image
+                    src="/images/background/bg-story.jpg"
+                    alt="Bakery background"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </motion.div>
+                <div className="absolute inset-0 bg-linear-to-t from-dark/55 via-dark/15 to-transparent" />
+                <div className="absolute inset-0 flex items-end p-8 md:p-10">
+                  <div>
+                    <p className="font-script text-3xl text-cream/90 mb-2">
+                      Since
+                    </p>
+                    <h3 className="font-serif text-5xl md:text-7xl text-cream">
+                      2019
+                    </h3>
+                  </div>
                 </div>
+              </div>
+              <div className="absolute -bottom-6 -right-6 bg-primary text-dark p-6 shadow-xl">
+                <span className="font-script text-3xl">Since</span>
+                <br />
+                <span className="font-serif text-4xl font-bold">2019</span>
               </div>
             </div>
           </ScrollReveal>

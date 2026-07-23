@@ -33,7 +33,7 @@ export default function HeroSection() {
   }, []);
 
   useEffect(() => {
-    const timer = setInterval(next, 6000);
+    const timer = setInterval(next, 10000);
     return () => clearInterval(timer);
   }, [next]);
 
@@ -52,7 +52,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[100svh] overflow-x-hidden bg-[#f4f0e7] text-text lg:min-h-190 lg:overflow-hidden">
+    <section className="relative min-h-svh overflow-x-hidden bg-[#f4f0e7] text-text lg:min-h-190 lg:overflow-hidden">
       <div
         className="absolute inset-0 opacity-[0.35]"
         style={{
@@ -64,7 +64,7 @@ export default function HeroSection() {
 
       <a
         href={`tel:${siteConfig.phone}`}
-        className="absolute -left-8 top-9 z-20 hidden rotate-[-31deg] bg-primary px-9 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-white shadow-sm before:absolute before:right-5.5 before:top-0 before:border-y-19 before:border-l-22 before:border-y-transparent before:border-l-primary md:block"
+        className="absolute -left-8 top-9 z-20 hidden rotate-[-31deg] bg-primary px-9 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-white shadow-sm before:absolute before:-right-5.5 before:top-0 before:border-y-20 before:border-l-22 before:border-y-transparent before:border-l-primary md:block"
       >
         Call us {siteConfig.phone}
       </a>
@@ -179,7 +179,7 @@ export default function HeroSection() {
 
       <button
         onClick={prev}
-        className="absolute left-6 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-start gap-1 font-serif text-sm uppercase text-black transition-colors hover:text-primary lg:flex"
+        className="absolute cursor-pointer left-6 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-start gap-1 font-serif text-sm uppercase text-black transition-colors hover:text-primary lg:flex"
         aria-label="Previous slide"
       >
         <span>Prev</span>
@@ -187,7 +187,7 @@ export default function HeroSection() {
       </button>
       <button
         onClick={next}
-        className="absolute right-6 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-end gap-1 font-serif text-sm uppercase text-black transition-colors hover:text-primary lg:flex"
+        className="absolute cursor-pointer right-6 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-end gap-1 font-serif text-sm uppercase text-black transition-colors hover:text-primary lg:flex"
         aria-label="Next slide"
       >
         <span>Next</span>
@@ -197,14 +197,14 @@ export default function HeroSection() {
       <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3 lg:hidden">
         <button
           onClick={prev}
-          className="flex h-10 w-20 items-center justify-center text-black hover:text-primary"
+          className="flex cursor-pointer h-10 w-20 items-center justify-center text-black hover:text-primary"
           aria-label="Previous slide"
         >
           <BrushArrow direction="left" />
         </button>
         <button
           onClick={next}
-          className="flex h-10 w-20 items-center justify-center text-black hover:text-primary"
+          className="flex cursor-pointer h-10 w-20 items-center justify-center text-black hover:text-primary"
           aria-label="Next slide"
         >
           <BrushArrow />
@@ -220,7 +220,7 @@ export default function HeroSection() {
               setDirection(i > current ? 1 : -1);
               setCurrent(i);
             }}
-            className={`transition-all duration-500 ${
+            className={`cursor-pointer transition-all duration-500 ${
               i === current
                 ? "w-10 h-0.5 bg-primary"
                 : "w-6 h-0.5 bg-black/40 hover:bg-black/60"
