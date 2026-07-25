@@ -70,7 +70,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <h3 className="font-serif text-3xl text-cream tracking-wider mb-4 flex items-center gap-3">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt={siteConfig.name}
                 width={80}
                 height={80}

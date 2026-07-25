@@ -10,7 +10,7 @@ export default function ShopHero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/images/background/bg-shop.jpg')",
+          backgroundImage: "url('/images/background/bg-shop.webp')",
         }}
       />
       <div className="absolute inset-0 bg-dark/45" />

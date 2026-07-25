@@ -22,18 +22,18 @@ interface CategoryHighlight {
   description: string;
 }
 
-function MenuHighlight({
-  category,
-  categoryHighlights,
-}: {
-  category: keyof typeof categoryHighlights;
-  categoryHighlights: Record<string, CategoryHighlight>;
-}) {
-  const highlight = categoryHighlights[category];
+const ALL_CATEGORY_KEY = "__all__";
 
+function MenuHighlight({
+  categoryLabel,
+  highlight,
+}: {
+  categoryLabel: string;
+  highlight: CategoryHighlight;
+}) {
   return (
     <motion.div
-      key={`${category}-highlight`}
+      key={`${categoryLabel}-highlight`}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -24 }}
@@ -43,7 +43,7 @@ function MenuHighlight({
       <div className="relative min-h-65 md:min-h-90">
         <Image
           src={highlight.image}
-          alt={`${category} background`}
+          alt={`${categoryLabel} background`}
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 80vw"
@@ -69,41 +69,42 @@ function MenuHighlight({
 
 export default function MenuContent() {
   const { data, t } = useLanguage();
-  const categoryHighlights = {
-    "Breakfast & Savory": {
-      image: "/images/background/bg-Breakfast.jpg",
-      eyebrow: t("breakfastEyebrow"),
-      title: t("breakfastTitle"),
-      description: t("breakfastDescription"),
-    },
-    Bakery: {
-      image: "/images/background/bg-bread.jpg",
-      eyebrow: t("bakeryEyebrow"),
-      title: t("bakeryTitle"),
-      description: t("bakeryDescription"),
-    },
-    "Pastries & Desserts": {
-      image: "/images/background/bg-Pastries.jpg",
-      eyebrow: t("pastriesEyebrow"),
-      title: t("pastriesTitle"),
-      description: t("pastriesDescription"),
-    },
-    Juices: {
-      image: "/images/background/bg-Juices.jpg",
-      eyebrow: t("juicesEyebrow"),
-      title: t("juicesTitle"),
-      description: t("juicesDescription"),
-    },
-    Coffees: {
-      image: "/images/background/bg-coffee.jpg",
-      eyebrow: t("coffeesEyebrow"),
-      title: t("coffeesTitle"),
-      description: t("coffeesDescription"),
-    },
-  } as const;
+  const categoryHighlightsByIndex: Partial<Record<number, CategoryHighlight>> =
+    {
+      0: {
+        image: "/images/background/bg-Breakfast.webp",
+        eyebrow: t("breakfastEyebrow"),
+        title: t("breakfastTitle"),
+        description: t("breakfastDescription"),
+      },
+      2: {
+        image: "/images/background/bg-bread.webp",
+        eyebrow: t("bakeryEyebrow"),
+        title: t("bakeryTitle"),
+        description: t("bakeryDescription"),
+      },
+      1: {
+        image: "/images/background/bg-Pastries.webp",
+        eyebrow: t("pastriesEyebrow"),
+        title: t("pastriesTitle"),
+        description: t("pastriesDescription"),
+      },
+      6: {
+        image: "/images/background/bg-Juices.webp",
+        eyebrow: t("juicesEyebrow"),
+        title: t("juicesTitle"),
+        description: t("juicesDescription"),
+      },
+      5: {
+        image: "/images/background/bg-coffee.webp",
+        eyebrow: t("coffeesEyebrow"),
+        title: t("coffeesTitle"),
+        description: t("coffeesDescription"),
+      },
+    };
 
   const { menuCategories, menuItems } = data;
-  const [active, setActive] = useState(t("all"));
+  const [activeCategoryKey, setActiveCategoryKey] = useState(ALL_CATEGORY_KEY);
   const [isPdfOpen, setIsPdfOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
@@ -120,7 +121,7 @@ export default function MenuContent() {
 
   const menuImages = Array.from(
     { length: 10 },
-    (_, i) => `/menu/Menu_page-${String(i + 1).padStart(4, "0")}.jpg`,
+    (_, i) => `/menu/Menu_page-${String(i + 1).padStart(4, "0")}.webp`,
   );
 
   const totalPages = menuImages.length;
@@ -280,13 +281,31 @@ export default function MenuContent() {
     };
   }, [isPdfOpen]);
 
-  const categories = [t("all"), ...menuCategories];
-  const filtered =
-    active === t("all")
-      ? menuItems
-      : menuItems.filter((item) => item.category === active);
+  const categories = [
+    { key: ALL_CATEGORY_KEY, label: t("all") },
+    ...menuCategories.map((label, index) => ({
+      key: String(index),
+      label,
+    })),
+  ];
 
-  const groupedItems = menuCategories.map((category) => ({
+  const selectedCategoryLabel =
+    activeCategoryKey === ALL_CATEGORY_KEY
+      ? null
+      : (menuCategories[Number(activeCategoryKey)] ?? null);
+
+  const selectedCategoryHighlight =
+    activeCategoryKey === ALL_CATEGORY_KEY
+      ? undefined
+      : categoryHighlightsByIndex[Number(activeCategoryKey)];
+
+  const filtered =
+    selectedCategoryLabel === null
+      ? menuItems
+      : menuItems.filter((item) => item.category === selectedCategoryLabel);
+
+  const groupedItems = menuCategories.map((category, index) => ({
+    index,
     category,
     items: menuItems.filter((item) => item.category === category),
   }));
@@ -299,15 +318,15 @@ export default function MenuContent() {
           <div className="flex flex-wrap justify-center gap-3 md:gap-4">
             {categories.map((cat) => (
               <button
-                key={cat}
-                onClick={() => setActive(cat)}
+                key={cat.key}
+                onClick={() => setActiveCategoryKey(cat.key)}
                 className={`px-5 py-2.5 text-sm tracking-[0.15em] uppercase cursor-pointer transition-all duration-300 border ${
-                  active === cat
+                  activeCategoryKey === cat.key
                     ? "bg-dark text-cream border-dark"
                     : "bg-transparent text-dark/50 border-dark/10 hover:border-dark/30 hover:text-dark"
                 }`}
               >
-                {cat}
+                {cat.label}
               </button>
             ))}
             <button
@@ -321,10 +340,10 @@ export default function MenuContent() {
         </ScrollReveal>
 
         <AnimatePresence mode="wait">
-          {active !== "All" && active in categoryHighlights && (
+          {selectedCategoryLabel && selectedCategoryHighlight && (
             <MenuHighlight
-              category={active as keyof typeof categoryHighlights}
-              categoryHighlights={categoryHighlights}
+              categoryLabel={selectedCategoryLabel}
+              highlight={selectedCategoryHighlight}
             />
           )}
         </AnimatePresence>
@@ -333,20 +352,20 @@ export default function MenuContent() {
         <div className="max-w-4xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
-              key={active}
+              key={activeCategoryKey}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
             >
-              {active === "All" ? (
+              {activeCategoryKey === ALL_CATEGORY_KEY ? (
                 <div className="space-y-12">
-                  {groupedItems.map(({ category, items }) => (
+                  {groupedItems.map(({ index, category, items }) => (
                     <div key={category}>
-                      {category in categoryHighlights && (
+                      {categoryHighlightsByIndex[index] && (
                         <MenuHighlight
-                          category={category as keyof typeof categoryHighlights}
-                          categoryHighlights={categoryHighlights}
+                          categoryLabel={category}
+                          highlight={categoryHighlightsByIndex[index]}
                         />
                       )}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">

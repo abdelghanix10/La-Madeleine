@@ -37,7 +37,7 @@ export default function BakeryStory() {
                   style={{ y: imageY }}
                 >
                   <Image
-                    src="/images/background/bg-story.jpg"
+                    src="/images/background/bg-story.webp"
                     alt="Bakery background"
                     fill
                     className="object-cover"
@@ -45,7 +45,7 @@ export default function BakeryStory() {
                   />
                 </motion.div>
                 <div className="absolute inset-0 bg-linear-to-t from-dark/55 via-dark/15 to-transparent" />
-                <div className="absolute inset-0 flex items-end p-8 md:p-10">
+                <div className="absolute inset-0 flex items-start p-8 md:p-10">
                   <div>
                     <p className="font-script text-3xl text-cream/90 mb-2">
                       {t("storySince")}

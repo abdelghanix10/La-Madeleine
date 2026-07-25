@@ -10,7 +10,7 @@ export default function AboutHero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/images/background/bg-about.jpg')",
+          backgroundImage: "url('/images/background/bg-about.webp')",
         }}
       />
       <div className="absolute inset-0 bg-dark/45" />

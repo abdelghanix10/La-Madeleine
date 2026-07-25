@@ -58,7 +58,7 @@ export const metadata: Metadata = {
       "Handcrafted pastries, artisan bread, and exceptional coffee — an authentic French bakery experience since 1987.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
         alt: "La Boulangerie La Madeleine",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     title: "La Boulangerie La Madeleine",
     description:
       "Handcrafted pastries, artisan bread, and exceptional coffee — an authentic French bakery experience since 1987.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.webp"],
   },
   robots: {
     index: true,

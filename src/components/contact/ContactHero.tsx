@@ -11,7 +11,7 @@ export default function ContactHero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/images/background/bg-contact.jpg')",
+          backgroundImage: "url('/images/background/bg-contact.webp')",
         }}
       />
       <div className="absolute inset-0 bg-dark/45" />

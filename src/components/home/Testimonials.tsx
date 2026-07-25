@@ -37,7 +37,7 @@ export default function Testimonials() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('/images/background/background-testimonials.jpg')",
+            "url('/images/background/background-testimonials.webp')",
           backgroundAttachment: "fixed",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

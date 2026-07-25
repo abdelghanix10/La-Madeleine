@@ -170,6 +170,7 @@ export default function HeroSection() {
                   src={slide.image}
                   alt={slide.title}
                   fill
+                  loading="eager"
                   sizes="(max-width: 1024px) 90vw, 720px"
                   className="object-contain object-bottom"
                   fetchPriority={current === 0 ? "high" : "auto"}

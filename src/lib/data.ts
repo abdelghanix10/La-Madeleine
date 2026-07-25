@@ -18,21 +18,21 @@ export const heroSlides = [
     id: 1,
     title: "CHOCO PASTRY",
     subtitle: "Delicious",
-    image: "/images/slider/slide-1/slide-1-image.png",
-    bgText: "/images/slider/slide-1/slide-1-bg.png",
-    bgIcon: "/images/slider/slide-1/slide-1-bg-icon.png",
+    image: "/images/slider/slide-1/slide-1-image.webp",
+    bgText: "/images/slider/slide-1/slide-1-bg.webp",
+    bgIcon: "/images/slider/slide-1/slide-1-bg-icon.webp",
     products: [
       {
         title: "CHOCOLATE",
         description:
           "Rich dark chocolate pastry with Belgian chocolate and flaky dough.",
-        icon: "/images/slider/slide-1/slide-1-product-1.png",
+        icon: "/images/slider/slide-1/slide-1-product-1.webp",
       },
       {
         title: "SWEET CLASSICS",
         description:
           "Fresh croissants, éclairs, and tarts baked daily with premium ingredients.",
-        icon: "/images/slider/slide-1/slide-1-product-2.png",
+        icon: "/images/slider/slide-1/slide-1-product-2.webp",
       },
     ],
   },
@@ -40,19 +40,19 @@ export const heroSlides = [
     id: 2,
     title: "NICE BIG BUNS.",
     subtitle: "Delicious",
-    image: "/images/slider/slide-2/slide-2-image.png",
-    bgText: "/images/slider/slide-2/slide-2-bg.png",
-    bgIcon: "/images/slider/slide-2/slide-2-bg-icon.png",
+    image: "/images/slider/slide-2/slide-2-image.webp",
+    bgText: "/images/slider/slide-2/slide-2-bg.webp",
+    bgIcon: "/images/slider/slide-2/slide-2-bg-icon.webp",
     products: [
       {
         title: "BAKE THE VERY BEST",
         description: "Freshly baked daily with a crisp, golden crust.",
-        icon: "/images/slider/slide-2/slide-2-product-1.png",
+        icon: "/images/slider/slide-2/slide-2-product-1.webp",
       },
       {
         title: "UNSPEAKABLY GOOD",
         description: "Rich, buttery buns with a melt-in-your-mouth texture.",
-        icon: "/images/slider/slide-2/slide-2-product-2.png",
+        icon: "/images/slider/slide-2/slide-2-product-2.webp",
       },
     ],
   },
@@ -60,19 +60,19 @@ export const heroSlides = [
     id: 3,
     title: "SANDWICHES",
     subtitle: "Delicious",
-    image: "/images/slider/slide-3/slide-3-image.png",
-    bgText: "/images/slider/slide-3/slide-3-bg.png",
-    bgIcon: "/images/slider/slide-3/slide-3-bg-icon.png",
+    image: "/images/slider/slide-3/slide-3-image.webp",
+    bgText: "/images/slider/slide-3/slide-3-bg.webp",
+    bgIcon: "/images/slider/slide-3/slide-3-bg-icon.webp",
     products: [
       {
         title: "BREAKFAST",
         description: "Savory breakfast sandwiches.",
-        icon: "/images/slider/slide-3/slide-3-product-1.png",
+        icon: "/images/slider/slide-3/slide-3-product-1.webp",
       },
       {
         title: "HEALTHY SNACK",
         description: "Fresh fruit & yogurt parfaits.",
-        icon: "/images/slider/slide-3/slide-3-product-2.png",
+        icon: "/images/slider/slide-3/slide-3-product-2.webp",
       },
     ],
   },
@@ -84,42 +84,42 @@ export const categories = [
     name: "Breakfast",
     description: "Start your day the Moroccan way",
     icon: "sunrise",
-    image: "/images/cat-breakfast.jpg",
+    image: "/images/cat-breakfast.webp",
   },
   {
     id: 2,
     name: "Artisan Bread",
     description: "Traditional French & Moroccan breads",
     icon: "wheat",
-    image: "/images/cat-bread.jpg",
+    image: "/images/cat-bread.webp",
   },
   {
     id: 3,
     name: "Desserts",
     description: "Indulgent sweet creations",
     icon: "cherry",
-    image: "/images/cat-desserts.jpg",
+    image: "/images/cat-desserts.webp",
   },
   {
     id: 4,
     name: "Coffee",
     description: "Expertly brewed & roasted",
     icon: "coffee",
-    image: "/images/cat-coffee.jpg",
+    image: "/images/cat-coffee.webp",
   },
   {
     id: 5,
     name: "Pastries",
     description: "Delicate French & Moroccan pâtisserie",
     icon: "cake",
-    image: "/images/cat-pastries.jpg",
+    image: "/images/cat-pastries.webp",
   },
   {
     id: 6,
     name: "Sandwiches",
     description: "Fresh, handmade & delicious",
     icon: "sandwich",
-    image: "/images/cat-sandwiches.jpg",
+    image: "/images/cat-sandwiches.webp",
   },
 ];
 
@@ -140,7 +140,7 @@ export const todaysSpecials: TodaysSpecial[] = [
     description:
       "Buttery, flaky layers wrapped around two bars of premium dark chocolate — the quintessential French breakfast pastry.",
     price: 2.5,
-    image: "/images/today-specials/today-3.jpg",
+    image: "/images/today-specials/today-3.webp",
   },
   {
     id: 2,
@@ -149,7 +149,7 @@ export const todaysSpecials: TodaysSpecial[] = [
     description:
       "Golden, impossibly light croissant made with 84% fat Norman butter. 72-hour ferment for perfect lamination.",
     price: 2.5,
-    image: "/images/today-specials/today-1.jpg",
+    image: "/images/today-specials/today-1.webp",
   },
   {
     id: 3,
@@ -158,7 +158,7 @@ export const todaysSpecials: TodaysSpecial[] = [
     description:
       "A classic French breakfast pastry filled with a rich, buttery cream and finished with a light dusting of powdered sugar.",
     price: 5,
-    image: "/images/today-specials/today-2.jpg",
+    image: "/images/today-specials/today-2.webp",
   },
   {
     id: 4,
@@ -167,7 +167,7 @@ export const todaysSpecials: TodaysSpecial[] = [
     description:
       "Seasonal fruits arranged on vanilla pastry cream, nestled in a crisp, caramelized tart shell.",
     price: 7,
-    image: "/images/today-specials/today-4.jpg",
+    image: "/images/today-specials/today-4.webp",
   },
   {
     id: 5,
@@ -176,7 +176,7 @@ export const todaysSpecials: TodaysSpecial[] = [
     description:
       "Three layers of caramelized puff pastry alternating with a light, almond cream, topped with toasted almond flakes and a dusting of powdered sugar.",
     price: 10,
-    image: "/images/today-specials/today-5.jpg",
+    image: "/images/today-specials/today-5.webp",
   },
   {
     id: 6,
@@ -185,7 +185,7 @@ export const todaysSpecials: TodaysSpecial[] = [
     description:
       "Equal parts intensely rich espresso and perfectly textured steamed milk, dusted with a hint of warm spices.",
     price: 12,
-    image: "/images/today-specials/today-6.jpg",
+    image: "/images/today-specials/today-6.webp",
   },
 ];
 
@@ -297,7 +297,7 @@ export const menuItems = [
       "Warm and comforting traditional Moroccan barley and milk soup.",
     price: 7.0,
     popular: false,
-    image: "/images/menu/Soup.png",
+    image: "/images/menu/Soup.webp",
   },
   {
     id: 2,
@@ -307,7 +307,7 @@ export const menuItems = [
       "Fluffy omelet loaded with melted cheese, served with olives and olive oil.",
     price: 16.0,
     popular: true,
-    image: "/images/menu/Omelet.png",
+    image: "/images/menu/Omelet.webp",
   },
   {
     id: 3,
@@ -317,7 +317,7 @@ export const menuItems = [
       "Barley soup, hot drink, orange juice, cheese omelet, olive oil, olives, cheese, bread, yogurt, and water.",
     price: 35.0,
     popular: false,
-    image: "/images/menu/breakfast.png",
+    image: "/images/menu/breakfast.webp",
   },
   {
     id: 4,
@@ -327,7 +327,7 @@ export const menuItems = [
       "Omelet packed with cold cuts, served with olives and olive oil.",
     price: 17.0,
     popular: false,
-    image: "/images/menu/Omelet.png",
+    image: "/images/menu/Omelet.webp",
   },
   {
     id: 5,
@@ -337,7 +337,7 @@ export const menuItems = [
       "Barley soup, hot drink, orange juice, pastries, yogurt, and mineral water.",
     price: 26.0,
     popular: true,
-    image: "/images/menu/breakfast.png",
+    image: "/images/menu/breakfast.webp",
   },
   {
     id: 6,
@@ -347,7 +347,7 @@ export const menuItems = [
       "Barley soup, hot drink, orange juice, dried meat omelet, olive oil, olives, cheese, bread, yogurt, and water.",
     price: 37.0,
     popular: true,
-    image: "/images/menu/breakfast.png",
+    image: "/images/menu/breakfast.webp",
   },
   {
     id: 7,
@@ -357,7 +357,7 @@ export const menuItems = [
       "Barley soup, hot drink, orange juice, olive oil, Amlou, olives, honey, bread, yogurt, and water.",
     price: 26.0,
     popular: false,
-    image: "/images/menu/breakfast.png",
+    image: "/images/menu/breakfast.webp",
   },
   {
     id: 8,
@@ -367,7 +367,7 @@ export const menuItems = [
       "Traditional hearty Moroccan tomato, lentil, and chickpea soup.",
     price: 10.0,
     popular: false,
-    image: "/images/menu/Soup.png",
+    image: "/images/menu/Soup.webp",
   },
   {
     id: 9,
@@ -377,7 +377,7 @@ export const menuItems = [
       "Traditional omelet with Moroccan preserved meat, served with olives and olive oil.",
     price: 24.0,
     popular: true,
-    image: "/images/menu/Omelet.png",
+    image: "/images/menu/Omelet.webp",
   },
   {
     id: 10,
@@ -387,7 +387,7 @@ export const menuItems = [
       "Chocolate milk, orange juice, chocolate bread, vanilla cake, yogurt, and water.",
     price: 25.0,
     popular: false,
-    image: "/images/menu/breakfast.png",
+    image: "/images/menu/breakfast.webp",
   },
   {
     id: 11,
@@ -397,7 +397,7 @@ export const menuItems = [
       "Barley soup, hot drink, orange juice, choice of omelet, olive oil, olives, honey, cheese, Amlou, bread, crepe, chocolate, cake, yogurt, and water.",
     price: 55.0,
     popular: true,
-    image: "/images/menu/breakfast.png",
+    image: "/images/menu/breakfast.webp",
   },
   {
     id: 12,
@@ -406,7 +406,7 @@ export const menuItems = [
     description: "Simple, fluffy egg omelet served with olives and olive oil.",
     price: 13.0,
     popular: true,
-    image: "/images/menu/Omelet.png",
+    image: "/images/menu/Omelet.webp",
   },
   {
     id: 13,
@@ -416,7 +416,7 @@ export const menuItems = [
       "Barley soup, hot drink, orange juice, Amlou, olive oil, cheese, olives, honey, jam, and water.",
     price: 38.0,
     popular: true,
-    image: "/images/menu/breakfast.png",
+    image: "/images/menu/breakfast.webp",
   },
   {
     id: 14,
@@ -426,7 +426,7 @@ export const menuItems = [
       "Fluffy omelet with fresh tomatoes, served with olives and olive oil.",
     price: 16.0,
     popular: false,
-    image: "/images/menu/Omelet.png",
+    image: "/images/menu/Omelet.webp",
   },
   {
     id: 15,
@@ -436,7 +436,7 @@ export const menuItems = [
       "Barley soup, hot drink, orange juice, Moroccan pancakes, Harcha, honey, fresh cheese, and water.",
     price: 28.0,
     popular: true,
-    image: "/images/menu/breakfast.png",
+    image: "/images/menu/breakfast.webp",
   },
 
   // PASTRIES & DESSERTS
@@ -447,7 +447,7 @@ export const menuItems = [
     description: "Crispy rolled pastry filled with savory mixed seafood.",
     price: 12.0,
     popular: false,
-    image: "/images/menu/Cigar.png",
+    image: "/images/menu/Cigar.webp",
   },
   {
     id: 17,
@@ -457,7 +457,7 @@ export const menuItems = [
       "Flaky savory pie filled with seasoned mixed seafood and vermicelli.",
     price: 12.0,
     popular: false,
-    image: "/images/menu/pastilla.png",
+    image: "/images/menu/pastilla.webp",
   },
   {
     id: 18,
@@ -466,7 +466,7 @@ export const menuItems = [
     description: "Freshly made savory sandwich.",
     price: 8.0,
     popular: false,
-    image: "/images/menu/sandwich.png",
+    image: "/images/menu/sandwich.webp",
   },
   {
     id: 19,
@@ -476,7 +476,7 @@ export const menuItems = [
       "Personal-sized savory pizza topped with cheese and tomato sauce.",
     price: 6.0,
     popular: false,
-    image: "/images/menu/pizza.png",
+    image: "/images/menu/pizza.webp",
   },
   {
     id: 20,
@@ -485,7 +485,7 @@ export const menuItems = [
     description: "Savory sausage wrapped and baked in soft dough.",
     price: 9.0,
     popular: false,
-    image: "/images/menu/hot-dog.png",
+    image: "/images/menu/hot-dog.webp",
   },
   {
     id: 21,
@@ -495,7 +495,7 @@ export const menuItems = [
       "Sweet and savory pie filled with spiced chicken and toasted almonds.",
     price: 10.0,
     popular: false,
-    image: "/images/menu/pastilla.png",
+    image: "/images/menu/pastilla.webp",
   },
   {
     id: 22,
@@ -504,7 +504,7 @@ export const menuItems = [
     description: "Crispy Moroccan pastry triangles filled with savory cheese.",
     price: 7.0,
     popular: false,
-    image: "/images/menu/Briouat.png",
+    image: "/images/menu/Briouat.webp",
   },
   {
     id: 23,
@@ -513,7 +513,7 @@ export const menuItems = [
     description: "Crisp sweet pastry shell filled with dense almond cream.",
     price: 10.0,
     popular: false,
-    image: "/images/menu/Tart.png",
+    image: "/images/menu/Tart.webp",
   },
   {
     id: 24,
@@ -522,7 +522,7 @@ export const menuItems = [
     description: "Fluffy pancakes topped with traditional Moroccan Amlou.",
     price: 17.0,
     popular: false,
-    image: "/images/menu/Pancakes.png",
+    image: "/images/menu/Pancakes.webp",
   },
   {
     id: 25,
@@ -531,7 +531,7 @@ export const menuItems = [
     description: "Flaky puff pastry filled with sweet spiced apple compote.",
     price: 6.0,
     popular: false,
-    image: "/images/menu/Apple-Turnover.png",
+    image: "/images/menu/Apple-Turnover.webp",
   },
   {
     id: 26,
@@ -540,7 +540,7 @@ export const menuItems = [
     description: "Thin French crepe folded with sweet caramel.",
     price: 16.0,
     popular: false,
-    image: "/images/menu/crepe.png",
+    image: "/images/menu/crepe.webp",
   },
   {
     id: 27,
@@ -549,7 +549,7 @@ export const menuItems = [
     description: "Golden waffle topped with rich caramel sauce.",
     price: 16.0,
     popular: false,
-    image: "/images/menu/waffle.png",
+    image: "/images/menu/waffle.webp",
   },
   {
     id: 28,
@@ -558,7 +558,7 @@ export const menuItems = [
     description: "Sweet semolina cake flavored with rich chocolate.",
     price: 8.0,
     popular: false,
-    image: "/images/menu/basbousa.png",
+    image: "/images/menu/basbousa.webp",
   },
   {
     id: 29,
@@ -567,7 +567,7 @@ export const menuItems = [
     description: "Small, shell-shaped sponge cake flavored with chocolate.",
     price: 2.5,
     popular: false,
-    image: "/images/menu/madeleine.png",
+    image: "/images/menu/madeleine.webp",
   },
   {
     id: 30,
@@ -576,7 +576,7 @@ export const menuItems = [
     description: "Simple, thin, and soft French crepe.",
     price: 4.0,
     popular: false,
-    image: "/images/menu/crepe.png",
+    image: "/images/menu/crepe.webp",
   },
   {
     id: 31,
@@ -585,7 +585,7 @@ export const menuItems = [
     description: "Delicious slice of cream-filled layer cake.",
     price: 10.0,
     popular: false,
-    image: "/images/menu/strawberry-cake.png",
+    image: "/images/menu/strawberry-cake.webp",
   },
   {
     id: 32,
@@ -594,7 +594,7 @@ export const menuItems = [
     description: "Delicious slice of cream-filled layer cake.",
     price: 12.0,
     popular: false,
-    image: "/images/menu/strawberry-cake.png",
+    image: "/images/menu/strawberry-cake.webp",
   },
   {
     id: 33,
@@ -603,7 +603,7 @@ export const menuItems = [
     description: "Delicious slice of cream-filled layer cake.",
     price: 13.0,
     popular: false,
-    image: "/images/menu/strawberry-cake.png",
+    image: "/images/menu/strawberry-cake.webp",
   },
   {
     id: 34,
@@ -612,7 +612,7 @@ export const menuItems = [
     description: "Delicious slice of cream-filled layer cake.",
     price: 14.0,
     popular: false,
-    image: "/images/menu/strawberry-cake.png",
+    image: "/images/menu/strawberry-cake.webp",
   },
   {
     id: 35,
@@ -621,7 +621,7 @@ export const menuItems = [
     description: "Delicious slice of cream-filled layer cake.",
     price: 15.0,
     popular: false,
-    image: "/images/menu/strawberry-cake.png",
+    image: "/images/menu/strawberry-cake.webp",
   },
   {
     id: 36,
@@ -630,7 +630,7 @@ export const menuItems = [
     description: "Delicious slice of cream-filled layer cake.",
     price: 17.0,
     popular: false,
-    image: "/images/menu/strawberry-cake.png",
+    image: "/images/menu/strawberry-cake.webp",
   },
   {
     id: 37,
@@ -639,7 +639,7 @@ export const menuItems = [
     description: "Delicious slice of cream-filled layer cake.",
     price: 18.0,
     popular: false,
-    image: "/images/menu/strawberry-cake.png",
+    image: "/images/menu/strawberry-cake.webp",
   },
   {
     id: 38,
@@ -648,7 +648,7 @@ export const menuItems = [
     description: "Soft, sweet, and classic fried dough ring.",
     price: 4.0,
     popular: false,
-    image: "/images/menu/donut.png",
+    image: "/images/menu/donut.webp",
   },
   {
     id: 39,
@@ -657,7 +657,7 @@ export const menuItems = [
     description: "Sweet pastry tart filled with rich almond cream.",
     price: 8.0,
     popular: false,
-    image: "/images/menu/tart.png",
+    image: "/images/menu/tart.webp",
   },
   {
     id: 40,
@@ -666,7 +666,7 @@ export const menuItems = [
     description: "Puff pastry pie filled with sweet fruit compote.",
     price: 6.0,
     popular: false,
-    image: "/images/menu/Pithiviers.png",
+    image: "/images/menu/Pithiviers.webp",
   },
   {
     id: 41,
@@ -675,7 +675,7 @@ export const menuItems = [
     description: "Fresh seasonal fruits steeped in fresh orange juice.",
     price: 19.0,
     popular: false,
-    image: "/images/menu/fruit-salad.png",
+    image: "/images/menu/fruit-salad.webp",
   },
   {
     id: 42,
@@ -684,7 +684,7 @@ export const menuItems = [
     description: "Fresh seasonal fruits mixed with creamy yogurt.",
     price: 18.0,
     popular: false,
-    image: "/images/menu/fruit-salad.png",
+    image: "/images/menu/fruit-salad.webp",
   },
   {
     id: 43,
@@ -693,7 +693,7 @@ export const menuItems = [
     description: "Small, sweet tart crust filled with custard and fresh fruit.",
     price: 7.0,
     popular: false,
-    image: "/images/menu/tartlet.png",
+    image: "/images/menu/tartlet.webp",
   },
   {
     id: 44,
@@ -702,7 +702,7 @@ export const menuItems = [
     description: "Fluffy pancakes drizzled with pure honey.",
     price: 16.0,
     popular: false,
-    image: "/images/menu/pancakes.png",
+    image: "/images/menu/pancakes.webp",
   },
   {
     id: 45,
@@ -711,7 +711,7 @@ export const menuItems = [
     description: "Generously sized, buttery, and moist pound cake.",
     price: 30.0,
     popular: false,
-    image: "/images/menu/pound-cake.png",
+    image: "/images/menu/pound-cake.webp",
   },
   {
     id: 46,
@@ -720,7 +720,7 @@ export const menuItems = [
     description: "Classic moist and sweet pound cake.",
     price: 20.0,
     popular: false,
-    image: "/images/menu/pound-cake.png",
+    image: "/images/menu/pound-cake.webp",
   },
   {
     id: 47,
@@ -730,7 +730,7 @@ export const menuItems = [
       "Classic French pastry with layers of puff pastry and vanilla cream.",
     price: 8.0,
     popular: false,
-    image: "/images/menu/millefeuille.png",
+    image: "/images/menu/millefeuille.webp",
   },
   {
     id: 48,
@@ -739,7 +739,7 @@ export const menuItems = [
     description: "Small, moist, and sweet personal cake.",
     price: 7.0,
     popular: false,
-    image: "/images/menu/minicake.png",
+    image: "/images/menu/minicake.webp",
   },
   {
     id: 49,
@@ -748,7 +748,7 @@ export const menuItems = [
     description: "Bite-sized fluffy cake with sweet frosting.",
     price: 4.0,
     popular: false,
-    image: "/images/menu/cupcake.png",
+    image: "/images/menu/cupcake.webp",
   },
   {
     id: 50,
@@ -757,7 +757,7 @@ export const menuItems = [
     description: "Crepe filled with Nutella and sliced bananas.",
     price: 23.0,
     popular: true,
-    image: "/images/menu/crepe.png",
+    image: "/images/menu/crepe.webp",
   },
   {
     id: 51,
@@ -766,7 +766,7 @@ export const menuItems = [
     description: "Pancakes served with Nutella and fresh bananas.",
     price: 26.0,
     popular: true,
-    image: "/images/menu/pancakes.png",
+    image: "/images/menu/pancakes.webp",
   },
   {
     id: 52,
@@ -775,7 +775,7 @@ export const menuItems = [
     description: "Waffle topped with Nutella and fresh banana slices.",
     price: 22.0,
     popular: true,
-    image: "/images/menu/waffle.png",
+    image: "/images/menu/waffle.webp",
   },
   {
     id: 53,
@@ -784,7 +784,7 @@ export const menuItems = [
     description: "Crepe filled with Nutella and crushed Oreo cookies.",
     price: 25.0,
     popular: true,
-    image: "/images/menu/crepe.png",
+    image: "/images/menu/crepe.webp",
   },
   {
     id: 54,
@@ -793,7 +793,7 @@ export const menuItems = [
     description: "Crepe filled with Nutella and fresh seasonal fruits.",
     price: 29.0,
     popular: false,
-    image: "/images/menu/crepe.png",
+    image: "/images/menu/crepe.webp",
   },
   {
     id: 55,
@@ -802,7 +802,7 @@ export const menuItems = [
     description: "Waffle with Nutella and fresh seasonal fruits.",
     price: 27.0,
     popular: false,
-    image: "/images/menu/waffle.png",
+    image: "/images/menu/waffle.webp",
   },
   {
     id: 56,
@@ -811,7 +811,7 @@ export const menuItems = [
     description: "Classic thin crepe filled with warm Nutella.",
     price: 19.0,
     popular: true,
-    image: "/images/menu/crepe.png",
+    image: "/images/menu/crepe.webp",
   },
   {
     id: 57,
@@ -820,7 +820,7 @@ export const menuItems = [
     description: "Stack of fluffy pancakes layered with Nutella.",
     price: 21.0,
     popular: true,
-    image: "/images/menu/pancakes.png",
+    image: "/images/menu/pancakes.webp",
   },
   {
     id: 58,
@@ -829,7 +829,7 @@ export const menuItems = [
     description: "Golden waffle generously topped with Nutella.",
     price: 19.0,
     popular: true,
-    image: "/images/menu/waffle.png",
+    image: "/images/menu/waffle.webp",
   },
   {
     id: 59,
@@ -839,7 +839,7 @@ export const menuItems = [
       "Round, enclosed pie made of puff pastry with a sweet filling.",
     price: 5.0,
     popular: false,
-    image: "/images/menu/Pithiviers.png",
+    image: "/images/menu/Pithiviers.webp",
   },
   {
     id: 60,
@@ -848,7 +848,7 @@ export const menuItems = [
     description: "Small cake infused with sweet raspberry flavor.",
     price: 8.0,
     popular: false,
-    image: "/images/menu/minicake.png",
+    image: "/images/menu/minicake.webp",
   },
   {
     id: 61,
@@ -857,7 +857,7 @@ export const menuItems = [
     description: "Personal-sized slice of moist pound cake.",
     price: 15.0,
     popular: false,
-    image: "/images/menu/pound-cake.png",
+    image: "/images/menu/pound-cake.webp",
   },
   {
     id: 62,
@@ -866,7 +866,7 @@ export const menuItems = [
     description: "Classic sweet semolina cake soaked in vanilla syrup.",
     price: 6.0,
     popular: false,
-    image: "/images/menu/basbousa.png",
+    image: "/images/menu/basbousa.webp",
   },
   {
     id: 63,
@@ -875,7 +875,7 @@ export const menuItems = [
     description: "Classic, buttery, shell-shaped French sponge cake.",
     price: 1.5,
     popular: false,
-    image: "/images/menu/madeleine.png",
+    image: "/images/menu/madeleine.webp",
   },
   {
     id: 64,
@@ -885,7 +885,7 @@ export const menuItems = [
       "Flaky croissant filled with almond cream and topped with sliced almonds.",
     price: 5.0,
     popular: false,
-    image: "/images/menu/croissant.png",
+    image: "/images/menu/croissant.webp",
   },
   {
     id: 65,
@@ -895,7 +895,7 @@ export const menuItems = [
       "Flaky, triangle-shaped pastry filled with sweet almond paste.",
     price: 6.0,
     popular: false,
-    image: "/images/menu/Triangle.png",
+    image: "/images/menu/Triangle.webp",
   },
   {
     id: 66,
@@ -922,7 +922,7 @@ export const menuItems = [
     description: "Traditional Moroccan pan-fried semolina flatbread.",
     price: 2.5,
     popular: false,
-    image: "/images/menu/harcha.png",
+    image: "/images/menu/harcha.webp",
   },
   {
     id: 69,
@@ -931,7 +931,7 @@ export const menuItems = [
     description: "Traditional Moroccan flaky, layered square flatbread.",
     price: 4.0,
     popular: false,
-    image: "/images/menu/msemmen.png",
+    image: "/images/menu/msemmen.webp",
   },
   {
     id: 70,
@@ -940,7 +940,7 @@ export const menuItems = [
     description: "Savory semolina flatbread prepared with rich olive oil.",
     price: 3.5,
     popular: false,
-    image: "/images/menu/harcha.png",
+    image: "/images/menu/harcha.webp",
   },
   {
     id: 71,
@@ -950,7 +950,7 @@ export const menuItems = [
       "Flaky pastry rolled with vanilla custard and chocolate chips.",
     price: 3.0,
     popular: false,
-    image: "/images/menu/pain-suisse.png",
+    image: "/images/menu/pain-suisse.webp",
   },
   {
     id: 72,
@@ -959,7 +959,7 @@ export const menuItems = [
     description: "Classic flaky and buttery French breakfast pastry.",
     price: 2.5,
     popular: false,
-    image: "/images/menu/croissant.png",
+    image: "/images/menu/croissant.webp",
   },
 
   // BAKERY
@@ -970,7 +970,7 @@ export const menuItems = [
     description: "Hearty and healthy Moroccan barley bread.",
     price: 2.5,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 74,
@@ -979,7 +979,7 @@ export const menuItems = [
     description: "Moroccan soft and chewy pan-cooked flatbread.",
     price: 2.5,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 75,
@@ -988,7 +988,7 @@ export const menuItems = [
     description: "Soft and fluffy sweet bread filled with chocolate chips.",
     price: 3.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 76,
@@ -997,7 +997,7 @@ export const menuItems = [
     description: "Traditional crusty and soft French baguette.",
     price: 1.5,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 77,
@@ -1006,7 +1006,7 @@ export const menuItems = [
     description: "Traditional Moroccan soft white round bread.",
     price: 1.5,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 78,
@@ -1015,7 +1015,7 @@ export const menuItems = [
     description: "Buttery, soft, and fluffy traditional sweet bread.",
     price: 2.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 79,
@@ -1024,7 +1024,7 @@ export const menuItems = [
     description: "Rustic and flavorful Moroccan cornmeal bread.",
     price: 2.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 80,
@@ -1033,7 +1033,7 @@ export const menuItems = [
     description: "Traditional French spiced bread with honey and anise.",
     price: 24.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 81,
@@ -1043,7 +1043,7 @@ export const menuItems = [
       "Crusty baguette baked with a blend of wholesome seeds and grains.",
     price: 4.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 82,
@@ -1052,7 +1052,7 @@ export const menuItems = [
     description: "Savory baguette baked with pieces of black and green olives.",
     price: 5.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 83,
@@ -1061,7 +1061,7 @@ export const menuItems = [
     description: "Soft traditional round bread baked with savory olives.",
     price: 3.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 84,
@@ -1070,7 +1070,7 @@ export const menuItems = [
     description: "Healthy whole wheat bread prepared without added salt.",
     price: 3.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 85,
@@ -1079,7 +1079,7 @@ export const menuItems = [
     description: "Baguette made with semolina flour for a rustic crunch.",
     price: 3.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 86,
@@ -1088,7 +1088,7 @@ export const menuItems = [
     description: "Traditional Moroccan round bread made with semolina.",
     price: 2.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 87,
@@ -1098,7 +1098,7 @@ export const menuItems = [
       "Freshly baked crusty French baguette topped with sesame seeds.",
     price: 2.5,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 88,
@@ -1107,7 +1107,7 @@ export const menuItems = [
     description: "Soft bread roll generously topped with sesame seeds.",
     price: 3.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 89,
@@ -1116,7 +1116,7 @@ export const menuItems = [
     description: "Soft, slightly sweet, and rich Viennese-style bread.",
     price: 2.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 90,
@@ -1125,7 +1125,7 @@ export const menuItems = [
     description: "Healthy and hearty whole wheat French baguette.",
     price: 3.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 91,
@@ -1134,7 +1134,7 @@ export const menuItems = [
     description: "Nutritious traditional Moroccan whole wheat round bread.",
     price: 2.0,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
   {
     id: 92,
@@ -1143,7 +1143,7 @@ export const menuItems = [
     description: "Healthy and soft whole wheat bread roll.",
     price: 2.5,
     popular: false,
-    image: "/images/menu/bread.png",
+    image: "/images/menu/bread.webp",
   },
 
   // HOT DRINKS
@@ -1154,7 +1154,7 @@ export const menuItems = [
     description: "Classic Lipton black tea.",
     price: 12.0,
     popular: false,
-    image: "/images/menu/tea.png",
+    image: "/images/menu/tea.webp",
   },
   {
     id: 94,
@@ -1163,7 +1163,7 @@ export const menuItems = [
     description: "Warm and comforting milk with rich chocolate.",
     price: 12.0,
     popular: true,
-    image: "/images/menu/hot-chocolate.png",
+    image: "/images/menu/hot-chocolate.webp",
   },
   {
     id: 95,
@@ -1172,7 +1172,7 @@ export const menuItems = [
     description: "Simple, comforting steamed milk.",
     price: 12.0,
     popular: false,
-    image: "/images/menu/hot-milk.png",
+    image: "/images/menu/hot-milk.webp",
   },
   {
     id: 96,
@@ -1181,7 +1181,7 @@ export const menuItems = [
     description: "Herbal tea made with natural lemon verbena leaves.",
     price: 12.0,
     popular: false,
-    image: "/images/menu/tea.png",
+    image: "/images/menu/tea.webp",
   },
   {
     id: 97,
@@ -1190,7 +1190,7 @@ export const menuItems = [
     description: "Classic Lipton black tea brewed with milk.",
     price: 12.0,
     popular: false,
-    image: "/images/menu/milk-tea.png",
+    image: "/images/menu/milk-tea.webp",
   },
   {
     id: 98,
@@ -1199,7 +1199,7 @@ export const menuItems = [
     description: "Warm milk infused with soothing lemon verbena.",
     price: 12.0,
     popular: false,
-    image: "/images/menu/milk-tea.png",
+    image: "/images/menu/milk-tea.webp",
   },
   {
     id: 99,
@@ -1208,7 +1208,7 @@ export const menuItems = [
     description: "Cold or warm milk flavored with sweet syrup.",
     price: 11.0,
     popular: false,
-    image: "/images/menu/hot-milk.png",
+    image: "/images/menu/hot-milk.webp",
   },
   {
     id: 100,
@@ -1217,7 +1217,7 @@ export const menuItems = [
     description: "Traditional green tea brewed with fresh mint.",
     price: 11.0,
     popular: true,
-    image: "/images/menu/teapot.png",
+    image: "/images/menu/teapot.webp",
   },
 
   // COLD DRINKS
@@ -1228,7 +1228,7 @@ export const menuItems = [
     description: "A scoop of vanilla ice cream drowned in hot espresso.",
     price: 18.0,
     popular: false,
-    image: "/images/menu/Affogato.png",
+    image: "/images/menu/Affogato.webp",
   },
   {
     id: 102,
@@ -1237,7 +1237,7 @@ export const menuItems = [
     description: "Sweet and creamy banana shake.",
     price: 23.0,
     popular: false,
-    image: "/images/menu/milk-shake.png",
+    image: "/images/menu/milk-shake.webp",
   },
   {
     id: 103,
@@ -1246,7 +1246,7 @@ export const menuItems = [
     description: "Creamy blended banana smoothie.",
     price: 23.0,
     popular: false,
-    image: "/images/menu/Smoothie.png",
+    image: "/images/menu/Smoothie.webp",
   },
   {
     id: 104,
@@ -1255,7 +1255,7 @@ export const menuItems = [
     description: "Citrus and mint mocktail with blue curaçao syrup.",
     price: 22.0,
     popular: false,
-    image: "/images/menu/Mojito.png",
+    image: "/images/menu/Mojito.webp",
   },
   {
     id: 105,
@@ -1264,7 +1264,7 @@ export const menuItems = [
     description: "Selection of refreshing carbonated beverages.",
     price: 12.0,
     popular: true,
-    image: "/images/menu/Soda.png",
+    image: "/images/menu/Soda.webp",
   },
   {
     id: 106,
@@ -1273,7 +1273,7 @@ export const menuItems = [
     description: "Rich and creamy chocolate shake.",
     price: 23.0,
     popular: true,
-    image: "/images/menu/milk-shake.png",
+    image: "/images/menu/milk-shake.webp",
   },
   {
     id: 107,
@@ -1282,7 +1282,7 @@ export const menuItems = [
     description: "Blended mango, orange, and pineapple.",
     price: 21.0,
     popular: true,
-    image: "/images/menu/Cocktail.png",
+    image: "/images/menu/Cocktail.webp",
   },
   {
     id: 108,
@@ -1291,7 +1291,7 @@ export const menuItems = [
     description: "Refreshing blend of tropical fruits.",
     price: 26.0,
     popular: false,
-    image: "/images/menu/Smoothie.png",
+    image: "/images/menu/Smoothie.webp",
   },
   {
     id: 109,
@@ -1300,7 +1300,7 @@ export const menuItems = [
     description: "Iced milk and espresso, flavored with vanilla and caramel.",
     price: 21.0,
     popular: true,
-    image: "/images/menu/iced-caramel.png",
+    image: "/images/menu/iced-caramel.webp",
   },
   {
     id: 110,
@@ -1309,7 +1309,7 @@ export const menuItems = [
     description: "Chilled coffee over ice with choice of flavor.",
     price: 18.0,
     popular: false,
-    image: "/images/menu/iced-coffee.png",
+    image: "/images/menu/iced-coffee.webp",
   },
   {
     id: 111,
@@ -1319,7 +1319,7 @@ export const menuItems = [
       "Blended iced coffee drink with choice of vanilla, chocolate, or caramel.",
     price: 21.0,
     popular: true,
-    image: "/images/menu/iced-frappuccino.png",
+    image: "/images/menu/iced-frappuccino.webp",
   },
   {
     id: 112,
@@ -1328,7 +1328,7 @@ export const menuItems = [
     description: "Espresso and chilled milk over ice.",
     price: 19.0,
     popular: true,
-    image: "/images/menu/Iced-Latte.png",
+    image: "/images/menu/Iced-Latte.webp",
   },
   {
     id: 113,
@@ -1337,7 +1337,7 @@ export const menuItems = [
     description: "Iced espresso with chocolate and milk.",
     price: 19.0,
     popular: true,
-    image: "/images/menu/iced-mocha.png",
+    image: "/images/menu/iced-mocha.webp",
   },
   {
     id: 114,
@@ -1346,7 +1346,7 @@ export const menuItems = [
     description: "Tropical blended mango smoothie.",
     price: 23.0,
     popular: true,
-    image: "/images/menu/smoothie.png",
+    image: "/images/menu/smoothie.webp",
   },
   {
     id: 115,
@@ -1355,7 +1355,7 @@ export const menuItems = [
     description: "Small bottle of still mineral water.",
     price: 5.0,
     popular: false,
-    image: "/images/menu/Water.png",
+    image: "/images/menu/Water.webp",
   },
   {
     id: 116,
@@ -1364,7 +1364,7 @@ export const menuItems = [
     description: "Medium bottle of still mineral water.",
     price: 7.0,
     popular: true,
-    image: "/images/menu/Water.png",
+    image: "/images/menu/Water.webp",
   },
   {
     id: 117,
@@ -1373,7 +1373,7 @@ export const menuItems = [
     description: "Creamy vanilla shake blended with Oreo cookies.",
     price: 26.0,
     popular: true,
-    image: "/images/menu/milk-shake.png",
+    image: "/images/menu/milk-shake.webp",
   },
   {
     id: 118,
@@ -1382,7 +1382,7 @@ export const menuItems = [
     description: "Blended banana, apple, and orange.",
     price: 20.0,
     popular: false,
-    image: "/images/menu/Cocktail.png",
+    image: "/images/menu/Cocktail.webp",
   },
   {
     id: 119,
@@ -1391,7 +1391,7 @@ export const menuItems = [
     description: "Fruity red berry mocktail with mint and lime.",
     price: 22.0,
     popular: false,
-    image: "/images/menu/Mojito.png",
+    image: "/images/menu/Mojito.webp",
   },
   {
     id: 120,
@@ -1400,7 +1400,7 @@ export const menuItems = [
     description: "Sweet and creamy strawberry shake.",
     price: 23.0,
     popular: false,
-    image: "/images/menu/milk-shake.png",
+    image: "/images/menu/milk-shake.webp",
   },
   {
     id: 121,
@@ -1409,7 +1409,7 @@ export const menuItems = [
     description: "Blended fresh strawberries and yogurt.",
     price: 23.0,
     popular: true,
-    image: "/images/menu/Smoothie.png",
+    image: "/images/menu/Smoothie.webp",
   },
   {
     id: 122,
@@ -1418,7 +1418,7 @@ export const menuItems = [
     description: "Blended mango, kiwi, and pineapple.",
     price: 21.0,
     popular: false,
-    image: "/images/menu/Cocktail.png",
+    image: "/images/menu/Cocktail.webp",
   },
   {
     id: 123,
@@ -1427,7 +1427,7 @@ export const menuItems = [
     description: "Classic creamy vanilla shake.",
     price: 23.0,
     popular: false,
-    image: "/images/menu/milk-shake.png",
+    image: "/images/menu/milk-shake.webp",
   },
   {
     id: 124,
@@ -1436,7 +1436,7 @@ export const menuItems = [
     description: "Refreshing lime and mint mocktail.",
     price: 19.0,
     popular: true,
-    image: "/images/menu/Mojito.png",
+    image: "/images/menu/Mojito.webp",
   },
 
   // COFFEES
@@ -1447,7 +1447,7 @@ export const menuItems = [
     description: "Espresso diluted with hot water.",
     price: 14.0,
     popular: false,
-    image: "/images/menu/Americano.png",
+    image: "/images/menu/Americano.webp",
   },
   {
     id: 126,
@@ -1456,7 +1456,7 @@ export const menuItems = [
     description: "Espresso topped with equal parts steamed milk and foam.",
     price: 15.0,
     popular: true,
-    image: "/images/menu/Cappuccino.png",
+    image: "/images/menu/Cappuccino.webp",
   },
   {
     id: 127,
@@ -1465,7 +1465,7 @@ export const menuItems = [
     description: "Espresso served with a separate side of milk.",
     price: 15.0,
     popular: false,
-    image: "/images/menu/coffee-milk.png",
+    image: "/images/menu/coffee-milk.webp",
   },
   {
     id: 128,
@@ -1474,7 +1474,7 @@ export const menuItems = [
     description: "Equal parts espresso and steamed milk.",
     price: 16.0,
     popular: false,
-    image: "/images/menu/Cortado.png",
+    image: "/images/menu/Cortado.webp",
   },
   {
     id: 129,
@@ -1483,7 +1483,7 @@ export const menuItems = [
     description: "Espresso mixed with steamed cream.",
     price: 12.0,
     popular: true,
-    image: "/images/menu/Cream-Coffee.png",
+    image: "/images/menu/Cream-Coffee.webp",
   },
   {
     id: 130,
@@ -1492,7 +1492,7 @@ export const menuItems = [
     description: "Two rich shots of intense espresso.",
     price: 18.0,
     popular: true,
-    image: "/images/menu/double-espresso.png",
+    image: "/images/menu/double-espresso.webp",
   },
   {
     id: 131,
@@ -1501,7 +1501,7 @@ export const menuItems = [
     description: "Rich and intense shot of coffee.",
     price: 12.0,
     popular: true,
-    image: "/images/menu/Espresso.png",
+    image: "/images/menu/Espresso.webp",
   },
   {
     id: 132,
@@ -1510,7 +1510,7 @@ export const menuItems = [
     description: "Espresso with micro-foamed milk.",
     price: 16.0,
     popular: false,
-    image: "/images/menu/Flat-White.png",
+    image: "/images/menu/Flat-White.webp",
   },
   {
     id: 133,
@@ -1519,7 +1519,7 @@ export const menuItems = [
     description: "Premium Italian Illy espresso shot.",
     price: 16.0,
     popular: false,
-    image: "/images/menu/Illy-Espresso.png",
+    image: "/images/menu/Illy-Espresso.webp",
   },
   {
     id: 134,
@@ -1528,7 +1528,7 @@ export const menuItems = [
     description: "Steamed milk marked with a shot of espresso.",
     price: 16.0,
     popular: true,
-    image: "/images/menu/Latte-Macchiato.png",
+    image: "/images/menu/Latte-Macchiato.webp",
   },
   {
     id: 135,
@@ -1537,7 +1537,7 @@ export const menuItems = [
     description: "Espresso combined with chocolate and steamed milk.",
     price: 18.0,
     popular: false,
-    image: "/images/menu/mocha.png",
+    image: "/images/menu/mocha.webp",
   },
   {
     id: 136,
@@ -1546,7 +1546,7 @@ export const menuItems = [
     description: "Classic Nespresso brewed coffee.",
     price: 15.0,
     popular: false,
-    image: "/images/menu/Nespresso.png",
+    image: "/images/menu/Nespresso.webp",
   },
   {
     id: 137,
@@ -1555,7 +1555,7 @@ export const menuItems = [
     description: "Hot chocolate topped with whipped cream.",
     price: 16.0,
     popular: true,
-    image: "/images/menu/Viennese-Chocolate.png",
+    image: "/images/menu/Viennese-Chocolate.webp",
   },
 
   // JUICES
@@ -1566,7 +1566,7 @@ export const menuItems = [
     description: "Freshly pressed apple juice.",
     price: 16.0,
     popular: false,
-    image: "/images/menu/juices.png",
+    image: "/images/menu/juices.webp",
   },
   {
     id: 139,
@@ -1575,7 +1575,7 @@ export const menuItems = [
     description: "Rich and creamy blended avocado juice.",
     price: 18.0,
     popular: true,
-    image: "/images/menu/juices.png",
+    image: "/images/menu/juices.webp",
   },
   {
     id: 140,
@@ -1584,7 +1584,7 @@ export const menuItems = [
     description: "Creamy avocado juice blended with mixed dried fruits.",
     price: 23.0,
     popular: true,
-    image: "/images/menu/juices.png",
+    image: "/images/menu/juices.webp",
   },
   {
     id: 141,
@@ -1593,7 +1593,7 @@ export const menuItems = [
     description: "Freshly blended banana juice.",
     price: 16.0,
     popular: false,
-    image: "/images/menu/juices.png",
+    image: "/images/menu/juices.webp",
   },
   {
     id: 142,
@@ -1602,7 +1602,7 @@ export const menuItems = [
     description: "Fresh tropical mango juice.",
     price: 20.0,
     popular: false,
-    image: "/images/menu/juices.png",
+    image: "/images/menu/juices.webp",
   },
   {
     id: 143,
@@ -1611,7 +1611,7 @@ export const menuItems = [
     description: "Blend of mixed fruits with milk.",
     price: 18.0,
     popular: true,
-    image: "/images/menu/juices.png",
+    image: "/images/menu/juices.webp",
   },
   {
     id: 144,
@@ -1620,7 +1620,7 @@ export const menuItems = [
     description: "Blend of mixed fruits with orange juice.",
     price: 23.0,
     popular: false,
-    image: "/images/menu/juices.png",
+    image: "/images/menu/juices.webp",
   },
   {
     id: 145,
@@ -1629,7 +1629,7 @@ export const menuItems = [
     description: "Freshly squeezed orange juice.",
     price: 16.0,
     popular: true,
-    image: "/images/menu/juices.png",
+    image: "/images/menu/juices.webp",
   },
   {
     id: 146,
@@ -1638,7 +1638,7 @@ export const menuItems = [
     description: "Fresh sweet pineapple juice.",
     price: 23.0,
     popular: false,
-    image: "/images/menu/juices.png",
+    image: "/images/menu/juices.webp",
   },
   {
     id: 147,
@@ -1647,7 +1647,7 @@ export const menuItems = [
     description: "Freshly blended strawberry juice.",
     price: 18.0,
     popular: true,
-    image: "/images/menu/juices.png",
+    image: "/images/menu/juices.webp",
   },
 
   // EXTRAS
@@ -1659,7 +1659,7 @@ export const menuItems = [
       "Premium Amlou made with extra roasted almonds. Served with bread.",
     price: 12.0,
     popular: false,
-    image: "/images/menu/Almond.png",
+    image: "/images/menu/Almond.webp",
   },
   {
     id: 149,
@@ -1669,7 +1669,7 @@ export const menuItems = [
       "Traditional almond, honey, and argan oil dip. Served with bread.",
     price: 8.0,
     popular: true,
-    image: "/images/menu/argan.png",
+    image: "/images/menu/argan.webp",
   },
   {
     id: 150,
@@ -1678,7 +1678,7 @@ export const menuItems = [
     description: "Mixed marinated olives. Served with bread.",
     price: 5.0,
     popular: false,
-    image: "/images/menu/olive.png",
+    image: "/images/menu/olive.webp",
   },
   {
     id: 151,
@@ -1687,7 +1687,7 @@ export const menuItems = [
     description: "Portion of spreadable cheese. Served with bread.",
     price: 3.0,
     popular: true,
-    image: "/images/menu/cheese.png",
+    image: "/images/menu/cheese.webp",
   },
   {
     id: 152,
@@ -1697,7 +1697,7 @@ export const menuItems = [
       "Portion of traditional Moroccan fresh cheese. Served with bread.",
     price: 8.0,
     popular: true,
-    image: "/images/menu/Fresh-Cheese.png",
+    image: "/images/menu/Fresh-Cheese.webp",
   },
   {
     id: 153,
@@ -1706,7 +1706,7 @@ export const menuItems = [
     description: "Portion of pure honey. Served with bread.",
     price: 6.0,
     popular: true,
-    image: "/images/menu/Honey.png",
+    image: "/images/menu/Honey.webp",
   },
   {
     id: 154,
@@ -1715,7 +1715,7 @@ export const menuItems = [
     description: "Portion of fruit jam. Served with bread.",
     price: 6.0,
     popular: false,
-    image: "/images/menu/Jam.png",
+    image: "/images/menu/Jam.webp",
   },
   {
     id: 155,
@@ -1724,7 +1724,7 @@ export const menuItems = [
     description: "Portion of rich hazelnut cocoa spread. Served with bread.",
     price: 10.0,
     popular: true,
-    image: "/images/menu/Nutella.png",
+    image: "/images/menu/Nutella.webp",
   },
   {
     id: 156,
@@ -1734,7 +1734,7 @@ export const menuItems = [
       "Portion of high-quality extra virgin olive oil. Served with bread.",
     price: 8.0,
     popular: true,
-    image: "/images/menu/Olive-Oil.png",
+    image: "/images/menu/Olive-Oil.webp",
   },
 ];
 
@@ -1749,7 +1749,7 @@ export const shopProducts = [
     price: 7.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/Hesewa.jpg",
+    image: "/images/shop/Hesewa.webp",
   },
   {
     id: 2,
@@ -1760,7 +1760,7 @@ export const shopProducts = [
     price: 16.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/Omelet.jpg",
+    image: "/images/shop/Omelet.webp",
   },
   {
     id: 3,
@@ -1771,7 +1771,7 @@ export const shopProducts = [
     price: 35.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/breakfast.jpg",
+    image: "/images/shop/breakfast.webp",
   },
   {
     id: 4,
@@ -1782,7 +1782,7 @@ export const shopProducts = [
     price: 17.0,
     inStock: true,
     rating: 4.3,
-    image: "/images/shop/Omelet.jpg",
+    image: "/images/shop/Omelet.webp",
   },
   {
     id: 5,
@@ -1793,7 +1793,7 @@ export const shopProducts = [
     price: 26.0,
     inStock: true,
     rating: 4.4,
-    image: "/images/shop/breakfast.jpg",
+    image: "/images/shop/breakfast.webp",
   },
   {
     id: 6,
@@ -1804,7 +1804,7 @@ export const shopProducts = [
     price: 37.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/breakfast.jpg",
+    image: "/images/shop/breakfast.webp",
   },
   {
     id: 7,
@@ -1815,7 +1815,7 @@ export const shopProducts = [
     price: 26.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/breakfast.jpg",
+    image: "/images/shop/breakfast.webp",
   },
   {
     id: 8,
@@ -1826,7 +1826,7 @@ export const shopProducts = [
     price: 10.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/Soup.jpg",
+    image: "/images/shop/Soup.webp",
   },
   {
     id: 9,
@@ -1837,7 +1837,7 @@ export const shopProducts = [
     price: 24.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/Omelet.jpg",
+    image: "/images/shop/Omelet.webp",
   },
   {
     id: 10,
@@ -1848,7 +1848,7 @@ export const shopProducts = [
     price: 25.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/breakfast.jpg",
+    image: "/images/shop/breakfast.webp",
   },
   {
     id: 11,
@@ -1859,7 +1859,7 @@ export const shopProducts = [
     price: 55.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/breakfast.jpg",
+    image: "/images/shop/breakfast.webp",
   },
   {
     id: 12,
@@ -1869,7 +1869,7 @@ export const shopProducts = [
     price: 13.0,
     inStock: true,
     rating: 4.1,
-    image: "/images/shop/Omelet.jpg",
+    image: "/images/shop/Omelet.webp",
   },
   {
     id: 13,
@@ -1880,7 +1880,7 @@ export const shopProducts = [
     price: 38.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/breakfast.jpg",
+    image: "/images/shop/breakfast.webp",
   },
   {
     id: 14,
@@ -1891,7 +1891,7 @@ export const shopProducts = [
     price: 16.0,
     inStock: true,
     rating: 4.4,
-    image: "/images/shop/Omelet.jpg",
+    image: "/images/shop/Omelet.webp",
   },
   {
     id: 15,
@@ -1902,7 +1902,7 @@ export const shopProducts = [
     price: 28.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/breakfast.jpg",
+    image: "/images/shop/breakfast.webp",
   },
 
   // PASTRIES & DESSERTS
@@ -1925,7 +1925,7 @@ export const shopProducts = [
     price: 12.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/pastilla.png",
+    image: "/images/shop/pastilla.webp",
   },
   {
     id: 18,
@@ -1935,7 +1935,7 @@ export const shopProducts = [
     price: 8.0,
     inStock: true,
     rating: 4.0,
-    image: "/images/shop/sandwich.jpg",
+    image: "/images/shop/sandwich.webp",
   },
   {
     id: 19,
@@ -1946,7 +1946,7 @@ export const shopProducts = [
     price: 6.0,
     inStock: true,
     rating: 4.3,
-    image: "/images/shop/pizza.jpeg",
+    image: "/images/shop/pizza.webp",
   },
   {
     id: 20,
@@ -1956,7 +1956,7 @@ export const shopProducts = [
     price: 9.0,
     inStock: true,
     rating: 4.2,
-    image: "/images/shop/hot-dog.jpg",
+    image: "/images/shop/hot-dog.webp",
   },
   {
     id: 21,
@@ -1967,7 +1967,7 @@ export const shopProducts = [
     price: 10.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/pastilla.png",
+    image: "/images/shop/pastilla.webp",
   },
   {
     id: 22,
@@ -1977,7 +1977,7 @@ export const shopProducts = [
     price: 7.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/Briouat.jpeg",
+    image: "/images/shop/Briouat.webp",
   },
   {
     id: 23,
@@ -1987,7 +1987,7 @@ export const shopProducts = [
     price: 10.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/Tart.jpg",
+    image: "/images/shop/Tart.webp",
   },
   {
     id: 24,
@@ -1997,7 +1997,7 @@ export const shopProducts = [
     price: 17.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/Pancakes.jpg",
+    image: "/images/shop/Pancakes.webp",
   },
   {
     id: 25,
@@ -2007,7 +2007,7 @@ export const shopProducts = [
     price: 6.0,
     inStock: true,
     rating: 4.4,
-    image: "/images/shop/Apple-Turnover.jpg",
+    image: "/images/shop/Apple-Turnover.webp",
   },
   {
     id: 26,
@@ -2017,7 +2017,7 @@ export const shopProducts = [
     price: 16.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/crepe.jpg",
+    image: "/images/shop/crepe.webp",
   },
   {
     id: 27,
@@ -2027,7 +2027,7 @@ export const shopProducts = [
     price: 16.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/waffle.jpg",
+    image: "/images/shop/waffle.webp",
   },
   {
     id: 28,
@@ -2037,7 +2037,7 @@ export const shopProducts = [
     price: 8.0,
     inStock: true,
     rating: 4.4,
-    image: "/images/shop/basbousa.jpg",
+    image: "/images/shop/basbousa.webp",
   },
   {
     id: 29,
@@ -2047,7 +2047,7 @@ export const shopProducts = [
     price: 2.5,
     inStock: true,
     rating: 4.3,
-    image: "/images/shop/madeleine.jpg",
+    image: "/images/shop/madeleine.webp",
   },
   {
     id: 30,
@@ -2057,7 +2057,7 @@ export const shopProducts = [
     price: 4.0,
     inStock: true,
     rating: 4.2,
-    image: "/images/shop/crepe.jpg",
+    image: "/images/shop/crepe.webp",
   },
   {
     id: 31,
@@ -2137,7 +2137,7 @@ export const shopProducts = [
     price: 4.0,
     inStock: true,
     rating: 4.1,
-    image: "/images/shop/donut.jpg",
+    image: "/images/shop/donut.webp",
   },
   {
     id: 39,
@@ -2147,7 +2147,7 @@ export const shopProducts = [
     price: 8.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/Frangipane-Tart.jpg",
+    image: "/images/shop/Frangipane-Tart.webp",
   },
   {
     id: 40,
@@ -2157,7 +2157,7 @@ export const shopProducts = [
     price: 6.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/Pithiviers.jpg",
+    image: "/images/shop/Pithiviers.webp",
   },
   {
     id: 41,
@@ -2167,7 +2167,7 @@ export const shopProducts = [
     price: 19.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/fruit-salad.jpeg",
+    image: "/images/shop/fruit-salad.webp",
   },
   {
     id: 42,
@@ -2177,7 +2177,7 @@ export const shopProducts = [
     price: 18.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/fruit-salad.jpeg",
+    image: "/images/shop/fruit-salad.webp",
   },
   {
     id: 43,
@@ -2187,7 +2187,7 @@ export const shopProducts = [
     price: 7.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/Fruit-Tartlet.jpg",
+    image: "/images/shop/Fruit-Tartlet.webp",
   },
   {
     id: 44,
@@ -2197,7 +2197,7 @@ export const shopProducts = [
     price: 16.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/pancakes.jpg",
+    image: "/images/shop/pancakes.webp",
   },
   {
     id: 45,
@@ -2207,7 +2207,7 @@ export const shopProducts = [
     price: 30.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/pound-cake.jpg",
+    image: "/images/shop/pound-cake.webp",
   },
   {
     id: 46,
@@ -2217,7 +2217,7 @@ export const shopProducts = [
     price: 20.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/pound-cake.jpg",
+    image: "/images/shop/pound-cake.webp",
   },
   {
     id: 47,
@@ -2228,7 +2228,7 @@ export const shopProducts = [
     price: 8.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/millefeuille.jpg",
+    image: "/images/shop/millefeuille.webp",
   },
   {
     id: 48,
@@ -2238,7 +2238,7 @@ export const shopProducts = [
     price: 7.0,
     inStock: true,
     rating: 4.3,
-    image: "/images/shop/minicake.png",
+    image: "/images/shop/minicake.webp",
   },
   {
     id: 49,
@@ -2248,7 +2248,7 @@ export const shopProducts = [
     price: 4.0,
     inStock: true,
     rating: 4.2,
-    image: "/images/shop/cupcake.png",
+    image: "/images/shop/cupcake.webp",
   },
   {
     id: 50,
@@ -2258,7 +2258,7 @@ export const shopProducts = [
     price: 23.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/crepe.jpg",
+    image: "/images/shop/crepe.webp",
   },
   {
     id: 51,
@@ -2268,7 +2268,7 @@ export const shopProducts = [
     price: 26.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/pancakes.jpg",
+    image: "/images/shop/pancakes.webp",
   },
   {
     id: 52,
@@ -2278,7 +2278,7 @@ export const shopProducts = [
     price: 22.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/waffle.jpg",
+    image: "/images/shop/waffle.webp",
   },
   {
     id: 53,
@@ -2288,7 +2288,7 @@ export const shopProducts = [
     price: 25.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/crepe.jpg",
+    image: "/images/shop/crepe.webp",
   },
   {
     id: 54,
@@ -2298,7 +2298,7 @@ export const shopProducts = [
     price: 29.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/crepe.jpg",
+    image: "/images/shop/crepe.webp",
   },
   {
     id: 55,
@@ -2308,7 +2308,7 @@ export const shopProducts = [
     price: 27.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/waffle.jpg",
+    image: "/images/shop/waffle.webp",
   },
   {
     id: 56,
@@ -2318,7 +2318,7 @@ export const shopProducts = [
     price: 19.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/crepe.jpg",
+    image: "/images/shop/crepe.webp",
   },
   {
     id: 57,
@@ -2328,7 +2328,7 @@ export const shopProducts = [
     price: 21.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/pancakes.jpg",
+    image: "/images/shop/pancakes.webp",
   },
   {
     id: 58,
@@ -2338,7 +2338,7 @@ export const shopProducts = [
     price: 19.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/waffle.jpg",
+    image: "/images/shop/waffle.webp",
   },
   {
     id: 59,
@@ -2349,7 +2349,7 @@ export const shopProducts = [
     price: 5.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/Pithiviers.jpg",
+    image: "/images/shop/Pithiviers.webp",
   },
   {
     id: 60,
@@ -2359,7 +2359,7 @@ export const shopProducts = [
     price: 8.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/minicake.png",
+    image: "/images/shop/minicake.webp",
   },
   {
     id: 61,
@@ -2369,7 +2369,7 @@ export const shopProducts = [
     price: 15.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/pound-cake.jpg",
+    image: "/images/shop/pound-cake.webp",
   },
   {
     id: 62,
@@ -2379,7 +2379,7 @@ export const shopProducts = [
     price: 6.0,
     inStock: true,
     rating: 4.4,
-    image: "/images/shop/basbousa.jpg",
+    image: "/images/shop/basbousa.webp",
   },
   {
     id: 63,
@@ -2389,7 +2389,7 @@ export const shopProducts = [
     price: 1.5,
     inStock: true,
     rating: 4.3,
-    image: "/images/shop/madeleine.jpg",
+    image: "/images/shop/madeleine.webp",
   },
   {
     id: 64,
@@ -2400,7 +2400,7 @@ export const shopProducts = [
     price: 5.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/croissant.jpg",
+    image: "/images/shop/croissant.webp",
   },
   {
     id: 65,
@@ -2411,7 +2411,7 @@ export const shopProducts = [
     price: 6.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/Triangle.jpg",
+    image: "/images/shop/Triangle.webp",
   },
   {
     id: 66,
@@ -2421,7 +2421,7 @@ export const shopProducts = [
     price: 4.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/Danish.jpg",
+    image: "/images/shop/Danish.webp",
   },
   {
     id: 67,
@@ -2431,7 +2431,7 @@ export const shopProducts = [
     price: 3.5,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/Danish.jpg",
+    image: "/images/shop/Danish.webp",
   },
   {
     id: 68,
@@ -2441,7 +2441,7 @@ export const shopProducts = [
     price: 2.5,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/harcha.jpg",
+    image: "/images/shop/harcha.webp",
   },
   {
     id: 69,
@@ -2451,7 +2451,7 @@ export const shopProducts = [
     price: 4.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/msemmen.jpg",
+    image: "/images/shop/msemmen.webp",
   },
   {
     id: 70,
@@ -2461,7 +2461,7 @@ export const shopProducts = [
     price: 3.5,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/Oil-Harcha.jpg",
+    image: "/images/shop/Oil-Harcha.webp",
   },
   {
     id: 71,
@@ -2472,7 +2472,7 @@ export const shopProducts = [
     price: 3.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/pain-suisse.jpg",
+    image: "/images/shop/pain-suisse.webp",
   },
   {
     id: 72,
@@ -2482,7 +2482,7 @@ export const shopProducts = [
     price: 2.5,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/Pain-au-Chocolat.jpg",
+    image: "/images/shop/Pain-au-Chocolat.webp",
   },
 
   // BAKERY
@@ -2494,7 +2494,7 @@ export const shopProducts = [
     price: 2.5,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 74,
@@ -2504,7 +2504,7 @@ export const shopProducts = [
     price: 2.5,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 75,
@@ -2514,7 +2514,7 @@ export const shopProducts = [
     price: 3.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 76,
@@ -2524,7 +2524,7 @@ export const shopProducts = [
     price: 1.5,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 77,
@@ -2534,7 +2534,7 @@ export const shopProducts = [
     price: 1.5,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 78,
@@ -2544,7 +2544,7 @@ export const shopProducts = [
     price: 2.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 79,
@@ -2554,7 +2554,7 @@ export const shopProducts = [
     price: 2.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 80,
@@ -2564,7 +2564,7 @@ export const shopProducts = [
     price: 2.5,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 81,
@@ -2575,7 +2575,7 @@ export const shopProducts = [
     price: 4.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 82,
@@ -2585,7 +2585,7 @@ export const shopProducts = [
     price: 5.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 83,
@@ -2595,7 +2595,7 @@ export const shopProducts = [
     price: 3.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 84,
@@ -2605,7 +2605,7 @@ export const shopProducts = [
     price: 3.0,
     inStock: true,
     rating: 4.3,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 85,
@@ -2615,7 +2615,7 @@ export const shopProducts = [
     price: 3.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 86,
@@ -2625,7 +2625,7 @@ export const shopProducts = [
     price: 2.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 87,
@@ -2636,7 +2636,7 @@ export const shopProducts = [
     price: 2.5,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 88,
@@ -2646,7 +2646,7 @@ export const shopProducts = [
     price: 3.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 89,
@@ -2656,7 +2656,7 @@ export const shopProducts = [
     price: 2.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 90,
@@ -2666,7 +2666,7 @@ export const shopProducts = [
     price: 3.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 91,
@@ -2676,7 +2676,7 @@ export const shopProducts = [
     price: 2.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
   {
     id: 92,
@@ -2686,7 +2686,7 @@ export const shopProducts = [
     price: 2.5,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/bread.jpg",
+    image: "/images/shop/bread.webp",
   },
 
   // HOT DRINKS
@@ -2698,7 +2698,7 @@ export const shopProducts = [
     price: 12.0,
     inStock: true,
     rating: 4.2,
-    image: "/images/shop/Lipton.jpg",
+    image: "/images/shop/Lipton.webp",
   },
   {
     id: 94,
@@ -2708,7 +2708,7 @@ export const shopProducts = [
     price: 12.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/hot-chocolate.jpg",
+    image: "/images/shop/hot-chocolate.webp",
   },
   {
     id: 95,
@@ -2728,7 +2728,7 @@ export const shopProducts = [
     price: 12.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/Lemon-Verbena-Tea.jpg",
+    image: "/images/shop/Lemon-Verbena-Tea.webp",
   },
   {
     id: 97,
@@ -2738,7 +2738,7 @@ export const shopProducts = [
     price: 12.0,
     inStock: true,
     rating: 4.4,
-    image: "/images/shop/Milk-Tea.jpg",
+    image: "/images/shop/Milk-Tea.webp",
   },
   {
     id: 98,
@@ -2748,7 +2748,7 @@ export const shopProducts = [
     price: 12.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/milk-tea.jpg",
+    image: "/images/shop/milk-tea.webp",
   },
   {
     id: 99,
@@ -2758,7 +2758,7 @@ export const shopProducts = [
     price: 11.0,
     inStock: true,
     rating: 4.2,
-    image: "/images/shop/Milk-Syrup.jpg",
+    image: "/images/shop/Milk-Syrup.webp",
   },
   {
     id: 100,
@@ -2768,7 +2768,7 @@ export const shopProducts = [
     price: 11.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/Moroccan-Tea.jpg",
+    image: "/images/shop/Moroccan-Tea.webp",
   },
 
   // COLD DRINKS
@@ -2780,7 +2780,7 @@ export const shopProducts = [
     price: 18.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/Affogato.jpg",
+    image: "/images/shop/Affogato.webp",
   },
   {
     id: 102,
@@ -2790,7 +2790,7 @@ export const shopProducts = [
     price: 23.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/milk-shake.jpg",
+    image: "/images/shop/milk-shake.webp",
   },
   {
     id: 103,
@@ -2800,7 +2800,7 @@ export const shopProducts = [
     price: 23.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/Smoothie.jpg",
+    image: "/images/shop/Smoothie.webp",
   },
   {
     id: 104,
@@ -2810,7 +2810,7 @@ export const shopProducts = [
     price: 22.0,
     inStock: true,
     rating: 4.4,
-    image: "/images/shop/Mojito.jpg",
+    image: "/images/shop/Mojito.webp",
   },
   {
     id: 105,
@@ -2820,7 +2820,7 @@ export const shopProducts = [
     price: 12.0,
     inStock: true,
     rating: 4.2,
-    image: "/images/shop/Soda.jpg",
+    image: "/images/shop/Soda.webp",
   },
   {
     id: 106,
@@ -2830,7 +2830,7 @@ export const shopProducts = [
     price: 23.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/milk-shake.jpg",
+    image: "/images/shop/milk-shake.webp",
   },
   {
     id: 107,
@@ -2840,7 +2840,7 @@ export const shopProducts = [
     price: 21.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/Cocktail.jpg",
+    image: "/images/shop/Cocktail.webp",
   },
   {
     id: 108,
@@ -2850,7 +2850,7 @@ export const shopProducts = [
     price: 26.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/Smoothie.jpg",
+    image: "/images/shop/Smoothie.webp",
   },
   {
     id: 109,
@@ -2860,7 +2860,7 @@ export const shopProducts = [
     price: 21.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/iced-caramel.jpg",
+    image: "/images/shop/iced-caramel.webp",
   },
   {
     id: 110,
@@ -2870,7 +2870,7 @@ export const shopProducts = [
     price: 18.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/iced-coffee.jpg",
+    image: "/images/shop/iced-coffee.webp",
   },
   {
     id: 111,
@@ -2881,7 +2881,7 @@ export const shopProducts = [
     price: 21.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/iced-frappuccino.jpg",
+    image: "/images/shop/iced-frappuccino.webp",
   },
   {
     id: 112,
@@ -2891,7 +2891,7 @@ export const shopProducts = [
     price: 19.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/Iced-Latte.jpg",
+    image: "/images/shop/Iced-Latte.webp",
   },
   {
     id: 113,
@@ -2901,7 +2901,7 @@ export const shopProducts = [
     price: 19.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/iced-mocha.jpg",
+    image: "/images/shop/iced-mocha.webp",
   },
   {
     id: 114,
@@ -2911,7 +2911,7 @@ export const shopProducts = [
     price: 23.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/smoothie.jpg",
+    image: "/images/shop/smoothie.webp",
   },
   {
     id: 115,
@@ -2941,7 +2941,7 @@ export const shopProducts = [
     price: 26.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/milk-shake.jpg",
+    image: "/images/shop/milk-shake.webp",
   },
   {
     id: 118,
@@ -2951,7 +2951,7 @@ export const shopProducts = [
     price: 20.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/Cocktail.jpg",
+    image: "/images/shop/Cocktail.webp",
   },
   {
     id: 119,
@@ -2961,7 +2961,7 @@ export const shopProducts = [
     price: 22.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/Mojito.jpg",
+    image: "/images/shop/Mojito.webp",
   },
   {
     id: 120,
@@ -2971,7 +2971,7 @@ export const shopProducts = [
     price: 23.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/milk-shake.jpg",
+    image: "/images/shop/milk-shake.webp",
   },
   {
     id: 121,
@@ -2981,7 +2981,7 @@ export const shopProducts = [
     price: 23.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/Smoothie.jpg",
+    image: "/images/shop/Smoothie.webp",
   },
   {
     id: 122,
@@ -2991,7 +2991,7 @@ export const shopProducts = [
     price: 21.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/Cocktail.jpg",
+    image: "/images/shop/Cocktail.webp",
   },
   {
     id: 123,
@@ -3001,7 +3001,7 @@ export const shopProducts = [
     price: 23.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/milk-shake.jpg",
+    image: "/images/shop/milk-shake.webp",
   },
   {
     id: 124,
@@ -3011,7 +3011,7 @@ export const shopProducts = [
     price: 19.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/Mojito.jpg",
+    image: "/images/shop/Mojito.webp",
   },
 
   // COFFEES
@@ -3023,7 +3023,7 @@ export const shopProducts = [
     price: 14.0,
     inStock: true,
     rating: 4.3,
-    image: "/images/shop/Americano.jpg",
+    image: "/images/shop/Americano.webp",
   },
   {
     id: 126,
@@ -3033,7 +3033,7 @@ export const shopProducts = [
     price: 15.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/Cappuccino.jpg",
+    image: "/images/shop/Cappuccino.webp",
   },
   {
     id: 127,
@@ -3043,7 +3043,7 @@ export const shopProducts = [
     price: 15.0,
     inStock: true,
     rating: 4.4,
-    image: "/images/shop/coffee-milk.jpg",
+    image: "/images/shop/coffee-milk.webp",
   },
   {
     id: 128,
@@ -3053,7 +3053,7 @@ export const shopProducts = [
     price: 16.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/Cortado.jpg",
+    image: "/images/shop/Cortado.webp",
   },
   {
     id: 129,
@@ -3063,7 +3063,7 @@ export const shopProducts = [
     price: 12.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/Cream-Coffee.jpg",
+    image: "/images/shop/Cream-Coffee.webp",
   },
   {
     id: 130,
@@ -3073,7 +3073,7 @@ export const shopProducts = [
     price: 18.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/double-espresso.jpg",
+    image: "/images/shop/double-espresso.webp",
   },
   {
     id: 131,
@@ -3083,7 +3083,7 @@ export const shopProducts = [
     price: 12.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/Espresso.jpg",
+    image: "/images/shop/Espresso.webp",
   },
   {
     id: 132,
@@ -3093,7 +3093,7 @@ export const shopProducts = [
     price: 16.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/Flat-White.png",
+    image: "/images/shop/Flat-White.webp",
   },
   {
     id: 133,
@@ -3103,7 +3103,7 @@ export const shopProducts = [
     price: 16.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/Illy-Espresso.jpg",
+    image: "/images/shop/Illy-Espresso.webp",
   },
   {
     id: 134,
@@ -3113,7 +3113,7 @@ export const shopProducts = [
     price: 16.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/Latte-Macchiato.jpg",
+    image: "/images/shop/Latte-Macchiato.webp",
   },
   {
     id: 135,
@@ -3123,7 +3123,7 @@ export const shopProducts = [
     price: 18.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/mocha.png",
+    image: "/images/shop/mocha.webp",
   },
   {
     id: 136,
@@ -3133,7 +3133,7 @@ export const shopProducts = [
     price: 15.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/Nespresso.jpg",
+    image: "/images/shop/Nespresso.webp",
   },
   {
     id: 137,
@@ -3143,7 +3143,7 @@ export const shopProducts = [
     price: 16.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/Viennese-Chocolate.jpg",
+    image: "/images/shop/Viennese-Chocolate.webp",
   },
 
   // JUICES
@@ -3155,7 +3155,7 @@ export const shopProducts = [
     price: 16.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/Apple-Juice.jpg",
+    image: "/images/shop/Apple-Juice.webp",
   },
   {
     id: 139,
@@ -3165,7 +3165,7 @@ export const shopProducts = [
     price: 18.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/Avocado-Juice.jpg",
+    image: "/images/shop/Avocado-Juice.webp",
   },
   {
     id: 140,
@@ -3175,7 +3175,7 @@ export const shopProducts = [
     price: 23.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/Avocado-Juice-with-Dried-Fruits.jpg",
+    image: "/images/shop/Avocado-Juice-with-Dried-Fruits.webp",
   },
   {
     id: 141,
@@ -3185,7 +3185,7 @@ export const shopProducts = [
     price: 16.0,
     inStock: true,
     rating: 4.4,
-    image: "/images/shop/Banana-Juice.jpg",
+    image: "/images/shop/Banana-Juice.webp",
   },
   {
     id: 142,
@@ -3195,7 +3195,7 @@ export const shopProducts = [
     price: 20.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/Mango-Juice.jpg",
+    image: "/images/shop/Mango-Juice.webp",
   },
   {
     id: 143,
@@ -3205,7 +3205,7 @@ export const shopProducts = [
     price: 18.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/Mixed-Fruit-Juice-with-Milk.jpg",
+    image: "/images/shop/Mixed-Fruit-Juice-with-Milk.webp",
   },
   {
     id: 144,
@@ -3215,7 +3215,7 @@ export const shopProducts = [
     price: 23.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/Mixed-Fruit-Juice-with-Orange.jpg",
+    image: "/images/shop/Mixed-Fruit-Juice-with-Orange.webp",
   },
   {
     id: 145,
@@ -3225,7 +3225,7 @@ export const shopProducts = [
     price: 16.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/Orange-Juice.jpg",
+    image: "/images/shop/Orange-Juice.webp",
   },
   {
     id: 146,
@@ -3235,7 +3235,7 @@ export const shopProducts = [
     price: 23.0,
     inStock: true,
     rating: 4.6,
-    image: "/images/shop/Pineapple-Juice.jpg",
+    image: "/images/shop/Pineapple-Juice.webp",
   },
   {
     id: 147,
@@ -3245,7 +3245,7 @@ export const shopProducts = [
     price: 18.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/Strawberry-Juice.jpg",
+    image: "/images/shop/Strawberry-Juice.webp",
   },
 
   // EXTRAS
@@ -3258,7 +3258,7 @@ export const shopProducts = [
     price: 12.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/Almond.jpeg",
+    image: "/images/shop/Almond.webp",
   },
   {
     id: 149,
@@ -3269,7 +3269,7 @@ export const shopProducts = [
     price: 8.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/argan.jpg",
+    image: "/images/shop/argan.webp",
   },
   {
     id: 150,
@@ -3279,7 +3279,7 @@ export const shopProducts = [
     price: 5.0,
     inStock: true,
     rating: 4.5,
-    image: "/images/shop/olive.jpg",
+    image: "/images/shop/olive.webp",
   },
   {
     id: 151,
@@ -3289,7 +3289,7 @@ export const shopProducts = [
     price: 3.0,
     inStock: true,
     rating: 4.2,
-    image: "/images/shop/cheese.jpg",
+    image: "/images/shop/cheese.webp",
   },
   {
     id: 152,
@@ -3300,7 +3300,7 @@ export const shopProducts = [
     price: 8.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/Fresh-Cheese.jpg",
+    image: "/images/shop/Fresh-Cheese.webp",
   },
   {
     id: 153,
@@ -3310,7 +3310,7 @@ export const shopProducts = [
     price: 6.0,
     inStock: true,
     rating: 4.7,
-    image: "/images/shop/Honey.jpg",
+    image: "/images/shop/Honey.webp",
   },
   {
     id: 154,
@@ -3320,7 +3320,7 @@ export const shopProducts = [
     price: 6.0,
     inStock: true,
     rating: 4.4,
-    image: "/images/shop/Jam.jpg",
+    image: "/images/shop/Jam.webp",
   },
   {
     id: 155,
@@ -3330,7 +3330,7 @@ export const shopProducts = [
     price: 10.0,
     inStock: true,
     rating: 4.9,
-    image: "/images/shop/Nutella.jpg",
+    image: "/images/shop/Nutella.webp",
   },
   {
     id: 156,
@@ -3341,7 +3341,7 @@ export const shopProducts = [
     price: 8.0,
     inStock: true,
     rating: 4.8,
-    image: "/images/shop/Olive-Oil.jpg",
+    image: "/images/shop/Olive-Oil.webp",
   },
 ];
 

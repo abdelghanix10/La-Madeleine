@@ -133,7 +133,7 @@ export default function Navbar() {
               transition={{ duration: 0.3 }}
             >
               <Image
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt={data.siteConfig.name}
                 width={120}
                 height={120}
@@ -166,7 +166,7 @@ export default function Navbar() {
               className="lg:hidden shrink-0 flex items-center gap-3"
             >
               <Image
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt={data.siteConfig.name}
                 width={36}
                 height={36}

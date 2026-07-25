@@ -37,27 +37,27 @@ import ScrollReveal, {
 const galleryItems = [
   {
     id: 1,
-    src: "/images/gallery/gallery-1.jpg",
+    src: "/images/gallery/gallery-1.webp",
     alt: "Fresh croissants cooling on a tray",
   },
   {
     id: 2,
-    src: "/images/gallery/gallery-2.jpg",
+    src: "/images/gallery/gallery-2.webp",
     alt: "A tray of assorted pastries being served",
   },
   {
     id: 3,
-    src: "/images/gallery/gallery-3.jpg",
+    src: "/images/gallery/gallery-3.webp",
     alt: "Chocolate chip cookies beside a coffee cup",
   },
   {
     id: 4,
-    src: "/images/gallery/gallery-4.jpg",
+    src: "/images/gallery/gallery-4.webp",
     alt: "Two croissants with chocolate drizzle",
   },
   {
     id: 5,
-    src: "/images/gallery/gallery-5.jpg",
+    src: "/images/gallery/gallery-5.webp",
     alt: "Espresso machine pouring a fresh cup of coffee",
   },
 ];

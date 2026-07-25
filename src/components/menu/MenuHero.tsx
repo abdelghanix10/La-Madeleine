@@ -10,7 +10,7 @@ export default function MenuHero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/images/background/bg-menu.jpg')",
+          backgroundImage: "url('/images/background/bg-menu.webp')",
         }}
       />
       <div className="absolute inset-0 bg-dark/45" />
