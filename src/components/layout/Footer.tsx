@@ -48,7 +48,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 flex-1">
           <div className="lg:col-span-1">
             <h3 className="font-serif text-3xl text-cream tracking-wider mb-4 flex items-center gap-3">
-              <Image src="/images/logo.png" alt={siteConfig.name} width={80} height={80} />
+              <Image
+                src="/images/logo.png"
+                alt={siteConfig.name}
+                width={80}
+                height={80}
+                style={{ width: "auto", height: "auto" }}
+              />
               {siteConfig.name}
             </h3>
             <p className="text-sm leading-relaxed mb-6 text-cream/50">

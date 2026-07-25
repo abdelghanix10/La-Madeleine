@@ -27,6 +27,9 @@ const greatVibes = Great_Vibes({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://lamadeleine.ma"
+  ),
   title: {
     default: "La Boulangerie La Madeleine — Artisan Bakery & Coffee House",
     template: "%s | La Madeleine",

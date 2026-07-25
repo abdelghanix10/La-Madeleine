@@ -170,6 +170,7 @@ export default function Navbar() {
                 alt={siteConfig.name}
                 width={120}
                 height={120}
+                style={{ width: "auto", height: "auto" }}
                 className="mx-auto mb-4"
               />
               <div>
@@ -202,6 +203,7 @@ export default function Navbar() {
                 alt={siteConfig.name}
                 width={36}
                 height={36}
+                style={{ width: "auto", height: "auto" }}
               />
               <span className="font-serif text-xl tracking-wider text-dark">
                 {siteConfig.name.split(" ").slice(0, 2).join(" ")}
