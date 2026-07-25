@@ -53,7 +53,7 @@ export default function ShopContent() {
       items = items.filter(
         (p) =>
           p.name.toLowerCase().includes(q) ||
-          (p.description && p.description.toLowerCase().includes(q))
+          (p.description && p.description.toLowerCase().includes(q)),
       );
     }
     if (sort === "price-asc")
@@ -75,7 +75,9 @@ export default function ShopContent() {
     if (!hasMore || isLoadingMore) return;
     setIsLoadingMore(true);
     setTimeout(() => {
-      setVisibleCount((prev) => Math.min(prev + ITEMS_PER_PAGE, filtered.length));
+      setVisibleCount((prev) =>
+        Math.min(prev + ITEMS_PER_PAGE, filtered.length),
+      );
       setIsLoadingMore(false);
     }, 300);
   }, [hasMore, isLoadingMore, filtered.length]);
@@ -90,7 +92,7 @@ export default function ShopContent() {
           loadMore();
         }
       },
-      { rootMargin: "250px" }
+      { rootMargin: "250px" },
     );
 
     observer.observe(sentinel);
@@ -159,9 +161,7 @@ export default function ShopContent() {
               {displayedProducts.length}
             </span>{" "}
             {t("of")}{" "}
-            <span className="font-semibold text-dark">
-              {filtered.length}
-            </span>{" "}
+            <span className="font-semibold text-dark">{filtered.length}</span>{" "}
             {t("results")}
           </p>
           {filtered.length !== shopProducts.length && (
@@ -316,7 +316,7 @@ export default function ShopContent() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 h-full">
                 {/* Modal Image - Fills full height on desktop, responsive height on mobile */}
-                <div className="relative w-full h-56 sm:h-72 md:h-full min-h-[220px] md:min-h-[350px] bg-dark/5 overflow-hidden">
+                <div className="relative w-full h-56 sm:h-72 md:h-full min-h-55 md:min-h-87.5 bg-dark/5 overflow-hidden">
                   {selectedProduct.image ? (
                     <Image
                       src={selectedProduct.image}
@@ -343,7 +343,7 @@ export default function ShopContent() {
                       </span>
                       {selectedProduct.inStock && (
                         <span className="inline-flex items-center gap-1 text-emerald-700 text-xs font-medium">
-                          <CheckCircle2 size={13} /> In Stock
+                          <CheckCircle2 size={13} /> {t("inStock")}
                         </span>
                       )}
                     </div>
@@ -373,7 +373,7 @@ export default function ShopContent() {
                     {/* Detailed Product Description */}
                     <div className="border-t border-b border-dark/10 py-3 my-3">
                       <h4 className="text-[10px] font-semibold uppercase tracking-wider text-dark/50 mb-1 flex items-center gap-1.5">
-                        <Info size={13} /> Description
+                        <Info size={13} /> {t("description")}
                       </h4>
                       <p className="text-dark/75 text-sm leading-relaxed">
                         {selectedProduct.description ||
@@ -384,7 +384,9 @@ export default function ShopContent() {
 
                   <div className="flex items-center justify-between pt-2">
                     <div>
-                      <span className="text-[11px] text-dark/40 uppercase tracking-wider block">Price</span>
+                      <span className="text-[11px] text-dark/40 uppercase tracking-wider block">
+                        {t("price")}
+                      </span>
                       <span className="font-serif text-2xl sm:text-3xl text-primary font-medium">
                         ${selectedProduct.price.toFixed(2)}
                       </span>

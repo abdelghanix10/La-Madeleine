@@ -6,7 +6,7 @@ import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
-import { coffeeMenu } from "@/lib/data";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 const iconMap: Record<string, React.ElementType> = {
   Coffee,
@@ -18,25 +18,25 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function CoffeeMenuPreview() {
+  const { data, t } = useLanguage();
   return (
     <section className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <ScrollReveal className="text-center mb-16">
           <p className="text-primary font-script text-2xl md:text-3xl mb-3">
-            Crafted with Care
+            {t("coffeeEyebrow")}
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-dark tracking-wide mb-4">
-            Our Coffees
+            {t("coffeeTitle")}
           </h2>
           <p className="text-dark/50 max-w-xl mx-auto">
-            Single-origin beans roasted in-house. Every cup is a journey from
-            farm to flavor.
+            {t("coffeeDescription")}
           </p>
         </ScrollReveal>
 
         <StaggerChildren className="max-w-4xl mx-auto" staggerDelay={0.08}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
-            {coffeeMenu.map((item) => (
+            {data.coffeeMenu.map((item) => (
               <StaggerItem key={item.id}>
                 <motion.div
                   className="flex items-start gap-4 py-6 border-b border-dark/10 group cursor-pointer"

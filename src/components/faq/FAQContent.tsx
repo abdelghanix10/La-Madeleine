@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, ChevronDown } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
@@ -14,13 +14,9 @@ export default function FAQContent() {
     return [t("all"), ...Array.from(new Set(faqData.map((f) => f.category)))];
   }, [faqData, t]);
 
-  const [activeCategory, setActiveCategory] = useState(t("all"));
+  const [activeCategory, setActiveCategory] = useState(() => t("all"));
   const [search, setSearch] = useState("");
   const [openId, setOpenId] = useState<number | null>(null);
-
-  useEffect(() => {
-    setActiveCategory(t("all"));
-  }, [t]);
 
   const filtered = useMemo(() => {
     let items = faqData;
@@ -30,7 +26,7 @@ export default function FAQContent() {
       items = items.filter(
         (f) =>
           f.question.toLowerCase().includes(search.toLowerCase()) ||
-          f.answer.toLowerCase().includes(search.toLowerCase())
+          f.answer.toLowerCase().includes(search.toLowerCase()),
       );
     return items;
   }, [faqData, activeCategory, search, t]);
@@ -137,7 +133,7 @@ export default function FAQContent() {
           {filtered.length === 0 && (
             <div className="text-center py-16">
               <p className="font-serif text-2xl text-dark/30">
-                No questions found
+                {t("noQuestionsFound")}
               </p>
             </div>
           )}

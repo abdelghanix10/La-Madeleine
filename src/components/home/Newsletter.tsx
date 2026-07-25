@@ -3,33 +3,39 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { siteConfig } from "@/lib/data";
-
-const contactDetails = [
-  {
-    icon: Phone,
-    label: "Phone",
-    value: siteConfig.phone,
-    href: `tel:${siteConfig.phone}`,
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    value: siteConfig.email,
-    href: `mailto:${siteConfig.email}`,
-  },
-  { icon: MapPin, label: "Address", value: siteConfig.address, href: "#" },
-  {
-    icon: Clock,
-    label: "Hours",
-    value: Array.isArray(siteConfig.hours)
-      ? siteConfig.hours.map((h) => `${h.day}: ${h.time}`).join(" | ")
-      : `${(siteConfig.hours as { day: string; time: string }).day}: ${(siteConfig.hours as { day: string; time: string }).time}`,
-    href: "#",
-  },
-];
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function Newsletter() {
+  const { data, t } = useLanguage();
+
+  const contactDetails = [
+    {
+      icon: Phone,
+      label: t("newsletterPhone"),
+      value: data.siteConfig.phone,
+      href: `tel:${data.siteConfig.phone}`,
+    },
+    {
+      icon: Mail,
+      label: t("newsletterEmail"),
+      value: data.siteConfig.email,
+      href: `mailto:${data.siteConfig.email}`,
+    },
+    {
+      icon: MapPin,
+      label: t("newsletterAddress"),
+      value: data.siteConfig.address,
+      href: "#",
+    },
+    {
+      icon: Clock,
+      label: t("newsletterHours"),
+      value: Array.isArray(data.siteConfig.hours)
+        ? data.siteConfig.hours.map((h) => `${h.day}: ${h.time}`).join(" | ")
+        : `${(data.siteConfig.hours as { day: string; time: string }).day}: ${(data.siteConfig.hours as { day: string; time: string }).time}`,
+      href: "#",
+    },
+  ];
   return (
     <section className="py-24 md:py-32 bg-cream relative overflow-hidden">
       {/* Decorative elements */}
@@ -40,14 +46,13 @@ export default function Newsletter() {
         <ScrollReveal>
           <div className="text-center mb-14">
             <p className="text-primary font-script text-2xl md:text-3xl mb-3">
-              Get in Touch
+              {t("getInTouch")}
             </p>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-dark tracking-wide mb-4">
-              Contact Us
+              {t("contactUs")}
             </h2>
             <p className="text-dark/50 max-w-md mx-auto">
-              We&apos;d love to hear from you. Reach out for reservations,
-              catering inquiries, or just to say bonjour.
+              {t("newsletterDescription")}
             </p>
           </div>
         </ScrollReveal>
@@ -82,7 +87,7 @@ export default function Newsletter() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              Send Us a Message
+              {t("sendUsAMessage")}
             </motion.a>
           </div>
         </ScrollReveal>

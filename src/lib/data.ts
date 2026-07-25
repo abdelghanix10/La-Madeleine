@@ -2561,7 +2561,7 @@ export const shopProducts = [
     name: "Gingerbread",
     category: "Bakery",
     description: "Traditional French spiced bread with honey and anise.",
-    price: 24.0,
+    price: 2.5,
     inStock: true,
     rating: 4.7,
     image: "/images/shop/bread.jpg",

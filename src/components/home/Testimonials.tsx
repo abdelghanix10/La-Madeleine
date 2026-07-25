@@ -4,30 +4,31 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { testimonials } from "@/lib/data";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function Testimonials() {
+  const { data, t } = useLanguage();
+  const testimonials = data.testimonials;
+
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
 
   const next = useCallback(() => {
     setDirection(1);
     setCurrent((p) => (p + 1) % testimonials.length);
-  }, []);
+  }, [testimonials.length]);
 
   const prev = useCallback(() => {
     setDirection(-1);
-    setCurrent(
-      (p) => (p - 1 + testimonials.length) % testimonials.length
-    );
-  }, []);
+    setCurrent((p) => (p - 1 + testimonials.length) % testimonials.length);
+  }, [testimonials.length]);
 
   useEffect(() => {
     const timer = setInterval(next, 5000);
     return () => clearInterval(timer);
   }, [next]);
 
-  const t = testimonials[current];
+  const testimonial = testimonials[current];
 
   return (
     <section className="py-24 md:py-32 relative overflow-hidden">
@@ -35,7 +36,8 @@ export default function Testimonials() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url('/images/background/background-testimonials.jpg')",
+          backgroundImage:
+            "url('/images/background/background-testimonials.jpg')",
           backgroundAttachment: "fixed",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -48,10 +50,10 @@ export default function Testimonials() {
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         <ScrollReveal className="text-center mb-12">
           <p className="text-primary font-script text-2xl md:text-3xl mb-3">
-            What They Say
+            {t("testimonialsEyebrow")}
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream tracking-wide">
-            Testimonials
+            {t("testimonialsTitle")}
           </h2>
         </ScrollReveal>
 
@@ -66,14 +68,11 @@ export default function Testimonials() {
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
               className="text-center"
             >
-              <Quote
-                size={40}
-                className="text-primary/40 mx-auto mb-6"
-              />
+              <Quote size={40} className="text-primary/40 mx-auto mb-6" />
 
               {/* Stars */}
               <div className="flex items-center justify-center gap-1 mb-8">
-                {Array.from({ length: t.rating }).map((_, i) => (
+                {Array.from({ length: testimonial.rating }).map((_, i) => (
                   <Star
                     key={i}
                     size={16}
@@ -83,15 +82,15 @@ export default function Testimonials() {
               </div>
 
               <blockquote className="font-serif text-2xl md:text-3xl lg:text-4xl text-cream/90 leading-relaxed mb-8 max-w-3xl mx-auto italic">
-                &ldquo;{t.quote}&rdquo;
+                &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
 
               <div>
                 <p className="text-cream text-sm tracking-[0.3em] uppercase font-medium">
-                  {t.name}
+                  {testimonial.name}
                 </p>
                 <p className="text-primary/70 text-xs tracking-wider mt-1">
-                  {t.role}
+                  {testimonial.role}
                 </p>
               </div>
             </motion.div>

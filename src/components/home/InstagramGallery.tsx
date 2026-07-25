@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { siteConfig } from "@/lib/data";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 function InstagramIcon({
   size = 24,
@@ -63,15 +63,17 @@ const galleryItems = [
 ];
 
 export default function InstagramGallery() {
+  const { data, t } = useLanguage();
+  const siteConfig = data?.siteConfig;
   return (
     <section className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <ScrollReveal className="text-center mb-16">
           <p className="text-primary font-script text-2xl md:text-3xl mb-3">
-            @lamadeleine
+            {t("instagramEyebrow")}
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-dark tracking-wide">
-            Follow Our Journey
+            {t("instagramTitle")}
           </h2>
         </ScrollReveal>
 

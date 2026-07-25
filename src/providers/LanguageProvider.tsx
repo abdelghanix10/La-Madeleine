@@ -16,17 +16,78 @@ export const translations = {
     shop: "Shop",
     contact: "Contact",
     faq: "FAQ",
-    orderOnline: "Order Online",
-    hours: "Hours",
-    phone: "Phone",
-    address: "Address",
     language: "Language",
 
-    // Shop & Menu
-    searchProducts: "Search products...",
-    searchMenu: "Search menu items...",
-    searchQuestions: "Search questions...",
+    // Footer
+    quickLinks: "Quick Links",
+    support: "Support",
+    // Href
+    ourStory: "Our Story",
+    ourMenu: "Our Menu",
+    shopFooter: "Shop",
+    locations: "Locations",
+    faqFooter: "FAQ",
+    contactUsFooter: "Contact Us",
+    cookiePolicy: "Cookie Policy",
+    privacyPolicy: "Privacy Policy",
+    // Copyright
+    allRightsReserved: "All rights reserved.",
+
+    // Home
+    // Hero
+    next: "Next",
+    prev: "Previous",
+    // Story
+    storyEyebrow: "Our Story",
+    storyTitleOne: "A Legacy of",
+    storyTitleTwo: "Artisanal Passion",
+    storyDescription:
+      "In 2019, a deep love for traditional baking brought the charm of a classic French salon de thé to the heart of Agadir. Armed with perfected recipes, a commitment to exceptional coffee, and an uncompromising dedication to quality, La Madeline opened its doors to a community that appreciates the finer details.",
+    storyDescriptionTwo:
+      "Today, we still rise before the sun. We still fold every croissant by hand. We still pair our meticulously crafted pastries with perfectly pulled shots of espresso. Because at La Madeline, creating the perfect café experience isn't about rushing the process — it's about time, precision, and an enduring love for the craft.",
+    storySince: "Since",
+    storyYears: "Years of Craft",
+    storyProducts: "Unique Products",
+    storyCustomers: "Happy Customers",
+    // Category
+    categoryTitle: "Our Specialties",
+    categoryEyebrow: "Explore",
+    // Coffee
+    coffeeEyebrow: "Crafted with Care",
+    coffeeTitle: "Our Coffees",
+    coffeeDescription:
+      "Single-origin beans roasted in-house. Every cup is a journey from farm to flavor.",
+    // Instagram
+    instagramTitle: "Follow Our Journey",
+    instagramEyebrow: "@lamadeleine",
+    // Location
+    locationTitle: "Visit Us",
+    locationEyebrow: "Our Locations",
+    getDirections: "Get Directions",
+    // Newsletter
+    getInTouch: "Get in Touch",
+    contactUs: "Contact Us",
+    newsletterDescription:
+      "We'd love to hear from you. Reach out for reservations, catering inquiries, or just to say bonjour.",
+    sendUsAMessage: "Send Us a Message",
+    newsletterPhone: "Phone",
+    newsletterEmail: "Email",
+    newsletterAddress: "Address",
+    newsletterHours: "Hours",
+    // Testimonials
+    testimonialsTitle: "Testimonials",
+    testimonialsEyebrow: "What They Say",
+    // Today's Specials
+    todaysSpecials: "Today's Specials",
+    dontMiss: "Don't Miss",
+
+    // Shop
+    // Hero
+    shopTitle: "Our Shop",
+    shopDescription: "Take Home",
+    // Content
     all: "All",
+    searchProducts: "Search products...",
     allCategories: "All Categories",
     defaultSort: "Default",
     priceAsc: "Price: Low to High",
@@ -37,70 +98,188 @@ export const translations = {
     results: "results",
     totalAvailable: "total available",
     noProductsFound: "No products found",
-    noMenuItemsMatch: "No menu items match your search.",
     loadingMore: "Loading more products...",
     loadMore: "Load More Products",
     viewedAll: "You've viewed all products",
     inStock: "In Stock",
     description: "Description",
     price: "Price",
-    quickView: "Quick View",
-    popular: "Popular",
+
+    // Menu
+    // Hero
+    menuTitle: "Our Menu",
+    menuDescription: "Curated Selection",
+    // Content
     viewMenuBook: "View Menu PDF",
-
-    // Footer
-    quickLinks: "Quick Links",
-    support: "Support",
-    ourStory: "Our Story",
-    ourMenu: "Our Menu",
-    locations: "Locations",
-    contactUs: "Contact Us",
-    cookiePolicy: "Cookie Policy",
-    privacyPolicy: "Privacy Policy",
-    allRightsReserved: "All rights reserved.",
-
-    // Home / Hero / Specials
-    todaysSpecials: "Today's Specials",
-    dontMiss: "Don't Miss",
-    viewFullMenu: "View Full Menu",
-    exploreShop: "Explore Shop",
-    ourCategories: "Our Categories",
+    breakfastTitle: "Breakfast worth lingering over.",
+    breakfastEyebrow: "Morning table",
+    breakfastDescription:
+      "Hearty plates, warm breads, and classic Moroccan breakfast favorites served to start the day slowly.",
+    bakeryTitle: "Bread baked for the center of the table.",
+    bakeryEyebrow: "Fresh from the oven",
+    bakeryDescription:
+      "Loaves, rolls, and rustic favorites with the kind of texture and warmth that make every bite count.",
+    pastriesTitle: "Pastries made to pause for.",
+    pastriesEyebrow: "Sweet finish",
+    pastriesDescription:
+      "Flaky, delicate, and layered with cream, fruit, and chocolate for a dessert case that invites a second look.",
+    juicesTitle: "Juices with bright, clean flavor.",
+    juicesEyebrow: "Fresh pour",
+    juicesDescription:
+      "Chilled blends and fresh citrus pours that bring a light, refreshing break between richer dishes.",
+    coffeesTitle: "Brewed to slow the moment.",
+    coffeesEyebrow: "Coffee house",
+    coffeesDescription:
+      "Explore our espresso drinks, milk-based classics, and rich signature brews crafted for every coffee mood.",
+    bookMenuTitle: "La Madeleine Menu",
 
     // Contact
-    getInTouch: "Get In Touch",
-    sendMessage: "Send Us a Message",
-    name: "Name",
+    // Hero
+    getInTouchContact: "Get In Touch",
+    contactUsContact: "Contact Us",
+    // Content
+    phone: "Phone",
     email: "Email",
-    subject: "Subject",
-    message: "Message",
+    address: "Address",
+    hours: "Hours",
+    sendMessage: "Send Us a Message",
+    emailForm: "Your email *",
+    name: "Your name *",
+    subject: "Subject *",
+    message: "Your message *",
     send: "Send Message",
-    openingHours: "Opening Hours",
-    visitUs: "Visit Us",
+    sending: "Sending...",
+    thankYou: "Thank You!",
+    yourMessageHasBeenSent:
+      "Your message has been sent. We'll get back to you within 24 hours.",
+
+    // About
+    // CTA
+    comeVisit: "Come Visit",
+    tasteTheDifference: "Taste the Difference",
+    aboutCTA:
+      "Words can only say so much. Visit us, taste our bread, sip our coffee, and experience the warmth of La Madeleine firsthand.",
+    findUs: "Find Us",
+    // Hero
+    ourStoryAbout: "Our Story",
+    aboutLaMadeleine: "About La Madeleine",
+    // Story
+    since: "Since",
+    yearsOfExcellence: "Years of Excellence",
+    uniqueProducts: "Unique Products",
+    satisfiedCustomers: "Satisfied Customers",
+    aLegacyOf: "A Legacy of",
+    artisanalPassion: "Artisanal Passion",
+    storyOne:
+      "In 2019, a deep love for traditional baking brought the charm of a classic French salon de thé to the heart of Agadir. Armed with perfected recipes, a commitment to exceptional coffee, and an uncompromising dedication to quality, La Madeline opened its doors to a community that appreciates the finer details.",
+    storyTwo:
+      "Today, we still rise before the sun. We still fold every croissant by hand. We still pair our meticulously crafted pastries with perfectly pulled shots of espresso. Because at La Madeline, creating the perfect café experience isn't about rushing the process — it's about time, precision, and an enduring love for the craft.",
+    // Why Choose
+    whyUs: "Why Us",
+    theLaMadeleineDifference: "The LaMadeleine Difference",
+    finestIngredients: "Finest Ingredients",
+    finestIngredientsDescription:
+      "We select premium butter, fresh cream, Belgian chocolate, seasonal fruits, and carefully sourced ingredients to create exceptional pastries every day.",
+    freshlyCraftedDaily: "Freshly Crafted Daily",
+    freshlyCraftedDailyDescription:
+      "Every cake, croissant, tart, and dessert is handcrafted each morning to ensure perfect freshness, texture, and flavor.",
+    signatureCreations: "Signature Creations",
+    signatureCreationsDescription:
+      "From elegant entremets to flaky viennoiseries and artisan desserts, each creation is made with precision, creativity, and passion.",
+    unforgettableTaste: "Unforgettable Taste",
+    unforgettableTasteDescription:
+      "Every bite combines refined craftsmanship with premium ingredients, delivering a memorable experience for every celebration and everyday indulgence.",
 
     // FAQ
-    frequentlyAsked: "Frequently Asked Questions",
-    haveQuestions: "Have Questions?",
+    // Hero
+    frequentlyAsked: "Frequently Asked",
+    questionsAndAnswers: "Questions & Answers",
+    // Content
+    searchQuestions: "Search questions...",
+    noQuestionsFound: "No questions found",
   },
+
   fr: {
     // Nav
     home: "Accueil",
     menu: "Menu",
-    about: "À Propos",
+    about: "À propos",
     shop: "Boutique",
     contact: "Contact",
     faq: "FAQ",
-    orderOnline: "Commander",
-    hours: "Horaires",
-    phone: "Téléphone",
-    address: "Adresse",
     language: "Langue",
 
-    // Shop & Menu
+    // Footer
+    quickLinks: "Liens Rapides",
+    support: "Assistance",
+    // Href
+    ourStory: "Notre Histoire",
+    ourMenu: "Notre Menu",
+    shopFooter: "Boutique",
+    locations: "Emplacements",
+    faqFooter: "FAQ",
+    contactUsFooter: "Contactez-nous",
+    cookiePolicy: "Politique des Cookies",
+    privacyPolicy: "Politique de Confidentialité",
+    // Copyright
+    allRightsReserved: "Tous droits réservés.",
+
+    // Home
+    // Hero
+    next: "Suivant",
+    prev: "Précédent",
+    // Story
+    storyEyebrow: "Notre Histoire",
+    storyTitleOne: "Un Héritage de",
+    storyTitleTwo: "Passion Artisanale",
+    storyDescription:
+      "En 2019, un amour profond pour la boulangerie traditionnelle a apporté le charme d'un salon de thé français classique au cœur d'Agadir. Armée de recettes perfectionnées, d'un engagement envers un café exceptionnel et d'un dévouement sans compromis à la qualité, La Madeleine a ouvert ses portes à une communauté qui apprécie les moindres détails.",
+    storyDescriptionTwo:
+      "Aujourd'hui, nous nous levons toujours avant le soleil. Nous plions toujours chaque croissant à la main. Nous accompagnons toujours nos pâtisseries méticuleusement conçues de doses d'espresso parfaitement tirées. Car chez La Madeleine, créer l'expérience de café parfaite ne consiste pas à précipiter le processus — il s'agit de temps, de précision et d'un amour durable pour l'artisanat.",
+    storySince: "Depuis",
+    storyYears: "Années d'Artisanat",
+    storyProducts: "Produits Uniques",
+    storyCustomers: "Clients Satisfaits",
+    // Category
+    categoryTitle: "Nos Spécialités",
+    categoryEyebrow: "Explorer",
+    // Coffee
+    coffeeEyebrow: "Préparé avec Soin",
+    coffeeTitle: "Nos Cafés",
+    coffeeDescription:
+      "Des grains d'origine unique torréfiés sur place. Chaque tasse est un voyage de la ferme à la saveur.",
+    // Instagram
+    instagramTitle: "Suivez Notre Aventure",
+    instagramEyebrow: "@lamadeleine",
+    // Location
+    locationTitle: "Rendez-nous Visite",
+    locationEyebrow: "Nos Emplacements",
+    getDirections: "Obtenir l'itinéraire",
+    // Newsletter
+    getInTouch: "Restons en Contact",
+    contactUs: "Contactez-nous",
+    newsletterDescription:
+      "Nous serions ravis d'échanger avec vous. Contactez-nous pour des réservations, des demandes de traiteur, ou simplement pour dire bonjour.",
+    sendUsAMessage: "Envoyez-nous un Message",
+    newsletterPhone: "Téléphone",
+    newsletterEmail: "E-mail",
+    newsletterAddress: "Adresse",
+    newsletterHours: "Horaires",
+    // Testimonials
+    testimonialsTitle: "Témoignages",
+    testimonialsEyebrow: "Ce Qu'ils Disent",
+    // Today's Specials
+    todaysSpecials: "Spécialités du Jour",
+    dontMiss: "À Ne Pas Manquer",
+
+    // Shop
+    // Hero
+    shopTitle: "Notre Boutique",
+    shopDescription: "À Emporter",
+    // Content
+    all: "Tout",
     searchProducts: "Rechercher des produits...",
-    searchMenu: "Rechercher dans le menu...",
-    searchQuestions: "Rechercher des questions...",
-    all: "Tous",
-    allCategories: "Toutes les catégories",
+    allCategories: "Toutes les Catégories",
     defaultSort: "Par défaut",
     priceAsc: "Prix : Croissant",
     priceDesc: "Prix : Décroissant",
@@ -108,52 +287,109 @@ export const translations = {
     showing: "Affichage de",
     of: "sur",
     results: "résultats",
-    totalAvailable: "au total disponibles",
+    totalAvailable: "total disponible",
     noProductsFound: "Aucun produit trouvé",
-    noMenuItemsMatch: "Aucun article ne correspond à votre recherche.",
     loadingMore: "Chargement de plus de produits...",
-    loadMore: "Charger plus de produits",
+    loadMore: "Charger Plus de Produits",
     viewedAll: "Vous avez vu tous les produits",
-    inStock: "En stock",
+    inStock: "En Stock",
     description: "Description",
     price: "Prix",
-    quickView: "Aperçu rapide",
-    popular: "Populaire",
+
+    // Menu
+    // Hero
+    menuTitle: "Notre Menu",
+    menuDescription: "Sélection Soignée",
+    // Content
     viewMenuBook: "Voir le Menu PDF",
-
-    // Footer
-    quickLinks: "Liens Rapides",
-    support: "Support",
-    ourStory: "Notre Histoire",
-    ourMenu: "Notre Menu",
-    locations: "Nos Adresses",
-    contactUs: "Nous Contacter",
-    cookiePolicy: "Politique de cookies",
-    privacyPolicy: "Politique de confidentialité",
-    allRightsReserved: "Tous droits réservés.",
-
-    // Home / Hero / Specials
-    todaysSpecials: "Spécialités du Jour",
-    dontMiss: "À Ne Pas Manquer",
-    viewFullMenu: "Voir Tout Le Menu",
-    exploreShop: "Explorer La Boutique",
-    ourCategories: "Nos Catégories",
+    breakfastTitle: "Un petit-déjeuner qui vaut la peine de s'attarder.",
+    breakfastEyebrow: "Table du matin",
+    breakfastDescription:
+      "Assiettes copieuses, pains chauds et grands classiques du petit-déjeuner marocain servis pour commencer la journée en douceur.",
+    bakeryTitle: "Du pain cuit pour être au centre de la table.",
+    bakeryEyebrow: "Sorti du four",
+    bakeryDescription:
+      "Pains, petits pains et favoris rustiques avec une texture et une chaleur qui font compter chaque bouchée.",
+    pastriesTitle: "Des pâtisseries qui invitent à la pause.",
+    pastriesEyebrow: "Touche sucrée",
+    pastriesDescription:
+      "Feuilletées, délicates et superposées de crème, de fruits et de chocolat pour une vitrine de desserts qui invite à y regarder à deux fois.",
+    juicesTitle: "Des jus aux saveurs vives et nettes.",
+    juicesEyebrow: "Versement frais",
+    juicesDescription:
+      "Mélanges glacés et agrumes frais qui offrent une pause légère et rafraîchissante entre des plats plus riches.",
+    coffeesTitle: "Infusé pour ralentir le moment.",
+    coffeesEyebrow: "Maison de café",
+    coffeesDescription:
+      "Découvrez nos boissons à base d'espresso, nos classiques au lait et nos riches infusions signatures élaborées pour toutes vos envies de café.",
+    bookMenuTitle: "Menu La Madeleine",
 
     // Contact
-    getInTouch: "Contactez-nous",
-    sendMessage: "Envoyez-nous un message",
-    name: "Nom",
+    // Hero
+    getInTouchContact: "Prendre Contact",
+    contactUsContact: "Nous Contacter",
+    // Content
+    phone: "Téléphone",
     email: "E-mail",
-    subject: "Sujet",
-    message: "Message",
-    send: "Envoyer le message",
-    openingHours: "Heures d'ouverture",
-    visitUs: "Rendez-nous visite",
+    address: "Adresse",
+    hours: "Horaires",
+    sendMessage: "Envoyez-nous un Message",
+    emailForm: "Votre e-mail *",
+    name: "Votre nom *",
+    subject: "Sujet *",
+    message: "Votre message *",
+    send: "Envoyer le Message",
+    sending: "Envoi en cours...",
+    thankYou: "Merci !",
+    yourMessageHasBeenSent:
+      "Votre message a été envoyé. Nous vous répondrons dans les 24 heures.",
+
+    // About
+    // CTA
+    comeVisit: "Venez Visiter",
+    tasteTheDifference: "Goûtez la Différence",
+    aboutCTA:
+      "Les mots ne suffisent pas. Rendez-nous visite, goûtez notre pain, savourez notre café et découvrez la chaleur de La Madeleine par vous-même.",
+    findUs: "Où Nous Trouver",
+    // Hero
+    ourStoryAbout: "Notre Histoire",
+    aboutLaMadeleine: "À Propos de La Madeleine",
+    // Story
+    since: "Depuis",
+    yearsOfExcellence: "Années d'Excellence",
+    uniqueProducts: "Produits Uniques",
+    satisfiedCustomers: "Clients Satisfaits",
+    aLegacyOf: "Un Héritage de",
+    artisanalPassion: "Passion Artisanale",
+    storyOne:
+      "En 2019, un amour profond pour la boulangerie traditionnelle a apporté le charme d'un salon de thé français classique au cœur d'Agadir. Armée de recettes perfectionnées, d'un engagement envers un café exceptionnel et d'un dévouement sans compromis à la qualité, La Madeleine a ouvert ses portes à une communauté qui apprécie les moindres détails.",
+    storyTwo:
+      "Aujourd'hui, nous nous levons toujours avant le soleil. Nous plions toujours chaque croissant à la main. Nous accompagnons toujours nos pâtisseries méticuleusement conçues de doses d'espresso parfaitement tirées. Car chez La Madeleine, créer l'expérience de café parfaite ne consiste pas à précipiter le processus — il s'agit de temps, de précision et d'un amour durable pour l'artisanat.",
+    // Why Choose
+    whyUs: "Pourquoi Nous",
+    theLaMadeleineDifference: "La Différence La Madeleine",
+    finestIngredients: "Les Meilleurs Ingrédients",
+    finestIngredientsDescription:
+      "Nous sélectionnons du beurre de qualité supérieure, de la crème fraîche, du chocolat belge, des fruits de saison et des ingrédients soigneusement choisis pour créer des pâtisseries exceptionnelles au quotidien.",
+    freshlyCraftedDaily: "Fraîchement Préparé Tous les Jours",
+    freshlyCraftedDailyDescription:
+      "Chaque gâteau, croissant, tarte et dessert est fabriqué à la main chaque matin pour garantir une fraîcheur, une texture et une saveur parfaites.",
+    signatureCreations: "Créations Signatures",
+    signatureCreationsDescription:
+      "Des entremets élégants aux viennoiseries feuilletées en passant par les desserts artisanaux, chaque création est réalisée avec précision, créativité et passion.",
+    unforgettableTaste: "Un Goût Inoubliable",
+    unforgettableTasteDescription:
+      "Chaque bouchée allie un savoir-faire raffiné à des ingrédients de première qualité, offrant une expérience mémorable pour chaque célébration et pour les petits plaisirs du quotidien.",
 
     // FAQ
+    // Hero
     frequentlyAsked: "Foire Aux Questions",
-    haveQuestions: "Des questions ?",
+    questionsAndAnswers: "Questions & Réponses",
+    // Content
+    searchQuestions: "Rechercher des questions...",
+    noQuestionsFound: "Aucune question trouvée",
   },
+
   ar: {
     // Nav
     home: "الرئيسية",
@@ -162,70 +398,186 @@ export const translations = {
     shop: "المتجر",
     contact: "اتصل بنا",
     faq: "الأسئلة الشائعة",
-    orderOnline: "اطلب الآن",
-    hours: "أوقات العمل",
-    phone: "الهاتف",
-    address: "العنوان",
     language: "اللغة",
 
-    // Shop & Menu
-    searchProducts: "ابحث عن المنتجات...",
-    searchMenu: "ابحث في قائمة الطعام...",
-    searchQuestions: "ابحث في الأسئلة...",
+    // Footer
+    quickLinks: "روابط سريعة",
+    support: "الدعم",
+    // Href
+    ourStory: "قصتنا",
+    ourMenu: "قائمتنا",
+    shopFooter: "المتجر",
+    locations: "مواقعنا",
+    faqFooter: "الأسئلة الشائعة",
+    contactUsFooter: "اتصل بنا",
+    cookiePolicy: "سياسة ملفات تعريف الارتباط",
+    privacyPolicy: "سياسة الخصوصية",
+    // Copyright
+    allRightsReserved: "جميع الحقوق محفوظة.",
+
+    // Home
+    // Hero
+    next: "التالي",
+    prev: "السابق",
+    // Story
+    storyEyebrow: "قصتنا",
+    storyTitleOne: "إرث من",
+    storyTitleTwo: "الشغف الحرفي",
+    storyDescription:
+      "في عام 2019، جلب الحب العميق للمخبوزات التقليدية سحر صالون الشاي الفرنسي الكلاسيكي إلى قلب مدينة أكادير. بفضل الوصفات المتقنة، والالتزام بتقديم قهوة استثنائية، والتفاني الذي لا هوادة فيه في الجودة، فتحت لا مادلين أبوابها لمجتمع يقدر أدق التفاصيل.",
+    storyDescriptionTwo:
+      "اليوم، لا زلنا نستيقظ قبل شروق الشمس. لا زلنا نطوي كل كرواسون يدوياً. ولا زلنا نقدم معجناتنا المصنوعة بدقة مع أكواب إسبريسو مثالية. لأنه في لا مادلين، ابتكار تجربة المقهى المثالية لا يعني التسرع في العملية — بل يتعلق بالوقت، والدقة، والحب الدائم للحرفة.",
+    storySince: "منذ",
+    storyYears: "سنوات من الحرفة",
+    storyProducts: "منتجات فريدة",
+    storyCustomers: "عملاء سعداء",
+    // Category
+    categoryTitle: "تخصصاتنا",
+    categoryEyebrow: "استكشف",
+    // Coffee
+    coffeeEyebrow: "صُنعت بعناية",
+    coffeeTitle: "قهوتنا",
+    coffeeDescription:
+      "حبوب قهوة أحادية المنشأ محمصة محلياً. كل كوب هو رحلة من المزرعة إلى النكهة.",
+    // Instagram
+    instagramTitle: "تابع رحلتنا",
+    instagramEyebrow: "@lamadeleine",
+    // Location
+    locationTitle: "قم بزيارتنا",
+    locationEyebrow: "مواقعنا",
+    getDirections: "احصل على الاتجاهات",
+    // Newsletter
+    getInTouch: "ابق على تواصل",
+    contactUs: "اتصل بنا",
+    newsletterDescription:
+      "نود أن نسمع منك. تواصل معنا للحجوزات، أو استفسارات الحفلات، أو فقط لقول مرحباً.",
+    sendUsAMessage: "أرسل لنا رسالة",
+    newsletterPhone: "الهاتف",
+    newsletterEmail: "البريد الإلكتروني",
+    newsletterAddress: "العنوان",
+    newsletterHours: "ساعات العمل",
+    // Testimonials
+    testimonialsTitle: "الآراء",
+    testimonialsEyebrow: "ماذا يقولون",
+    // Today's Specials
+    todaysSpecials: "عروض اليوم",
+    dontMiss: "لا تفوت",
+
+    // Shop
+    // Hero
+    shopTitle: "متجرنا",
+    shopDescription: "خذها معك",
+    // Content
     all: "الكل",
+    searchProducts: "ابحث عن المنتجات...",
     allCategories: "جميع الفئات",
-    defaultSort: "افتراضي",
+    defaultSort: "الافتراضي",
     priceAsc: "السعر: من الأقل للأعلى",
     priceDesc: "السعر: من الأعلى للأقل",
     nameSort: "الاسم",
     showing: "عرض",
-    of: "من أصل",
-    results: "نتيجة",
-    totalAvailable: "إجمالي المتاح",
+    of: "من",
+    results: "نتائج",
+    totalAvailable: "الإجمالي المتاح",
     noProductsFound: "لم يتم العثور على منتجات",
-    noMenuItemsMatch: "لا توجد عناصر تطابق بحثك.",
     loadingMore: "جاري تحميل المزيد من المنتجات...",
     loadMore: "تحميل المزيد من المنتجات",
-    viewedAll: "لقد عرضت جميع المنتجات",
-    inStock: "متوفر",
+    viewedAll: "لقد شاهدت جميع المنتجات",
+    inStock: "متوفر في المخزون",
     description: "الوصف",
     price: "السعر",
-    quickView: "نظرة سريعة",
-    popular: "الأكثر طلباً",
-    viewMenuBook: "عرض كتاب القائمة PDF",
 
-    // Footer
-    quickLinks: "روابط سريعة",
-    support: "الدعم والخدمة",
-    ourStory: "قصتنا",
-    ourMenu: "قائمتنا",
-    locations: "فروعنا",
-    contactUs: "تواصل معنا",
-    cookiePolicy: "سياسة ملفات تعريف الارتباط",
-    privacyPolicy: "سياسة الخصوصية",
-    allRightsReserved: "جميع الحقوق محفوظة.",
-
-    // Home / Hero / Specials
-    todaysSpecials: "عروض اليوم الخاصة",
-    dontMiss: "لا تفوتها",
-    viewFullMenu: "عرض القائمة الكاملة",
-    exploreShop: "تصفح المتجر",
-    ourCategories: "فئاتنا",
+    // Menu
+    // Hero
+    menuTitle: "قائمتنا",
+    menuDescription: "تشكيلة مختارة",
+    // Content
+    viewMenuBook: "عرض قائمة PDF",
+    breakfastTitle: "فطور يستحق الاستمتاع به طويلاً.",
+    breakfastEyebrow: "مائدة الصباح",
+    breakfastDescription:
+      "أطباق شهية، خبز دافئ، وكلاسيكيات الفطور المغربي لتبدأ يومك بهدوء.",
+    bakeryTitle: "خبز مخبوز ليتوسط مائدتك.",
+    bakeryEyebrow: "طازج من الفرن",
+    bakeryDescription:
+      "أرغفة ولفائف كلاسيكية بقوام وحرارة تجعل كل قضمة لا تُنسى.",
+    pastriesTitle: "معجنات تستحق التوقف من أجلها.",
+    pastriesEyebrow: "لمسة حلوة",
+    pastriesDescription:
+      "هشة ورقيقة ومحشوة بالكريمة والفواكه والشوكولاتة لواجهة حلويات تخطف الأنظار.",
+    juicesTitle: "عصائر بنكهة منعشة وصافية.",
+    juicesEyebrow: "مشروب طازج",
+    juicesDescription:
+      "خلطات مثلجة وعصائر حمضيات طازجة تمنحك استراحة خفيفة ومنعشة بين الأطباق الدسمة.",
+    coffeesTitle: "مُحضّرة لتبطئ اللحظة.",
+    coffeesEyebrow: "بيت القهوة",
+    coffeesDescription:
+      "استكشف مشروبات الإسبريسو، والكلاسيكيات بالحليب، والمشروبات المميزة المصممة لتناسب كل أمزجة القهوة.",
+    bookMenuTitle: "قائمة لا مادلين",
 
     // Contact
-    getInTouch: "تواصل معنا",
-    sendMessage: "أرسل لنا رسالة",
-    name: "الاسم",
+    // Hero
+    getInTouchContact: "ابق على تواصل",
+    contactUsContact: "اتصل بنا",
+    // Content
+    phone: "الهاتف",
     email: "البريد الإلكتروني",
-    subject: "الموضوع",
-    message: "الرسالة",
+    address: "العنوان",
+    hours: "ساعات العمل",
+    sendMessage: "أرسل لنا رسالة",
+    emailForm: "البريد الإلكتروني *",
+    name: "الاسم *",
+    subject: "الموضوع *",
+    message: "الرسالة *",
     send: "إرسال الرسالة",
-    openingHours: "ساعات العمل",
-    visitUs: "قم بزيارتنا",
+    sending: "جاري الإرسال...",
+    thankYou: "شكراً لك!",
+    yourMessageHasBeenSent: "تم إرسال رسالتك. سنرد عليك في غضون 24 ساعة.",
+
+    // About
+    // CTA
+    comeVisit: "تفضل بزيارتنا",
+    tasteTheDifference: "تذوق الفرق",
+    aboutCTA:
+      "الكلمات لا تكفي. قم بزيارتنا، تذوق خبزنا، ارتشف قهوتنا، واختبر دفء لا مادلين بنفسك.",
+    findUs: "أين تجدنا",
+    // Hero
+    ourStoryAbout: "قصتنا",
+    aboutLaMadeleine: "عن لا مادلين",
+    // Story
+    since: "منذ",
+    yearsOfExcellence: "سنوات من التميز",
+    uniqueProducts: "منتجات فريدة",
+    satisfiedCustomers: "عملاء راضون",
+    aLegacyOf: "إرث من",
+    artisanalPassion: "الشغف الحرفي",
+    storyOne:
+      "في عام 2019، جلب الحب العميق للمخبوزات التقليدية سحر صالون الشاي الفرنسي الكلاسيكي إلى قلب مدينة أكادير. بفضل الوصفات المتقنة، والالتزام بتقديم قهوة استثنائية، والتفاني الذي لا هوادة فيه في الجودة، فتحت لا مادلين أبوابها لمجتمع يقدر أدق التفاصيل.",
+    storyTwo:
+      "اليوم، لا زلنا نستيقظ قبل شروق الشمس. لا زلنا نطوي كل كرواسون يدوياً. ولا زلنا نقدم معجناتنا المصنوعة بدقة مع أكواب إسبريسو مثالية. لأنه في لا مادلين، ابتكار تجربة المقهى المثالية لا يعني التسرع في العملية — بل يتعلق بالوقت، والدقة، والحب الدائم للحرفة.",
+    // Why Choose
+    whyUs: "لماذا نحن",
+    theLaMadeleineDifference: "اختلاف لا مادلين",
+    finestIngredients: "أجود المكونات",
+    finestIngredientsDescription:
+      "نختار الزبدة الفاخرة، والكريمة الطازجة، والشوكولاتة البلجيكية، والفواكه الموسمية، والمكونات المختارة بعناية لصنع معجنات استثنائية كل يوم.",
+    freshlyCraftedDaily: "يُحضر طازجاً كل يوم",
+    freshlyCraftedDailyDescription:
+      "تُصنع كل كعكة، وكرواسون، وتارت، وحلوى يدوياً كل صباح لضمان الطزاجة، والقوام، والنكهة المثالية.",
+    signatureCreations: "إبداعات مميزة",
+    signatureCreationsDescription:
+      "من الحلويات الأنيقة إلى المخبوزات الهشة والحلويات الحرفية، يُصنع كل إبداع بدقة، وإبداع، وشغف.",
+    unforgettableTaste: "طعم لا يُنسى",
+    unforgettableTasteDescription:
+      "تجمع كل قضمة بين الحرفية الراقية والمكونات الفاخرة، لتقدم تجربة لا تُنسى لكل احتفال ومتعة يومية.",
 
     // FAQ
-    frequentlyAsked: "الأسئلة الأكثر تكراراً",
-    haveQuestions: "لديك أسئلة؟",
+    // Hero
+    frequentlyAsked: "الأسئلة الشائعة",
+    questionsAndAnswers: "أسئلة وأجوبة",
+    // Content
+    searchQuestions: "البحث في الأسئلة...",
+    noQuestionsFound: "لم يتم العثور على أسئلة",
   },
 };
 
@@ -238,18 +590,19 @@ interface LanguageContextType {
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("fr");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("lamadeleine_lang") as Language;
-    if (saved && (saved === "en" || saved === "fr" || saved === "ar")) {
-      setLanguageState(saved);
-    }
-  }, []);
+  const [language, setLanguageState] = useState<Language>(() => {
+    const saved =
+      typeof window !== "undefined"
+        ? (localStorage.getItem("lamadeleine_lang") as Language)
+        : null;
+    return saved && (saved === "en" || saved === "fr" || saved === "ar")
+      ? saved
+      : "fr";
+  });
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);

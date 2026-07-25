@@ -46,12 +46,14 @@ export const heroSlides = [
     products: [
       {
         title: "CUIRE LE MEILLEUR",
-        description: "Cuit frais tous les jours avec une croûte dorée et croustillante.",
+        description:
+          "Cuit frais tous les jours avec une croûte dorée et croustillante.",
         icon: "/images/slider/slide-2/slide-2-product-1.png",
       },
       {
         title: "INCROYABLEMENT BON",
-        description: "Des pains riches et beurrés avec une texture fondante en bouche.",
+        description:
+          "Des pains riches et beurrés avec une texture fondante en bouche.",
         icon: "/images/slider/slide-2/slide-2-product-2.png",
       },
     ],
@@ -193,14 +195,16 @@ export const coffeeMenu = [
   {
     id: 1,
     name: "Moka",
-    description: "Espresso combiné avec du chocolat et du lait cuit à la vapeur.",
+    description:
+      "Espresso combiné avec du chocolat et du lait cuit à la vapeur.",
     price: 18.0,
     icon: "Cookie",
   },
   {
     id: 2,
     name: "Cappuccino",
-    description: "Espresso surmonté de parts égales de lait cuit à la vapeur et de mousse.",
+    description:
+      "Espresso surmonté de parts égales de lait cuit à la vapeur et de mousse.",
     price: 15.0,
     icon: "Milk",
   },
@@ -403,7 +407,8 @@ export const menuItems = [
     id: 12,
     name: "Omelette Nature",
     category: "Petit-déjeuner et Salé",
-    description: "Simple omelette moelleuse servie avec des olives et de l'huile d'olive.",
+    description:
+      "Simple omelette moelleuse servie avec des olives et de l'huile d'olive.",
     price: 13.0,
     popular: true,
     image: "/images/menu/Omelet.png",
@@ -444,7 +449,8 @@ export const menuItems = [
     id: 16,
     name: "Cigare aux Fruits de Mer",
     category: "Pâtisseries et Desserts",
-    description: "Pâte croustillante roulée et remplie d'un mélange salé de fruits de mer.",
+    description:
+      "Pâte croustillante roulée et remplie d'un mélange salé de fruits de mer.",
     price: 12.0,
     popular: false,
     image: "/images/menu/Cigar.png",
@@ -501,7 +507,8 @@ export const menuItems = [
     id: 22,
     name: "Briouate au Fromage",
     category: "Pâtisseries et Desserts",
-    description: "Triangles de pâte marocaine croustillante farcis de fromage salé.",
+    description:
+      "Triangles de pâte marocaine croustillante farcis de fromage salé.",
     price: 7.0,
     popular: false,
     image: "/images/menu/Briouat.png",
@@ -510,7 +517,8 @@ export const menuItems = [
     id: 23,
     name: "Tarte aux Amandes",
     category: "Pâtisseries et Desserts",
-    description: "Fond de tarte sucré et croustillant garni d'une crème d'amande dense.",
+    description:
+      "Fond de tarte sucré et croustillant garni d'une crème d'amande dense.",
     price: 10.0,
     popular: false,
     image: "/images/menu/Tart.png",
@@ -528,7 +536,8 @@ export const menuItems = [
     id: 25,
     name: "Chausson aux Pommes",
     category: "Pâtisseries et Desserts",
-    description: "Pâte feuilletée remplie d'une compote de pommes douce et épicée.",
+    description:
+      "Pâte feuilletée remplie d'une compote de pommes douce et épicée.",
     price: 6.0,
     popular: false,
     image: "/images/menu/Apple-Turnover.png",
@@ -564,7 +573,8 @@ export const menuItems = [
     id: 29,
     name: "Madeleine au Chocolat",
     category: "Pâtisseries et Desserts",
-    description: "Petit gâteau éponge en forme de coquille, aromatisé au chocolat.",
+    description:
+      "Petit gâteau éponge en forme de coquille, aromatisé au chocolat.",
     price: 2.5,
     popular: false,
     image: "/images/menu/madeleine.png",
@@ -663,7 +673,8 @@ export const menuItems = [
     id: 40,
     name: "Pithiviers aux Fruits",
     category: "Pâtisseries et Desserts",
-    description: "Tourte en pâte feuilletée garnie de compote de fruits sucrée.",
+    description:
+      "Tourte en pâte feuilletée garnie de compote de fruits sucrée.",
     price: 6.0,
     popular: false,
     image: "/images/menu/Pithiviers.png",
@@ -690,7 +701,8 @@ export const menuItems = [
     id: 43,
     name: "Tartelette aux Fruits",
     category: "Pâtisseries et Desserts",
-    description: "Petite croûte de tarte sucrée garnie de crème anglaise et de fruits frais.",
+    description:
+      "Petite croûte de tarte sucrée garnie de crème anglaise et de fruits frais.",
     price: 7.0,
     popular: false,
     image: "/images/menu/tartlet.png",
@@ -863,7 +875,8 @@ export const menuItems = [
     id: 62,
     name: "Basboussa à la Vanille",
     category: "Pâtisseries et Desserts",
-    description: "Gâteau de semoule sucré classique imbibé de sirop à la vanille.",
+    description:
+      "Gâteau de semoule sucré classique imbibé de sirop à la vanille.",
     price: 6.0,
     popular: false,
     image: "/images/menu/basbousa.png",
@@ -872,7 +885,8 @@ export const menuItems = [
     id: 63,
     name: "Madeleine à la Vanille",
     category: "Pâtisseries et Desserts",
-    description: "Gâteau éponge français classique, beurré et en forme de coquille.",
+    description:
+      "Gâteau éponge français classique, beurré et en forme de coquille.",
     price: 1.5,
     popular: false,
     image: "/images/menu/madeleine.png",
@@ -910,7 +924,8 @@ export const menuItems = [
     id: 67,
     name: "Pâtisserie Danoise",
     category: "Pâtisseries et Desserts",
-    description: "Pâtisserie danoise traditionnelle feuilletée, beurrée et sucrée.",
+    description:
+      "Pâtisserie danoise traditionnelle feuilletée, beurrée et sucrée.",
     price: 3.5,
     popular: false,
     image: "/images/menu/Danish.webp",
@@ -919,7 +934,8 @@ export const menuItems = [
     id: 68,
     name: "Harcha",
     category: "Pâtisseries et Desserts",
-    description: "Pain plat marocain traditionnel à la semoule cuit à la poêle.",
+    description:
+      "Pain plat marocain traditionnel à la semoule cuit à la poêle.",
     price: 2.5,
     popular: false,
     image: "/images/menu/harcha.png",
@@ -937,7 +953,8 @@ export const menuItems = [
     id: 70,
     name: "Harcha à l'Huile d'Olive",
     category: "Pâtisseries et Desserts",
-    description: "Pain plat salé à la semoule préparé avec de la riche huile d'olive.",
+    description:
+      "Pain plat salé à la semoule préparé avec de la riche huile d'olive.",
     price: 3.5,
     popular: false,
     image: "/images/menu/harcha.png",
@@ -956,7 +973,8 @@ export const menuItems = [
     id: 72,
     name: "Pain au Chocolat / Croissant",
     category: "Pâtisseries et Desserts",
-    description: "Pâtisserie de petit-déjeuner française classique, feuilletée et beurrée.",
+    description:
+      "Pâtisserie de petit-déjeuner française classique, feuilletée et beurrée.",
     price: 2.5,
     popular: false,
     image: "/images/menu/croissant.png",
@@ -994,7 +1012,8 @@ export const menuItems = [
     id: 76,
     name: "Baguette Classique",
     category: "Boulangerie",
-    description: "Baguette française traditionnelle croustillante et moelleuse.",
+    description:
+      "Baguette française traditionnelle croustillante et moelleuse.",
     price: 1.5,
     popular: false,
     image: "/images/menu/bread.png",
@@ -1031,7 +1050,7 @@ export const menuItems = [
     name: "Pain d'Épices",
     category: "Boulangerie",
     description: "Pain épicé français traditionnel avec du miel et de l'anis.",
-    price: 24.0,
+    price: 2.5,
     popular: false,
     image: "/images/menu/bread.png",
   },
@@ -1049,7 +1068,8 @@ export const menuItems = [
     id: 82,
     name: "Baguette aux Olives",
     category: "Boulangerie",
-    description: "Baguette salée cuite avec des morceaux d'olives noires et vertes.",
+    description:
+      "Baguette salée cuite avec des morceaux d'olives noires et vertes.",
     price: 5.0,
     popular: false,
     image: "/images/menu/bread.png",
@@ -1076,7 +1096,8 @@ export const menuItems = [
     id: 85,
     name: "Baguette de Semoule",
     category: "Boulangerie",
-    description: "Baguette faite avec de la farine de semoule pour un croquant rustique.",
+    description:
+      "Baguette faite avec de la farine de semoule pour un croquant rustique.",
     price: 3.0,
     popular: false,
     image: "/images/menu/bread.png",
@@ -1104,7 +1125,8 @@ export const menuItems = [
     id: 88,
     name: "Petit Pain au Sésame",
     category: "Boulangerie",
-    description: "Petit pain moelleux généreusement garni de graines de sésame.",
+    description:
+      "Petit pain moelleux généreusement garni de graines de sésame.",
     price: 3.0,
     popular: false,
     image: "/images/menu/bread.png",
@@ -1178,7 +1200,8 @@ export const menuItems = [
     id: 96,
     name: "Verveine",
     category: "Boissons Chaudes",
-    description: "Tisane faite avec des feuilles de verveine citronnée naturelles.",
+    description:
+      "Tisane faite avec des feuilles de verveine citronnée naturelles.",
     price: 12.0,
     popular: false,
     image: "/images/menu/tea.png",
@@ -1225,7 +1248,8 @@ export const menuItems = [
     id: 101,
     name: "Affogato",
     category: "Boissons Froides",
-    description: "Une boule de glace à la vanille noyée dans un espresso chaud.",
+    description:
+      "Une boule de glace à la vanille noyée dans un espresso chaud.",
     price: 18.0,
     popular: false,
     image: "/images/menu/Affogato.png",
@@ -1252,7 +1276,8 @@ export const menuItems = [
     id: 104,
     name: "Mojito Bleu",
     category: "Boissons Froides",
-    description: "Mocktail aux agrumes et à la menthe avec sirop de curaçao bleu.",
+    description:
+      "Mocktail aux agrumes et à la menthe avec sirop de curaçao bleu.",
     price: 22.0,
     popular: false,
     image: "/images/menu/Mojito.png",
@@ -1297,7 +1322,8 @@ export const menuItems = [
     id: 109,
     name: "Macchiato Glacé au Caramel",
     category: "Boissons Froides",
-    description: "Lait et espresso glacés, aromatisés à la vanille et au caramel.",
+    description:
+      "Lait et espresso glacés, aromatisés à la vanille et au caramel.",
     price: 21.0,
     popular: true,
     image: "/images/menu/iced-caramel.png",
@@ -1388,7 +1414,8 @@ export const menuItems = [
     id: 119,
     name: "Mojito Rouge",
     category: "Boissons Froides",
-    description: "Mocktail fruité aux fruits rouges avec menthe et citron vert.",
+    description:
+      "Mocktail fruité aux fruits rouges avec menthe et citron vert.",
     price: 22.0,
     popular: false,
     image: "/images/menu/Mojito.png",
@@ -1453,7 +1480,8 @@ export const menuItems = [
     id: 126,
     name: "Cappuccino",
     category: "Cafés",
-    description: "Espresso surmonté de parts égales de lait cuit à la vapeur et de mousse.",
+    description:
+      "Espresso surmonté de parts égales de lait cuit à la vapeur et de mousse.",
     price: 15.0,
     popular: true,
     image: "/images/menu/Cappuccino.png",
@@ -1534,7 +1562,8 @@ export const menuItems = [
     id: 135,
     name: "Moka",
     category: "Cafés",
-    description: "Espresso combiné avec du chocolat et du lait cuit à la vapeur.",
+    description:
+      "Espresso combiné avec du chocolat et du lait cuit à la vapeur.",
     price: 18.0,
     popular: false,
     image: "/images/menu/mocha.png",
@@ -1721,7 +1750,8 @@ export const menuItems = [
     id: 155,
     name: "Nutella",
     category: "Suppléments",
-    description: "Portion de riche pâte à tartiner noisettes cacao. Servie avec du pain.",
+    description:
+      "Portion de riche pâte à tartiner noisettes cacao. Servie avec du pain.",
     price: 10.0,
     popular: true,
     image: "/images/menu/Nutella.png",
@@ -1865,7 +1895,8 @@ export const shopProducts = [
     id: 12,
     name: "Omelette Nature",
     category: "Petit-déjeuner et Salé",
-    description: "Simple omelette moelleuse servie avec des olives et de l'huile d'olive.",
+    description:
+      "Simple omelette moelleuse servie avec des olives et de l'huile d'olive.",
     price: 13.0,
     inStock: true,
     rating: 4.1,
@@ -1910,7 +1941,8 @@ export const shopProducts = [
     id: 16,
     name: "Cigare aux Fruits de Mer",
     category: "Pâtisseries et Desserts",
-    description: "Pâte croustillante roulée et remplie d'un mélange salé de fruits de mer.",
+    description:
+      "Pâte croustillante roulée et remplie d'un mélange salé de fruits de mer.",
     price: 12.0,
     inStock: true,
     rating: 4.6,
@@ -1973,7 +2005,8 @@ export const shopProducts = [
     id: 22,
     name: "Briouate au Fromage",
     category: "Pâtisseries et Desserts",
-    description: "Triangles de pâte marocaine croustillante farcis de fromage salé.",
+    description:
+      "Triangles de pâte marocaine croustillante farcis de fromage salé.",
     price: 7.0,
     inStock: true,
     rating: 4.7,
@@ -1983,7 +2016,8 @@ export const shopProducts = [
     id: 23,
     name: "Tarte aux Amandes",
     category: "Pâtisseries et Desserts",
-    description: "Fond de tarte sucré et croustillant garni d'une crème d'amande dense.",
+    description:
+      "Fond de tarte sucré et croustillant garni d'une crème d'amande dense.",
     price: 10.0,
     inStock: true,
     rating: 4.5,
@@ -2003,7 +2037,8 @@ export const shopProducts = [
     id: 25,
     name: "Chausson aux Pommes",
     category: "Pâtisseries et Desserts",
-    description: "Pâte feuilletée remplie d'une compote de pommes douce et épicée.",
+    description:
+      "Pâte feuilletée remplie d'une compote de pommes douce et épicée.",
     price: 6.0,
     inStock: true,
     rating: 4.4,
@@ -2043,7 +2078,8 @@ export const shopProducts = [
     id: 29,
     name: "Madeleine au Chocolat",
     category: "Pâtisseries et Desserts",
-    description: "Petit gâteau éponge en forme de coquille, aromatisé au chocolat.",
+    description:
+      "Petit gâteau éponge en forme de coquille, aromatisé au chocolat.",
     price: 2.5,
     inStock: true,
     rating: 4.3,
@@ -2153,7 +2189,8 @@ export const shopProducts = [
     id: 40,
     name: "Pithiviers aux Fruits",
     category: "Pâtisseries et Desserts",
-    description: "Tourte en pâte feuilletée garnie de compote de fruits sucrée.",
+    description:
+      "Tourte en pâte feuilletée garnie de compote de fruits sucrée.",
     price: 6.0,
     inStock: true,
     rating: 4.5,
@@ -2183,7 +2220,8 @@ export const shopProducts = [
     id: 43,
     name: "Tartelette aux Fruits",
     category: "Pâtisseries et Desserts",
-    description: "Petite croûte de tarte sucrée garnie de crème anglaise et de fruits frais.",
+    description:
+      "Petite croûte de tarte sucrée garnie de crème anglaise et de fruits frais.",
     price: 7.0,
     inStock: true,
     rating: 4.8,
@@ -2375,7 +2413,8 @@ export const shopProducts = [
     id: 62,
     name: "Basboussa à la Vanille",
     category: "Pâtisseries et Desserts",
-    description: "Gâteau de semoule sucré classique imbibé de sirop à la vanille.",
+    description:
+      "Gâteau de semoule sucré classique imbibé de sirop à la vanille.",
     price: 6.0,
     inStock: true,
     rating: 4.4,
@@ -2385,7 +2424,8 @@ export const shopProducts = [
     id: 63,
     name: "Madeleine à la Vanille",
     category: "Pâtisseries et Desserts",
-    description: "Gâteau éponge français classique, beurré et en forme de coquille.",
+    description:
+      "Gâteau éponge français classique, beurré et en forme de coquille.",
     price: 1.5,
     inStock: true,
     rating: 4.3,
@@ -2427,7 +2467,8 @@ export const shopProducts = [
     id: 67,
     name: "Pâtisserie Danoise",
     category: "Pâtisseries et Desserts",
-    description: "Pâtisserie danoise traditionnelle feuilletée, beurrée et sucrée.",
+    description:
+      "Pâtisserie danoise traditionnelle feuilletée, beurrée et sucrée.",
     price: 3.5,
     inStock: true,
     rating: 4.5,
@@ -2437,7 +2478,8 @@ export const shopProducts = [
     id: 68,
     name: "Harcha",
     category: "Pâtisseries et Desserts",
-    description: "Pain plat marocain traditionnel à la semoule cuit à la poêle.",
+    description:
+      "Pain plat marocain traditionnel à la semoule cuit à la poêle.",
     price: 2.5,
     inStock: true,
     rating: 4.8,
@@ -2457,7 +2499,8 @@ export const shopProducts = [
     id: 70,
     name: "Harcha à l'Huile d'Olive",
     category: "Pâtisseries et Desserts",
-    description: "Pain plat salé à la semoule préparé avec de la riche huile d'olive.",
+    description:
+      "Pain plat salé à la semoule préparé avec de la riche huile d'olive.",
     price: 3.5,
     inStock: true,
     rating: 4.7,
@@ -2478,7 +2521,8 @@ export const shopProducts = [
     id: 72,
     name: "Pain au Chocolat / Croissant",
     category: "Pâtisseries et Desserts",
-    description: "Pâtisserie de petit-déjeuner française classique, feuilletée et beurrée.",
+    description:
+      "Pâtisserie de petit-déjeuner française classique, feuilletée et beurrée.",
     price: 2.5,
     inStock: true,
     rating: 4.9,
@@ -2520,7 +2564,8 @@ export const shopProducts = [
     id: 76,
     name: "Baguette Classique",
     category: "Boulangerie",
-    description: "Baguette française traditionnelle croustillante et moelleuse.",
+    description:
+      "Baguette française traditionnelle croustillante et moelleuse.",
     price: 1.5,
     inStock: true,
     rating: 4.9,
@@ -2581,7 +2626,8 @@ export const shopProducts = [
     id: 82,
     name: "Baguette aux Olives",
     category: "Boulangerie",
-    description: "Baguette salée cuite avec des morceaux d'olives noires et vertes.",
+    description:
+      "Baguette salée cuite avec des morceaux d'olives noires et vertes.",
     price: 5.0,
     inStock: true,
     rating: 4.7,
@@ -2611,7 +2657,8 @@ export const shopProducts = [
     id: 85,
     name: "Baguette de Semoule",
     category: "Boulangerie",
-    description: "Baguette faite avec de la farine de semoule pour un croquant rustique.",
+    description:
+      "Baguette faite avec de la farine de semoule pour un croquant rustique.",
     price: 3.0,
     inStock: true,
     rating: 4.6,
@@ -2642,7 +2689,8 @@ export const shopProducts = [
     id: 88,
     name: "Petit Pain au Sésame",
     category: "Boulangerie",
-    description: "Petit pain moelleux généreusement garni de graines de sésame.",
+    description:
+      "Petit pain moelleux généreusement garni de graines de sésame.",
     price: 3.0,
     inStock: true,
     rating: 4.5,
@@ -2724,7 +2772,8 @@ export const shopProducts = [
     id: 96,
     name: "Verveine",
     category: "Boissons Chaudes",
-    description: "Tisane faite avec des feuilles de verveine citronnée naturelles.",
+    description:
+      "Tisane faite avec des feuilles de verveine citronnée naturelles.",
     price: 12.0,
     inStock: true,
     rating: 4.7,
@@ -2776,7 +2825,8 @@ export const shopProducts = [
     id: 101,
     name: "Affogato",
     category: "Boissons Froides",
-    description: "Une boule de glace à la vanille noyée dans un espresso chaud.",
+    description:
+      "Une boule de glace à la vanille noyée dans un espresso chaud.",
     price: 18.0,
     inStock: true,
     rating: 4.8,
@@ -2806,7 +2856,8 @@ export const shopProducts = [
     id: 104,
     name: "Mojito Bleu",
     category: "Boissons Froides",
-    description: "Mocktail aux agrumes et à la menthe avec sirop de curaçao bleu.",
+    description:
+      "Mocktail aux agrumes et à la menthe avec sirop de curaçao bleu.",
     price: 22.0,
     inStock: true,
     rating: 4.4,
@@ -2856,7 +2907,8 @@ export const shopProducts = [
     id: 109,
     name: "Macchiato Glacé au Caramel",
     category: "Boissons Froides",
-    description: "Lait et espresso glacés, aromatisés à la vanille et au caramel.",
+    description:
+      "Lait et espresso glacés, aromatisés à la vanille et au caramel.",
     price: 21.0,
     inStock: true,
     rating: 4.9,
@@ -2957,7 +3009,8 @@ export const shopProducts = [
     id: 119,
     name: "Mojito Rouge",
     category: "Boissons Froides",
-    description: "Mocktail fruité aux fruits rouges avec menthe et citron vert.",
+    description:
+      "Mocktail fruité aux fruits rouges avec menthe et citron vert.",
     price: 22.0,
     inStock: true,
     rating: 4.6,
@@ -3029,7 +3082,8 @@ export const shopProducts = [
     id: 126,
     name: "Cappuccino",
     category: "Cafés",
-    description: "Espresso surmonté de parts égales de lait cuit à la vapeur et de mousse.",
+    description:
+      "Espresso surmonté de parts égales de lait cuit à la vapeur et de mousse.",
     price: 15.0,
     inStock: true,
     rating: 4.7,
@@ -3119,7 +3173,8 @@ export const shopProducts = [
     id: 135,
     name: "Moka",
     category: "Cafés",
-    description: "Espresso combiné avec du chocolat et du lait cuit à la vapeur.",
+    description:
+      "Espresso combiné avec du chocolat et du lait cuit à la vapeur.",
     price: 18.0,
     inStock: true,
     rating: 4.8,
@@ -3326,7 +3381,8 @@ export const shopProducts = [
     id: 155,
     name: "Nutella",
     category: "Suppléments",
-    description: "Portion de riche pâte à tartiner noisettes cacao. Servie avec du pain.",
+    description:
+      "Portion de riche pâte à tartiner noisettes cacao. Servie avec du pain.",
     price: 10.0,
     inStock: true,
     rating: 4.9,
@@ -3366,7 +3422,8 @@ export const testimonials = [
     id: 3,
     name: "Soufiane Driver",
     role: "Client Régulier",
-    quote: "Un endroit très calme avec un bon service et des gens sympathiques !",
+    quote:
+      "Un endroit très calme avec un bon service et des gens sympathiques !",
     rating: 4,
   },
 ];
@@ -3419,7 +3476,8 @@ export const faqData = [
   {
     id: 6,
     category: "Commandes",
-    question: "Assurez-vous le service traiteur pour les événements et mariages ?",
+    question:
+      "Assurez-vous le service traiteur pour les événements et mariages ?",
     answer:
       "Nous serions ravis de faire partie de votre jour spécial ! Nous proposons des formules traiteur sur mesure pour les mariages, événements d'entreprise et fêtes privées. Contactez-nous au moins une semaine à l'avance pour les commandes personnalisées.",
   },

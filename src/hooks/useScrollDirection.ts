@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 export function useScrollDirection() {
   const [scrollDirection, setScrollDirection] = useState<"up" | "down" | null>(
-    null
+    null,
   );
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -25,8 +25,7 @@ export function useScrollDirection() {
     };
 
     window.addEventListener("scroll", updateScrollDirection, { passive: true });
-    return () =>
-      window.removeEventListener("scroll", updateScrollDirection);
+    return () => window.removeEventListener("scroll", updateScrollDirection);
   }, [scrollDirection]);
 
   return { scrollDirection, isScrolled };

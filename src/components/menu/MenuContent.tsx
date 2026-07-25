@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { menuCategories, menuItems } from "@/lib/data";
 import {
   BookOpen,
   ChevronLeft,
@@ -16,48 +15,19 @@ import {
 
 import { useLanguage } from "@/providers/LanguageProvider";
 
-const categoryHighlights = {
-  "Breakfast & Savory": {
-    image: "/images/background/bg-Breakfast.jpg",
-    eyebrow: "Morning table",
-    title: "Breakfast worth lingering over.",
-    description:
-      "Hearty plates, warm breads, and classic Moroccan breakfast favorites served to start the day slowly.",
-  },
-  Bakery: {
-    image: "/images/background/bg-bread.jpg",
-    eyebrow: "Fresh from the oven",
-    title: "Bread baked for the center of the table.",
-    description:
-      "Loaves, rolls, and rustic favorites with the kind of texture and warmth that make every bite count.",
-  },
-  "Pastries & Desserts": {
-    image: "/images/background/bg-Pastries.jpg",
-    eyebrow: "Sweet finish",
-    title: "Pastries made to pause for.",
-    description:
-      "Flaky, delicate, and layered with cream, fruit, and chocolate for a dessert case that invites a second look.",
-  },
-  Juices: {
-    image: "/images/background/bg-Juices.jpg",
-    eyebrow: "Fresh pour",
-    title: "Juices with bright, clean flavor.",
-    description:
-      "Chilled blends and fresh citrus pours that bring a light, refreshing break between richer dishes.",
-  },
-  Coffees: {
-    image: "/images/background/bg-coffee.jpg",
-    eyebrow: "Coffee house",
-    title: "Brewed to slow the moment.",
-    description:
-      "Explore our espresso drinks, milk-based classics, and rich signature brews crafted for every coffee mood.",
-  },
-} as const;
+interface CategoryHighlight {
+  image: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+}
 
 function MenuHighlight({
   category,
+  categoryHighlights,
 }: {
   category: keyof typeof categoryHighlights;
+  categoryHighlights: Record<string, CategoryHighlight>;
 }) {
   const highlight = categoryHighlights[category];
 
@@ -99,8 +69,40 @@ function MenuHighlight({
 
 export default function MenuContent() {
   const { data, t } = useLanguage();
-  const { menuCategories, menuItems } = data;
+  const categoryHighlights = {
+    "Breakfast & Savory": {
+      image: "/images/background/bg-Breakfast.jpg",
+      eyebrow: t("breakfastEyebrow"),
+      title: t("breakfastTitle"),
+      description: t("breakfastDescription"),
+    },
+    Bakery: {
+      image: "/images/background/bg-bread.jpg",
+      eyebrow: t("bakeryEyebrow"),
+      title: t("bakeryTitle"),
+      description: t("bakeryDescription"),
+    },
+    "Pastries & Desserts": {
+      image: "/images/background/bg-Pastries.jpg",
+      eyebrow: t("pastriesEyebrow"),
+      title: t("pastriesTitle"),
+      description: t("pastriesDescription"),
+    },
+    Juices: {
+      image: "/images/background/bg-Juices.jpg",
+      eyebrow: t("juicesEyebrow"),
+      title: t("juicesTitle"),
+      description: t("juicesDescription"),
+    },
+    Coffees: {
+      image: "/images/background/bg-coffee.jpg",
+      eyebrow: t("coffeesEyebrow"),
+      title: t("coffeesTitle"),
+      description: t("coffeesDescription"),
+    },
+  } as const;
 
+  const { menuCategories, menuItems } = data;
   const [active, setActive] = useState(t("all"));
   const [isPdfOpen, setIsPdfOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
@@ -109,11 +111,6 @@ export default function MenuContent() {
   const [isDraggingState, setIsDraggingState] = useState(false);
   const isHoveringImage = useRef(false);
   const scrollYRef = useRef(0);
-
-  // Sync active category if language changes
-  useEffect(() => {
-    setActive(t("all"));
-  }, [t]);
 
   // Drag-to-pan state
   const containerRef = useRef<HTMLDivElement>(null);
@@ -327,6 +324,7 @@ export default function MenuContent() {
           {active !== "All" && active in categoryHighlights && (
             <MenuHighlight
               category={active as keyof typeof categoryHighlights}
+              categoryHighlights={categoryHighlights}
             />
           )}
         </AnimatePresence>
@@ -348,6 +346,7 @@ export default function MenuContent() {
                       {category in categoryHighlights && (
                         <MenuHighlight
                           category={category as keyof typeof categoryHighlights}
+                          categoryHighlights={categoryHighlights}
                         />
                       )}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
@@ -472,7 +471,7 @@ export default function MenuContent() {
                 <div className="flex items-center gap-3">
                   <BookOpen className="text-primary" size={24} />
                   <h3 className="font-serif text-xl tracking-wide">
-                    La Madeleine Menu
+                    {t("bookMenuTitle")}
                   </h3>
                 </div>
                 <button

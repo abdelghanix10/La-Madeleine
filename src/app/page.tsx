@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import HeroSection from "@/components/home/HeroSection";

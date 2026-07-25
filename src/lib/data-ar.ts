@@ -293,8 +293,7 @@ export const menuItems = [
     id: 1,
     name: "حساء الشعير (حسوة)",
     category: "فطور ومملحات",
-    description:
-      "حساء الشعير والحليب المغربي التقليدي الدافئ والمريح.",
+    description: "حساء الشعير والحليب المغربي التقليدي الدافئ والمريح.",
     price: 7.0,
     popular: false,
     image: "/images/menu/Soup.png",
@@ -323,8 +322,7 @@ export const menuItems = [
     id: 4,
     name: "أومليت باللحم البارد (كاشير)",
     category: "فطور ومملحات",
-    description:
-      "أومليت محشوة باللحم البارد، تُقدم مع الزيتون وزيت الزيتون.",
+    description: "أومليت محشوة باللحم البارد، تُقدم مع الزيتون وزيت الزيتون.",
     price: 17.0,
     popular: false,
     image: "/images/menu/Omelet.png",
@@ -363,8 +361,7 @@ export const menuItems = [
     id: 8,
     name: "حريرة",
     category: "فطور ومملحات",
-    description:
-      "الحساء المغربي التقليدي الغني بالطماطم، العدس، والحمص.",
+    description: "الحساء المغربي التقليدي الغني بالطماطم، العدس، والحمص.",
     price: 10.0,
     popular: false,
     image: "/images/menu/Soup.png",
@@ -422,8 +419,7 @@ export const menuItems = [
     id: 14,
     name: "أومليت بالطماطم",
     category: "فطور ومملحات",
-    description:
-      "أومليت هشة مع طماطم طازجة، تُقدم مع الزيتون وزيت الزيتون.",
+    description: "أومليت هشة مع طماطم طازجة، تُقدم مع الزيتون وزيت الزيتون.",
     price: 16.0,
     popular: false,
     image: "/images/menu/Omelet.png",
@@ -453,8 +449,7 @@ export const menuItems = [
     id: 17,
     name: "بسطيلة فواكه البحر",
     category: "معجنات وحلويات",
-    description:
-      "فطيرة مالحة مورقة محشوة بفواكه البحر المتبلة والشعيرية.",
+    description: "فطيرة مالحة مورقة محشوة بفواكه البحر المتبلة والشعيرية.",
     price: 12.0,
     popular: false,
     image: "/images/menu/pastilla.png",
@@ -472,8 +467,7 @@ export const menuItems = [
     id: 19,
     name: "ميني بيتزا",
     category: "معجنات وحلويات",
-    description:
-      "بيتزا مالحة بحجم صغير مغطاة بالجبن وصلصة الطماطم.",
+    description: "بيتزا مالحة بحجم صغير مغطاة بالجبن وصلصة الطماطم.",
     price: 6.0,
     popular: false,
     image: "/images/menu/pizza.png",
@@ -491,8 +485,7 @@ export const menuItems = [
     id: 21,
     name: "بسطيلة بالدجاج",
     category: "معجنات وحلويات",
-    description:
-      "فطيرة حلوة ومالحة محشوة بالدجاج المتبل واللوز المحمص.",
+    description: "فطيرة حلوة ومالحة محشوة بالدجاج المتبل واللوز المحمص.",
     price: 10.0,
     popular: false,
     image: "/images/menu/pastilla.png",
@@ -835,8 +828,7 @@ export const menuItems = [
     id: 59,
     name: "بيثيفييه",
     category: "معجنات وحلويات",
-    description:
-      "فطيرة دائرية مغلقة مصنوعة من العجين المورق مع حشوة حلوة.",
+    description: "فطيرة دائرية مغلقة مصنوعة من العجين المورق مع حشوة حلوة.",
     price: 5.0,
     popular: false,
     image: "/images/menu/Pithiviers.png",
@@ -881,8 +873,7 @@ export const menuItems = [
     id: 64,
     name: "كرواسون باللوز",
     category: "معجنات وحلويات",
-    description:
-      "كرواسون مورق محشو بكريمة اللوز ومغطى بشرائح اللوز.",
+    description: "كرواسون مورق محشو بكريمة اللوز ومغطى بشرائح اللوز.",
     price: 5.0,
     popular: false,
     image: "/images/menu/croissant.png",
@@ -891,8 +882,7 @@ export const menuItems = [
     id: 65,
     name: "مثلث اللوز",
     category: "معجنات وحلويات",
-    description:
-      "معجنات مورقة على شكل مثلث محشوة بعجينة اللوز الحلوة.",
+    description: "معجنات مورقة على شكل مثلث محشوة بعجينة اللوز الحلوة.",
     price: 6.0,
     popular: false,
     image: "/images/menu/Triangle.png",
@@ -946,8 +936,7 @@ export const menuItems = [
     id: 71,
     name: "بان سويس",
     category: "معجنات وحلويات",
-    description:
-      "معجنات مورقة ملفوفة مع كاسترد الفانيليا ورقائق الشوكولاتة.",
+    description: "معجنات مورقة ملفوفة مع كاسترد الفانيليا ورقائق الشوكولاتة.",
     price: 3.0,
     popular: false,
     image: "/images/menu/pain-suisse.png",
@@ -1031,7 +1020,7 @@ export const menuItems = [
     name: "خبز الزنجبيل (بان ديبس)",
     category: "مخبزة",
     description: "خبز التوابل الفرنسي التقليدي بالعسل واليانسون.",
-    price: 24.0,
+    price: 2.5,
     popular: false,
     image: "/images/menu/bread.png",
   },
@@ -1039,8 +1028,7 @@ export const menuItems = [
     id: 81,
     name: "باجيت متعدد الحبوب",
     category: "مخبزة",
-    description:
-      "باجيت مقرمش مخبوز بمزيج من البذور والحبوب الصحية.",
+    description: "باجيت مقرمش مخبوز بمزيج من البذور والحبوب الصحية.",
     price: 4.0,
     popular: false,
     image: "/images/menu/bread.png",
@@ -1094,8 +1082,7 @@ export const menuItems = [
     id: 87,
     name: "باجيت بالسمسم",
     category: "مخبزة",
-    description:
-      "باجيت فرنسي مقرمش طازج مزين ببذور السمسم.",
+    description: "باجيت فرنسي مقرمش طازج مزين ببذور السمسم.",
     price: 2.5,
     popular: false,
     image: "/images/menu/bread.png",
@@ -1655,8 +1642,7 @@ export const menuItems = [
     id: 148,
     name: "أملو باللوز",
     category: "إضافات",
-    description:
-      "أملو فاخر محضر بلوز محمص إضافي. يُقدم مع الخبز.",
+    description: "أملو فاخر محضر بلوز محمص إضافي. يُقدم مع الخبز.",
     price: 12.0,
     popular: false,
     image: "/images/menu/Almond.png",
@@ -1665,8 +1651,7 @@ export const menuItems = [
     id: 149,
     name: "أملو بزيت الأركان",
     category: "إضافات",
-    description:
-      "تغميسة تقليدية من اللوز والعسل وزيت الأركان. تُقدم مع الخبز.",
+    description: "تغميسة تقليدية من اللوز والعسل وزيت الأركان. تُقدم مع الخبز.",
     price: 8.0,
     popular: true,
     image: "/images/menu/argan.png",
@@ -1693,8 +1678,7 @@ export const menuItems = [
     id: 152,
     name: "جبن طازج (جُبن)",
     category: "إضافات",
-    description:
-      "حصة من الجبن المغربي الطازج التقليدي. تُقدم مع الخبز.",
+    description: "حصة من الجبن المغربي الطازج التقليدي. تُقدم مع الخبز.",
     price: 8.0,
     popular: true,
     image: "/images/menu/Fresh-Cheese.png",
@@ -1744,8 +1728,7 @@ export const shopProducts = [
     id: 1,
     name: "حساء الشعير (حسوة)",
     category: "فطور ومملحات",
-    description:
-      "حساء الشعير والحليب المغربي التقليدي الدافئ والمريح.",
+    description: "حساء الشعير والحليب المغربي التقليدي الدافئ والمريح.",
     price: 7.0,
     inStock: true,
     rating: 4.6,
@@ -1777,8 +1760,7 @@ export const shopProducts = [
     id: 4,
     name: "أومليت باللحم البارد (كاشير)",
     category: "فطور ومملحات",
-    description:
-      "أومليت محشوة باللحم البارد، تُقدم مع الزيتون وزيت الزيتون.",
+    description: "أومليت محشوة باللحم البارد، تُقدم مع الزيتون وزيت الزيتون.",
     price: 17.0,
     inStock: true,
     rating: 4.3,
@@ -1821,8 +1803,7 @@ export const shopProducts = [
     id: 8,
     name: "حريرة",
     category: "فطور ومملحات",
-    description:
-      "الحساء المغربي التقليدي الغني بالطماطم، العدس، والحمص.",
+    description: "الحساء المغربي التقليدي الغني بالطماطم، العدس، والحمص.",
     price: 10.0,
     inStock: true,
     rating: 4.8,
@@ -1886,8 +1867,7 @@ export const shopProducts = [
     id: 14,
     name: "أومليت بالطماطم",
     category: "فطور ومملحات",
-    description:
-      "أومليت هشة مع طماطم طازجة، تُقدم مع الزيتون وزيت الزيتون.",
+    description: "أومليت هشة مع طماطم طازجة، تُقدم مع الزيتون وزيت الزيتون.",
     price: 16.0,
     inStock: true,
     rating: 4.4,
@@ -1920,8 +1900,7 @@ export const shopProducts = [
     id: 17,
     name: "بسطيلة فواكه البحر",
     category: "معجنات وحلويات",
-    description:
-      "فطيرة مالحة مورقة محشوة بفواكه البحر المتبلة والشعيرية.",
+    description: "فطيرة مالحة مورقة محشوة بفواكه البحر المتبلة والشعيرية.",
     price: 12.0,
     inStock: true,
     rating: 4.8,
@@ -1941,8 +1920,7 @@ export const shopProducts = [
     id: 19,
     name: "ميني بيتزا",
     category: "معجنات وحلويات",
-    description:
-      "بيتزا مالحة بحجم صغير مغطاة بالجبن وصلصة الطماطم.",
+    description: "بيتزا مالحة بحجم صغير مغطاة بالجبن وصلصة الطماطم.",
     price: 6.0,
     inStock: true,
     rating: 4.3,
@@ -1962,8 +1940,7 @@ export const shopProducts = [
     id: 21,
     name: "بسطيلة بالدجاج",
     category: "معجنات وحلويات",
-    description:
-      "فطيرة حلوة ومالحة محشوة بالدجاج المتبل واللوز المحمص.",
+    description: "فطيرة حلوة ومالحة محشوة بالدجاج المتبل واللوز المحمص.",
     price: 10.0,
     inStock: true,
     rating: 4.9,
@@ -2344,8 +2321,7 @@ export const shopProducts = [
     id: 59,
     name: "بيثيفييه",
     category: "معجنات وحلويات",
-    description:
-      "فطيرة دائرية مغلقة مصنوعة من العجين المورق مع حشوة حلوة.",
+    description: "فطيرة دائرية مغلقة مصنوعة من العجين المورق مع حشوة حلوة.",
     price: 5.0,
     inStock: true,
     rating: 4.5,
@@ -2395,8 +2371,7 @@ export const shopProducts = [
     id: 64,
     name: "كرواسون باللوز",
     category: "معجنات وحلويات",
-    description:
-      "كرواسون مورق محشو بكريمة اللوز ومغطى بشرائح اللوز.",
+    description: "كرواسون مورق محشو بكريمة اللوز ومغطى بشرائح اللوز.",
     price: 5.0,
     inStock: true,
     rating: 4.9,
@@ -2406,8 +2381,7 @@ export const shopProducts = [
     id: 65,
     name: "مثلث اللوز",
     category: "معجنات وحلويات",
-    description:
-      "معجنات مورقة على شكل مثلث محشوة بعجينة اللوز الحلوة.",
+    description: "معجنات مورقة على شكل مثلث محشوة بعجينة اللوز الحلوة.",
     price: 6.0,
     inStock: true,
     rating: 4.7,
@@ -2467,8 +2441,7 @@ export const shopProducts = [
     id: 71,
     name: "بان سويس",
     category: "معجنات وحلويات",
-    description:
-      "معجنات مورقة ملفوفة مع كاسترد الفانيليا ورقائق الشوكولاتة.",
+    description: "معجنات مورقة ملفوفة مع كاسترد الفانيليا ورقائق الشوكولاتة.",
     price: 3.0,
     inStock: true,
     rating: 4.8,
@@ -2570,8 +2543,7 @@ export const shopProducts = [
     id: 81,
     name: "باجيت متعدد الحبوب",
     category: "مخبزة",
-    description:
-      "باجيت مقرمش مخبوز بمزيج من البذور والحبوب الصحية.",
+    description: "باجيت مقرمش مخبوز بمزيج من البذور والحبوب الصحية.",
     price: 4.0,
     inStock: true,
     rating: 4.8,
@@ -2631,8 +2603,7 @@ export const shopProducts = [
     id: 87,
     name: "باجيت بالسمسم",
     category: "مخبزة",
-    description:
-      "باجيت فرنسي مقرمش طازج مزين ببذور السمسم.",
+    description: "باجيت فرنسي مقرمش طازج مزين ببذور السمسم.",
     price: 2.5,
     inStock: true,
     rating: 4.7,
@@ -3253,8 +3224,7 @@ export const shopProducts = [
     id: 148,
     name: "أملو باللوز",
     category: "إضافات",
-    description:
-      "أملو فاخر محضر بلوز محمص إضافي. يُقدم مع الخبز.",
+    description: "أملو فاخر محضر بلوز محمص إضافي. يُقدم مع الخبز.",
     price: 12.0,
     inStock: true,
     rating: 4.9,
@@ -3264,8 +3234,7 @@ export const shopProducts = [
     id: 149,
     name: "أملو بزيت الأركان",
     category: "إضافات",
-    description:
-      "تغميسة تقليدية من اللوز والعسل وزيت الأركان. تُقدم مع الخبز.",
+    description: "تغميسة تقليدية من اللوز والعسل وزيت الأركان. تُقدم مع الخبز.",
     price: 8.0,
     inStock: true,
     rating: 4.9,
@@ -3295,8 +3264,7 @@ export const shopProducts = [
     id: 152,
     name: "جبن طازج (جُبن)",
     category: "إضافات",
-    description:
-      "حصة من الجبن المغربي الطازج التقليدي. تُقدم مع الخبز.",
+    description: "حصة من الجبن المغربي الطازج التقليدي. تُقدم مع الخبز.",
     price: 8.0,
     inStock: true,
     rating: 4.8,
@@ -3350,8 +3318,7 @@ export const testimonials = [
     id: 1,
     name: "Ryu Zaki",
     role: "زبون دائم",
-    quote:
-      "مقهى جميل يقدم مخبوزات ومعجنات جيدة جداً. عصائر الفواكه ممتازة.",
+    quote: "مقهى جميل يقدم مخبوزات ومعجنات جيدة جداً. عصائر الفواكه ممتازة.",
     rating: 5,
   },
   {
@@ -3387,7 +3354,8 @@ export const faqData = [
     id: 1,
     category: "عام",
     question: "ما هي أوقات العمل الخاصة بكم؟",
-    answer: "نحن نفتح من الإثنين إلى الأحد من الساعة 6:00 صباحاً حتى 10:00 مساءً.",
+    answer:
+      "نحن نفتح من الإثنين إلى الأحد من الساعة 6:00 صباحاً حتى 10:00 مساءً.",
   },
   {
     id: 2,
@@ -3419,7 +3387,8 @@ export const faqData = [
   {
     id: 6,
     category: "الطلبات",
-    question: "هل توفرون خدمة تقديم الطعام (الكاترينج) للمناسبات وحفلات الزفاف؟",
+    question:
+      "هل توفرون خدمة تقديم الطعام (الكاترينج) للمناسبات وحفلات الزفاف؟",
     answer:
       "يسعدنا أن نكون جزءاً من يومك المميز! نقدم باقات تقديم طعام مخصصة لحفلات الزفاف، فعاليات الشركات، والحفلات الخاصة. اتصل بنا قبل أسبوع على الأقل للطلبات المخصصة.",
   },

@@ -203,21 +203,21 @@ export default function Navbar() {
             </div>
 
             {/* Desktop: right icon */}
-              <a
-                href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden lg:flex items-center justify-center w-12 h-12 rounded-full bg-cream/60 text-dark hover:bg-cream transition-colors"
-              >
-                <LocationIcon />
-              </a>
+            <a
+              href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:flex items-center justify-center w-12 h-12 rounded-full bg-cream/60 text-dark hover:bg-cream transition-colors"
+            >
+              <LocationIcon />
+            </a>
 
-              {/* Mobile menu trigger */}
-              <button
-                ref={menuButtonRef}
-                className="lg:hidden relative z-50 p-2 flex items-center justify-center w-12 h-12"
-                onClick={handleMenuToggle}
-                aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            {/* Mobile menu trigger */}
+            <button
+              ref={menuButtonRef}
+              className="lg:hidden relative z-50 p-2 flex items-center justify-center w-12 h-12"
+              onClick={handleMenuToggle}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
               <AnimatePresence mode="wait">
                 {mobileOpen ? (
@@ -330,13 +330,13 @@ export default function Navbar() {
                     </svg>
                   </motion.div>
                 )}
-              </AnimatePresence>              
+              </AnimatePresence>
             </button>
           </div>
         </nav>
       </motion.div>
 
-{/* Mobile menu overlay — Menu Awwards style */}
+      {/* Mobile menu overlay — Menu Awwards style */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -493,7 +493,7 @@ export default function Navbar() {
                 ))}
               </div>
 
-            {/* Bottom info */}
+              {/* Bottom info */}
               <motion.div
                 className="absolute bottom-10 left-8 right-8 flex justify-between items-end gap-2"
                 initial={{ opacity: 0 }}
@@ -510,8 +510,8 @@ export default function Navbar() {
                     {hours.day}: {hours.time}
                   </p>
                 </div>
-                </motion.div>
               </motion.div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

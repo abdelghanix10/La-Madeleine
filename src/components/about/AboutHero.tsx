@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import ScrollReveal from "@/components/animations/ScrollReveal";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function AboutHero() {
+  const { t } = useLanguage();
   return (
     <section className="relative h-[70vh] min-h-125 flex items-center bg-dark overflow-hidden">
       <div
@@ -30,7 +31,7 @@ export default function AboutHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          Our Story
+          {t("ourStoryAbout")}
         </motion.p>
         <motion.h1
           className="font-serif text-5xl md:text-7xl lg:text-8xl text-cream tracking-wide leading-[0.95]"
@@ -38,7 +39,7 @@ export default function AboutHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          About La Madeleine
+          {t("aboutLaMadeleine")}
         </motion.h1>
         <motion.div
           className="w-20 h-0.5 bg-primary mt-8"

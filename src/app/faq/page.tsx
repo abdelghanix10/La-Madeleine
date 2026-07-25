@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import SmoothScroll from "@/components/layout/SmoothScroll";
-import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import FAQHero from "@/components/faq/FAQHero";
@@ -15,12 +13,12 @@ export const metadata: Metadata = {
 export default function FAQPage() {
   return (
     <>
-        <main className="relative z-10 lg:mb-[60vh] bg-background">
-          <FAQHero />
-          <FAQContent />
-        </main>
-        <Footer />
-        <BackToTop />
+      <main className="relative z-10 lg:mb-[60vh] bg-background">
+        <FAQHero />
+        <FAQContent />
+      </main>
+      <Footer />
+      <BackToTop />
     </>
   );
 }

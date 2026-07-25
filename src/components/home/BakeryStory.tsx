@@ -5,18 +5,19 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import CountUp from "@/components/animations/CountUp";
-
-const stats = [
-  {
-    value: new Date().getFullYear() - 2019,
-    suffix: "+",
-    label: "Years of Craft",
-  },
-  { value: 150, suffix: "+", label: "Unique Products" },
-  { value: 100, suffix: "K+", label: "Happy Customers" },
-];
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function BakeryStory() {
+  const { t } = useLanguage();
+  const stats = [
+    {
+      value: new Date().getFullYear() - 2019,
+      suffix: "+",
+      label: t("storyYears"),
+    },
+    { value: 150, suffix: "+", label: t("storyProducts") },
+    { value: 100, suffix: "K+", label: t("storyCustomers") },
+  ];
   const imageRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: imageRef,
@@ -47,7 +48,7 @@ export default function BakeryStory() {
                 <div className="absolute inset-0 flex items-end p-8 md:p-10">
                   <div>
                     <p className="font-script text-3xl text-cream/90 mb-2">
-                      Since
+                      {t("storySince")}
                     </p>
                     <h3 className="font-serif text-5xl md:text-7xl text-cream">
                       2019
@@ -56,7 +57,7 @@ export default function BakeryStory() {
                 </div>
               </div>
               <div className="absolute -bottom-6 -right-6 bg-primary text-dark p-6 shadow-xl">
-                <span className="font-script text-3xl">Since</span>
+                <span className="font-script text-3xl">{t("storySince")}</span>
                 <br />
                 <span className="font-serif text-4xl font-bold">2019</span>
               </div>
@@ -66,33 +67,24 @@ export default function BakeryStory() {
           <div>
             <ScrollReveal variant="fadeRight">
               <p className="text-primary font-script text-2xl md:text-3xl mb-3">
-                Our Story
+                {t("storyEyebrow")}
               </p>
               <h2 className="font-serif text-4xl md:text-5xl text-dark tracking-wide mb-8 leading-tight">
-                A Legacy of
+                {t("storyTitleOne")}
                 <br />
-                Artisanal Passion
+                {t("storyTitleTwo")}
               </h2>
             </ScrollReveal>
 
             <ScrollReveal variant="fadeRight" delay={0.1}>
               <p className="text-dark/60 leading-relaxed mb-6">
-                In 2019, a deep love for traditional baking brought the charm of
-                a classic French salon de thé to the heart of Agadir. Armed with
-                perfected recipes, a commitment to exceptional coffee, and an
-                uncompromising dedication to quality, La Madeline opened its
-                doors to a community that appreciates the finer details.
+                {t("storyDescription")}
               </p>
             </ScrollReveal>
 
             <ScrollReveal variant="fadeRight" delay={0.2}>
               <p className="text-dark/60 leading-relaxed mb-10">
-                Today, we still rise before the sun. We still fold every
-                croissant by hand. We still pair our meticulously crafted
-                pastries with perfectly pulled shots of espresso. Because at La
-                Madeline, creating the perfect café experience isn&apos;t about
-                rushing the process — it&apos;s about time, precision, and an
-                enduring love for the craft.
+                {t("storyDescriptionTwo")}
               </p>
             </ScrollReveal>
 

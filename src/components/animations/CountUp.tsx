@@ -32,7 +32,7 @@ export default function CountUp({
       if (!startTime) startTime = currentTime;
       const progress = Math.min(
         (currentTime - startTime) / (duration * 1000),
-        1
+        1,
       );
       const eased = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(eased * end));

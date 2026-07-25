@@ -5,25 +5,27 @@ import CountUp from "@/components/animations/CountUp";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-
-const stats = [
-  {
-    value: new Date().getFullYear() - 2019,
-    suffix: "+",
-    label: "Years of Excellence",
-  },
-  { value: 150, suffix: "+", label: "Unique Products" },
-  { value: 100, suffix: "K+", label: "Satisfied Customers" },
-];
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function AboutStory() {
   const imageRef = useRef<HTMLDivElement | null>(null);
-    const { scrollYProgress } = useScroll({
-      target: imageRef,
-      offset: ["start end", "end start"],
-    });
-    const imageY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
-    
+  const { scrollYProgress } = useScroll({
+    target: imageRef,
+    offset: ["start end", "end start"],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+  const { t } = useLanguage();
+
+  const stats = [
+    {
+      value: new Date().getFullYear() - 2019,
+      suffix: "+",
+      label: t("yearsOfExcellence"),
+    },
+    { value: 150, suffix: "+", label: t("uniqueProducts") },
+    { value: 100, suffix: "K+", label: t("satisfiedCustomers") },
+  ];
+
   return (
     <section className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6">
@@ -47,7 +49,7 @@ export default function AboutStory() {
                 <div className="absolute inset-0 flex items-end p-8 md:p-10">
                   <div>
                     <p className="font-script text-3xl text-cream/90 mb-2">
-                      Since
+                      {t("since")}
                     </p>
                     <h3 className="font-serif text-5xl md:text-7xl text-cream">
                       2019
@@ -56,7 +58,7 @@ export default function AboutStory() {
                 </div>
               </div>
               <div className="absolute -bottom-6 -right-6 bg-primary text-dark p-6 shadow-xl">
-                <span className="font-script text-3xl">Since</span>
+                <span className="font-script text-3xl">{t("since")}</span>
                 <br />
                 <span className="font-serif text-4xl font-bold">2019</span>
               </div>
@@ -66,31 +68,22 @@ export default function AboutStory() {
           <div>
             <ScrollReveal>
               <p className="text-primary font-script text-2xl md:text-3xl mb-3">
-                A Legacy of
+                {t("aLegacyOf")}
               </p>
               <h2 className="font-serif text-4xl md:text-5xl text-dark tracking-wide mb-8">
-                Artisanal Passion
+                {t("artisanalPassion")}
               </h2>
             </ScrollReveal>
 
             <ScrollReveal delay={0.1}>
               <p className="text-dark/60 leading-relaxed mb-6">
-                In 2019, a deep love for traditional baking brought the charm of
-                a classic French salon de thé to the heart of Agadir. Armed with
-                perfected recipes, a commitment to exceptional coffee, and an
-                uncompromising dedication to quality, La Madeline opened its
-                doors to a community that appreciates the finer details.
+                {t("storyOne")}
               </p>
             </ScrollReveal>
 
             <ScrollReveal delay={0.2}>
               <p className="text-dark/60 leading-relaxed mb-6">
-                Today, we still rise before the sun. We still fold every
-                croissant by hand. We still pair our meticulously crafted
-                pastries with perfectly pulled shots of espresso. Because at La
-                Madeline, creating the perfect café experience isn&apos;t about
-                rushing the process — it&apos;s about time, precision, and an
-                enduring love for the craft.
+                {t("storyTwo")}
               </p>
             </ScrollReveal>
 

@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/providers/LanguageProvider";
-import { siteConfig } from "@/lib/data";
 
 function BrushArrow({ direction = "right" }: { direction?: "left" | "right" }) {
   return (
@@ -20,7 +19,8 @@ function BrushArrow({ direction = "right" }: { direction?: "left" | "right" }) {
 }
 
 export default function HeroSection() {
-  const { data } = useLanguage();
+  const { data, t } = useLanguage();
+  const siteConfig = data?.siteConfig;
   const { heroSlides } = data;
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -28,12 +28,12 @@ export default function HeroSection() {
   const next = useCallback(() => {
     setDirection(1);
     setCurrent((p) => (p + 1) % heroSlides.length);
-  }, []);
+  }, [heroSlides.length]);
 
   const prev = useCallback(() => {
     setDirection(-1);
     setCurrent((p) => (p - 1 + heroSlides.length) % heroSlides.length);
-  }, []);
+  }, [heroSlides.length]);
 
   useEffect(() => {
     const timer = setInterval(next, 10000);
@@ -185,7 +185,7 @@ export default function HeroSection() {
         className="absolute cursor-pointer left-6 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-start gap-1 font-serif text-sm uppercase text-black transition-colors hover:text-primary lg:flex"
         aria-label="Previous slide"
       >
-        <span>Prev</span>
+        <span>{t("prev")}</span>
         <BrushArrow direction="left" />
       </button>
       <button
@@ -193,7 +193,7 @@ export default function HeroSection() {
         className="absolute cursor-pointer right-6 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-end gap-1 font-serif text-sm uppercase text-black transition-colors hover:text-primary lg:flex"
         aria-label="Next slide"
       >
-        <span>Next</span>
+        <span>{t("next")}</span>
         <BrushArrow />
       </button>
 

@@ -13,7 +13,7 @@ import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
-import { categories } from "@/lib/data";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 const iconMap: Record<string, React.ReactNode> = {
   sunrise: <Sunrise size={28} />,
@@ -25,20 +25,24 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function CategorySection() {
+  const { data, t } = useLanguage();
   return (
     <section className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <ScrollReveal className="text-center mb-16">
           <p className="text-primary font-script text-2xl md:text-3xl mb-3">
-            Explore
+            {t("categoryEyebrow")}
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-dark tracking-wide">
-            Our Specialties
+            {t("categoryTitle")}
           </h2>
         </ScrollReveal>
 
-        <StaggerChildren className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6" staggerDelay={0.08}>
-          {categories.map((cat) => (
+        <StaggerChildren
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6"
+          staggerDelay={0.08}
+        >
+          {data.categories.map((cat) => (
             <StaggerItem key={cat.id}>
               <motion.div
                 className="group relative p-6 md:p-8 bg-cream rounded-sm text-center cursor-pointer transition-all duration-500 hover:shadow-xl hover:-translate-y-2 hover:border-primary border border-transparent"

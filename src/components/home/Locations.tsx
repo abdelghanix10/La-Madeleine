@@ -6,18 +6,19 @@ import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
-import { locations } from "@/lib/data";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function Locations() {
+  const { data, t } = useLanguage();
   return (
     <section className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <ScrollReveal className="text-center mb-16">
           <p className="text-primary font-script text-2xl md:text-3xl mb-3">
-            Visit Us
+            {t("locationTitle")}
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-dark tracking-wide">
-            Our Locations
+            {t("locationEyebrow")}
           </h2>
         </ScrollReveal>
 
@@ -41,7 +42,7 @@ export default function Locations() {
             className="w-full lg:flex-3 flex flex-col gap-8"
             staggerDelay={0.15}
           >
-            {locations.map((loc) => (
+            {data.locations.map((loc) => (
               <StaggerItem key={loc.id}>
                 <motion.div
                   className="bg-cream p-8 md:p-10 border border-dark/5 hover:border-primary/20 transition-all duration-500 group"
@@ -80,7 +81,7 @@ export default function Locations() {
                       href={loc.mapUrl}
                       className="text-primary text-sm tracking-wider uppercase hover:text-dark transition-colors duration-300 inline-flex items-center gap-2"
                     >
-                      Get Directions
+                      {t("getDirections")}
                       <span className="w-4 h-px bg-current group-hover:w-6 transition-all duration-300" />
                     </a>
                   </div>

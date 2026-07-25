@@ -125,7 +125,7 @@ export default function ContactContent() {
           {/* Contact form */}
           <ScrollReveal variant="fadeRight">
             <h2 className="font-serif text-3xl md:text-4xl text-dark tracking-wide mb-8">
-              Send Us a Message
+              {t("sendMessage")}
             </h2>
 
             {submitted ? (
@@ -137,11 +137,10 @@ export default function ContactContent() {
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
                   <Send size={24} className="text-primary" />
                 </div>
-                <p className="font-serif text-2xl text-dark mb-2">Merci!</p>
-                <p className="text-dark/50">
-                  Your message has been sent. We&apos;ll get back to you within
-                  24 hours.
+                <p className="font-serif text-2xl text-dark mb-2">
+                  {t("thankYou")}
                 </p>
+                <p className="text-dark/50">{t("yourMessageHasBeenSent")}</p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -149,7 +148,7 @@ export default function ContactContent() {
                   <div>
                     <input
                       {...register("name")}
-                      placeholder="Your name *"
+                      placeholder={t("name")}
                       className="w-full px-4 py-3.5 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors"
                     />
                     {errors.name && (
@@ -162,7 +161,7 @@ export default function ContactContent() {
                     <input
                       {...register("email")}
                       type="email"
-                      placeholder="Your email *"
+                      placeholder={t("emailForm")}
                       className="w-full px-4 py-3.5 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors"
                     />
                     {errors.email && (
@@ -175,7 +174,7 @@ export default function ContactContent() {
                 <div>
                   <input
                     {...register("subject")}
-                    placeholder="Subject *"
+                    placeholder={t("subject")}
                     className="w-full px-4 py-3.5 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors"
                   />
                   {errors.subject && (
@@ -188,7 +187,7 @@ export default function ContactContent() {
                   <textarea
                     {...register("message")}
                     rows={6}
-                    placeholder="Your message *"
+                    placeholder={t("message")}
                     className="w-full px-4 py-3.5 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors resize-none"
                   />
                   {errors.message && (
@@ -204,7 +203,7 @@ export default function ContactContent() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                  {isSubmitting ? t("sending") : t("send")}
                 </motion.button>
               </form>
             )}

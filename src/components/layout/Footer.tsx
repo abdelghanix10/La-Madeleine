@@ -8,18 +8,36 @@ import { useLanguage } from "@/providers/LanguageProvider";
 
 function InstagramIcon({ size = 16 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
     </svg>
   );
 }
 
 function FacebookIcon({ size = 16 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     </svg>
   );
 }
@@ -32,12 +50,12 @@ export default function Footer() {
     about: [
       { label: t("ourStory"), href: "/about" },
       { label: t("ourMenu"), href: "/menu" },
-      { label: t("shop"), href: "/shop" },
+      { label: t("shopFooter"), href: "/shop" },
       { label: t("locations"), href: "/contact" },
     ],
     help: [
-      { label: t("faq"), href: "/faq" },
-      { label: t("contactUs"), href: "/contact" },
+      { label: t("faqFooter"), href: "/faq" },
+      { label: t("contactUsFooter"), href: "/contact" },
       { label: t("cookiePolicy"), href: "#" },
       { label: t("privacyPolicy"), href: "#" },
     ],
@@ -149,7 +167,9 @@ export default function Footer() {
               </li>
             </ul>
             <div className="mt-6">
-              <h5 className="text-sm font-medium text-cream mb-3">{t("hours")}</h5>
+              <h5 className="text-sm font-medium text-cream mb-3">
+                {t("hours")}
+              </h5>
               {siteConfig.hours.map((h, i) => (
                 <div key={i} className="flex justify-between text-xs mb-1">
                   <span>{h.day}</span>
@@ -162,7 +182,8 @@ export default function Footer() {
 
         <div className="mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-cream/40">
-            &copy; {new Date().getFullYear()} {siteConfig.name}. {t("allRightsReserved")}
+            &copy; {new Date().getFullYear()} {siteConfig.name}.{" "}
+            {t("allRightsReserved")}
           </p>
         </div>
       </div>
