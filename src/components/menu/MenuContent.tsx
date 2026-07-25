@@ -14,6 +14,8 @@ import {
   RotateCcw,
 } from "lucide-react";
 
+import { useLanguage } from "@/providers/LanguageProvider";
+
 const categoryHighlights = {
   "Breakfast & Savory": {
     image: "/images/background/bg-Breakfast.jpg",
@@ -96,7 +98,10 @@ function MenuHighlight({
 }
 
 export default function MenuContent() {
-  const [active, setActive] = useState("All");
+  const { data, t } = useLanguage();
+  const { menuCategories, menuItems } = data;
+
+  const [active, setActive] = useState(t("all"));
   const [isPdfOpen, setIsPdfOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
@@ -104,6 +109,11 @@ export default function MenuContent() {
   const [isDraggingState, setIsDraggingState] = useState(false);
   const isHoveringImage = useRef(false);
   const scrollYRef = useRef(0);
+
+  // Sync active category if language changes
+  useEffect(() => {
+    setActive(t("all"));
+  }, [t]);
 
   // Drag-to-pan state
   const containerRef = useRef<HTMLDivElement>(null);
@@ -191,11 +201,34 @@ export default function MenuContent() {
       const container = containerRef.current;
       if (container) {
         container.releasePointerCapture(e.pointerId);
-        container.style.cursor = zoomLevel > 1 ? "grab" : "";
+        container.style.cursor = zoomLevel > 1 ? "grab" : "default";
       }
     },
     [zoomLevel],
   );
+
+  // Wheel zoom/pan with non-passive listener to prevent page scrolling
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || !isPdfOpen) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (!isHoveringImage.current) return;
+      e.preventDefault();
+      if (e.ctrlKey || e.metaKey) {
+        if (e.deltaY < 0) zoomIn();
+        else zoomOut();
+      } else {
+        setPanOffset((prev) => ({
+          x: prev.x - e.deltaX,
+          y: prev.y - e.deltaY,
+        }));
+      }
+    };
+
+    container.addEventListener("wheel", handleWheel, { passive: false });
+    return () => container.removeEventListener("wheel", handleWheel);
+  }, [isPdfOpen, zoomIn, zoomOut]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -218,33 +251,15 @@ export default function MenuContent() {
       }
     };
 
-    const handleWheel = (e: WheelEvent) => {
-      if (!isPdfOpen || !isHoveringImage.current) return;
-      if (e.ctrlKey || e.metaKey) return;
-
-      e.preventDefault();
-      if (e.deltaY < 0) {
-        setZoomLevel((prev) => Math.min(prev + 0.1, 3));
-      } else {
-        setZoomLevel((prev) => {
-          const next = Math.max(prev - 0.1, 0.5);
-          if (next <= 1) setPanOffset({ x: 0, y: 0 });
-          return next;
-        });
-      }
-    };
-
     window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("wheel", handleWheel, { passive: false });
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("wheel", handleWheel);
     };
   }, [isPdfOpen, nextPage, prevPage, zoomIn, zoomOut]);
 
+  // Lock body scroll when PDF modal is open
   useEffect(() => {
     if (isPdfOpen) {
-      // Save scroll position and lock body
       scrollYRef.current = window.scrollY;
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollYRef.current}px`;
@@ -252,7 +267,6 @@ export default function MenuContent() {
       document.body.style.right = "0";
       document.body.style.overflow = "hidden";
     } else {
-      // Restore scroll position and unlock body
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.left = "";
@@ -269,9 +283,9 @@ export default function MenuContent() {
     };
   }, [isPdfOpen]);
 
-  const categories = ["All", ...menuCategories];
+  const categories = [t("all"), ...menuCategories];
   const filtered =
-    active === "All"
+    active === t("all")
       ? menuItems
       : menuItems.filter((item) => item.category === active);
 
@@ -304,7 +318,7 @@ export default function MenuContent() {
               className="px-5 py-2.5 text-sm tracking-[0.15em] uppercase cursor-pointer transition-all duration-300 border flex items-center gap-2 bg-primary text-white border-primary hover:bg-primary/90"
             >
               <BookOpen size={16} />
-              View Booklet
+              {t("viewMenuBook")}
             </button>
           </div>
         </ScrollReveal>

@@ -6,9 +6,12 @@ import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
-import { todaysSpecials } from "@/lib/data";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function TodaysSpecials() {
+  const { data, t } = useLanguage();
+  const todaysSpecials = data.todaysSpecials;
+
   return (
     <section className="py-24 md:py-32 bg-dark relative overflow-hidden">
       {/* Decorative background pattern */}
@@ -22,10 +25,10 @@ export default function TodaysSpecials() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <ScrollReveal className="text-center mb-16">
           <p className="text-primary font-script text-2xl md:text-3xl mb-3">
-            Don&apos;t Miss
+            {t("dontMiss")}
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream tracking-wide">
-            Today&apos;s Specials
+            {t("todaysSpecials")}
           </h2>
         </ScrollReveal>
 

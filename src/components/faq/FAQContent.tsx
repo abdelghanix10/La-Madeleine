@@ -1,21 +1,30 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, ChevronDown } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { faqData } from "@/lib/data";
-
-const faqCategories = ["All", ...Array.from(new Set(faqData.map((f) => f.category)))];
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function FAQContent() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const { data, t } = useLanguage();
+  const faqData = data.faqData;
+
+  const faqCategories = useMemo(() => {
+    return [t("all"), ...Array.from(new Set(faqData.map((f) => f.category)))];
+  }, [faqData, t]);
+
+  const [activeCategory, setActiveCategory] = useState(t("all"));
   const [search, setSearch] = useState("");
   const [openId, setOpenId] = useState<number | null>(null);
 
+  useEffect(() => {
+    setActiveCategory(t("all"));
+  }, [t]);
+
   const filtered = useMemo(() => {
     let items = faqData;
-    if (activeCategory !== "All")
+    if (activeCategory !== t("all"))
       items = items.filter((f) => f.category === activeCategory);
     if (search)
       items = items.filter(
@@ -24,7 +33,7 @@ export default function FAQContent() {
           f.answer.toLowerCase().includes(search.toLowerCase())
       );
     return items;
-  }, [activeCategory, search]);
+  }, [faqData, activeCategory, search, t]);
 
   return (
     <section className="py-24 md:py-32 bg-background">
@@ -38,7 +47,7 @@ export default function FAQContent() {
             />
             <input
               type="text"
-              placeholder="Search questions..."
+              placeholder={t("searchQuestions")}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-12 pr-4 py-4 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors"

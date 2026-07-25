@@ -8,19 +8,24 @@ import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
-import { shopProducts } from "@/lib/data";
-
-type Product = (typeof shopProducts)[number];
+import { useLanguage } from "@/providers/LanguageProvider";
 
 const ITEMS_PER_PAGE = 12;
 
-const allCategories = [
-  "All",
-  ...Array.from(new Set(shopProducts.map((p) => p.category))),
-];
-
 export default function ShopContent() {
-  const [category, setCategory] = useState("All");
+  const { data, t } = useLanguage();
+  const shopProducts = data.shopProducts;
+
+  type Product = (typeof shopProducts)[number];
+
+  const allCategories = useMemo(() => {
+    return [
+      t("all"),
+      ...Array.from(new Set(shopProducts.map((p) => p.category))),
+    ];
+  }, [shopProducts, t]);
+
+  const [category, setCategory] = useState(t("all"));
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("default");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -29,6 +34,11 @@ export default function ShopContent() {
 
   const observerRef = useRef<HTMLDivElement | null>(null);
 
+  // Sync category state if language changes
+  useEffect(() => {
+    setCategory(t("all"));
+  }, [t]);
+
   // Reset pagination when filter/search/sort changes
   useEffect(() => {
     setVisibleCount(ITEMS_PER_PAGE);
@@ -36,7 +46,7 @@ export default function ShopContent() {
 
   const filtered = useMemo(() => {
     let items = shopProducts;
-    if (category !== "All")
+    if (category !== t("all"))
       items = items.filter((p) => p.category === category);
     if (search) {
       const q = search.toLowerCase();
@@ -53,7 +63,7 @@ export default function ShopContent() {
     if (sort === "name")
       items = [...items].sort((a, b) => a.name.localeCompare(b.name));
     return items;
-  }, [category, search, sort]);
+  }, [shopProducts, category, search, sort, t]);
 
   const displayedProducts = useMemo(() => {
     return filtered.slice(0, visibleCount);
@@ -101,7 +111,7 @@ export default function ShopContent() {
               />
               <input
                 type="text"
-                placeholder="Search products..."
+                placeholder={t("searchProducts")}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full pl-11 pr-4 py-3 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors"
@@ -132,10 +142,10 @@ export default function ShopContent() {
                 onChange={(e) => setSort(e.target.value)}
                 className="px-4 py-3 bg-cream border border-dark/10 text-sm text-dark focus:outline-none focus:border-primary transition-colors appearance-none cursor-pointer"
               >
-                <option value="default">Default</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
-                <option value="name">Name</option>
+                <option value="default">{t("defaultSort")}</option>
+                <option value="price-asc">{t("priceAsc")}</option>
+                <option value="price-desc">{t("priceDesc")}</option>
+                <option value="name">{t("nameSort")}</option>
               </select>
             </div>
           </div>
@@ -144,19 +154,19 @@ export default function ShopContent() {
         {/* Product count */}
         <div className="flex items-center justify-between text-sm text-dark/40 mb-8">
           <p>
-            Showing{" "}
+            {t("showing")}{" "}
             <span className="font-semibold text-dark">
               {displayedProducts.length}
             </span>{" "}
-            of{" "}
+            {t("of")}{" "}
             <span className="font-semibold text-dark">
               {filtered.length}
             </span>{" "}
-            results
+            {t("results")}
           </p>
           {filtered.length !== shopProducts.length && (
             <p className="text-xs text-dark/30">
-              ({shopProducts.length} total available)
+              ({shopProducts.length} {t("totalAvailable")})
             </p>
           )}
         </div>
@@ -239,7 +249,7 @@ export default function ShopContent() {
         {filtered.length === 0 && (
           <div className="text-center py-16">
             <p className="font-serif text-2xl text-dark/30">
-              No products found
+              {t("noProductsFound")}
             </p>
           </div>
         )}
@@ -253,14 +263,14 @@ export default function ShopContent() {
             {isLoadingMore ? (
               <div className="flex items-center gap-3 text-primary font-medium text-sm">
                 <Loader2 className="animate-spin" size={20} />
-                <span>Loading more products...</span>
+                <span>{t("loadingMore")}</span>
               </div>
             ) : (
               <button
                 onClick={loadMore}
                 className="px-6 py-3 border border-dark/10 hover:border-dark text-xs uppercase tracking-widest text-dark transition-colors cursor-pointer"
               >
-                Load More Products
+                {t("loadMore")}
               </button>
             )}
           </div>
@@ -269,7 +279,7 @@ export default function ShopContent() {
         {!hasMore && filtered.length > ITEMS_PER_PAGE && (
           <div className="mt-16 text-center py-8 border-t border-dark/5">
             <p className="text-xs uppercase tracking-widest text-dark/30">
-              You&apos;ve viewed all {filtered.length} products
+              {t("viewedAll")}
             </p>
           </div>
         )}

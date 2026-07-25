@@ -10,7 +10,7 @@ import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
-import { siteConfig } from "@/lib/data";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -21,32 +21,34 @@ const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
-const contactInfo = [
-  {
-    icon: Phone,
-    label: "Phone",
-    value: siteConfig.phone,
-    href: `tel:${siteConfig.phone}`,
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    value: siteConfig.email,
-    href: `mailto:${siteConfig.email}`,
-  },
-  { icon: MapPin, label: "Address", value: siteConfig.address, href: "#" },
-  {
-    icon: Clock,
-    label: "Hours",
-    value: Array.isArray(siteConfig.hours)
-      ? siteConfig.hours.map((h) => `${h.day}: ${h.time}`).join(" | ")
-      : `${(siteConfig.hours as { day: string; time: string }).day}: ${(siteConfig.hours as { day: string; time: string }).time}`,
-    href: "#",
-  },
-];
-
 export default function ContactContent() {
+  const { data, t } = useLanguage();
+  const { siteConfig } = data;
   const [submitted, setSubmitted] = useState(false);
+
+  const contactInfo = [
+    {
+      icon: Phone,
+      label: t("phone"),
+      value: siteConfig.phone,
+      href: `tel:${siteConfig.phone}`,
+    },
+    {
+      icon: Mail,
+      label: t("email"),
+      value: siteConfig.email,
+      href: `mailto:${siteConfig.email}`,
+    },
+    { icon: MapPin, label: t("address"), value: siteConfig.address, href: "#" },
+    {
+      icon: Clock,
+      label: t("hours"),
+      value: Array.isArray(siteConfig.hours)
+        ? siteConfig.hours.map((h) => `${h.day}: ${h.time}`).join(" | ")
+        : `${(siteConfig.hours as { day: string; time: string }).day}: ${(siteConfig.hours as { day: string; time: string }).time}`,
+      href: "#",
+    },
+  ];
   const {
     register,
     handleSubmit,

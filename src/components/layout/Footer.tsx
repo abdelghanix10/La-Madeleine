@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
-import { siteConfig } from "@/lib/data";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 function InstagramIcon({ size = 16 }: { size?: number }) {
   return (
@@ -24,22 +24,25 @@ function FacebookIcon({ size = 16 }: { size?: number }) {
   );
 }
 
-const footerLinks = {
-  about: [
-    { label: "Our Story", href: "/about" },
-    { label: "Our Menu", href: "/menu" },
-    { label: "Shop", href: "/shop" },
-    { label: "Locations", href: "/contact" },
-  ],
-  help: [
-    { label: "FAQ", href: "/faq" },
-    { label: "Contact Us", href: "/contact" },
-    { label: "Cookie Policy", href: "#" },
-    { label: "Privacy Policy", href: "#" },
-  ],
-};
-
 export default function Footer() {
+  const { data, t } = useLanguage();
+  const { siteConfig } = data;
+
+  const footerLinks = {
+    about: [
+      { label: t("ourStory"), href: "/about" },
+      { label: t("ourMenu"), href: "/menu" },
+      { label: t("shop"), href: "/shop" },
+      { label: t("locations"), href: "/contact" },
+    ],
+    help: [
+      { label: t("faq"), href: "/faq" },
+      { label: t("contactUs"), href: "/contact" },
+      { label: t("cookiePolicy"), href: "#" },
+      { label: t("privacyPolicy"), href: "#" },
+    ],
+  };
+
   return (
     <footer className="relative lg:fixed lg:bottom-0 lg:left-0 w-full lg:h-[60vh] bg-dark text-cream/70 z-0 lg:overflow-hidden flex flex-col">
       <div className="h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
@@ -81,7 +84,7 @@ export default function Footer() {
 
           <div>
             <h4 className="font-serif text-xl text-cream mb-6 tracking-wider">
-              Quick Links
+              {t("quickLinks")}
             </h4>
             <ul className="space-y-3">
               {footerLinks.about.map((link) => (
@@ -100,7 +103,7 @@ export default function Footer() {
 
           <div>
             <h4 className="font-serif text-xl text-cream mb-6 tracking-wider">
-              Support
+              {t("support")}
             </h4>
             <ul className="space-y-3">
               {footerLinks.help.map((link) => (
@@ -119,7 +122,7 @@ export default function Footer() {
 
           <div>
             <h4 className="font-serif text-xl text-cream mb-6 tracking-wider">
-              Contact
+              {t("contact")}
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-sm">
@@ -146,7 +149,7 @@ export default function Footer() {
               </li>
             </ul>
             <div className="mt-6">
-              <h5 className="text-sm font-medium text-cream mb-3">Hours</h5>
+              <h5 className="text-sm font-medium text-cream mb-3">{t("hours")}</h5>
               {siteConfig.hours.map((h, i) => (
                 <div key={i} className="flex justify-between text-xs mb-1">
                   <span>{h.day}</span>
@@ -159,8 +162,7 @@ export default function Footer() {
 
         <div className="mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-cream/40">
-            &copy; {new Date().getFullYear()} {siteConfig.name}. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} {siteConfig.name}. {t("allRightsReserved")}
           </p>
         </div>
       </div>
