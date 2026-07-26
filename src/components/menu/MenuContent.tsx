@@ -51,10 +51,10 @@ function MenuHighlight({
         <div className="absolute inset-0 bg-linear-to-r from-dark/75 via-dark/40 to-dark/15" />
         <div className="absolute inset-0 flex items-center">
           <div className="max-w-xl px-6 md:px-12 lg:px-16">
-            <p className="text-primary font-script text-2xl md:text-3xl mb-3">
+            <p className="text-primary font-script text-xl md:text-3xl mb-3">
               {highlight.eyebrow}
             </p>
-            <h3 className="font-serif text-4xl md:text-5xl text-cream tracking-wide mb-4">
+            <h3 className="font-serif text-2xl md:text-5xl text-cream tracking-wide mb-4">
               {highlight.title}
             </h3>
             <p className="text-cream/75 max-w-lg leading-relaxed">

@@ -26,10 +26,10 @@ export default function BakeryStory() {
   const imageY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
 
   return (
-    <section className="py-24 md:py-32 bg-cream">
+    <section className="py-24 md:py-32 bg-cream overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <ScrollReveal variant="fadeLeft">
+          <ScrollReveal variant="fadeUp">
             <div ref={imageRef} className="relative">
               <div className="aspect-4/5 relative overflow-hidden rounded-4xl shadow-2xl">
                 <motion.div
@@ -56,16 +56,16 @@ export default function BakeryStory() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-primary text-dark p-6 shadow-xl">
-                <span className="font-script text-3xl">{t("storySince")}</span>
+              <div className="absolute -bottom-4 right-2 sm:-bottom-6 sm:-right-6 bg-primary text-dark p-4 sm:p-6 shadow-xl">
+                <span className="font-script text-2xl sm:text-3xl">{t("storySince")}</span>
                 <br />
-                <span className="font-serif text-4xl font-bold">2019</span>
+                <span className="font-serif text-3xl sm:text-4xl font-bold">2019</span>
               </div>
             </div>
           </ScrollReveal>
 
           <div>
-            <ScrollReveal variant="fadeRight">
+            <ScrollReveal variant="fadeUp">
               <p className="text-primary font-script text-2xl md:text-3xl mb-3">
                 {t("storyEyebrow")}
               </p>
@@ -76,19 +76,19 @@ export default function BakeryStory() {
               </h2>
             </ScrollReveal>
 
-            <ScrollReveal variant="fadeRight" delay={0.1}>
+            <ScrollReveal variant="fadeUp" delay={0.1}>
               <p className="text-dark/60 leading-relaxed mb-6">
                 {t("storyDescription")}
               </p>
             </ScrollReveal>
 
-            <ScrollReveal variant="fadeRight" delay={0.2}>
+            <ScrollReveal variant="fadeUp" delay={0.2}>
               <p className="text-dark/60 leading-relaxed mb-10">
                 {t("storyDescriptionTwo")}
               </p>
             </ScrollReveal>
 
-            <ScrollReveal variant="fadeRight" delay={0.3}>
+            <ScrollReveal variant="fadeUp" delay={0.3}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-dark/10">
                 {stats.map((stat) => (
                   <div key={stat.label}>

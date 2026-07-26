@@ -78,7 +78,7 @@ export default function ContactContent() {
   };
 
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section className="py-24 md:py-32 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* Contact info cards */}
         <StaggerChildren
@@ -107,7 +107,7 @@ export default function ContactContent() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Map */}
-          <ScrollReveal variant="fadeLeft">
+          <ScrollReveal variant="fadeUp">
             <div className="aspect-square lg:aspect-auto lg:h-full bg-cream border border-dark/5 relative overflow-hidden">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15843.858673954102!2d-9.528229!3d30.4020649!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3c9965a5026d3%3A0x736a8bf5957eefa9!2sCaf%C3%A9%20%26%20P%C3%A2tisserie%20Lamadeleine!5e1!3m2!1sen!2sma!4v1784729579942!5m2!1sen!2sma"
@@ -123,7 +123,7 @@ export default function ContactContent() {
           </ScrollReveal>
 
           {/* Contact form */}
-          <ScrollReveal variant="fadeRight">
+          <ScrollReveal variant="fadeUp" delay={0.1}>
             <h2 className="font-serif text-3xl md:text-4xl text-dark tracking-wide mb-8">
               {t("sendMessage")}
             </h2>

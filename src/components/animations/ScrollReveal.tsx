@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 
 type RevealVariant =
@@ -62,6 +62,22 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, margin: "-80px" });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 1023px)");
+    setIsMobile(media.matches);
+
+    const listener = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    media.addEventListener("change", listener);
+    return () => media.removeEventListener("change", listener);
+  }, []);
+
+  // On responsive screens (<1024px), map horizontal slide variants (fadeLeft / fadeRight) to fadeUp (bottom to top)
+  const activeVariantKey =
+    isMobile && (variant === "fadeLeft" || variant === "fadeRight")
+      ? "fadeUp"
+      : variant;
 
   return (
     <motion.div
@@ -69,7 +85,7 @@ export default function ScrollReveal({
       className={className}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      variants={variants[variant]}
+      variants={variants[activeVariantKey]}
       transition={{
         duration,
         delay,

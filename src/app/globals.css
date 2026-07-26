@@ -48,6 +48,12 @@ html.lenis body {
   color: #fcfaf7;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 html {
   scroll-behavior: auto;
 }
@@ -60,7 +66,6 @@ body {
     system-ui,
     -apple-system,
     sans-serif;
-  overflow-x: hidden;
 }
 
 h1,

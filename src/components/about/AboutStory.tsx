@@ -27,10 +27,10 @@ export default function AboutStory() {
   ];
 
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section className="py-24 md:py-32 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <ScrollReveal variant="fadeLeft">
+          <ScrollReveal variant="fadeUp">
             <div ref={imageRef} className="relative">
               <div className="aspect-4/5 relative overflow-hidden rounded-4xl shadow-2xl">
                 <motion.div
@@ -57,16 +57,16 @@ export default function AboutStory() {
                   </div>
                 </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-primary text-dark p-6 shadow-xl">
-                <span className="font-script text-3xl">{t("since")}</span>
+              <div className="absolute -bottom-4 right-2 sm:-bottom-6 sm:-right-6 bg-primary text-dark p-4 sm:p-6 shadow-xl">
+                <span className="font-script text-2xl sm:text-3xl">{t("since")}</span>
                 <br />
-                <span className="font-serif text-4xl font-bold">2019</span>
+                <span className="font-serif text-3xl sm:text-4xl font-bold">2019</span>
               </div>
             </div>
           </ScrollReveal>
 
           <div>
-            <ScrollReveal>
+            <ScrollReveal variant="fadeUp">
               <p className="text-primary font-script text-2xl md:text-3xl mb-3">
                 {t("aLegacyOf")}
               </p>
@@ -75,19 +75,19 @@ export default function AboutStory() {
               </h2>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.1}>
+            <ScrollReveal variant="fadeUp" delay={0.1}>
               <p className="text-dark/60 leading-relaxed mb-6">
                 {t("storyOne")}
               </p>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.2}>
+            <ScrollReveal variant="fadeUp" delay={0.2}>
               <p className="text-dark/60 leading-relaxed mb-6">
                 {t("storyTwo")}
               </p>
             </ScrollReveal>
 
-            <ScrollReveal delay={0.4}>
+            <ScrollReveal variant="fadeUp" delay={0.4}>
               <div className="grid grid-cols-2 gap-8 pt-8 border-t border-dark/10">
                 {stats.map((stat) => (
                   <div key={stat.label}>
