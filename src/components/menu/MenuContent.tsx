@@ -72,7 +72,7 @@ export default function MenuContent() {
   const categoryHighlightsByIndex: Partial<Record<number, CategoryHighlight>> =
     {
       0: {
-        image: "/images/background/bg-Breakfast.webp",
+        image: "/images/background/bg-breakfast.webp",
         eyebrow: t("breakfastEyebrow"),
         title: t("breakfastTitle"),
         description: t("breakfastDescription"),
@@ -84,13 +84,13 @@ export default function MenuContent() {
         description: t("bakeryDescription"),
       },
       1: {
-        image: "/images/background/bg-Pastries.webp",
+        image: "/images/background/bg-pastries.webp",
         eyebrow: t("pastriesEyebrow"),
         title: t("pastriesTitle"),
         description: t("pastriesDescription"),
       },
       6: {
-        image: "/images/background/bg-Juices.webp",
+        image: "/images/background/bg-juices.webp",
         eyebrow: t("juicesEyebrow"),
         title: t("juicesTitle"),
         description: t("juicesDescription"),
@@ -121,7 +121,7 @@ export default function MenuContent() {
 
   const menuImages = Array.from(
     { length: 10 },
-    (_, i) => `/menu/Menu_page-${String(i + 1).padStart(4, "0")}.webp`,
+    (_, i) => `/menu/menu_page-${String(i + 1).padStart(4, "0")}.webp`,
   );
 
   const totalPages = menuImages.length;
