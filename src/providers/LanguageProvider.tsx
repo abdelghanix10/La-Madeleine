@@ -197,6 +197,22 @@ export const translations = {
     // Content
     searchQuestions: "Search questions...",
     noQuestionsFound: "No questions found",
+
+    // Cookie Consent
+    cookieConsentTitle: "We Value Your Privacy",
+    cookieConsentMessage:
+      "We use cookies to enhance your browsing experience. By continuing to use our site, you agree to our",
+    accept: "Accept All",
+    decline: "Decline",
+    and: "and",
+
+    // Privacy Policy
+    privacyPolicyTitle: "Privacy Policy",
+    privacyPolicyEyebrow: "Legal Information",
+
+    // Cookie Policy
+    cookiePolicyTitle: "Cookie Policy",
+    cookiePolicyEyebrow: "Legal Information",
   },
 
   fr: {
@@ -388,6 +404,22 @@ export const translations = {
     // Content
     searchQuestions: "Rechercher des questions...",
     noQuestionsFound: "Aucune question trouvée",
+
+    // Cookie Consent
+    cookieConsentTitle: "Nous Valorisons Votre Vie Privée",
+    cookieConsentMessage:
+      "Nous utilisons des cookies pour améliorer votre expérience de navigation. En continuant à utiliser notre site, vous acceptez notre",
+    accept: "Tout Accepter",
+    decline: "Refuser",
+    and: "et",
+
+    // Privacy Policy
+    privacyPolicyTitle: "Politique de confidentialité",
+    privacyPolicyEyebrow: "Informations légales",
+
+    // Cookie Policy
+    cookiePolicyTitle: "Politique relative aux cookies",
+    cookiePolicyEyebrow: "Informations légales",
   },
 
   ar: {
@@ -578,6 +610,22 @@ export const translations = {
     // Content
     searchQuestions: "البحث في الأسئلة...",
     noQuestionsFound: "لم يتم العثور على أسئلة",
+
+    // Cookie Consent
+    cookieConsentTitle: "نحترم خصوصيتك",
+    cookieConsentMessage:
+      "نستخدم ملفات تعريف الارتباط لتحسين تجربة التصفح الخاصة بك. باستخدام موقعنا، أنت توافق على",
+    accept: "قبول الكل",
+    decline: "رفض",
+    and: "و",
+
+    // Privacy Policy
+    privacyPolicyTitle: "سياسة الخصوصية",
+    privacyPolicyEyebrow: "معلومات قانونية",
+
+    // Cookie Policy
+    cookiePolicyTitle: "سياسة ملفات تعريف الارتباط",
+    cookiePolicyEyebrow: "معلومات قانونية",
   },
 };
 

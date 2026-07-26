@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Inter, Great_Vibes } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import Navbar from "@/components/layout/Navbar";
+import CookieConsent from "@/components/layout/CookieConsent";
 import TransitionProvider from "@/providers/TransitionProvider";
 import { LanguageProvider } from "@/providers/LanguageProvider";
 
@@ -104,6 +105,7 @@ export default function RootLayout({
             <SmoothScroll>
               <Navbar />
               {children}
+              <CookieConsent />
             </SmoothScroll>
           </TransitionProvider>
         </LanguageProvider>

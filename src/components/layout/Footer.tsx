@@ -56,8 +56,8 @@ export default function Footer() {
     help: [
       { label: t("faqFooter"), href: "/faq" },
       { label: t("contactUsFooter"), href: "/contact" },
-      { label: t("cookiePolicy"), href: "#" },
-      { label: t("privacyPolicy"), href: "#" },
+      { label: t("cookiePolicy"), href: "/cookie-policy" },
+      { label: t("privacyPolicy"), href: "/privacy-policy" },
     ],
   };
 
