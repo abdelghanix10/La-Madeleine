@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://lamadeleine.com",
+    url: "https://lamadeleine.ma",
     siteName: "La Boulangerie La Madeleine",
     title: "La Boulangerie La Madeleine — Artisan Bakery & Coffee House",
     description:
@@ -97,7 +97,7 @@ export default function RootLayout({
       className={`${cormorant.variable} ${inter.variable} ${greatVibes.variable}`}
     >
       <head>
-        <link rel="canonical" href="https://lamadeleine.com" />
+        <link rel="canonical" href="https://lamadeleine.ma" />
       </head>
       <body className="min-h-screen bg-background text-text font-sans antialiased">
         <LanguageProvider>

@@ -423,7 +423,7 @@ export default function Navbar() {
 
             {/* Content container */}
             <motion.div
-              className="relative z-10 w-full h-full flex flex-col justify-center px-8"
+              className="relative z-10 w-full h-full flex flex-col justify-evenly pt-8 px-8"
               initial={{ clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)" }}
               animate={{
                 clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
@@ -495,7 +495,7 @@ export default function Navbar() {
 
               {/* Bottom info */}
               <motion.div
-                className="absolute bottom-10 left-8 right-8 flex justify-between items-end gap-2"
+                className="flex justify-between items-end gap-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}

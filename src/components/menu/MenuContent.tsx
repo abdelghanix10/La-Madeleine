@@ -27,9 +27,11 @@ const ALL_CATEGORY_KEY = "__all__";
 function MenuHighlight({
   categoryLabel,
   highlight,
+  priority = false,
 }: {
   categoryLabel: string;
   highlight: CategoryHighlight;
+  priority?: boolean;
 }) {
   return (
     <motion.div
@@ -45,8 +47,10 @@ function MenuHighlight({
           src={highlight.image}
           alt={`${categoryLabel} background`}
           fill
+          priority={priority}
           className="object-cover"
-          sizes="(max-width: 768px) 100vw, 80vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
+          quality={60}
         />
         <div className="absolute inset-0 bg-linear-to-r from-dark/75 via-dark/40 to-dark/15" />
         <div className="absolute inset-0 flex items-center">
@@ -344,6 +348,7 @@ export default function MenuContent() {
             <MenuHighlight
               categoryLabel={selectedCategoryLabel}
               highlight={selectedCategoryHighlight}
+              priority
             />
           )}
         </AnimatePresence>
@@ -366,6 +371,7 @@ export default function MenuContent() {
                         <MenuHighlight
                           categoryLabel={category}
                           highlight={categoryHighlightsByIndex[index]}
+                          priority={index === 0}
                         />
                       )}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
@@ -559,6 +565,7 @@ export default function MenuContent() {
                       className="max-w-full max-h-[65vh] w-auto h-auto object-contain shadow-[0_10px_40px_rgba(0,0,0,0.15)] pointer-events-none"
                       draggable={false}
                       priority
+                      quality={85}
                     />
                   </div>
                 </div>
