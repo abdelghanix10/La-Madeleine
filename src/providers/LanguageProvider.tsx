@@ -213,6 +213,15 @@ export const translations = {
     // Cookie Policy
     cookiePolicyTitle: "Cookie Policy",
     cookiePolicyEyebrow: "Legal Information",
+
+    // 404
+    notFoundEyebrow: "Error 404",
+    notFoundTitle: "Recipe Not Found",
+    notFoundDescription:
+      "Oops! The page or delicacy you are looking for seems to have been eaten or moved to another oven.",
+    notFoundBackHome: "Back to Home",
+    notFoundExploreMenu: "Explore Our Menu",
+    notFoundQuickLinks: "Or visit one of our popular pages:",
   },
 
   fr: {
@@ -420,6 +429,15 @@ export const translations = {
     // Cookie Policy
     cookiePolicyTitle: "Politique relative aux cookies",
     cookiePolicyEyebrow: "Informations légales",
+
+    // 404
+    notFoundEyebrow: "Erreur 404",
+    notFoundTitle: "Recette Introuvable",
+    notFoundDescription:
+      "Oups ! La page ou la gourmandise que vous cherchez semble avoir été dégustée ou déplacée vers un autre four.",
+    notFoundBackHome: "Retour à l'Accueil",
+    notFoundExploreMenu: "Découvrir Notre Carte",
+    notFoundQuickLinks: "Ou visitez l'une de nos pages populaires :",
   },
 
   ar: {
@@ -626,6 +644,15 @@ export const translations = {
     // Cookie Policy
     cookiePolicyTitle: "سياسة ملفات تعريف الارتباط",
     cookiePolicyEyebrow: "معلومات قانونية",
+
+    // 404
+    notFoundEyebrow: "خطأ 404",
+    notFoundTitle: "الوصفة غير موجودة",
+    notFoundDescription:
+      "عذراً! يبدو أن الصفحة أو الحلوى التي تبحث عنها قد أُكلت أو نُقلت إلى فرن آخر.",
+    notFoundBackHome: "العودة إلى الرئيسية",
+    notFoundExploreMenu: "استكشف قائمتنا",
+    notFoundQuickLinks: "أو قم بزيارة إحدى صفحة من صفحاتنا الشائعة:",
   },
 };
 
