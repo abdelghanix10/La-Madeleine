@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import {
   MapPin,
   Phone,
@@ -63,6 +63,32 @@ export default function Navbar() {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const { language, setLanguage, data, t, dir } = useLanguage();
   const hours = data.siteConfig.hours[0];
+
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = lastScrollY.current;
+    lastScrollY.current = latest;
+
+    if (mobileOpen) {
+      setHidden(false);
+      return;
+    }
+
+    if (latest < 40) {
+      setHidden(false);
+      return;
+    }
+
+    const diff = latest - previous;
+    if (diff > 8) {
+      setHidden(true);
+    } else if (diff < -8) {
+      setHidden(false);
+    }
+  });
 
   const mainNavLinks = [
     { href: "/", label: t("home"), icon: Home },
@@ -185,12 +211,21 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Styled divider */}
-      <hr className="border-t-2 border-dark/10 dark:border-dark/20 bg-transparent" />
+      {/* Styled divider (Desktop only) */}
+      <hr className="hidden lg:block border-t-2 border-dark/10 dark:border-dark/20 bg-transparent" />
 
-      {/* Sticky nav row */}
-      <motion.div className="sticky top-0 left-0 right-0 z-50">
-        <nav className="transition-all duration-500 border-b bg-background border-dark/10">
+      {/* Fixed on mobile, Sticky on desktop nav row with smart scroll hide/show */}
+      <motion.div
+        className="fixed lg:sticky top-0 left-0 right-0 z-40"
+        animate={{
+          y: hidden && !mobileOpen ? "-100%" : "0%",
+        }}
+        transition={{
+          duration: 0.32,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+      >
+        <nav className="transition-all duration-500 border-b bg-background/95 backdrop-blur-md border-dark/10 shadow-xs">
           <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
             {/* Mobile: logo left */}
             <Link
@@ -281,6 +316,9 @@ export default function Navbar() {
           </div>
         </nav>
       </motion.div>
+
+      {/* Spacer placeholder for fixed mobile header so content starts below navbar */}
+      <div className="h-16 lg:hidden" aria-hidden="true" />
 
       {/* Redesigned Mobile Menu Modal / Sheet matching reference image */}
       <AnimatePresence>
