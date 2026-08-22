@@ -5,7 +5,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Phone } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Home,
+  UtensilsCrossed,
+  ShoppingBag,
+  Sparkles,
+  MessageSquare,
+  HelpCircle,
+  X,
+  Compass,
+  ArrowRight,
+  Sparkle,
+} from "lucide-react";
+import { useTransitionRouter } from "next-transition-router";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 function MenuIcon() {
@@ -43,20 +57,26 @@ function LocationIcon() {
 
 export default function Navbar() {
   const pathname = usePathname();
+  const transitionRouter = useTransitionRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const { language, setLanguage, data, t } = useLanguage();
+  const { language, setLanguage, data, t, dir } = useLanguage();
   const hours = data.siteConfig.hours[0];
 
-  const dynamicNavLinks = [
-    { href: "/", label: t("home") },
-    { href: "/menu", label: t("menu") },
-    { href: "/about", label: t("about") },
-    { href: "/shop", label: t("shop") },
-    { href: "/contact", label: t("contact") },
-    { href: "/faq", label: t("faq") },
+  const mainNavLinks = [
+    { href: "/", label: t("home"), icon: Home },
+    { href: "/menu", label: t("menu"), icon: UtensilsCrossed },
+    { href: "/shop", label: t("shop"), icon: ShoppingBag },
+    { href: "/about", label: t("about"), icon: Sparkles },
   ];
+
+  const infoNavLinks = [
+    { href: "/contact", label: t("contact"), icon: MessageSquare },
+    { href: "/faq", label: t("faq"), icon: HelpCircle },
+  ];
+
+  const dynamicNavLinks = [...mainNavLinks, ...infoNavLinks];
 
   useEffect(() => {
     if (mobileOpen) {
@@ -69,21 +89,33 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
-  const closeMobile = useCallback(() => setMobileOpen(false), []);
+  const closeMobile = useCallback(() => {
+    setMobileOpen(false);
+  }, []);
 
   const handleMenuToggle = useCallback(() => {
     if (isAnimating) return;
     setIsAnimating(true);
     setMobileOpen((prev) => !prev);
+    setTimeout(() => setIsAnimating(false), 300);
   }, [isAnimating]);
 
-  const handleAnimationComplete = useCallback(() => {
-    setIsAnimating(false);
-  }, []);
+  const handleNavigate = useCallback(
+    (href: string) => {
+      if (pathname === href) {
+        closeMobile();
+        return;
+      }
+      closeMobile();
+      // Trigger smooth transition through next-transition-router
+      transitionRouter.push(href);
+    },
+    [pathname, closeMobile, transitionRouter],
+  );
 
   return (
     <>
-      {/* Top bar */}
+      {/* Top bar — Desktop */}
       <div className="bg-dark text-cream/80 text-xs tracking-widest uppercase hidden lg:block">
         <div className="max-w-7xl mx-auto px-6 py-3.5 flex justify-between items-center">
           <div className="flex items-center gap-6">
@@ -153,7 +185,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* styled divider */}
+      {/* Styled divider */}
       <hr className="border-t-2 border-dark/10 dark:border-dark/20 bg-transparent" />
 
       {/* Sticky nav row */}
@@ -163,6 +195,9 @@ export default function Navbar() {
             {/* Mobile: logo left */}
             <Link
               href="/"
+              onClick={() => {
+                if (mobileOpen) closeMobile();
+              }}
               className="lg:hidden shrink-0 flex items-center gap-3"
             >
               <Image
@@ -178,12 +213,12 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop: left icon */}
-            <a
+            <Link
               href="/menu"
               className="hidden lg:flex items-center justify-center w-12 h-12 rounded-full bg-cream/60 text-dark hover:bg-cream transition-colors"
             >
               <MenuIcon />
-            </a>
+            </Link>
 
             {/* Center nav links (desktop only) */}
             <div className="hidden lg:flex items-center gap-10">
@@ -193,7 +228,7 @@ export default function Navbar() {
                   href={link.href}
                   className={`nav-link text-sm tracking-[0.2em] uppercase transition-colors duration-300 ${
                     pathname === link.href
-                      ? "text-primary nav-link active"
+                      ? "text-primary nav-link active font-medium"
                       : "text-text hover:text-primary"
                   }`}
                 >
@@ -215,7 +250,7 @@ export default function Navbar() {
             {/* Mobile menu trigger */}
             <button
               ref={menuButtonRef}
-              className="lg:hidden relative z-50 p-2 flex items-center justify-center w-12 h-12"
+              className="lg:hidden relative z-50 p-2 flex items-center justify-center w-12 h-12 rounded-full hover:bg-dark/5 active:scale-95 transition-all text-dark cursor-pointer"
               onClick={handleMenuToggle}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
@@ -228,37 +263,7 @@ export default function Navbar() {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 32 29.5"
-                      className="w-7 h-7 fill-current cursor-pointer hover:text-primary transition-colors duration-300"
-                    >
-                      <path
-                        d="M28.7,6.4c-0.1,0.1-0.1,0.2-0.2,0.2c0.1,0.3,0.4,0.5,0.5,0.8c-0.2,0.1-0.2,0.4-0.2,0.7
-                        c-1.5,2.1-2.5,4.4-3.9,6.8c1,1.3,2.5,2.2,3.5,3.6c0.8,0.7,1.4,1.5,2.3,2.5c0.5,0.5,1.3,1.1,1.3,1.5c0,0.4-0.5,0.6-0.7,0.8
-                        c0,0.2,0.2,0.3,0.3,0.4c-0.1,0.3-0.3,0.4-0.3,0.7c-1,0.1-1.3,1.1-2,1.5c-0.3,0.2-0.7,0.6-1,0.9c-0.1,0.1-0.2,0.3-0.3,0.4
-                        c-0.3,0.3-0.7,0.5-0.9,0.9c0,0.2,0.2,0.2,0.2,0.3c-0.1,0.2-0.2,0.2-0.2,0.5c-0.4,0.3-1.1,0.4-1.5,0c-1.9-0.3-3.6-0.8-5.3-1.3
-                        c-0.1-0.3-0.2-0.7,0-0.8c-0.6-0.4-1.1-1-1.9-1.3c-0.8-0.9-1.5-1.9-2.2-2.9c-1,0.8-1.6,2-2.7,2.7c-0.4,0.8-1.1,1.2-1.6,1.8
-                        c-0.1,0-0.1,0.1-0.2,0c-0.3,0.8-1.3,1.5-2.3,1.7c-0.7,0.1-1.3-0.2-1.8-0.4c-2.3-1.7-4.8-3.1-6.8-5.1C0.2,22.4,1,22,1.4,21.4
-                        c0.1-0.2,0.2-0.3,0.4-0.5c0.7-0.8,1.3-2,2.2-2.6c0.8-1.5,2.1-2.5,3-3.9c-0.5-0.2-0.9-0.4-1.3-0.7c-0.3-0.2-0.6-0.4-0.9-0.6
-                        c-0.3-0.2-0.6-0.6-0.9-0.9c-0.1-0.1-0.2-0.2-0.3-0.3c-0.5-0.4-1-0.8-1.4-1.3c0,0,0-0.2,0-0.2c-0.1-0.1-0.3-0.2-0.5-0.3
-                        C1.4,9.7,1.1,9,0.6,8.7C0.3,8.4-0.2,8.2,0,7.4c0.7-0.5,1.2-1.2,1.8-1.9c0.3-0.3,0.8-0.6,1.2-1c0.5-0.5,0.9-0.9,1.5-1.4
-                        c0.1,0,0.2,0.1,0.2-0.1c0.2,0.2,0.6,0,0.9,0c1.1,0,3-0.2,4.1,0c0.3,0.1,0.7,0.2,0.7,0.7c1.5,1.2,3,2.4,4.3,3.8
-                        c1.7-1.5,2.6-3.8,4.6-5.1c0.3-0.5,0.9-0.9,1.5-1.4c0.7-0.5,1-0.9,2-0.5c0.2,0.2,0.4,0.3,0.6,0.5c0.2,0,0.2-0.1,0.3,0
-                        c0.3,0.4,0.8,0.6,1.2,0.9c0.9,0.7,1.6,1.6,2.7,2.1C27.8,4.8,28.4,5.6,28.7,6.4z M20.8,17.9c-0.6-0.7-1.5-1.2-2.1-1.8
-                        c-0.2-0.2-0.3-0.4-0.4-0.7c-0.2-0.2-0.4-0.4-0.5-0.6c-0.3-0.6-0.2-1.2,0.3-1.5c0.4-1.1,1.1-1.8,1.6-2.7c1-0.8,1.7-2,2.6-2.9
-                        c0.3-0.8,0.7-1.4,1.3-2c0.7-1-0.1-1.3-0.6-2.3c-0.5-0.8-0.7-1.3-1.2-1.6c-1,0.6-1.5,1.8-2.5,2.2c-0.1,0.1,0,0.2-0.1,0.3
-                        c-1.2,1-1.9,2.6-3.1,3.8c-0.2,0.1-0.4,0.2-0.5,0.3c-0.2,0.1-0.3,0.4-0.5,0.6c-0.2,0.2-0.5,0.4-0.6,0.6c-0.4,0.5-0.6,1.1-1.5,0.9
-                        c-0.1-0.1-0.2-0.2-0.4-0.2c-0.3-0.5-0.7-0.7-1.1-1c-0.2-0.1-0.4-0.2-0.6-0.4c-0.4-0.3-0.7-0.6-1-0.8C9.8,8.1,9.6,8.1,9.5,8
-                        C9.3,7.9,9.2,7.6,9,7.5C8.8,7.3,8.5,7.2,8.4,7.1C8.3,7,8.3,6.9,8.2,6.8C8.2,6.7,8,6.7,7.9,6.6C7.6,6.3,7.3,6.1,7,5.8
-                        C6.3,5.3,5.7,5,5,4.7c-1,1-2.3,1.8-2.9,3.1c1,1.2,2.2,2.3,3.2,3.5c0.9,0.5,1.5,1.6,2.6,1.8c0.3,0,0.5,0,0.8,0
-                        c0.3,0.1,0.4,0.4,0.8,0.6c-0.4,1.1-1.3,1.8-2,2.6c-0.1,0.1-0.1,0.3-0.2,0.5c-0.3,0.3-0.6,0.6-0.9,0.9c-1.1,1.9-2.7,3.2-3.8,5
-                        c0.6,0.8,1.8,1.2,2.3,2.1c0.3,0.1,0.6,0.2,0.8,0.3c1.4-1.3,3.1-3.2,4.5-4.5c0.2-0.2,0.5-0.4,0.7-0.6c0.2-0.2,0.2-0.4,0.4-0.6
-                        c0,0,0.2,0,0.2,0c0.2-0.1,0.2-0.4,0.4-0.6c0.1-0.1,0.4-0.3,0.5-0.4c0.6-0.6,1.1-0.5,2,0c0.8,0.4,1.2,1.2,1.9,1.6
-                        c0.4,0.9,1.1,1.5,1.6,2.3c0.3,0.5,0.5,0.9,0.9,1.3c0.2,0.2,0.3,0.5,0.5,0.8c0.5,0.6,1.3,0.8,1.8,1.3c1.1-1.2,2.5-2.1,3.4-3.6
-                        C23.5,20.7,22.1,19.3,20.8,17.9z"
-                      />
-                    </svg>
+                    <X className="w-7 h-7 text-dark" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -268,66 +273,7 @@ export default function Navbar() {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 32 26.5"
-                      className="w-7 h-7 fill-current text-dark cursor-pointer hover:text-primary transition-colors duration-300"
-                    >
-                      <path
-                        d="M31.3,0.8c1.2,1.4-0.4,3.5,0.1,5.5c-0.6,0.2-1,0.5-1.9,0.4c-0.2,0-0.7,0-1-0.1c0,0-0.1-0.1-0.1-0.1
-                        c-0.4-0.1-0.9,0.1-1.4,0.1c-0.7,0-1.4-0.3-2.2-0.4c-0.3,0-0.7,0.1-1,0.1c-0.4,0-0.9-0.2-1.3-0.2c-0.5,0-1,0-1.5,0
-                        C16.1,5.8,10.2,6.2,5.8,6.2c-0.7,0-1.4,0-2.2,0.1C2,6.4,0.9,6.3,0,5.7C0.2,4.6,0.5,3,0,1.6c0.4-0.4,1-0.5,1.8-0.7
-                        c0.4-0.1,0.9-0.3,1.5-0.3c0.2,0,0.4,0.1,0.6,0.1c0.8,0,1.9-0.2,3-0.3c1.1,0,3,0.2,3.9-0.1c1.8,0.2,3.7-0.1,5.7,0.1
-                        c0.5,0,1,0.1,1.5,0.1c0.6,0,1.1-0.2,1.7-0.1c0.5,0,1,0.3,1.6,0.4c1.3,0.2,2.6,0.1,3.8,0.4C26.8,0.7,29.4,1,31.3,0.8z M14,2.1
-                        c-0.4,0.8-1.1,1.5-1.4,2.4c0.4-0.1,0.5,0.1,0.8,0.1c0.4-0.9,1.1-1.5,1.4-2.5C14.6,2.1,14.3,2.1,14,2.1z M11,2.2
-                        C10.2,2.8,9.5,3.7,9,4.6c0.4,0,0.6,0.1,1.1,0.1c0.5-0.1,0.2-0.8,0.8-0.8c0.1-0.2-0.3-0.1-0.2-0.3c0.6-0.3,0.6-1,0.9-1.4
-                        C11.4,2.2,11.2,2.2,11,2.2z M15.6,4.4c0.3,0.2,0.7,0,0.9-0.1c-0.2-0.6,0.9-1,0.7-1.6c0.2-0.1,0.6-0.4,0.3-0.5c-0.1,0.2-0.3,0-0.5,0
-                        C16.5,3,16.3,3.8,15.6,4.4z M5.5,2.6c0.3,0,0.3-0.1,0.3-0.3C5.5,2.3,5.4,2.4,5.5,2.6z M19.9,2.3c-0.4,0.8-1.1,1.2-1.1,2
-                        c0.2,0,0.5,0.1,0.8,0.1c0.2-0.5,0.7-1.2,0.3-1.7c0.2-0.1,0.3-0.2,0.4-0.4C20.2,2.3,20.1,2.3,19.9,2.3z M2.8,3c0.4,0,0.5-0.2,0.4-0.5
-                        C2.7,2.4,2.6,2.7,2.8,3z M28.5,2.7c0.1,0,0.5,0.1,0.5-0.1C28.8,2.5,28.6,2.5,28.5,2.7z M22.3,3.5C22.8,3.4,22.9,3,23,2.6
-                        C22.3,2.5,22.7,3.3,22.3,3.5z M24.8,4.2c0.6,0,0.6-0.5,0.7-0.8c0,0,0.2,0,0.2,0c0.1-0.2-0.2-0.6,0.2-0.6c0-0.1-0.1-0.2-0.2-0.2
-                        C25.2,3,25,3.6,24.8,4.2z M4,4.6c0.7-0.2,0.6-1,1.3-1.2c-0.1-0.3,0.3-0.5,0-0.7C4.9,3.3,4.5,3.9,4,4.6z M7.6,3.2
-                        c0.1,0,0.2-0.3,0-0.4C7.7,3,7.3,3.2,7.6,3.2z M22.3,3.6C22,3.9,22.5,4,22.3,3.6L22.3,3.6z M6.6,4.6c-0.1-0.1,0.3-0.2,0-0.3
-                        C6.6,4.3,6.3,4.5,6.6,4.6z M22.3,4.3c-0.1,0-0.1-0.1-0.3-0.1C21.8,4.4,22.3,4.5,22.3,4.3z"
-                      />
-                      <path
-                        d="M31,9.6c1.1,0.3,0.5,1.4,0.5,2c0,0.2,0.2,0.4,0.2,0.7c0,0.4-0.1,0.9-0.1,1.4c0,0.7,0.2,1.2,0,1.8
-                        c-0.9,0.4-2,0.2-3.1,0.2c-0.3,0-0.5,0.1-0.9,0.1C26.2,16,24.4,15.7,23,16c-2.2-0.3-4.5,0.1-6.7-0.1c-0.5,0-1-0.2-1.9-0.2
-                        c-0.6,0-1.2-0.2-1.7-0.1c-0.2,0-0.4,0-0.5,0c0,0-0.2,0.1-0.2,0.1c-0.2,0-0.5-0.2-0.7-0.2c-0.3,0-0.6,0-1,0c-0.3,0-0.5-0.1-0.7-0.1
-                        c-0.3,0-0.6,0.2-1,0.1c-0.3,0-0.6-0.1-0.9-0.1c-1.1,0-2.4,0.1-3.7,0.1c-0.8,0-1.6,0-2.3,0.2c-0.7-0.2-1.1-0.6-1.6-0.9
-                        c0.3-0.7-0.1-1.8,0.3-2.3c0.1-0.3-0.2-0.2-0.2-0.4c0.6-0.6,0.3-1.2,0.4-2c0.5-0.2,1-0.4,1.2-0.6c2.2-0.6,4.7-0.2,7.1-0.2
-                        c1.3,0,2.4-0.2,3.5-0.1C13,9.3,14,9.5,15.1,9.6c0.8,0,1.6,0,2.3,0c1.2,0,2.8,0,4.5,0.1c1.3,0.1,2.6,0.2,3.9,0.1c0.3,0,0.6-0.1,1-0.1
-                        C28.2,9.6,29.7,9.8,31,9.6z M4.2,11c0-0.1,0-0.2-0.2-0.1c-1.4,0.3-1.4,1.2-1.2,2.3C3.3,12.4,3.6,11.6,4.2,11z M4.4,14
-                        c0.6,0,1.2,0,1.5-0.1c-0.2,0-0.3-0.1-0.3-0.1C5.8,13.5,5.7,13,6.3,13c0.1-0.9,1-1.3,1.2-2.2c-0.3,0-0.4,0.2-0.6,0
-                        C6.1,11.7,5.2,12.9,4.4,14z M12.7,10.8c0,0.1-0.2,0.1-0.3,0.1c-0.3,0.6-1,0.9-1.2,1.6c-0.3,0.2-0.9,0.9-0.1,1c0.7-0.9,1.5-1.7,2-2.7
-                        C12.9,10.9,12.8,10.8,12.7,10.8z M18.4,11.1c-0.6,1-1.8,1.9-1.7,3.1c0.3,0,0.4,0.1,0.7,0.1c0-0.3-0.6-0.2-0.4-0.5
-                        c0.2-0.1,0.4,0,0.6-0.1c0.2-1.1,0.8-1.6,1.4-2.5C18.9,11.1,18.7,11.1,18.4,11.1z M25.8,11.2c-0.1,0.5-0.6,1.1-0.7,1.7
-                        c-0.2,0.7-0.5,1.1-0.5,1.5c0.4-0.1,0.4,0,0.9-0.1c0.4-1,1.1-2,1.4-3.2C26.3,11.1,26.2,11.3,25.8,11.2z M15.4,11.5
-                        c0-0.1,0.2-0.2,0-0.2C15.4,11.4,15.2,11.5,15.4,11.5z M13.9,13.3c0.3,0.1,0.2-0.2,0.3-0.2C14,13,13.9,13.1,13.9,13.3z M22.2,13.6
-                        c0.3,0.1,0.3-0.3,0.1-0.3C22.2,13.4,22.1,13.4,22.2,13.6z M13.8,14.1c-0.1-0.3,0.3-0.3,0.3-0.6c-0.1,0-0.1-0.1-0.2-0.1
-                        C13.8,13.5,13.3,13.9,13.8,14.1z M8.2,13.9c0-0.1,0.3,0,0.3-0.1c-0.2,0-0.1-0.2-0.3-0.2C8.3,13.8,7.9,13.9,8.2,13.9z M28.2,14.2
-                        c0.3,0,0.5,0,0.7-0.1c-0.1-0.2,0.2-0.6-0.2-0.5C28.6,13.9,28.3,14,28.2,14.2z"
-                      />
-                      <path
-                        d="M11.5,19c4.4,0,9.7,0.3,14,0.8c1.9-0.1,3.3-0.2,5.2-0.3c0.3,0.1,0.5,0.4,0.7,0.6c-0.7,1.9,0.2,4-0.1,5.7
-                        c-0.5,0.1-0.9,0.2-1.2,0.4c-0.5,0-1-0.2-1.5-0.2c-0.5,0-1,0.2-1.6,0.2c-1.2,0.1-2.7-0.1-4.2,0.1c-0.4,0-0.9,0-1.3,0.1
-                        c0,0-0.2,0.1-0.2,0.1c-3.4,0.1-7.4-0.3-10.8-0.4c-1.2,0-2.5,0-3.5,0.1c-0.8,0.1-1.6,0-2.3,0c-0.3,0-0.6,0.2-1,0.2
-                        c-0.4,0-0.8-0.1-1.2-0.1c-0.5,0-0.7,0.3-1.2,0.2C1,26.5,0.7,26,0.2,25.9c-0.1-2.1,0.4-3.7,0.4-6c0.4-0.1,0.6-0.4,1.2-0.4
-                        c0.4-0.3,0.8-0.7,1.5-0.8c0.5-0.1,1,0.1,1.6,0.1c1.2,0,2.5-0.2,3.5,0c0.4-0.3,1.5-0.6,2.1-0.4C11.2,18.4,11.1,18.8,11.5,19z
-                        M7.1,20.1c-1.3,0.9-2.3,2.2-3,3.6c0.2,0.1,0.1,0.3,0.2,0.4c0,0.2-0.5,0.1-0.4,0.4c0.3,0.1,1.2,0.1,1.5,0c0-0.2-0.2-0.2-0.5-0.2
-                        c0.1-0.4-0.6-0.2-0.4-0.6c0.2-0.3,0.9-0.3,1.3-0.4c-0.1-0.8,1.1-1.3,1.2-2.2c0.5-0.1,0.7-0.6,0.5-0.9C7.2,20.2,7.1,20.2,7.1,20.1z
-                        M11.8,20.3c-0.5,0.6-0.8,1.3-1.4,1.7c0,0.6-0.2,1-0.4,1.4c0.5,0,0.9,0,1.4,0c0.5-1.1,1.3-2,1.8-3.1C12.6,20.4,12.3,20.3,11.8,20.3z
-                        M3.2,20.8c0.3,0,0.4-0.1,0.4-0.3c-0.1,0-0.3,0-0.4,0C3.2,20.6,3.2,20.7,3.2,20.8z M13.9,23.5c0.7,0.1,1.2-0.1,1.5-0.3
-                        c0.4-1.1,0.7-1.8,1.4-2.6c-0.4,0-0.8,0-1.1-0.1C15.2,21.5,14.4,22.4,13.9,23.5z M18,23.2c0.6,0.1,0.8-0.2,1.1-0.3
-                        c-0.1-0.7,0.8-1.4,1-2.2C18.4,20.9,18.6,22.3,18,23.2z M21.8,22.8c1.5,0,1.7-1,1.8-1.7C22,20.7,22.1,22.1,21.8,22.8z M26.4,21.1
-                        c-0.4,0.2-0.2,0.6-0.3,0.9c0,0.1-0.3,0.2-0.3,0.3c-0.2,0.4-0.2,0.4-0.3,0.7c-0.1,0.2-0.6,0.7-0.2,0.9c0.3-0.6,0.8-0.7,0.9-1.5
-                        c0.6-0.3,0.8-0.8,1.1-1.2C26.8,21.2,26.8,21,26.4,21.1z M27.1,24.5c0.6,0,0.8-0.1,1.3,0c0.6-0.3,0.1-0.5,0.1-0.7c0,0,0.2,0,0.2-0.1
-                        c0-0.1-0.1-0.5-0.2-0.6C28.1,23.6,27.7,24.1,27.1,24.5z M24.8,24.3c0,0,0-0.1,0.1-0.1c0-0.1,0-0.2-0.2-0.1
-                        C24.7,24.1,24.7,24.3,24.8,24.3z M20.2,24.8c0.7,0,1.4,0.2,1.8-0.1c-0.2,0,0-0.4-0.1-0.5C20.9,24.1,20.5,24.4,20.2,24.8z M25.2,24.5
-                        c-0.2-0.1-0.3-0.2-0.6-0.1C24.5,24.8,25,24.7,25.2,24.5z M18.7,24.5c-0.5,0.1-1.4,0-1.6,0.4c0.9-0.1,2,0,3-0.1
-                        C19.5,24.7,19.1,24.6,18.7,24.5z"
-                      />
-                    </svg>
+                    <MenuIcon />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -336,185 +282,238 @@ export default function Navbar() {
         </nav>
       </motion.div>
 
-      {/* Mobile menu overlay — Menu Awwards style */}
+      {/* Redesigned Mobile Menu Modal / Sheet matching reference image */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            className="fixed inset-0 z-40 flex flex-col"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 1 }}
-          >
-            {/* Staggered color backgrounds — pastry theme */}
+          <div className="lg:hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5">
+            {/* Backdrop */}
             <motion.div
-              className="absolute inset-0 bg-cream"
-              initial={{ scaleY: 0 }}
-              animate={{ scaleY: 1 }}
-              exit={{
-                scaleY: 0,
-                transition: {
-                  duration: 0.75,
-                  delay: 0.3,
-                  ease: [0.76, 0, 0.24, 1],
-                },
-              }}
-              transition={{ duration: 0.75, ease: [0.76, 0, 0.24, 1] }}
-              style={{ transformOrigin: "top" }}
-              onAnimationComplete={
-                mobileOpen ? handleAnimationComplete : undefined
-              }
-            />
-            <motion.div
-              className="absolute inset-0 bg-accent"
-              initial={{ scaleY: 0 }}
-              animate={{ scaleY: 1 }}
-              exit={{
-                scaleY: 0,
-                transition: {
-                  duration: 0.75,
-                  delay: 0.2,
-                  ease: [0.76, 0, 0.24, 1],
-                },
-              }}
-              transition={{
-                duration: 0.75,
-                delay: 0.1,
-                ease: [0.76, 0, 0.24, 1],
-              }}
-              style={{ transformOrigin: "top" }}
-            />
-            <motion.div
-              className="absolute inset-0 bg-primary"
-              initial={{ scaleY: 0 }}
-              animate={{ scaleY: 1 }}
-              exit={{
-                scaleY: 0,
-                transition: {
-                  duration: 0.75,
-                  delay: 0.1,
-                  ease: [0.76, 0, 0.24, 1],
-                },
-              }}
-              transition={{
-                duration: 0.75,
-                delay: 0.2,
-                ease: [0.76, 0, 0.24, 1],
-              }}
-              style={{ transformOrigin: "top" }}
-            />
-            <motion.div
-              className="absolute inset-0 bg-dark"
-              initial={{ scaleY: 0 }}
-              animate={{ scaleY: 1 }}
-              exit={{
-                scaleY: 0,
-                transition: {
-                  duration: 0.75,
-                  delay: 0,
-                  ease: [0.76, 0, 0.24, 1],
-                },
-              }}
-              transition={{
-                duration: 0.75,
-                delay: 0.3,
-                ease: [0.76, 0, 0.24, 1],
-              }}
-              style={{ transformOrigin: "top" }}
+              className="fixed inset-0 bg-dark/65 backdrop-blur-md"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
+              onClick={closeMobile}
             />
 
-            {/* Content container */}
+            {/* Floating Card Sheet */}
             <motion.div
-              className="relative z-10 w-full h-full flex flex-col justify-evenly pt-8 px-8"
-              initial={{ clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)" }}
-              animate={{
-                clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-              }}
-              exit={{
-                clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
-                transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
-              }}
+              className="relative z-10 w-full max-w-sm max-h-[92dvh] bg-white rounded-[32px] overflow-hidden shadow-2xl flex flex-col border border-cream-dark/60"
+              initial={{ scale: 0.92, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.94, opacity: 0, y: 20 }}
               transition={{
-                duration: 0.75,
-                delay: 0.5,
-                ease: [0.76, 0, 0.24, 1],
+                type: "spring",
+                damping: 26,
+                stiffness: 300,
+                mass: 0.8,
               }}
+              dir={dir}
             >
-              <nav className="flex flex-col gap-6">
-                {dynamicNavLinks.map((link, i) => (
-                  <motion.div
-                    key={link.href}
-                    initial={{ y: "100%", opacity: 0 }}
-                    animate={{ y: "0%", opacity: 1 }}
-                    exit={{
-                      y: "-100%",
-                      opacity: 0,
-                      transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] },
-                    }}
-                    transition={{
-                      delay: 0.85 + i * 0.05,
-                      duration: 0.75,
-                      ease: [0.76, 0, 0.24, 1],
-                    }}
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={closeMobile}
-                      className={`block font-serif text-5xl tracking-wider transition-colors ${
-                        pathname === link.href
-                          ? "text-primary"
-                          : "text-white hover:text-primary-light"
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                ))}
-              </nav>
+              {/* Top Curved Organic Header */}
+              <div className="relative bg-dark text-cream shrink-0 pt-4 px-5 pb-8 overflow-hidden select-none">
+                {/* Header top bar */}
+                <div className="flex items-center justify-between relative z-10">
+                  {/* Brand signature mark on top left */}
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                      <Sparkle size={14} className="fill-current text-primary" />
+                    </div>
+                    <span className="font-serif text-lg tracking-wider text-cream font-light">
+                      la madeleine
+                    </span>
+                  </div>
 
-              {/* Mobile Language Selector */}
-              <div className="flex items-center gap-3 pt-6 border-t border-cream/10 mt-4">
-                <span className="text-cream/50 text-xs uppercase tracking-wider">
-                  {t("language")}:
-                </span>
-                {(["en", "fr", "ar"] as const).map((lang) => (
+                  {/* Close button */}
                   <button
-                    key={lang}
-                    onClick={() => {
-                      setLanguage(lang);
-                      closeMobile();
-                    }}
-                    className={`px-3 py-1 uppercase text-xs font-bold rounded-xs transition-colors cursor-pointer ${
-                      language === lang
-                        ? "bg-primary text-dark"
-                        : "bg-cream/10 text-cream/70 hover:text-cream"
-                    }`}
+                    onClick={closeMobile}
+                    aria-label="Close menu"
+                    className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 active:scale-90 flex items-center justify-center text-cream transition-all cursor-pointer"
                   >
-                    {lang.toUpperCase()}
+                    <X size={17} />
                   </button>
-                ))}
-              </div>
-
-              {/* Bottom info */}
-              <motion.div
-                className="flex justify-between items-end gap-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ delay: 1.3, duration: 0.5 }}
-              >
-                <div className="text-cream/50 text-sm tracking-widest font-sans">
-                  <p>{data.siteConfig.phone}</p>
-                  <p className="mt-1">{data.siteConfig.address}</p>
                 </div>
-                <div className="text-cream/50 text-sm tracking-widest font-sans">
-                  <p>
-                    {hours.day}: {hours.time}
+
+                {/* Profile / Bakery Identity Hero inside curved top */}
+                <div className="mt-3 text-center flex flex-col items-center relative z-10">
+                  <div className="relative w-16 h-16 rounded-full ring-2 ring-primary/60 p-1 bg-cream/10 shadow-lg flex items-center justify-center overflow-hidden">
+                    <Image
+                      src="/images/logo.webp"
+                      alt={data.siteConfig.name}
+                      width={52}
+                      height={52}
+                      className="object-contain"
+                    />
+                  </div>
+                  <h2 className="font-serif text-xl sm:text-2xl tracking-wide text-white mt-2 font-medium">
+                    {data.siteConfig.name.split(" ").slice(0, 2).join(" ")}
+                  </h2>
+                  <p className="text-[11px] text-cream/70 font-sans tracking-wide mt-0.5">
+                    {language === "fr"
+                      ? "L'art de la pâtisserie artisanale"
+                      : language === "ar"
+                        ? "فن المخبوزات والحلويات الفرنسية"
+                        : "Artisanal Bakery & Salon de Thé"}
                   </p>
                 </div>
-              </motion.div>
+
+                {/* Organic Concave Wave Curve at bottom of header */}
+                <div className="absolute -bottom-[1px] left-0 right-0 w-full overflow-hidden leading-none z-0 pointer-events-none">
+                  <svg
+                    viewBox="0 0 375 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-full h-8 text-white fill-current block"
+                    preserveAspectRatio="none"
+                  >
+                    <path d="M0,0 C120,40 255,40 375,0 L375,40 L0,40 Z" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Menu Scrollable Body */}
+              <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
+                {/* General Group */}
+                <div>
+                  <div className="text-[11px] uppercase tracking-wider text-dark/40 font-semibold px-3 mb-1.5 font-sans">
+                    {language === "fr"
+                      ? "Général"
+                      : language === "ar"
+                        ? "الرئيسية"
+                        : "General"}
+                  </div>
+                  <div className="space-y-1">
+                    {mainNavLinks.map((link) => {
+                      const isActive = pathname === link.href;
+                      const Icon = link.icon;
+                      return (
+                        <button
+                          key={link.href}
+                          onClick={() => handleNavigate(link.href)}
+                          className={`w-full flex items-center justify-between px-4 py-2.5 rounded-2xl text-sm transition-all duration-200 cursor-pointer ${
+                            isActive
+                              ? "bg-dark/[0.06] border border-dark/15 text-dark font-semibold shadow-xs"
+                              : "text-dark/80 hover:text-dark hover:bg-dark/[0.03] active:bg-dark/[0.05]"
+                          }`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <Icon
+                              size={18}
+                              className={
+                                isActive ? "text-primary stroke-[2.2]" : "text-dark/60 stroke-[1.8]"
+                              }
+                            />
+                            <span className="font-sans text-[13.5px]">
+                              {link.label}
+                            </span>
+                          </div>
+                          {isActive && (
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <hr className="border-t border-dark/10" />
+
+                {/* Profile / Information Group */}
+                <div>
+                  <div className="text-[11px] uppercase tracking-wider text-dark/40 font-semibold px-3 mb-1.5 font-sans">
+                    {language === "fr"
+                      ? "Informations"
+                      : language === "ar"
+                        ? "معلومات"
+                        : "Information"}
+                  </div>
+                  <div className="space-y-1">
+                    {infoNavLinks.map((link) => {
+                      const isActive = pathname === link.href;
+                      const Icon = link.icon;
+                      return (
+                        <button
+                          key={link.href}
+                          onClick={() => handleNavigate(link.href)}
+                          className={`w-full flex items-center justify-between px-4 py-2.5 rounded-2xl text-sm transition-all duration-200 cursor-pointer ${
+                            isActive
+                              ? "bg-dark/[0.06] border border-dark/15 text-dark font-semibold shadow-xs"
+                              : "text-dark/80 hover:text-dark hover:bg-dark/[0.03] active:bg-dark/[0.05]"
+                          }`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <Icon
+                              size={18}
+                              className={
+                                isActive ? "text-primary stroke-[2.2]" : "text-dark/60 stroke-[1.8]"
+                              }
+                            />
+                            <span className="font-sans text-[13.5px]">
+                              {link.label}
+                            </span>
+                          </div>
+                          {isActive && (
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Language Switcher Row (like Sign Out row in reference image) */}
+                <div className="pt-2">
+                  <div className="flex items-center justify-between px-3 py-2 bg-cream/40 rounded-2xl border border-dark/5">
+                    <span className="text-xs text-dark/60 font-medium uppercase tracking-wider">
+                      {t("language")}
+                    </span>
+                    <div className="flex items-center gap-1 bg-white/80 p-0.5 rounded-xl border border-dark/10">
+                      {(["en", "fr", "ar"] as const).map((lang) => (
+                        <button
+                          key={lang}
+                          onClick={() => setLanguage(lang)}
+                          className={`px-2.5 py-1 text-[11px] font-bold rounded-lg transition-all cursor-pointer ${
+                            language === lang
+                              ? "bg-primary text-dark shadow-xs"
+                              : "text-dark/60 hover:text-dark"
+                          }`}
+                        >
+                          {lang.toUpperCase()}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Action Footer Pills matching reference */}
+              <div className="p-4 bg-cream/20 border-t border-dark/8 flex items-center gap-2.5 shrink-0">
+                {/* Primary Action Button (Olive / Gold Pill) */}
+                <button
+                  onClick={() => handleNavigate("/menu")}
+                  className="flex-1 py-2.5 px-3.5 bg-primary text-dark font-medium text-xs rounded-full flex items-center justify-center gap-1.5 shadow-sm hover:brightness-105 active:scale-98 transition-all cursor-pointer"
+                >
+                  <span>{language === "ar" ? "قائمتنا 🥐" : "Notre Carte 🥐"}</span>
+                  <Sparkle size={13} className="fill-current text-dark" />
+                </button>
+
+                {/* Secondary Action Button (Dark Pill) */}
+                <a
+                  href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 py-2.5 px-3.5 bg-dark text-cream text-xs rounded-full flex items-center justify-center gap-1.5 hover:bg-dark-hover active:scale-98 transition-all font-sans cursor-pointer text-center"
+                >
+                  <Compass size={13} />
+                  <span>{language === "ar" ? "موقعنا" : "Visiter"}</span>
+                </a>
+              </div>
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
   );
 }
+

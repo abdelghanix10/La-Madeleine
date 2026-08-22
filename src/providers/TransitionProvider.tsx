@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { TransitionRouter } from "next-transition-router";
 import { gsap } from "gsap";
 
@@ -11,60 +11,127 @@ export default function TransitionProvider({
   const svgRef = useRef<SVGSVGElement>(null);
   const pathsRef = useRef<SVGPathElement[]>([]);
 
-  useEffect(() => {
+  const getPathLength = useCallback((path: SVGPathElement): number => {
+    try {
+      const length = path.getTotalLength();
+      if (length && !isNaN(length) && length > 100) {
+        return length;
+      }
+    } catch {
+      // Fallback if SVG isn't yet rendered in layout
+    }
+    return 10500;
+  }, []);
+
+  const initPaths = useCallback(() => {
     if (!svgRef.current) return;
     pathsRef.current = Array.from(svgRef.current.querySelectorAll("path"));
 
     pathsRef.current.forEach((path) => {
-      const length = String(path.getTotalLength());
-      path.style.strokeDasharray = length;
-      path.style.strokeDashoffset = length;
+      const length = getPathLength(path);
+      path.style.strokeDasharray = `${length}`;
+      path.style.strokeDashoffset = `${length}`;
     });
-  }, []);
+  }, [getPathLength]);
+
+  useEffect(() => {
+    initPaths();
+    window.addEventListener("resize", initPaths);
+    return () => window.removeEventListener("resize", initPaths);
+  }, [initPaths]);
 
   return (
     <TransitionRouter
       auto
       leave={(next) => {
-        const tl = gsap.timeline({ onComplete: next });
+        let called = false;
+        const done = () => {
+          if (!called) {
+            called = true;
+            next();
+          }
+        };
 
-        pathsRef.current.forEach((path) => {
-          tl.to(
-            path,
-            {
-              strokeDashoffset: 0,
-              attr: { "stroke-width": 700 },
-              duration: 1,
-              ease: "power1.inOut",
-            },
-            0,
-          );
-        });
-        return () => tl.kill();
+        const tl = gsap.timeline({ onComplete: done });
+
+        // Safety timeout for mobile devices if animation is throttled
+        const safetyTimeout = setTimeout(done, 1200);
+
+        if (!pathsRef.current.length && svgRef.current) {
+          pathsRef.current = Array.from(svgRef.current.querySelectorAll("path"));
+        }
+
+        if (pathsRef.current.length > 0) {
+          pathsRef.current.forEach((path) => {
+            const length = getPathLength(path);
+            path.style.strokeDasharray = `${length}`;
+            
+            tl.to(
+              path,
+              {
+                strokeDashoffset: 0,
+                strokeWidth: 700,
+                attr: { "stroke-width": 700 },
+                duration: 0.85,
+                ease: "power2.inOut",
+              },
+              0,
+            );
+          });
+        } else {
+          done();
+        }
+
+        return () => {
+          clearTimeout(safetyTimeout);
+          tl.kill();
+        };
       }}
       enter={(next) => {
-        const tl = gsap.timeline({ onComplete: next });
+        let called = false;
+        const done = () => {
+          if (!called) {
+            called = true;
+            next();
+          }
+        };
 
-        pathsRef.current.forEach((path) => {
-          const length = path.getTotalLength();
-          tl.to(
-            path,
-            {
-              strokeDashoffset: -length,
-              attr: { "stroke-width": 200 },
-              duration: 1,
-              ease: "power1.inOut",
-              onComplete: () => {
-                gsap.set(path, { strokeDashoffset: length });
+        const tl = gsap.timeline({ onComplete: done });
+        const safetyTimeout = setTimeout(done, 1200);
+
+        if (!pathsRef.current.length && svgRef.current) {
+          pathsRef.current = Array.from(svgRef.current.querySelectorAll("path"));
+        }
+
+        if (pathsRef.current.length > 0) {
+          pathsRef.current.forEach((path) => {
+            const length = getPathLength(path);
+            tl.to(
+              path,
+              {
+                strokeDashoffset: -length,
+                strokeWidth: 200,
+                attr: { "stroke-width": 200 },
+                duration: 0.85,
+                ease: "power2.inOut",
+                onComplete: () => {
+                  gsap.set(path, { strokeDashoffset: length });
+                },
               },
-            },
-            0,
-          );
-        });
-        return () => tl.kill();
+              0,
+            );
+          });
+        } else {
+          done();
+        }
+
+        return () => {
+          clearTimeout(safetyTimeout);
+          tl.kill();
+        };
       }}
     >
-      <div className="transition-svg">
+      <div className="transition-svg" aria-hidden="true">
         <svg
           ref={svgRef}
           viewBox="0 0 2453 2535"
@@ -91,3 +158,4 @@ export default function TransitionProvider({
     </TransitionRouter>
   );
 }
+
