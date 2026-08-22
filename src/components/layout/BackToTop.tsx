@@ -1,16 +1,39 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isPdfOpen, setIsPdfOpen] = useState(false);
+  const visibleRef = useRef(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400);
+    let ticking = false;
+
+    const updateScroll = () => {
+      const y = window.scrollY;
+      // Hysteresis threshold to prevent jitter/flicker near boundary
+      if (y > 450 && !visibleRef.current) {
+        visibleRef.current = true;
+        setVisible(true);
+      } else if (y < 300 && visibleRef.current) {
+        visibleRef.current = false;
+        setVisible(false);
+      }
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
+    updateScroll();
 
     const handleNavToggle = (e: Event) => {
       const customEvent = e as CustomEvent<{ open: boolean }>;
@@ -38,14 +61,18 @@ export default function BackToTop() {
     <AnimatePresence>
       {shouldShow && (
         <motion.button
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
+          exit={{ opacity: 0, y: 16 }}
+          whileHover={{ y: -4, scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-14 right-8 z-50 -rotate-90 fill-primary hover:bottom-20 hover:transition-all cursor-pointer flex items-center justify-center shadow-lg duration-300"
+          className="fixed bottom-14 right-8 z-50 cursor-pointer flex items-center justify-center shadow-lg bg-transparent border-0 p-0"
           aria-label="Back to top"
         >
-          <svg
+          <div className="-rotate-90 fill-primary hover:brightness-110 transition-filter duration-200">
+            <svg
             xmlns="http://www.w3.org/2000/svg"
             x="0px"
             y="0px"
@@ -113,6 +140,7 @@ export default function BackToTop() {
               ></path>
             </g>
           </svg>
+          </div>
         </motion.button>
       )}
     </AnimatePresence>
