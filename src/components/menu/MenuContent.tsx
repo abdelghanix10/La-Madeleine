@@ -260,7 +260,7 @@ export default function MenuContent() {
     };
   }, [isPdfOpen, nextPage, prevPage, zoomIn, zoomOut]);
 
-  // Lock body scroll when PDF modal is open
+  // Lock body scroll and dispatch event when PDF modal is open
   useEffect(() => {
     if (isPdfOpen) {
       scrollYRef.current = window.scrollY;
@@ -269,12 +269,20 @@ export default function MenuContent() {
       document.body.style.left = "0";
       document.body.style.right = "0";
       document.body.style.overflow = "hidden";
+      document.documentElement.classList.add("pdf-modal-open");
+      window.dispatchEvent(
+        new CustomEvent("pdf-modal-toggle", { detail: { open: true } }),
+      );
     } else {
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.left = "";
       document.body.style.right = "";
       document.body.style.overflow = "";
+      document.documentElement.classList.remove("pdf-modal-open");
+      window.dispatchEvent(
+        new CustomEvent("pdf-modal-toggle", { detail: { open: false } }),
+      );
       window.scrollTo(0, scrollYRef.current);
     }
     return () => {
@@ -283,6 +291,10 @@ export default function MenuContent() {
       document.body.style.left = "";
       document.body.style.right = "";
       document.body.style.overflow = "";
+      document.documentElement.classList.remove("pdf-modal-open");
+      window.dispatchEvent(
+        new CustomEvent("pdf-modal-toggle", { detail: { open: false } }),
+      );
     };
   }, [isPdfOpen]);
 

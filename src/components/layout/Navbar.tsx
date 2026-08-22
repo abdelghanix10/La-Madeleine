@@ -103,14 +103,37 @@ export default function Navbar() {
 
   const dynamicNavLinks = [...mainNavLinks, ...infoNavLinks];
 
+  const [isPdfOpen, setIsPdfOpen] = useState(false);
+
+  useEffect(() => {
+    const handlePdfToggle = (e: Event) => {
+      const customEvent = e as CustomEvent<{ open: boolean }>;
+      setIsPdfOpen(!!customEvent.detail?.open);
+    };
+    window.addEventListener("pdf-modal-toggle", handlePdfToggle);
+    return () => window.removeEventListener("pdf-modal-toggle", handlePdfToggle);
+  }, []);
+
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden";
+      document.documentElement.classList.add("nav-open");
+      window.dispatchEvent(
+        new CustomEvent("mobile-nav-toggle", { detail: { open: true } }),
+      );
     } else {
       document.body.style.overflow = "";
+      document.documentElement.classList.remove("nav-open");
+      window.dispatchEvent(
+        new CustomEvent("mobile-nav-toggle", { detail: { open: false } }),
+      );
     }
     return () => {
       document.body.style.overflow = "";
+      document.documentElement.classList.remove("nav-open");
+      window.dispatchEvent(
+        new CustomEvent("mobile-nav-toggle", { detail: { open: false } }),
+      );
     };
   }, [mobileOpen]);
 
@@ -213,10 +236,12 @@ export default function Navbar() {
       {/* Styled divider (Desktop only) */}
       <hr className="hidden lg:block border-t-2 border-dark/10 dark:border-dark/20 bg-transparent" />
 
-      {/* Fixed on mobile (hides on scroll down), Sticky on desktop nav row (always sticky and visible) */}
+      {/* Fixed on mobile (hides on scroll down or when PDF modal open), Sticky on desktop nav row (always sticky and visible) */}
       <div
         className={`fixed lg:sticky top-0 left-0 right-0 z-40 transition-transform duration-300 ease-out ${
-          mobileHidden && !mobileOpen ? "-translate-y-full lg:translate-y-0" : "translate-y-0"
+          (mobileHidden && !mobileOpen) || isPdfOpen
+            ? "-translate-y-full lg:translate-y-0"
+            : "translate-y-0"
         }`}
       >
         <nav className="transition-all duration-500 border-b bg-background/95 backdrop-blur-md border-dark/10 shadow-xs">

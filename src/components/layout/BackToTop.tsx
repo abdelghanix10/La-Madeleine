@@ -5,16 +5,38 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isPdfOpen, setIsPdfOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 400);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    const handleNavToggle = (e: Event) => {
+      const customEvent = e as CustomEvent<{ open: boolean }>;
+      setIsNavOpen(!!customEvent.detail?.open);
+    };
+
+    const handlePdfToggle = (e: Event) => {
+      const customEvent = e as CustomEvent<{ open: boolean }>;
+      setIsPdfOpen(!!customEvent.detail?.open);
+    };
+
+    window.addEventListener("mobile-nav-toggle", handleNavToggle);
+    window.addEventListener("pdf-modal-toggle", handlePdfToggle);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("mobile-nav-toggle", handleNavToggle);
+      window.removeEventListener("pdf-modal-toggle", handlePdfToggle);
+    };
   }, []);
+
+  const shouldShow = visible && !isNavOpen && !isPdfOpen;
 
   return (
     <AnimatePresence>
-      {visible && (
+      {shouldShow && (
         <motion.button
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
