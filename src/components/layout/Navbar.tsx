@@ -390,21 +390,21 @@ export default function Navbar() {
                 </div>
 
                 {/* Organic Concave Wave Curve at bottom of header */}
-                <div className="absolute -bottom-[1px] left-0 right-0 w-full overflow-hidden leading-none z-0 pointer-events-none">
+                <div className="absolute -bottom-2 -left-1 -right-1 overflow-hidden leading-none z-0 pointer-events-none">
                   <svg
-                    viewBox="0 0 375 40"
+                    viewBox="0 0 375 42"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="w-full h-8 text-white fill-current block"
+                    className="w-[calc(100%+8px)] h-11 text-white fill-white block"
                     preserveAspectRatio="none"
                   >
-                    <path d="M0,0 C120,40 255,40 375,0 L375,40 L0,40 Z" />
+                    <path d="M0,0 C120,40 255,40 375,0 L375,44 L0,44 Z" fill="#ffffff" />
                   </svg>
                 </div>
               </div>
 
               {/* Menu Scrollable Body */}
-              <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
+              <div className="flex-1 overflow-y-auto px-5 pt-2 pb-4 space-y-4 bg-white relative z-10">
                 {/* General Group */}
                 <div>
                   <div className="text-[11px] uppercase tracking-wider text-dark/40 font-semibold px-3 mb-1.5 font-sans">
