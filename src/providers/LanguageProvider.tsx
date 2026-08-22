@@ -80,6 +80,7 @@ export const translations = {
     // Today's Specials
     todaysSpecials: "Today's Specials",
     dontMiss: "Don't Miss",
+    viewMenu: "View Menu",
 
     // Shop
     // Hero
@@ -296,6 +297,7 @@ export const translations = {
     // Today's Specials
     todaysSpecials: "Spécialités du Jour",
     dontMiss: "À Ne Pas Manquer",
+    viewMenu: "Voir le Menu",
 
     // Shop
     // Hero
@@ -512,6 +514,7 @@ export const translations = {
     // Today's Specials
     todaysSpecials: "عروض اليوم",
     dontMiss: "لا تفوت",
+    viewMenu: "عرض القائمة",
 
     // Shop
     // Hero

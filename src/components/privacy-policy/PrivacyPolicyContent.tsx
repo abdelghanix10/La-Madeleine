@@ -70,15 +70,19 @@ export default function PrivacyPolicyContent() {
           you visit our website or use our services.
         </motion.p>
 
-        <div className="space-y-12">
+        <div className="space-y-6">
           {sections.map((section, index) => (
             <ScrollReveal key={index} variant="fadeUp">
-              <div>
-                <h2 className="font-serif text-2xl md:text-3xl text-dark mb-4">
-                  {section.title}
-                </h2>
-                <div className="w-12 h-0.5 bg-primary mb-6" />
-                <div className="text-text/70 leading-relaxed font-sans whitespace-pre-line">
+              <div className="bg-white rounded-2xl border border-dark/8 p-7 md:p-8 shadow-xs">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="w-7 h-7 rounded-full bg-primary/10 text-primary font-serif text-xs font-bold flex items-center justify-center shrink-0">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h2 className="font-serif text-2xl text-dark tracking-wide">
+                    {section.title}
+                  </h2>
+                </div>
+                <div className="text-dark/70 text-sm leading-relaxed font-sans whitespace-pre-line pl-10">
                   {section.content}
                 </div>
               </div>

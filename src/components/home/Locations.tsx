@@ -24,7 +24,7 @@ export default function Locations() {
 
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center">
           <ScrollReveal className="w-full lg:flex-7">
-            <div className="relative h-64 md:h-96 bg-cream overflow-hidden border border-dark/5">
+            <div className="relative h-72 md:h-96 bg-white rounded-3xl overflow-hidden border border-dark/8 shadow-xs">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15843.858666837468!2d-9.528228968629396!3d30.402064943861852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3c9965a5026d3%3A0x736a8bf5957eefa9!2sCaf%C3%A9%20%26%20P%C3%A2tisserie%20Lamadeleine!5e1!3m2!1sen!2sma!4v1784648271235!5m2!1sen!2sma"
                 width="600"
@@ -39,25 +39,25 @@ export default function Locations() {
           </ScrollReveal>
 
           <StaggerChildren
-            className="w-full lg:flex-3 flex flex-col gap-8"
+            className="w-full lg:flex-3 flex flex-col gap-6"
             staggerDelay={0.15}
           >
             {data.locations.map((loc) => (
               <StaggerItem key={loc.id}>
                 <motion.div
-                  className="bg-cream p-8 md:p-10 border border-dark/5 hover:border-primary/20 transition-all duration-500 group"
+                  className="bg-white p-8 md:p-9 rounded-3xl border border-dark/8 hover:border-primary/40 hover:shadow-lg transition-all duration-300 group shadow-xs"
                   whileHover={{ y: -4 }}
                 >
-                  <h3 className="font-serif text-2xl text-dark mb-6 tracking-wide group-hover:text-primary transition-colors duration-300">
+                  <h3 className="font-serif text-2xl text-dark mb-5 tracking-wide group-hover:text-primary transition-colors duration-200">
                     {loc.name}
                   </h3>
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3 text-dark/60">
+                  <div className="space-y-3.5 font-sans">
+                    <div className="flex items-start gap-3 text-dark/70">
                       <MapPin
-                        size={18}
+                        size={17}
                         className="text-primary mt-0.5 shrink-0"
                       />
-                      <span className="text-sm">{loc.address}</span>
+                      <span className="text-xs sm:text-sm">{loc.address}</span>
                     </div>
                     <div className="flex items-center gap-3 text-dark/60">
                       <Phone size={18} className="text-primary shrink-0" />

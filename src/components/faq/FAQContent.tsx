@@ -32,13 +32,13 @@ export default function FAQContent() {
   }, [faqData, activeCategory, search, t]);
 
   return (
-    <section className="py-24 md:py-32 bg-background">
-      <div className="max-w-4xl mx-auto px-6">
+    <section className="py-20 md:py-28 bg-background">
+      <div className="max-w-3xl mx-auto px-6">
         {/* Search */}
-        <ScrollReveal className="mb-12">
-          <div className="relative max-w-lg mx-auto">
+        <ScrollReveal className="mb-10">
+          <div className="relative max-w-md mx-auto">
             <Search
-              size={18}
+              size={17}
               className="absolute left-4 top-1/2 -translate-y-1/2 text-dark/40"
             />
             <input
@@ -46,22 +46,22 @@ export default function FAQContent() {
               placeholder={t("searchQuestions")}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors"
+              className="w-full pl-11 pr-4 py-3 bg-cream/70 border border-dark/10 rounded-full text-sm text-dark placeholder:text-dark/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-sans"
             />
           </div>
         </ScrollReveal>
 
         {/* Category tabs */}
         <ScrollReveal className="mb-12">
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-2.5">
             {faqCategories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-5 py-2 text-xs tracking-[0.15em] cursor-pointer uppercase transition-all duration-300 border ${
+                className={`px-5 py-2 text-xs tracking-[0.15em] cursor-pointer uppercase rounded-full transition-all duration-200 font-medium ${
                   activeCategory === cat
-                    ? "bg-dark text-cream border-dark"
-                    : "bg-transparent text-dark/50 border-dark/10 hover:border-dark/30 hover:text-dark"
+                    ? "bg-dark text-cream shadow-sm"
+                    : "bg-cream/60 text-dark/70 border border-dark/8 hover:border-dark/20 hover:text-dark hover:bg-cream"
                 }`}
               >
                 {cat}
@@ -71,38 +71,38 @@ export default function FAQContent() {
         </ScrollReveal>
 
         {/* Accordion */}
-        <div className="space-y-4">
+        <div className="space-y-3.5">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory + search}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.25 }}
             >
               {filtered.map((faq) => (
                 <div
                   key={faq.id}
-                  className="border border-dark/10 bg-cream mb-4 overflow-hidden"
+                  className="border border-dark/8 bg-white rounded-2xl mb-3.5 overflow-hidden shadow-xs hover:border-primary/40 transition-colors duration-200"
                 >
                   <button
                     onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
-                    className="w-full flex items-center justify-between p-6 text-left group cursor-pointer"
+                    className="w-full flex items-center justify-between p-5 md:p-6 text-left group cursor-pointer"
                   >
-                    <div className="flex items-center gap-4">
-                      <span className="font-serif text-primary text-lg shrink-0">
-                        {String(filtered.indexOf(faq) + 1).padStart(2, "0")}.
+                    <div className="flex items-center gap-3.5">
+                      <span className="w-8 h-8 rounded-full bg-primary/10 text-primary font-serif text-xs font-bold flex items-center justify-center shrink-0">
+                        {String(filtered.indexOf(faq) + 1).padStart(2, "0")}
                       </span>
-                      <h3 className="font-serif text-lg text-dark group-hover:text-primary transition-colors duration-300">
+                      <h3 className="font-serif text-lg text-dark group-hover:text-primary transition-colors duration-200">
                         {faq.question}
                       </h3>
                     </div>
                     <motion.div
                       animate={{ rotate: openId === faq.id ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="shrink-0 ml-4"
+                      transition={{ duration: 0.25 }}
+                      className="shrink-0 ml-4 w-8 h-8 rounded-full bg-cream/70 flex items-center justify-center text-dark/60 group-hover:text-dark transition-colors"
                     >
-                      <ChevronDown size={20} className="text-dark/40" />
+                      <ChevronDown size={17} />
                     </motion.div>
                   </button>
 
@@ -113,12 +113,12 @@ export default function FAQContent() {
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{
-                          duration: 0.4,
+                          duration: 0.3,
                           ease: [0.25, 0.1, 0.25, 1],
                         }}
                       >
-                        <div className="px-6 pb-6 pl-16">
-                          <p className="text-dark/60 leading-relaxed">
+                        <div className="px-6 pb-6 pt-1 pl-16 border-t border-dark/5">
+                          <p className="text-dark/65 text-sm leading-relaxed font-sans">
                             {faq.answer}
                           </p>
                         </div>

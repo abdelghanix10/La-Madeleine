@@ -104,57 +104,59 @@ export default function ShopContent() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Toolbar */}
         <ScrollReveal className="mb-12">
-          <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
-            {/* Search */}
-            <div className="relative w-full md:w-80">
-              <Search
-                size={16}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-dark/40"
-              />
-              <input
-                type="text"
-                placeholder={t("searchProducts")}
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors"
-              />
-            </div>
-
-            <div className="flex items-center gap-4 w-full md:w-auto">
-              {/* Category filter */}
-              <div className="flex flex-wrap gap-2 flex-1 md:flex-initial">
-                {allCategories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setCategory(cat)}
-                    className={`px-4 py-2 text-xs tracking-wider uppercase transition-all cursor-pointer duration-300 border ${
-                      category === cat
-                        ? "bg-dark text-cream border-dark"
-                        : "bg-transparent text-dark/50 border-dark/10 hover:border-dark/30"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
+          <div className="flex flex-col gap-5 items-start justify-between">
+            <div className="flex flex-wrap gap-5 items-center justify-between w-full">
+              {/* Search */}
+              <div className="relative w-full lg:w-80">
+                <Search
+                  size={16}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-dark/40"
+                />
+                <input
+                  type="text"
+                  placeholder={t("searchProducts")}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="w-full pl-11 pr-4 py-2.5 bg-cream/70 border border-dark/10 rounded-full text-sm text-dark placeholder:text-dark/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-sans"
+                />
               </div>
 
-              {/* Sort */}
-              <select
-                value={sort}
-                onChange={(e) => setSort(e.target.value)}
-                className="px-4 py-3 bg-cream border border-dark/10 text-sm text-dark focus:outline-none focus:border-primary transition-colors appearance-none cursor-pointer"
-              >
-                <option value="default">{t("defaultSort")}</option>
-                <option value="price-asc">{t("priceAsc")}</option>
-                <option value="price-desc">{t("priceDesc")}</option>
-                <option value="name">{t("nameSort")}</option>
-              </select>
+              <div className="flex flex-wrap items-center gap-3">
+                {/* Sort */}
+                <select
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value)}
+                  className="px-4 py-2.5 bg-cream/70 border border-dark/10 rounded-full text-xs uppercase tracking-wider text-dark/80 focus:outline-none focus:border-primary transition-colors appearance-none cursor-pointer font-sans"
+                >
+                  <option value="default">{t("defaultSort")}</option>
+                  <option value="price-asc">{t("priceAsc")}</option>
+                  <option value="price-desc">{t("priceDesc")}</option>
+                  <option value="name">{t("nameSort")}</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Category filter */}
+            <div className="flex flex-wrap gap-2">
+              {allCategories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setCategory(cat)}
+                  className={`px-4 py-2 text-xs tracking-wider uppercase rounded-full transition-all cursor-pointer font-medium duration-200 ${
+                    category === cat
+                      ? "bg-dark text-cream shadow-sm"
+                      : "bg-cream/60 text-dark/70 border border-dark/8 hover:border-dark/20 hover:text-dark hover:bg-cream"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
             </div>
           </div>
         </ScrollReveal>
 
         {/* Product count */}
-        <div className="flex items-center justify-between text-sm text-dark/40 mb-8">
+        <div className="flex items-center justify-between text-xs tracking-wider text-dark/50 mb-8 uppercase font-sans">
           <p>
             {t("showing")}{" "}
             <span className="font-semibold text-dark">
@@ -165,7 +167,7 @@ export default function ShopContent() {
             {t("results")}
           </p>
           {filtered.length !== shopProducts.length && (
-            <p className="text-xs text-dark/30">
+            <p className="text-dark/40">
               ({shopProducts.length} {t("totalAvailable")})
             </p>
           )}
@@ -180,11 +182,11 @@ export default function ShopContent() {
             <StaggerItem key={product.id}>
               <motion.div
                 onClick={() => setSelectedProduct(product)}
-                className="group bg-cream border border-dark/5 hover:border-primary/20 transition-all duration-500 flex flex-col h-full cursor-pointer overflow-hidden relative"
-                whileHover={{ y: -5 }}
+                className="group bg-white rounded-2xl border border-dark/8 hover:border-primary/40 hover:shadow-xl transition-all duration-300 flex flex-col h-full cursor-pointer overflow-hidden relative shadow-xs"
+                whileHover={{ y: -4 }}
               >
                 {/* Image */}
-                <div className="aspect-square bg-background relative overflow-hidden">
+                <div className="aspect-square bg-cream/40 relative overflow-hidden">
                   {product.image ? (
                     <Image
                       src={product.image}
@@ -202,7 +204,7 @@ export default function ShopContent() {
                   )}
 
                   {/* Category Tag overlay */}
-                  <span className="absolute top-3 left-3 bg-dark/80 backdrop-blur-xs text-cream text-[10px] uppercase tracking-widest px-2.5 py-1">
+                  <span className="absolute top-3.5 left-3.5 bg-dark/80 backdrop-blur-xs text-cream text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-medium shadow-xs">
                     {product.category}
                   </span>
                 </div>
@@ -210,34 +212,37 @@ export default function ShopContent() {
                 {/* Info */}
                 <div className="p-6 text-center flex flex-col flex-1">
                   {/* Rating */}
-                  <div className="flex items-center justify-center gap-1 mb-3">
+                  <div className="flex items-center justify-center gap-1 mb-2.5">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star
                         key={i}
-                        size={15}
+                        size={14}
                         className={
                           i < product.rating
                             ? "text-primary fill-primary"
-                            : "text-dark/20"
+                            : "text-dark/15"
                         }
                       />
                     ))}
                   </div>
 
-                  <h3 className="font-serif text-2xl text-dark tracking-wide mb-2">
+                  <h3 className="font-serif text-2xl text-dark tracking-wide mb-2 group-hover:text-primary transition-colors duration-200">
                     {product.name}
                   </h3>
 
                   {/* Product Description */}
                   {product.description && (
-                    <p className="text-dark/60 text-sm mb-4 line-clamp-2 leading-relaxed font-sans">
+                    <p className="text-dark/60 text-xs sm:text-sm mb-5 line-clamp-2 leading-relaxed font-sans">
                       {product.description}
                     </p>
                   )}
 
-                  <div className="flex items-center justify-center gap-3 mt-auto pt-2">
-                    <span className="font-serif text-2xl text-primary">
+                  <div className="flex items-center justify-between mt-auto pt-3 border-t border-dark/6">
+                    <span className="font-serif text-2xl text-primary font-semibold">
                       ${product.price.toFixed(2)}
+                    </span>
+                    <span className="text-xs uppercase tracking-wider font-medium text-dark/60 group-hover:text-primary transition-colors flex items-center gap-1">
+                      {t("description")} →
                     </span>
                   </div>
                 </div>
@@ -300,18 +305,19 @@ export default function ShopContent() {
 
             {/* Modal Box */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              initial={{ opacity: 0, scale: 0.94, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-2xl bg-cream border border-dark/10 shadow-2xl overflow-y-auto max-h-[90vh] z-10 rounded-xs my-auto"
+              exit={{ opacity: 0, scale: 0.94, y: 15 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-2xl bg-white border border-dark/10 shadow-2xl overflow-y-auto max-h-[90vh] z-10 rounded-3xl my-auto"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProduct(null)}
-                className="absolute top-3 right-3 z-30 w-9 h-9 flex items-center justify-center bg-cream/90 hover:bg-dark hover:text-cream text-dark border border-dark/10 shadow-sm transition-colors rounded-full cursor-pointer"
+                className="absolute top-4 right-4 z-30 w-9 h-9 flex items-center justify-center bg-white/90 hover:bg-dark hover:text-cream text-dark border border-dark/10 shadow-sm transition-all rounded-full cursor-pointer active:scale-95"
                 aria-label="Close details"
               >
-                <X size={18} />
+                <X size={17} />
               </button>
 
               <div className="grid grid-cols-1 md:grid-cols-2 h-full">

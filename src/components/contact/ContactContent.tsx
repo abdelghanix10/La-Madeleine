@@ -78,7 +78,7 @@ export default function ContactContent() {
   };
 
   return (
-    <section className="py-24 md:py-32 bg-background overflow-hidden">
+    <section className="py-20 md:py-28 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* Contact info cards */}
         <StaggerChildren
@@ -89,26 +89,25 @@ export default function ContactContent() {
             <StaggerItem key={info.label}>
               <motion.a
                 {...(info.href !== "#" && { href: info.href })}
-                className="block bg-cream p-6 border border-dark/5 hover:border-primary/20 transition-all duration-500 group"
+                className="block bg-white p-6 rounded-2xl border border-dark/8 hover:border-primary/40 hover:shadow-lg transition-all duration-300 group shadow-xs h-full"
                 whileHover={{ y: -3 }}
               >
-                <info.icon
-                  size={24}
-                  className="text-primary mb-4 group-hover:scale-110 transition-transform duration-300"
-                />
-                <p className="text-dark/40 text-xs tracking-[0.2em] uppercase mb-1">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-105 transition-all duration-300">
+                  <info.icon size={22} className="text-primary" />
+                </div>
+                <p className="text-dark/40 text-[11px] tracking-[0.2em] uppercase font-semibold mb-1 font-sans">
                   {info.label}
                 </p>
-                <p className="text-dark text-sm">{info.value}</p>
+                <p className="text-dark font-medium text-sm font-sans">{info.value}</p>
               </motion.a>
             </StaggerItem>
           ))}
         </StaggerChildren>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
           {/* Map */}
           <ScrollReveal variant="fadeUp">
-            <div className="aspect-square lg:aspect-auto lg:h-full bg-cream border border-dark/5 relative overflow-hidden">
+            <div className="aspect-square lg:aspect-4/3 bg-white rounded-3xl border border-dark/8 relative overflow-hidden shadow-xs">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15843.858673954102!2d-9.528229!3d30.4020649!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3c9965a5026d3%3A0x736a8bf5957eefa9!2sCaf%C3%A9%20%26%20P%C3%A2tisserie%20Lamadeleine!5e1!3m2!1sen!2sma!4v1784729579942!5m2!1sen!2sma"
                 width="600"
@@ -124,89 +123,93 @@ export default function ContactContent() {
 
           {/* Contact form */}
           <ScrollReveal variant="fadeUp" delay={0.1}>
-            <h2 className="font-serif text-3xl md:text-4xl text-dark tracking-wide mb-8">
-              {t("sendMessage")}
-            </h2>
+            <div className="bg-white p-8 md:p-10 rounded-3xl border border-dark/8 shadow-xs">
+              <h2 className="font-serif text-3xl md:text-4xl text-dark tracking-wide mb-8">
+                {t("sendMessage")}
+              </h2>
 
-            {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-cream p-8 text-center border border-dark/5"
-              >
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Send size={24} className="text-primary" />
-                </div>
-                <p className="font-serif text-2xl text-dark mb-2">
-                  {t("thankYou")}
-                </p>
-                <p className="text-dark/50">{t("yourMessageHasBeenSent")}</p>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <input
-                      {...register("name")}
-                      placeholder={t("name")}
-                      className="w-full px-4 py-3.5 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors"
-                    />
-                    {errors.name && (
-                      <p className="text-red-500 text-xs mt-1">
-                        {errors.name.message}
-                      </p>
-                    )}
-                  </div>
-                  <div>
-                    <input
-                      {...register("email")}
-                      type="email"
-                      placeholder={t("emailForm")}
-                      className="w-full px-4 py-3.5 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors"
-                    />
-                    {errors.email && (
-                      <p className="text-red-500 text-xs mt-1">
-                        {errors.email.message}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <div>
-                  <input
-                    {...register("subject")}
-                    placeholder={t("subject")}
-                    className="w-full px-4 py-3.5 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors"
-                  />
-                  {errors.subject && (
-                    <p className="text-red-500 text-xs mt-1">
-                      {errors.subject.message}
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <textarea
-                    {...register("message")}
-                    rows={6}
-                    placeholder={t("message")}
-                    className="w-full px-4 py-3.5 bg-cream border border-dark/10 text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:border-primary transition-colors resize-none"
-                  />
-                  {errors.message && (
-                    <p className="text-red-500 text-xs mt-1">
-                      {errors.message.message}
-                    </p>
-                  )}
-                </div>
-                <motion.button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="bg-dark hover:bg-primary text-cream hover:text-dark px-8 py-4 text-sm tracking-[0.2em] uppercase font-medium transition-all duration-300 disabled:opacity-50"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+              {submitted ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-cream/50 p-8 rounded-2xl text-center border border-primary/20"
                 >
-                  {isSubmitting ? t("sending") : t("send")}
-                </motion.button>
-              </form>
-            )}
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/15 flex items-center justify-center">
+                    <Send size={24} className="text-primary" />
+                  </div>
+                  <p className="font-serif text-2xl text-dark mb-2 font-medium">
+                    {t("thankYou")}
+                  </p>
+                  <p className="text-dark/60 text-sm font-sans">{t("yourMessageHasBeenSent")}</p>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 font-sans">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <input
+                        {...register("name")}
+                        placeholder={t("name")}
+                        className="w-full px-4 py-3.5 bg-cream/40 border border-dark/10 rounded-xl text-sm text-dark placeholder:text-dark/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                      />
+                      {errors.name && (
+                        <p className="text-red-500 text-xs mt-1.5">
+                          {errors.name.message}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <input
+                        {...register("email")}
+                        type="email"
+                        placeholder={t("emailForm")}
+                        className="w-full px-4 py-3.5 bg-cream/40 border border-dark/10 rounded-xl text-sm text-dark placeholder:text-dark/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                      />
+                      {errors.email && (
+                        <p className="text-red-500 text-xs mt-1.5">
+                          {errors.email.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div>
+                    <input
+                      {...register("subject")}
+                      placeholder={t("subject")}
+                      className="w-full px-4 py-3.5 bg-cream/40 border border-dark/10 rounded-xl text-sm text-dark placeholder:text-dark/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    />
+                    {errors.subject && (
+                      <p className="text-red-500 text-xs mt-1.5">
+                        {errors.subject.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <textarea
+                      {...register("message")}
+                      rows={5}
+                      placeholder={t("message")}
+                      className="w-full px-4 py-3.5 bg-cream/40 border border-dark/10 rounded-xl text-sm text-dark placeholder:text-dark/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+                    />
+                    {errors.message && (
+                      <p className="text-red-500 text-xs mt-1.5">
+                        {errors.message.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-4 px-8 bg-primary text-dark font-semibold text-xs tracking-[0.2em] uppercase rounded-full hover:brightness-105 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-primary/20 disabled:opacity-50"
+                  >
+                    <Send size={15} />
+                    {isSubmitting ? t("sending") : t("send")}
+                  </button>
+                </form>
+              )}
+            </div>
           </ScrollReveal>
         </div>
       </div>

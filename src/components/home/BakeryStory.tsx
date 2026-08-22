@@ -46,12 +46,12 @@ export default function BakeryStory() {
                 </motion.div>
                 <div className="absolute inset-0 bg-linear-to-t from-dark/55 via-dark/15 to-transparent" />
                 <div className="absolute inset-0 flex items-start p-8 md:p-10">
-                  <div>
+                <div>
                     <p className="font-script text-3xl text-cream/90 mb-2">
-                      {t("storySince")}
+                    {t("storySince")}
                     </p>
                     <h3 className="font-serif text-5xl md:text-7xl text-cream">
-                      2019
+                    2019
                     </h3>
                   </div>
                 </div>

@@ -11,6 +11,7 @@ import {
   ZoomIn,
   ZoomOut,
   RotateCcw,
+  UtensilsCrossed,
 } from "lucide-react";
 
 import { useLanguage } from "@/providers/LanguageProvider";
@@ -315,19 +316,19 @@ export default function MenuContent() {
   }));
 
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section className="py-20 md:py-28 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         {/* Category tabs */}
-        <ScrollReveal className="mb-16">
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+        <ScrollReveal className="mb-14">
+          <div className="flex flex-wrap justify-center items-center gap-2.5 md:gap-3.5">
             {categories.map((cat) => (
               <button
                 key={cat.key}
                 onClick={() => setActiveCategoryKey(cat.key)}
-                className={`px-5 py-2.5 text-sm tracking-[0.15em] uppercase cursor-pointer transition-all duration-300 border ${
+                className={`px-5 py-2.5 text-xs tracking-[0.18em] uppercase rounded-full cursor-pointer transition-all duration-300 font-medium ${
                   activeCategoryKey === cat.key
-                    ? "bg-dark text-cream border-dark"
-                    : "bg-transparent text-dark/50 border-dark/10 hover:border-dark/30 hover:text-dark"
+                    ? "bg-dark text-cream shadow-md shadow-dark/10"
+                    : "bg-cream/70 text-dark/70 border border-dark/8 hover:border-dark/20 hover:text-dark hover:bg-cream"
                 }`}
               >
                 {cat.label}
@@ -335,10 +336,10 @@ export default function MenuContent() {
             ))}
             <button
               onClick={openPdf}
-              className="px-5 py-2.5 text-sm tracking-[0.15em] uppercase cursor-pointer transition-all duration-300 border flex items-center gap-2 bg-primary text-white border-primary hover:bg-primary/90"
+              className="px-5 py-2.5 text-xs tracking-[0.18em] uppercase rounded-full cursor-pointer transition-all duration-300 flex items-center gap-2 bg-primary text-dark font-medium hover:brightness-105 shadow-sm shadow-primary/20 active:scale-95"
             >
-              <BookOpen size={16} />
-              {t("viewMenuBook")}
+              <BookOpen size={15} className="text-dark" />
+              <span>{t("viewMenuBook")}</span>
             </button>
           </div>
         </ScrollReveal>
@@ -358,13 +359,13 @@ export default function MenuContent() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategoryKey}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
             >
               {activeCategoryKey === ALL_CATEGORY_KEY ? (
-                <div className="space-y-12">
+                <div className="space-y-14">
                   {groupedItems.map(({ index, category, items }) => (
                     <div key={category}>
                       {categoryHighlightsByIndex[index] && (
@@ -374,45 +375,41 @@ export default function MenuContent() {
                           priority={index === 0}
                         />
                       )}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1">
                         {items.map((item) => (
                           <motion.div
                             key={item.id}
-                            className="flex items-start gap-4 py-6 border-b border-dark/10 group cursor-pointer"
-                            whileHover={{ x: 4 }}
-                            transition={{ duration: 0.3 }}
+                            className="flex items-center gap-4 py-4 px-3 rounded-2xl hover:bg-cream/50 border-b border-dark/6 group cursor-pointer transition-all duration-200"
+                            whileHover={{ x: 3 }}
+                            transition={{ duration: 0.2 }}
                           >
-                            <div className="w-12 h-12 rounded-full bg-cream flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors duration-300 overflow-hidden">
+                            <div className="w-12 h-12 rounded-full bg-cream flex items-center justify-center shrink-0 group-hover:ring-2 group-hover:ring-primary/40 transition-all duration-300 overflow-hidden shadow-xs">
                               {item.image ? (
                                 <Image
                                   src={item.image}
                                   alt={item.name}
                                   width={48}
                                   height={48}
-                                  className="w-full h-full object-cover rounded-full"
+                                  className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-500"
                                 />
                               ) : (
-                                <span className="text-xl">🍽️</span>
+                                <UtensilsCrossed size={18} className="text-primary/70" />
                               )}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className="flex items-baseline gap-3">
-                                <h3 className="font-serif text-lg text-dark tracking-wide group-hover:text-primary transition-colors duration-300">
+                              <div className="flex items-baseline justify-between gap-2">
+                                <h3 className="font-serif text-lg text-dark tracking-wide group-hover:text-primary transition-colors duration-200 truncate">
                                   {item.name}
-                                  {item.popular && (
-                                    <span className="text-primary text-xs ml-2">
-                                      ★
-                                    </span>
-                                  )}
                                 </h3>
-                                <span className="flex-1 border-b border-dotted border-dark/20 mb-1" />
-                                <span className="font-serif text-lg text-dark shrink-0">
+                                <span className="font-serif text-sm font-semibold text-primary shrink-0 bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
                                   ${item.price.toFixed(2)}
                                 </span>
                               </div>
-                              <p className="text-sm text-dark/50 mt-1">
-                                {item.description}
-                              </p>
+                              {item.description && (
+                                <p className="text-dark/55 text-xs mt-0.5 line-clamp-1 leading-relaxed font-sans">
+                                  {item.description}
+                                </p>
+                              )}
                             </div>
                           </motion.div>
                         ))}
@@ -421,45 +418,41 @@ export default function MenuContent() {
                   ))}
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1">
                   {filtered.map((item) => (
                     <motion.div
                       key={item.id}
-                      className="flex items-start gap-4 py-6 border-b border-dark/10 group cursor-pointer"
-                      whileHover={{ x: 4 }}
-                      transition={{ duration: 0.3 }}
+                      className="flex items-center gap-4 py-4 px-3 rounded-2xl hover:bg-cream/50 border-b border-dark/6 group cursor-pointer transition-all duration-200"
+                      whileHover={{ x: 3 }}
+                      transition={{ duration: 0.2 }}
                     >
-                      <div className="w-12 h-12 rounded-full bg-cream flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors duration-300 overflow-hidden">
+                      <div className="w-12 h-12 rounded-full bg-cream flex items-center justify-center shrink-0 group-hover:ring-2 group-hover:ring-primary/40 transition-all duration-300 overflow-hidden shadow-xs">
                         {item.image ? (
                           <Image
                             src={item.image}
                             alt={item.name}
                             width={48}
                             height={48}
-                            className="w-full h-full object-cover rounded-full"
+                            className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-500"
                           />
                         ) : (
-                          <span className="text-xl">🍽️</span>
+                          <UtensilsCrossed size={18} className="text-primary/70" />
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-baseline gap-3">
-                          <h3 className="font-serif text-lg text-dark tracking-wide group-hover:text-primary transition-colors duration-300">
+                        <div className="flex items-baseline justify-between gap-2">
+                          <h3 className="font-serif text-lg text-dark tracking-wide group-hover:text-primary transition-colors duration-200 truncate">
                             {item.name}
-                            {item.popular && (
-                              <span className="text-primary text-xs ml-2">
-                                ★
-                              </span>
-                            )}
                           </h3>
-                          <span className="flex-1 border-b border-dotted border-dark/20 mb-1" />
-                          <span className="font-serif text-lg text-dark shrink-0">
+                          <span className="font-serif text-sm font-semibold text-primary shrink-0 bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
                             ${item.price.toFixed(2)}
                           </span>
                         </div>
-                        <p className="text-sm text-dark/50 mt-1">
-                          {item.description}
-                        </p>
+                        {item.description && (
+                          <p className="text-dark/55 text-xs mt-0.5 line-clamp-1 leading-relaxed font-sans">
+                            {item.description}
+                          </p>
+                        )}
                       </div>
                     </motion.div>
                   ))}

@@ -19,10 +19,10 @@ export default function AboutCTA() {
           <p className="text-dark/50 mb-10 max-w-lg mx-auto">{t("aboutCTA")}</p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-3 bg-dark hover:bg-primary text-cream hover:text-dark px-8 py-4 text-sm tracking-[0.2em] uppercase font-medium transition-all duration-300 group"
+            className="inline-flex items-center gap-3 bg-primary text-dark font-semibold px-9 py-4 text-xs tracking-[0.2em] uppercase rounded-full hover:brightness-105 shadow-md shadow-primary/20 transition-all duration-300 group active:scale-95"
           >
             {t("findUs")}
-            <span className="w-6 h-px bg-current group-hover:w-10 transition-all duration-300" />
+            <span className="w-5 h-px bg-current group-hover:w-8 transition-all duration-300" />
           </Link>
         </ScrollReveal>
       </div>

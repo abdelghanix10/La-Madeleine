@@ -63,17 +63,16 @@ export default function Newsletter() {
               <motion.a
                 key={item.label}
                 {...(item.href !== "#" && { href: item.href })}
-                className="block bg-background p-6 border border-dark/5 hover:border-primary/20 text-center transition-all duration-500 group"
+                className="block bg-white p-6 rounded-2xl border border-dark/8 hover:border-primary/40 hover:shadow-lg text-center transition-all duration-300 group shadow-xs h-full flex flex-col items-center"
                 whileHover={{ y: -4 }}
               >
-                <item.icon
-                  size={24}
-                  className="text-primary mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
-                />
-                <p className="text-dark/40 text-xs tracking-[0.2em] uppercase mb-2">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-105 transition-all duration-300">
+                  <item.icon size={22} className="text-primary" />
+                </div>
+                <p className="text-dark/40 text-[11px] tracking-[0.2em] uppercase font-semibold mb-1 font-sans">
                   {item.label}
                 </p>
-                <p className="text-dark text-sm">{item.value}</p>
+                <p className="text-dark font-medium text-sm font-sans mt-auto">{item.value}</p>
               </motion.a>
             ))}
           </div>
@@ -83,7 +82,7 @@ export default function Newsletter() {
           <div className="text-center mt-12">
             <motion.a
               href="/contact"
-              className="inline-block bg-dark hover:bg-primary text-cream hover:text-dark px-8 py-4 text-sm tracking-[0.2em] uppercase font-medium transition-all duration-300"
+              className="inline-block bg-primary text-dark font-semibold px-9 py-4 text-xs tracking-[0.2em] uppercase rounded-full hover:brightness-105 shadow-md shadow-primary/20 transition-all active:scale-95"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

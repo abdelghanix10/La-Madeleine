@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
@@ -39,8 +40,8 @@ export default function TodaysSpecials() {
           {todaysSpecials.map((item) => (
             <StaggerItem key={item.id}>
               <motion.div
-                className="group bg-background/5 backdrop-blur-sm border border-cream/10 overflow-hidden hover:border-primary/30 transition-all duration-500"
-                whileHover={{ y: -5 }}
+                className="group bg-white/[0.03] backdrop-blur-xs border border-white/10 rounded-3xl overflow-hidden hover:border-primary/40 transition-all duration-300 shadow-lg flex flex-col h-full"
+                whileHover={{ y: -6 }}
               >
                 <div className="relative h-64 md:h-72 bg-linear-to-br from-cream/10 to-cream/5 overflow-hidden">
                   <Image
@@ -50,28 +51,29 @@ export default function TodaysSpecials() {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-dark/10 group-hover:bg-dark/0 transition-all duration-500" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-serif text-6xl text-cream/10 italic group-hover:text-cream/20 transition-all duration-500 group-hover:scale-110 transform">
-                      {item.category}
-                    </span>
-                  </div>
+                  <div className="absolute inset-0 bg-dark/20 group-hover:bg-dark/10 transition-all duration-500" />
+                  <span className="absolute top-4 left-4 bg-dark/80 backdrop-blur-xs text-primary border border-primary/30 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-medium shadow-xs">
+                    {item.category}
+                  </span>
                 </div>
 
-                <div className="p-8">
-                  <p className="text-primary text-xs tracking-[0.3em] uppercase mb-3">
-                    {item.category}
-                  </p>
-                  <h3 className="font-serif text-2xl text-cream mb-3 tracking-wide">
+                <div className="p-7 flex flex-col flex-1">
+                  <h3 className="font-serif text-2xl text-cream mb-2 tracking-wide group-hover:text-primary transition-colors">
                     {item.name}
                   </h3>
-                  <p className="text-cream/50 text-sm leading-relaxed mb-6">
+                  <p className="text-cream/60 text-xs sm:text-sm leading-relaxed mb-6 font-sans">
                     {item.description}
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="font-serif text-2xl text-primary">
+                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
+                    <span className="font-serif text-2xl text-primary font-semibold">
                       ${item.price.toFixed(2)}
                     </span>
+                    <Link
+                      href="/menu"
+                      className="text-xs uppercase tracking-wider font-medium text-cream/70 group-hover:text-primary transition-colors flex items-center gap-1"
+                    >
+                      {t("viewMenu")} →
+                    </Link>
                   </div>
                 </div>
               </motion.div>

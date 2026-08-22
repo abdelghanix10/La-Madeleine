@@ -16,7 +16,6 @@ import {
   HelpCircle,
   X,
   Compass,
-  ArrowRight,
   Sparkle,
 } from "lucide-react";
 import { useTransitionRouter } from "next-transition-router";
@@ -65,7 +64,7 @@ export default function Navbar() {
   const hours = data.siteConfig.hours[0];
 
   const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
+  const [mobileHidden, setMobileHidden] = useState(false);
   const lastScrollY = useRef(0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -73,20 +72,20 @@ export default function Navbar() {
     lastScrollY.current = latest;
 
     if (mobileOpen) {
-      setHidden(false);
+      setMobileHidden(false);
       return;
     }
 
     if (latest < 40) {
-      setHidden(false);
+      setMobileHidden(false);
       return;
     }
 
     const diff = latest - previous;
     if (diff > 8) {
-      setHidden(true);
+      setMobileHidden(true);
     } else if (diff < -8) {
-      setHidden(false);
+      setMobileHidden(false);
     }
   });
 
@@ -214,16 +213,11 @@ export default function Navbar() {
       {/* Styled divider (Desktop only) */}
       <hr className="hidden lg:block border-t-2 border-dark/10 dark:border-dark/20 bg-transparent" />
 
-      {/* Fixed on mobile, Sticky on desktop nav row with smart scroll hide/show */}
-      <motion.div
-        className="fixed lg:sticky top-0 left-0 right-0 z-40"
-        animate={{
-          y: hidden && !mobileOpen ? "-100%" : "0%",
-        }}
-        transition={{
-          duration: 0.32,
-          ease: [0.16, 1, 0.3, 1],
-        }}
+      {/* Fixed on mobile (hides on scroll down), Sticky on desktop nav row (always sticky and visible) */}
+      <div
+        className={`fixed lg:sticky top-0 left-0 right-0 z-40 transition-transform duration-300 ease-out ${
+          mobileHidden && !mobileOpen ? "-translate-y-full lg:translate-y-0" : "translate-y-0"
+        }`}
       >
         <nav className="transition-all duration-500 border-b bg-background/95 backdrop-blur-md border-dark/10 shadow-xs">
           <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
@@ -315,12 +309,12 @@ export default function Navbar() {
             </button>
           </div>
         </nav>
-      </motion.div>
+      </div>
 
       {/* Spacer placeholder for fixed mobile header so content starts below navbar */}
       <div className="h-16 lg:hidden" aria-hidden="true" />
 
-      {/* Redesigned Mobile Menu Modal / Sheet matching reference image */}
+      {/* Redesigned Mobile Menu Modal / Sheet */}
       <AnimatePresence>
         {mobileOpen && (
           <div className="lg:hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5">
@@ -500,7 +494,7 @@ export default function Navbar() {
                   </div>
                 </div>
 
-                {/* Language Switcher Row (like Sign Out row in reference image) */}
+                {/* Language Switcher Row */}
                 <div className="pt-2">
                   <div className="flex items-center justify-between px-3 py-2 bg-cream/40 rounded-2xl border border-dark/5">
                     <span className="text-xs text-dark/60 font-medium uppercase tracking-wider">
@@ -525,9 +519,9 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Bottom Action Footer Pills matching reference */}
+              {/* Bottom Action Footer Pills */}
               <div className="p-4 bg-cream/20 border-t border-dark/8 flex items-center gap-2.5 shrink-0">
-                {/* Primary Action Button (Olive / Gold Pill) */}
+                {/* Primary Action Button */}
                 <button
                   onClick={() => handleNavigate("/menu")}
                   className="flex-1 py-2.5 px-3.5 bg-primary text-dark font-medium text-xs rounded-full flex items-center justify-center gap-1.5 shadow-sm hover:brightness-105 active:scale-98 transition-all cursor-pointer"
@@ -536,7 +530,7 @@ export default function Navbar() {
                   <Sparkle size={13} className="fill-current text-dark" />
                 </button>
 
-                {/* Secondary Action Button (Dark Pill) */}
+                {/* Secondary Action Button */}
                 <a
                   href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
                   target="_blank"
@@ -554,4 +548,3 @@ export default function Navbar() {
     </>
   );
 }
-
