@@ -1,0 +1,329 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, MapPin, Phone, Clock, Quote, Camera } from "lucide-react";
+import ScrollReveal from "@/components/animations/ScrollReveal";
+import { Eyebrow, ArrowLink } from "@/components/ui/Brand";
+
+export function HomeStoryPreview() {
+  return (
+    <section className="bg-ivory py-20 md:py-28">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 md:px-10 lg:grid-cols-2">
+        <ScrollReveal variant="fadeLeft" className="relative order-2 lg:order-1">
+          <div className="img-zoom relative aspect-[4/5] max-h-[600px] w-full overflow-hidden rounded-[32px]">
+            <Image
+              src="/images/background/bg-story.webp"
+              alt="L'atelier La Madeleine"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 90vw, 520px"
+            />
+          </div>
+          <div className="absolute -bottom-6 left-6 right-6 flex items-center gap-5 rounded-2xl bg-dark p-5 text-cream shadow-2xl md:left-10 md:right-auto">
+            <p className="font-serif text-5xl leading-none text-primary">06</p>
+            <p className="text-[12px] uppercase leading-relaxed tracking-[0.18em] text-cream/70">
+              ans de passion,
+              <br />
+              chaque matin à 5h30
+            </p>
+          </div>
+        </ScrollReveal>
+        <div className="order-1 lg:order-2">
+          <ScrollReveal>
+            <Eyebrow>Notre histoire</Eyebrow>
+            <h2 className="display-section mt-5 font-serif font-medium text-dark">
+              Une histoire
+              <br />
+              de passion.
+            </h2>
+            <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-muted">
+              En 2019, une conviction simple : Agadir méritait un lieu où la
+              viennoiserie française rencontre l&apos;hospitalité marocaine.
+              Depuis, nos fours ne se sont jamais vraiment éteints.
+            </p>
+            <ul className="mt-8 space-y-4">
+              {[
+                ["Farine, beurre fin & patience", "Des ingrédients choisis, des gestes précis."],
+                ["Le four comme cœur battant", "Pain, msemmen et brioches sortent toute la journée."],
+                ["Le café comme rituel", "Une carte courte, maîtrisée, servie avec soin."],
+              ].map(([t, d]) => (
+                <li key={t} className="flex gap-4 border-b border-dark/8 pb-4">
+                  <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                  <span>
+                    <span className="block font-serif text-xl text-dark">{t}</span>
+                    <span className="block text-[14px] text-muted">{d}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8">
+              <ArrowLink href="/about">Lire notre histoire</ArrowLink>
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function HomeCafesPreview() {
+  return (
+    <section className="bg-cream/60 py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-6 md:px-10">
+        <div className="grid gap-10 overflow-hidden rounded-[32px] bg-dark text-cream lg:grid-cols-[1fr_1fr]">
+          <div className="p-8 md:p-12 lg:p-14">
+            <ScrollReveal>
+              <Eyebrow light>Nos cafés</Eyebrow>
+              <h2 className="display-section mt-5 font-serif font-medium">
+                À deux pas,
+                <br />
+                toujours chaud.
+              </h2>
+              <p className="mt-5 max-w-md text-[15px] leading-relaxed text-cream/65">
+                Notre adresse de Tilila vous accueille du petit-déjeuner au
+                goûter tardif — en salle, en terrasse ou à emporter.
+              </p>
+              <div className="mt-8 space-y-4 text-[14px]">
+                <p className="flex items-start gap-3 text-cream/80">
+                  <MapPin size={17} className="mt-0.5 shrink-0 text-primary" />
+                  Av. Al Oulfa, Tilila, Agadir 80000
+                </p>
+                <p className="flex items-center gap-3 text-cream/80">
+                  <Clock size={17} className="shrink-0 text-primary" />
+                  Lun — Dim · 6h00 — 22h00
+                </p>
+                <p className="flex items-center gap-3 text-cream/80">
+                  <Phone size={17} className="shrink-0 text-primary" />
+                  05 28 26 43 44
+                </p>
+              </div>
+              <div className="mt-9 flex flex-wrap gap-4">
+                <Link href="/cafes" className="btn-gold">
+                  Voir nos cafés <ArrowRight size={15} />
+                </Link>
+                <a
+                  href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-ghost-light"
+                >
+                  Itinéraire
+                </a>
+              </div>
+            </ScrollReveal>
+          </div>
+          <ScrollReveal
+            variant="fadeRight"
+            className="relative min-h-[320px] lg:min-h-full"
+          >
+            <div className="absolute inset-0">
+              <Image
+                src="/images/background/bg-breakfast.webp"
+                alt="La Madeleine Tilila"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/10 to-transparent lg:bg-gradient-to-r" />
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function HomeTestimonials() {
+  const items = [
+    {
+      quote:
+        "Un charmant salon de thé, des pâtisseries excellentes et des jus frais remarquables.",
+      name: "Ryu Z.",
+      role: "Habitué",
+    },
+    {
+      quote:
+        "Service adorable, lieu très propre, nourriture absolument délicieuse. On y revient.",
+      name: "Halima E.",
+      role: "Cliente",
+    },
+    {
+      quote: "Endroit calme, bon service, gens sympathiques. Parfait le matin.",
+      name: "Soufiane",
+      role: "Habitué",
+    },
+  ];
+  return (
+    <section className="bg-ivory py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-6 md:px-10">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <ScrollReveal>
+            <Eyebrow>Ils nous aiment</Eyebrow>
+            <h2 className="display-section mt-5 font-serif font-medium text-dark">
+              Paroles d&apos;habitués.
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <span className="font-serif text-6xl leading-none text-dark/10">
+              &ldquo;
+            </span>
+          </ScrollReveal>
+        </div>
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {items.map((t, i) => (
+            <ScrollReveal key={t.name} delay={i * 0.08}>
+              <figure
+                className={`flex h-full flex-col justify-between rounded-[24px] border p-7 transition-all hover:-translate-y-1 hover:shadow-xl ${
+                  i === 1
+                    ? "border-dark bg-dark text-cream"
+                    : "border-dark/8 bg-[#fffdf9] text-dark"
+                }`}
+              >
+                <div>
+                  <Quote
+                    size={22}
+                    className={i === 1 ? "text-primary" : "text-primary-dark"}
+                  />
+                  <blockquote
+                    className={`mt-4 font-serif text-[21px] leading-snug ${
+                      i === 1 ? "text-cream" : "text-dark"
+                    }`}
+                  >
+                    {t.quote}
+                  </blockquote>
+                </div>
+                <figcaption
+                  className={`mt-6 border-t pt-4 text-[12px] uppercase tracking-[0.18em] ${
+                    i === 1
+                      ? "border-cream/10 text-cream/60"
+                      : "border-dark/8 text-dark/50"
+                  }`}
+                >
+                  <span className="font-bold">{t.name}</span> — {t.role}
+                </figcaption>
+              </figure>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function HomeSocial() {
+  const imgs = [
+    "/images/gallery/gallery-1.webp",
+    "/images/gallery/gallery-2.webp",
+    "/images/gallery/gallery-3.webp",
+    "/images/gallery/gallery-4.webp",
+    "/images/gallery/gallery-5.webp",
+  ];
+  return (
+    <section className="overflow-hidden bg-ivory pb-20 md:pb-28">
+      <div className="mx-auto max-w-7xl px-6 md:px-10">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <ScrollReveal>
+            <p className="eyebrow text-primary-dark">@lamadeleine.agadir</p>
+            <h2 className="display-section mt-4 font-serif font-medium text-dark">
+              Le four en images.
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <a
+              href="https://instagram.com/lamadeleine.agadir"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost !py-3"
+            >
+              <Camera size={15} /> Suivre
+            </a>
+          </ScrollReveal>
+        </div>
+      </div>
+      <ScrollReveal className="mt-10">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 no-scrollbar md:px-10">
+          {imgs.map((src, i) => (
+            <a
+              key={src}
+              href="https://instagram.com/lamadeleine.agadir"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`img-zoom group relative block aspect-[4/5] shrink-0 basis-[68%] snap-start overflow-hidden rounded-3xl sm:basis-[38%] lg:basis-[22%] ${
+                i % 2 === 1 ? "mt-8" : ""
+              }`}
+            >
+              <Image
+                src={src}
+                alt="Instagram La Madeleine"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 60vw, 280px"
+              />
+              <span className="absolute inset-0 bg-dark/0 transition-colors group-hover:bg-dark/25" />
+              <span className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-cream/95 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-dark opacity-0 transition-opacity group-hover:opacity-100">
+                <Camera size={13} /> Voir
+              </span>
+            </a>
+          ))}
+          <a
+            href="/shop"
+            className="flex aspect-[4/5] shrink-0 basis-[68%] snap-start flex-col items-center justify-center gap-3 rounded-3xl bg-dark p-8 text-center text-cream sm:basis-[38%] lg:basis-[22%]"
+          >
+            <span className="font-script text-3xl text-primary">Et plus</span>
+            <span className="font-serif text-2xl leading-tight">
+              en boutique
+            </span>
+            <span className="mt-2 inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary text-dark">
+              <ArrowRight size={18} />
+            </span>
+          </a>
+        </div>
+      </ScrollReveal>
+    </section>
+  );
+}
+
+export function HomeFinalCTA() {
+  return (
+    <section className="relative overflow-hidden bg-dark">
+      <div className="absolute inset-0">
+        <Image
+          src="/images/background/bg-bread.webp"
+          alt=""
+          fill
+          className="object-cover opacity-30"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-dark/40" />
+      </div>
+      <div className="relative mx-auto max-w-4xl px-6 py-24 text-center md:py-32">
+        <ScrollReveal>
+          <p className="font-script text-3xl text-primary md:text-4xl">
+            On vous garde une table
+          </p>
+          <h2 className="display-section mt-4 font-serif font-medium text-cream">
+            Venez goûter,
+            <br />
+            repartez conquis.
+          </h2>
+          <p className="mx-auto mt-5 max-w-md text-[16px] leading-relaxed text-cream/65">
+            Petit-déjeuner, goûter ou café pressé — la vitrine est pleine dès
+            6h00, chaque jour.
+          </p>
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+            <Link href="/menu" className="btn-gold">
+              Découvrir notre menu <ArrowRight size={15} />
+            </Link>
+            <Link href="/contact" className="btn-ghost-light">
+              Nous contacter
+            </Link>
+          </div>
+          <p className="mt-8 text-[11px] uppercase tracking-[0.25em] text-cream/45">
+            Av. Al Oulfa, Tilila — Agadir · 6h00 — 22h00
+          </p>
+        </ScrollReveal>
+      </div>
+    </section>
+  );
+}

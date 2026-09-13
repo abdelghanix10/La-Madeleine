@@ -1,189 +1,191 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Phone, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
-import { useLanguage } from "@/providers/LanguageProvider";
+import { Phone, Mail, MapPin, Clock, ArrowUpRight } from "lucide-react";
 
-function InstagramIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-    </svg>
-  );
-}
-
-function FacebookIcon({ size = 16 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-    </svg>
-  );
-}
+const NAV = [
+  { label: "Accueil", href: "/" },
+  { label: "Notre histoire", href: "/about" },
+  { label: "Menu", href: "/menu" },
+  { label: "Boutique", href: "/shop" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function Footer() {
-  const { data, t } = useLanguage();
-  const { siteConfig } = data;
-
-  const footerLinks = {
-    about: [
-      { label: t("ourStory"), href: "/about" },
-      { label: t("ourMenu"), href: "/menu" },
-      { label: t("shopFooter"), href: "/shop" },
-      { label: t("locations"), href: "/contact" },
-    ],
-    help: [
-      { label: t("faqFooter"), href: "/faq" },
-      { label: t("contactUsFooter"), href: "/contact" },
-      { label: t("cookiePolicy"), href: "/cookie-policy" },
-      { label: t("privacyPolicy"), href: "/privacy-policy" },
-    ],
-  };
-
   return (
-    <footer className="relative lg:fixed lg:bottom-0 lg:left-0 w-full lg:h-[60vh] bg-dark text-cream/70 z-0 lg:overflow-hidden flex flex-col">
-      <div className="h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
+    <footer className="relative z-0 flex w-full flex-col bg-dark text-cream/70 lg:fixed lg:bottom-0 lg:left-0 lg:h-[62vh] lg:overflow-hidden">
+      <div className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-8 flex-1 flex flex-col">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 flex-1">
-          <div className="lg:col-span-1">
-            <h3 className="font-serif text-3xl text-cream tracking-wider mb-4 flex items-center gap-3">
-              <Image
-                src="/images/logo.webp"
-                alt={siteConfig.name}
-                width={80}
-                height={80}
-                style={{ width: "auto", height: "auto" }}
-              />
-              {siteConfig.name}
-            </h3>
-            <p className="text-sm leading-relaxed mb-6 text-cream/50">
-              {siteConfig.description}
+      {/* Big brand line */}
+      <div className="overflow-hidden border-b border-cream/8">
+        <p
+          aria-hidden
+          className="mx-auto max-w-7xl whitespace-nowrap px-6 pt-8 font-serif text-[13vw] leading-[0.9] text-cream/[0.07] lg:px-10 lg:text-[7.5rem]"
+        >
+          La Madeleine — Agadir
+        </p>
+      </div>
+
+      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 pb-8 pt-12 lg:px-10">
+        <div className="grid flex-1 grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_0.8fr_1fr] lg:gap-10">
+          <div>
+            <Link href="/" className="flex items-center gap-4">
+              <span className="relative block h-14 w-14 overflow-hidden rounded-full ring-1 ring-cream/15">
+                <Image
+                  src="/images/logo.webp"
+                  alt="La Madeleine Agadir"
+                  fill
+                  className="object-cover"
+                />
+              </span>
+              <span>
+                <span className="block font-serif text-3xl tracking-wide text-cream">
+                  La Madeleine
+                </span>
+                <span className="mt-1 block text-[10px] font-bold uppercase tracking-[0.35em] text-primary">
+                  Agadir · Depuis 2019
+                </span>
+              </span>
+            </Link>
+            <p className="mt-5 max-w-xs text-[14px] leading-relaxed text-cream/55">
+              Pâtisserie, boulangerie et café. Le goût du fait maison, célébré
+              chaque jour depuis 2019.
             </p>
-            <div className="flex gap-4">
-              {[
-                { Icon: InstagramIcon, href: siteConfig.social.instagram },
-                { Icon: FacebookIcon, href: siteConfig.social.facebook },
-              ].map(({ Icon, href }, i) => (
-                <motion.a
-                  key={i}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border border-cream/20 flex items-center justify-center hover:border-primary hover:text-primary transition-all duration-300"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                >
-                  <Icon size={16} />
-                </motion.a>
-              ))}
+            <div className="mt-6 flex gap-3">
+              <a
+                href="https://instagram.com/lamadeleine.agadir"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/15 text-[11px] font-bold tracking-wider transition-all hover:border-primary hover:text-primary"
+              >
+                IG
+              </a>
+              <a
+                href="https://facebook.com/lamadeleine.agadir"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/15 text-[11px] font-bold tracking-wider transition-all hover:border-primary hover:text-primary"
+              >
+                FB
+              </a>
+              <a
+                href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/15 transition-all hover:border-primary hover:text-primary"
+                aria-label="Google Maps"
+              >
+                <ArrowUpRight size={16} />
+              </a>
             </div>
           </div>
 
-          <div>
-            <h4 className="font-serif text-xl text-cream mb-6 tracking-wider">
-              {t("quickLinks")}
+          <nav aria-label="Pages">
+            <h4 className="mb-5 text-[11px] font-bold uppercase tracking-[0.3em] text-cream/40">
+              Maison
             </h4>
             <ul className="space-y-3">
-              {footerLinks.about.map((link) => (
-                <li key={link.label}>
+              {NAV.slice(0, 4).map((l) => (
+                <li key={l.href}>
                   <Link
-                    href={link.href}
-                    className="text-sm hover:text-primary transition-colors duration-300 inline-flex items-center gap-2 group"
+                    href={l.href}
+                    className="group inline-flex items-center gap-2 text-[14px] transition-colors hover:text-primary"
                   >
-                    <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
-                    {link.label}
+                    <span className="h-px w-0 bg-primary transition-all duration-300 group-hover:w-4" />
+                    {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
-            <h4 className="font-serif text-xl text-cream mb-6 tracking-wider">
-              {t("support")}
+          <nav aria-label="Aide">
+            <h4 className="mb-5 text-[11px] font-bold uppercase tracking-[0.3em] text-cream/40">
+              Explorer
             </h4>
             <ul className="space-y-3">
-              {footerLinks.help.map((link) => (
-                <li key={link.label}>
+              {NAV.slice(4).map((l) => (
+                <li key={l.href}>
                   <Link
-                    href={link.href}
-                    className="text-sm hover:text-primary transition-colors duration-300 inline-flex items-center gap-2 group"
+                    href={l.href}
+                    className="group inline-flex items-center gap-2 text-[14px] transition-colors hover:text-primary"
                   >
-                    <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
-                    {link.label}
+                    <span className="h-px w-0 bg-primary transition-all duration-300 group-hover:w-4" />
+                    {l.label}
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="text-[13px] text-cream/45 transition-colors hover:text-primary"
+                >
+                  Confidentialité
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/cookie-policy"
+                  className="text-[13px] text-cream/45 transition-colors hover:text-primary"
+                >
+                  Cookies
+                </Link>
+              </li>
             </ul>
-          </div>
+          </nav>
 
           <div>
-            <h4 className="font-serif text-xl text-cream mb-6 tracking-wider">
-              {t("contact")}
+            <h4 className="mb-5 text-[11px] font-bold uppercase tracking-[0.3em] text-cream/40">
+              Nous trouver
             </h4>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-sm">
-                <MapPin size={16} className="text-primary mt-0.5 shrink-0" />
-                {siteConfig.address}
+            <ul className="space-y-4 text-[14px]">
+              <li className="flex items-start gap-3">
+                <MapPin size={16} className="mt-0.5 shrink-0 text-primary" />
+                Av. Al Oulfa, Tilila,
+                <br />
+                Agadir 80000
               </li>
               <li>
                 <a
-                  href={`tel:${siteConfig.phone}`}
-                  className="flex items-center gap-3 text-sm hover:text-primary transition-colors"
+                  href="tel:0528264344"
+                  className="flex items-center gap-3 transition-colors hover:text-primary"
                 >
-                  <Phone size={16} className="text-primary shrink-0" />
-                  {siteConfig.phone}
+                  <Phone size={16} className="shrink-0 text-primary" />
+                  05 28 26 43 44
                 </a>
               </li>
               <li>
                 <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="flex items-center gap-3 text-sm hover:text-primary transition-colors"
+                  href="mailto:contact@lamadeleine.ma"
+                  className="flex items-center gap-3 transition-colors hover:text-primary"
                 >
-                  <Mail size={16} className="text-primary shrink-0" />
-                  {siteConfig.email}
+                  <Mail size={16} className="shrink-0 text-primary" />
+                  contact@lamadeleine.ma
                 </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Clock size={16} className="shrink-0 text-primary" />
+                Lun — Dim · 6h00 — 22h00
               </li>
             </ul>
-            <div className="mt-6">
-              <h5 className="text-sm font-medium text-cream mb-3">
-                {t("hours")}
-              </h5>
-              {siteConfig.hours.map((h, i) => (
-                <div key={i} className="flex justify-between text-xs mb-1">
-                  <span>{h.day}</span>
-                  <span className="text-cream/50">{h.time}</span>
-                </div>
-              ))}
-            </div>
+            <Link
+              href="/menu"
+              className="btn-gold mt-6 !px-6 !py-3 text-[11px]"
+            >
+              Commander
+            </Link>
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-cream/10 pt-6 md:flex-row">
           <p className="text-xs text-cream/40">
-            &copy; {new Date().getFullYear()} {siteConfig.name}.{" "}
-            {t("allRightsReserved")}
+            © {new Date().getFullYear()} La Madeleine Agadir. Tous droits
+            réservés.
+          </p>
+          <p className="font-script text-xl text-primary/80">
+            Le goût du fait maison
           </p>
         </div>
       </div>

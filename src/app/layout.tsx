@@ -33,45 +33,45 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || "https://lamadeleine.ma",
   ),
   title: {
-    default: "La Boulangerie La Madeleine — Artisan Bakery & Coffee House",
-    template: "%s | La Madeleine",
+    default: "La Madeleine Agadir — Pâtisserie, Boulangerie & Café depuis 2019",
+    template: "%s | La Madeleine Agadir",
   },
   description:
-    "Handcrafted pastries, artisan bread, and exceptional coffee — an authentic French bakery experience since 1987. Visit us in Montmartre, Paris.",
+    "Depuis 2019, La Madeleine célèbre la pâtisserie, le café et les saveurs qui rassemblent. Viennoiseries, pâtisseries, café de spécialité à Agadir.",
   keywords: [
-    "French bakery",
-    "artisan bread",
-    "croissant",
-    "coffee house",
-    "pâtisserie",
-    "Montmartre",
-    "Paris bakery",
-    "pastry shop",
+    "La Madeleine Agadir",
+    "pâtisserie Agadir",
+    "boulangerie Agadir",
+    "café Agadir",
+    "viennoiserie",
+    "croissant Agadir",
+    "salon de thé Agadir",
+    "Tilila",
   ],
-  authors: [{ name: "La Boulangerie La Madeleine" }],
+  authors: [{ name: "La Madeleine Agadir" }],
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "fr_MA",
     url: "https://lamadeleine.ma",
-    siteName: "La Boulangerie La Madeleine",
-    title: "La Boulangerie La Madeleine — Artisan Bakery & Coffee House",
+    siteName: "La Madeleine Agadir",
+    title: "La Madeleine Agadir — Le goût du fait maison",
     description:
-      "Handcrafted pastries, artisan bread, and exceptional coffee — an authentic French bakery experience since 1987.",
+      "Depuis 2019, La Madeleine célèbre la pâtisserie, le café et les saveurs qui rassemblent.",
     images: [
       {
-        url: "/og-image.webp",
+        url: "/images/background/bg-pastries.webp",
         width: 1200,
         height: 630,
-        alt: "La Boulangerie La Madeleine",
+        alt: "La Madeleine Agadir — Pâtisserie artisanale",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "La Boulangerie La Madeleine",
+    title: "La Madeleine Agadir — Le goût du fait maison",
     description:
-      "Handcrafted pastries, artisan bread, and exceptional coffee — an authentic French bakery experience since 1987.",
-    images: ["/og-image.webp"],
+      "Pâtisserie, boulangerie et café à Agadir depuis 2019. Le goût du fait maison.",
+    images: ["/images/background/bg-pastries.webp"],
   },
   robots: {
     index: true,
@@ -93,7 +93,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="fr"
       className={`${cormorant.variable} ${inter.variable} ${greatVibes.variable}`}
     >
       <head>

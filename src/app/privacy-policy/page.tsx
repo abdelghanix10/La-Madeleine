@@ -5,15 +5,15 @@ import PrivacyPolicyHero from "@/components/privacy-policy/PrivacyPolicyHero";
 import PrivacyPolicyContent from "@/components/privacy-policy/PrivacyPolicyContent";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "Politique de confidentialité",
   description:
-    "Understand how La Madeleine collects, uses, and protects your personal information.",
+    "Comment La Madeleine Agadir collecte, utilise et protège vos données personnelles. Simple et transparent.",
 };
 
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <main className="relative z-10 lg:mb-[60vh] bg-background">
+      <main className="relative z-10 bg-ivory lg:mb-[62vh]">
         <PrivacyPolicyHero />
         <PrivacyPolicyContent />
       </main>
