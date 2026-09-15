@@ -7,36 +7,75 @@ import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
-import { Eyebrow, SectionHeader, ArrowLink } from "@/components/ui/Brand";
+import { Eyebrow } from "@/components/ui/Brand";
+import { useLanguage } from "@/providers/LanguageProvider";
 
-const SPECIALTIES = [
+const formatPrice = (n: number) =>
+  `${n.toLocaleString("fr-MA", { maximumFractionDigits: 2 })} DH`;
+
+type Card = {
+  index: string;
+  label: string;
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+  span: string;
+  height: string;
+};
+
+const CARDS: Card[] = [
   {
-    n: "01",
-    title: "Viennoiseries",
-    text: "Croissants feuilletés, pains au chocolat, pains suisses — pliés à la main, cuits à l'aube.",
-    image: "/images/shop/croissant.webp",
-    href: "/menu",
+    index: "01",
+    label: "Pâtisserie",
+    title: "Douceurs d'atelier",
+    description:
+      "Tartes aux fruits, mille-feuille, entremets — la vitrine qui donne envie.",
+    image: "/images/today-specials/today-4.webp",
+    alt: "Tarte aux fruits La Madeleine",
+    span: "lg:col-span-7",
+    height: "h-[420px] md:h-[520px]",
   },
   {
-    n: "02",
-    title: "Pâtisseries",
-    text: "Mille-feuille, tartes aux fruits, madeleines. La précision française, le cœur marocain.",
-    image: "/images/shop/millefeuille.webp",
-    href: "/menu",
+    index: "02",
+    label: "Viennoiserie",
+    title: "Feuilletage du matin",
+    description: "Croissants au beurre, pains au chocolat, pliés à la main.",
+    image: "/images/today-specials/today-1.webp",
+    alt: "Croissant au beurre artisanal",
+    span: "lg:col-span-5",
+    height: "h-[420px] md:h-[520px]",
   },
   {
-    n: "03",
-    title: "Café de spécialité",
-    text: "Espresso, cortado, flat white, cappuccino — des gestes justes, un lait soyeux.",
-    image: "/images/background/bg-coffee.webp",
-    href: "/menu",
+    index: "03",
+    label: "Sandwiches",
+    title: "Frais & généreux",
+    description: "Croissants garnis et pains du jour, préparés minute.",
+    image: "/images/shop/sandwich.webp",
+    alt: "Sandwich frais La Madeleine",
+    span: "lg:col-span-4",
+    height: "h-[380px] md:h-[440px]",
   },
   {
-    n: "04",
-    title: "Saveurs du Maroc",
-    text: "Msemmen, harcha, amlou, harira. Les classiques qui rassemblent, servis toute la journée.",
-    image: "/images/shop/msemmen.webp",
-    href: "/menu",
+    index: "04",
+    label: "Café",
+    title: "Espresso & créations",
+    description:
+      "Cortado signature, cappuccino, flat white — torréfié avec soin.",
+    image: "/images/today-specials/today-6.webp",
+    alt: "Café signature La Madeleine",
+    span: "lg:col-span-4",
+    height: "h-[380px] md:h-[440px]",
+  },
+  {
+    index: "05",
+    label: "Salé",
+    title: "Saveurs marocaines",
+    description: "Briouats, pastillas, msemmen — le salé qui rassemble.",
+    image: "/images/shop/briouat.webp",
+    alt: "Briouats au fromage",
+    span: "lg:col-span-4",
+    height: "h-[380px] md:h-[440px]",
   },
 ];
 
@@ -75,7 +114,9 @@ export function HomeIntro() {
             Bien plus
             <br />
             qu&apos;une{" "}
-            <em className="font-normal italic text-primary-dark">pâtisserie.</em>
+            <em className="font-normal italic text-primary-dark">
+              pâtisserie.
+            </em>
           </h2>
           <p className="mt-7 max-w-[540px] text-[16.5px] leading-[1.75] text-muted">
             Pâtisseries faites à la main, pain artisanal et café exceptionnel —
@@ -164,104 +205,117 @@ export function HomeIntro() {
 
 export function HomeSpecialties() {
   return (
-    <section className="bg-cream/50 py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-6 md:px-10">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <SectionHeader
-            index="01"
-            eyebrow="Nos spécialités"
-            title={
-              <>
-                Quatre univers,
-                <br />
-                une même exigence.
-              </>
-            }
-          />
-          <ScrollReveal delay={0.1}>
-            <ArrowLink href="/menu">Voir tout le menu</ArrowLink>
+    <section
+      id="produits"
+      className="bg-cream/50 border-y border-dark/10 py-24 md:py-32 scroll-mt-20"
+      aria-label="Nos spécialités"
+    >
+      <div className="max-w-[1400px] mx-auto px-5 md:px-8">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
+          <ScrollReveal>
+            <Eyebrow light>La carte</Eyebrow>
+            <h2 className="display-section text-dark mt-5">
+              Nos <span className="italic">spécialités</span>
+            </h2>
+            <p className="mt-4 max-w-lg text-dark/60 text-base md:text-lg">
+              Des recettes préparées avec passion, chaque jour.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={0.12}>
+            <Link
+              href="/menu"
+              className="group inline-flex items-center gap-3 rounded-full border border-dark/20 px-7 py-3.5 text-xs font-sans font-semibold tracking-[0.18em] uppercase text-dark hover:bg-dark hover:text-cream transition-all"
+            >
+              Voir la carte
+              <ArrowUpRight
+                size={16}
+                className="transition-transform group-hover:rotate-45"
+              />
+            </Link>
           </ScrollReveal>
         </div>
 
-        {/* Desktop: asymmetric editorial grid / Mobile: horizontal snap */}
         <StaggerChildren
-          className="mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 no-scrollbar lg:grid lg:grid-cols-12 lg:overflow-visible lg:pb-0"
-          staggerDelay={0.08}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5"
+          staggerDelay={0.1}
         >
-          {SPECIALTIES.map((s, i) => (
-            <StaggerItem
-              key={s.title}
-              className={`snap-start shrink-0 basis-[82%] sm:basis-[58%] lg:shrink lg:basis-auto ${
-                i === 0
-                  ? "lg:col-span-5 lg:row-span-2"
-                  : i === 1
-                    ? "lg:col-span-7"
-                    : "lg:col-span-7 lg:grid lg:grid-cols-2 lg:gap-5"
-              } ${i >= 2 ? "lg:[&>*]:col-span-1" : ""}`}
-            >
-              {i >= 2 ? (
-                <Link
-                  href={s.href}
-                  className="group grid h-full grid-cols-[120px_1fr] items-center gap-4 rounded-3xl border border-dark/8 bg-[#fffdf9] p-4 transition-all hover:-translate-y-1 hover:shadow-xl lg:col-span-1"
-                >
-                  <span className="relative block aspect-square overflow-hidden rounded-2xl">
-                    <Image
-                      src={s.image}
-                      alt={s.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="200px"
-                    />
+          {CARDS.map((card) => (
+            <StaggerItem key={card.index} className={`${card.span}`}>
+              <Link
+                href="/menu"
+                className={`group relative block overflow-hidden rounded-[24px] ${card.height} img-frame shadow-[0_24px_60px_-30px_rgba(34,20,16,0.4)]`}
+                aria-label={`${card.label} — ${card.title}`}
+              >
+                <Image
+                  src={card.image}
+                  alt={card.alt}
+                  fill
+                  sizes="(max-width: 1024px) 90vw, 40vw"
+                  className="object-cover"
+                  loading="lazy"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent"
+                  aria-hidden="true"
+                />
+                <span className="absolute top-5 left-5 rounded-full bg-background/90 backdrop-blur px-4 py-1.5 text-[10px] font-sans font-semibold tracking-[0.25em] uppercase text-dark">
+                  {card.index} · {card.label}
+                </span>
+                <span className="absolute top-5 right-5 flex h-11 w-11 items-center justify-center rounded-full bg-cream/15 backdrop-blur border border-cream/30 text-cream transition-all duration-300 group-hover:bg-primary group-hover:text-dark group-hover:border-primary">
+                  <ArrowUpRight size={18} />
+                </span>
+                <span className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
+                  <span className="block font-serif text-3xl md:text-4xl text-cream leading-none">
+                    {card.title}
                   </span>
-                  <span>
-                    <span className="font-serif text-xs tracking-[0.25em] text-primary-dark">
-                      {s.n}
-                    </span>
-                    <span className="mt-1 block font-serif text-2xl text-dark">
-                      {s.title}
-                    </span>
-                    <span className="mt-2 line-clamp-2 block text-[13px] leading-relaxed text-muted">
-                      {s.text}
-                    </span>
+                  <span className="mt-2 block max-w-sm text-sm text-cream/70 leading-relaxed">
+                    {card.description}
                   </span>
-                </Link>
-              ) : (
-                <Link
-                  href={s.href}
-                  className={`group relative block overflow-hidden rounded-[28px] ${
-                    i === 0 ? "aspect-[4/5] lg:aspect-auto lg:h-full lg:min-h-[520px]" : "aspect-[16/9]"
-                  }`}
-                >
-                  <Image
-                    src={s.image}
-                    alt={s.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 1024px) 80vw, 500px"
-                  />
-                  <span className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent" />
-                  <span className="absolute inset-x-0 bottom-0 p-6 md:p-7">
-                    <span className="font-serif text-xs tracking-[0.3em] text-primary-light">
-                      {s.n}
-                    </span>
-                    <span className="mt-2 block font-serif text-3xl text-cream md:text-4xl">
-                      {s.title}
-                    </span>
-                    <span className="mt-2 block max-w-md text-[14px] leading-relaxed text-cream/70">
-                      {s.text}
-                    </span>
-                    <span className="mt-4 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] text-cream">
-                      Explorer
-                      <ArrowUpRight
-                        size={15}
-                        className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      />
-                    </span>
-                  </span>
-                </Link>
-              )}
+                </span>
+              </Link>
             </StaggerItem>
           ))}
+
+          {/* Editorial small card — Spécialités du jour */}
+          <StaggerItem className="md:col-span-2 lg:col-span-12">
+            <Link
+              href="/menu"
+              className="group flex flex-col md:flex-row items-stretch gap-0 overflow-hidden rounded-[24px] bg-dark text-cream"
+            >
+              <span className="relative h-64 md:h-auto md:w-[42%] shrink-0 overflow-hidden">
+                <Image
+                  src="/images/today-specials/today-5.webp"
+                  alt="Mille-feuille aux amandes — spécialité du jour"
+                  fill
+                  sizes="(max-width: 1024px) 90vw, 40vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </span>
+              <span className="flex flex-1 flex-col justify-center p-8 md:p-12">
+                <span className="eyebrow text-primary">
+                  06 · Spécialités du jour
+                </span>
+                <span className="mt-4 block font-serif text-3xl md:text-5xl leading-[1.02]">
+                  La vitrine change,{" "}
+                  <span className="italic text-primary-light">
+                    l&apos;envie reste.
+                  </span>
+                </span>
+                <span className="mt-4 block max-w-xl text-sm md:text-base text-cream/65 leading-relaxed">
+                  Chaque jour, nos pâtissiers mettent en avant le meilleur du
+                  fournil — mille-feuille aux amandes, créations de saison,
+                  éditions limitées.
+                </span>
+                <span className="mt-6 inline-flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.22em] uppercase text-primary">
+                  Découvrir
+                  <span className="inline-block transition-transform group-hover:translate-x-1.5">
+                    →
+                  </span>
+                </span>
+              </span>
+            </Link>
+          </StaggerItem>
         </StaggerChildren>
       </div>
     </section>
@@ -269,65 +323,118 @@ export function HomeSpecialties() {
 }
 
 export function HomeSignatures() {
-  return (
-    <section className="bg-dark py-20 text-cream md:py-28">
-      <div className="mx-auto max-w-7xl px-6 md:px-10">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <Eyebrow light>Signatures</Eyebrow>
-            <h2 className="display-section mt-5 font-serif font-medium">
-              Les incontournables
-              <br />
-              de la vitrine.
-            </h2>
-          </div>
-          <Link
-            href="/shop"
-            className="link-arrow text-cream hover:text-primary"
-          >
-            Découvrir la boutique <ArrowRight size={16} />
-          </Link>
-        </div>
+    const { data } = useLanguage();
+    const items = data.todaysSpecials.slice(0, 6);
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {SIGNATURES.map((p, i) => (
-            <ScrollReveal key={p.name} delay={i * 0.1}>
+    return (
+      <section
+        className="relative bg-dark text-cream py-24 md:py-32 overflow-hidden grain"
+        aria-label="Les signatures de La Madeleine"
+      >
+        {/* ambient glow */}
+        <div
+          className="absolute -top-40 left-1/2 -translate-x-1/2 h-96 w-[720px] rounded-full bg-primary/10 blur-[120px] pointer-events-none"
+          aria-hidden="true"
+        />
+        <p
+          className="pointer-events-none select-none absolute top-8 left-1/2 -translate-x-1/2 font-serif italic text-[18vw] leading-none text-cream/[0.04] whitespace-nowrap"
+          aria-hidden="true"
+        >
+          Signatures
+        </p>
+
+        <div className="relative max-w-[1400px] mx-auto px-5 md:px-8">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 md:mb-16">
+            <ScrollReveal>
+              <p className="eyebrow text-primary">Les incontournables</p>
+              <h2 className="display-section mt-5 text-balance">
+                Les signatures <br className="hidden md:block" />
+                de{" "}
+                <span className="italic text-primary-light">La Madeleine</span>
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={0.12} className="lg:text-right">
+              <p className="max-w-sm text-cream/60 text-base leading-relaxed lg:ml-auto">
+                Nos meilleures ventes, préparées chaque matin dans notre atelier
+                d&apos;Agadir.
+              </p>
               <Link
-                href="/shop"
-                className={`group block overflow-hidden rounded-[28px] border border-cream/10 bg-cream/[0.04] transition-all hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-2xl ${
-                  i === 1 ? "lg:mt-10" : ""
-                }`}
+                href="/menu"
+                className="mt-5 inline-flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.22em] uppercase text-primary hover:text-cream transition-colors"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={p.image}
-                    alt={p.name}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 1024px) 90vw, 380px"
-                  />
-                  <span className="absolute left-4 top-4 rounded-full bg-primary px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-dark">
-                    {p.tag}
-                  </span>
-                  <span className="absolute bottom-4 right-4 rounded-full bg-dark/85 px-4 py-2 font-serif text-lg text-primary backdrop-blur">
-                    {p.price}
-                  </span>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-serif text-2xl tracking-wide md:text-[28px]">
-                    {p.name}
-                  </h3>
-                  <p className="mt-2 text-[14px] leading-relaxed text-cream/60">
-                    {p.desc}
-                  </p>
-                </div>
+                Voir toute la carte <ArrowRight size={16} />
               </Link>
             </ScrollReveal>
-          ))}
+          </div>
+
+          {/* Desktop grid / mobile horizontal snap */}
+          <StaggerChildren
+            className="flex lg:grid lg:grid-cols-3 gap-5 overflow-x-auto lg:overflow-visible no-scrollbar snap-row -mx-5 px-5 md:mx-0 md:px-0 pb-2"
+            staggerDelay={0.1}
+          >
+            {items.map((item, i) => (
+              <StaggerItem
+                key={item.id}
+                className="min-w-[82vw] sm:min-w-[60vw] lg:min-w-0"
+              >
+                <article
+                  className={`group relative overflow-hidden rounded-[24px] border border-cream/12 bg-cream/[0.04] hover:border-primary/50 hover:bg-cream/[0.06] transition-all duration-300 hover:-translate-y-1.5 ${
+                    i === 0 ? "lg:row-span-1" : ""
+                  }`}
+                >
+                  <div className="relative h-72 md:h-80 overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      sizes="(max-width: 1024px) 80vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div
+                      className="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent"
+                      aria-hidden="true"
+                    />
+                    <span className="absolute top-4 left-4 rounded-full bg-dark/70 backdrop-blur border border-primary/30 text-primary text-[10px] uppercase tracking-[0.22em] px-3.5 py-1.5 font-sans font-semibold">
+                      {item.category}
+                    </span>
+                    <span className="absolute bottom-4 right-4 rounded-full bg-primary text-dark font-serif text-xl font-semibold px-4 py-1.5">
+                      {formatPrice(item.price)}
+                    </span>
+                  </div>
+                  <div className="p-6 md:p-7">
+                    <p className="font-serif italic text-primary-light/80 text-lg leading-none">
+                      N°{String(i + 1).padStart(2, "0")}
+                    </p>
+                    <h3 className="font-serif text-2xl md:text-[1.7rem] mt-2 leading-tight group-hover:text-primary-light transition-colors">
+                      {item.name}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-cream/60 line-clamp-3">
+                      {item.description}
+                    </p>
+                    <Link
+                      href="/menu"
+                      className="mt-5 inline-flex items-center gap-2 text-[11px] font-sans font-semibold tracking-[0.22em] uppercase text-cream/70 group-hover:text-primary transition-colors"
+                      aria-label={`Découvrir ${item.name}`}
+                    >
+                      Découvrir
+                      <ArrowUpRight
+                        size={15}
+                        className="transition-transform group-hover:rotate-45"
+                      />
+                    </Link>
+                  </div>
+                </article>
+              </StaggerItem>
+            ))}
+          </StaggerChildren>
+
+          <p className="lg:hidden mt-4 text-center text-[11px] tracking-[0.25em] uppercase text-cream/40 font-sans">
+            Faites défiler →
+          </p>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
 }
 
 export function HomeStats() {
@@ -343,9 +450,7 @@ export function HomeStats() {
           <ScrollReveal key={l} delay={i * 0.07}>
             <p className="font-serif text-5xl font-medium text-dark md:text-6xl">
               {v.replace("+", "")}
-              {v.includes("+") && (
-                <span className="text-primary">+</span>
-              )}
+              {v.includes("+") && <span className="text-primary">+</span>}
             </p>
             <p className="mt-2 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.22em] text-dark/50">
               <span className="inline-block h-px w-6 bg-primary" />
