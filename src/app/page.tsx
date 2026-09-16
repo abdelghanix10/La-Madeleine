@@ -15,6 +15,7 @@ import BakeryStory, {
   HomeSocial,
   HomeFinalCTA,
 } from "@/components/home/HomeStory";
+import ShowcaseBanner from "@/components/home/ShowcaseBanner";
 
 export const metadata: Metadata = {
   title: "Accueil — Le goût du fait maison",
@@ -46,6 +47,7 @@ export default function Home() {
         <HomeStats />
         <HomeStoryPreview />
         <BakeryStory />
+        <ShowcaseBanner />
         <HomeCafesPreview />
         <HomeTestimonials />
         <HomeSocial />
