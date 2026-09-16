@@ -11,7 +11,7 @@ export default function FinalCTA() {
   const { data } = useLanguage();
 
   return (
-    <section id="contact" className="relative bg-espresso text-cream overflow-hidden grain scroll-mt-20" aria-label="Une petite pause gourmande ?">
+    <section id="contact" className="relative bg-espresso text-cream overflow-hidden scroll-mt-20" aria-label="Une petite pause gourmande ?">
       <div className="absolute -left-32 top-1/2 -translate-y-1/2 h-[480px] w-[480px] rounded-full bg-primary/10 blur-[130px] pointer-events-none" aria-hidden="true" />
       <p
         className="pointer-events-none select-none absolute -top-4 left-1/2 -translate-x-1/2 font-serif italic text-[16vw] leading-none text-cream/[0.04] whitespace-nowrap"

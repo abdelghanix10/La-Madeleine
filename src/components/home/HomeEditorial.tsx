@@ -346,7 +346,7 @@ export function HomeSignatures() {
 
   return (
     <section
-      className="relative bg-dark text-cream py-24 md:py-32 overflow-hidden grain"
+      className="relative bg-dark text-cream py-24 md:py-32 overflow-hidden"
       aria-label="Les signatures de La Madeleine"
     >
       {/* ambient glow */}
