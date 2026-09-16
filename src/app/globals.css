@@ -71,7 +71,11 @@ html {
 body {
   background: #fbf8f2;
   color: #1e1a17;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
   font-size: 16px;
   line-height: 1.7;
 }
@@ -106,6 +110,15 @@ h6 {
 .display-section {
   font-size: clamp(2.2rem, 5vw, 4.2rem);
   line-height: 0.96;
+}
+.text-title {
+  font-size: clamp(2rem, 3.6vw, 3.4rem);
+  line-height: 1.04;
+}
+.text-display {
+  font-size: clamp(2.5rem, 5.6vw, 5.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.005em;
 }
 .eyebrow {
   font-size: 11px;
@@ -235,7 +248,9 @@ h6 {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 700;
-  transition: gap 0.3s ease, color 0.3s ease;
+  transition:
+    gap 0.3s ease,
+    color 0.3s ease;
 }
 .link-arrow:hover {
   gap: 1.05rem;

@@ -8,7 +8,7 @@ import {
   HomeSignatures,
   HomeStats,
 } from "@/components/home/HomeEditorial";
-import {
+import BakeryStory, {
   HomeStoryPreview,
   HomeCafesPreview,
   HomeTestimonials,
@@ -45,6 +45,7 @@ export default function Home() {
         <HomeSignatures />
         <HomeStats />
         <HomeStoryPreview />
+        <BakeryStory />
         <HomeCafesPreview />
         <HomeTestimonials />
         <HomeSocial />
