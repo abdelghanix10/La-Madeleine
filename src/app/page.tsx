@@ -12,10 +12,10 @@ import BakeryStory, {
   HomeStoryPreview,
   HomeCafesPreview,
   HomeTestimonials,
-  HomeSocial,
-  HomeFinalCTA,
 } from "@/components/home/HomeStory";
 import ShowcaseBanner from "@/components/home/ShowcaseBanner";
+import InstagramGallery from "@/components/home/InstagramGallery";
+import FinalCTA from "@/components/home/FinalCTA";
 
 export const metadata: Metadata = {
   title: "Accueil — Le goût du fait maison",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <main className="relative z-10 bg-ivory lg:mb-[62vh]">
+      <main className="relative z-10 bg-ivory lg:mb-[60vh]">
         <HomeHero />
         <HomeIntro />
         <HomeSpecialties />
@@ -50,8 +50,8 @@ export default function Home() {
         <ShowcaseBanner />
         <HomeCafesPreview />
         <HomeTestimonials />
-        <HomeSocial />
-        <HomeFinalCTA />
+        <InstagramGallery />
+        <FinalCTA />
       </main>
       <Footer />
       <BackToTop />

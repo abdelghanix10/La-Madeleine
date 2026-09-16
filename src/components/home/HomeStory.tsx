@@ -13,7 +13,10 @@ export function HomeStoryPreview() {
   return (
     <section className="bg-ivory py-20 md:py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 md:px-10 lg:grid-cols-2">
-        <ScrollReveal variant="fadeLeft" className="relative order-2 lg:order-1">
+        <ScrollReveal
+          variant="fadeLeft"
+          className="relative order-2 lg:order-1"
+        >
           <div className="img-zoom relative aspect-[4/5] max-h-[600px] w-full overflow-hidden rounded-[32px]">
             <Image
               src="/images/background/bg-story.webp"
@@ -47,14 +50,25 @@ export function HomeStoryPreview() {
             </p>
             <ul className="mt-8 space-y-4">
               {[
-                ["Farine, beurre fin & patience", "Des ingrédients choisis, des gestes précis."],
-                ["Le four comme cœur battant", "Pain, msemmen et brioches sortent toute la journée."],
-                ["Le café comme rituel", "Une carte courte, maîtrisée, servie avec soin."],
+                [
+                  "Farine, beurre fin & patience",
+                  "Des ingrédients choisis, des gestes précis.",
+                ],
+                [
+                  "Le four comme cœur battant",
+                  "Pain, msemmen et brioches sortent toute la journée.",
+                ],
+                [
+                  "Le café comme rituel",
+                  "Une carte courte, maîtrisée, servie avec soin.",
+                ],
               ].map(([t, d]) => (
                 <li key={t} className="flex gap-4 border-b border-dark/8 pb-4">
                   <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
                   <span>
-                    <span className="block font-serif text-xl text-dark">{t}</span>
+                    <span className="block font-serif text-xl text-dark">
+                      {t}
+                    </span>
                     <span className="block text-[14px] text-muted">{d}</span>
                   </span>
                 </li>
@@ -71,6 +85,7 @@ export function HomeStoryPreview() {
 }
 
 export function HomeCafesPreview() {
+
   return (
     <section className="bg-cream/60 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 md:px-10">
@@ -121,14 +136,18 @@ export function HomeCafesPreview() {
             className="relative min-h-[320px] lg:min-h-full"
           >
             <div className="absolute inset-0">
-              <Image
-                src="/images/background/bg-breakfast.webp"
-                alt="La Madeleine Tilila"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+              <iframe
+                title="Carte — La Madeleine Tilila, Agadir"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15843.858666837468!2d-9.528228968629396!3d30.402064943861852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3c9965a5026d3%3A0x736a8bf5957eefa9!2sCaf%C3%A9%20%26%20P%C3%A2tisserie%20Lamadeleine!5e1!3m2!1sen!2sma!4v1784648271235!5m2!1sen!2sma"
+                width="600"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                className="absolute inset-0 h-full w-full"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/10 to-transparent lg:bg-gradient-to-r" />
+              <div className="pointer-events-none absolute inset-0 z-0 bg-linear-to-b from-dark via-dark/5 to-transparent lg:bg-linear-to-r" />
             </div>
           </ScrollReveal>
         </div>
@@ -214,122 +233,6 @@ export function HomeTestimonials() {
   );
 }
 
-export function HomeSocial() {
-  const imgs = [
-    "/images/gallery/gallery-1.webp",
-    "/images/gallery/gallery-2.webp",
-    "/images/gallery/gallery-3.webp",
-    "/images/gallery/gallery-4.webp",
-    "/images/gallery/gallery-5.webp",
-  ];
-  return (
-    <section className="overflow-hidden bg-ivory pb-20 md:pb-28">
-      <div className="mx-auto max-w-7xl px-6 md:px-10">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <ScrollReveal>
-            <p className="eyebrow text-primary-dark">@lamadeleine.agadir</p>
-            <h2 className="display-section mt-4 font-serif font-medium text-dark">
-              Le four en images.
-            </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={0.1}>
-            <a
-              href="https://instagram.com/lamadeleine.agadir"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-ghost !py-3"
-            >
-              <Camera size={15} /> Suivre
-            </a>
-          </ScrollReveal>
-        </div>
-      </div>
-      <ScrollReveal className="mt-10">
-        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 no-scrollbar md:px-10">
-          {imgs.map((src, i) => (
-            <a
-              key={src}
-              href="https://instagram.com/lamadeleine.agadir"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`img-zoom group relative block aspect-[4/5] shrink-0 basis-[68%] snap-start overflow-hidden rounded-3xl sm:basis-[38%] lg:basis-[22%] ${
-                i % 2 === 1 ? "mt-8" : ""
-              }`}
-            >
-              <Image
-                src={src}
-                alt="Instagram La Madeleine"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 60vw, 280px"
-              />
-              <span className="absolute inset-0 bg-dark/0 transition-colors group-hover:bg-dark/25" />
-              <span className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-cream/95 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-dark opacity-0 transition-opacity group-hover:opacity-100">
-                <Camera size={13} /> Voir
-              </span>
-            </a>
-          ))}
-          <a
-            href="/shop"
-            className="flex aspect-[4/5] shrink-0 basis-[68%] snap-start flex-col items-center justify-center gap-3 rounded-3xl bg-dark p-8 text-center text-cream sm:basis-[38%] lg:basis-[22%]"
-          >
-            <span className="font-script text-3xl text-primary">Et plus</span>
-            <span className="font-serif text-2xl leading-tight">
-              en boutique
-            </span>
-            <span className="mt-2 inline-flex h-11 w-11 items-center justify-center rounded-full bg-primary text-dark">
-              <ArrowRight size={18} />
-            </span>
-          </a>
-        </div>
-      </ScrollReveal>
-    </section>
-  );
-}
-
-export function HomeFinalCTA() {
-  return (
-    <section className="relative overflow-hidden bg-dark">
-      <div className="absolute inset-0">
-        <Image
-          src="/images/background/bg-bread.webp"
-          alt=""
-          fill
-          className="object-cover opacity-30"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-dark/40" />
-      </div>
-      <div className="relative mx-auto max-w-4xl px-6 py-24 text-center md:py-32">
-        <ScrollReveal>
-          <p className="font-script text-3xl text-primary md:text-4xl">
-            On vous garde une table
-          </p>
-          <h2 className="display-section mt-4 font-serif font-medium text-cream">
-            Venez goûter,
-            <br />
-            repartez conquis.
-          </h2>
-          <p className="mx-auto mt-5 max-w-md text-[16px] leading-relaxed text-cream/65">
-            Petit-déjeuner, goûter ou café pressé — la vitrine est pleine dès
-            6h00, chaque jour.
-          </p>
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-            <Link href="/menu" className="btn-gold">
-              Découvrir notre menu <ArrowRight size={15} />
-            </Link>
-            <Link href="/contact" className="btn-ghost-light">
-              Nous contacter
-            </Link>
-          </div>
-          <p className="mt-8 text-[11px] uppercase tracking-[0.25em] text-cream/45">
-            Av. Al Oulfa, Tilila — Agadir · 6h00 — 22h00
-          </p>
-        </ScrollReveal>
-      </div>
-    </section>
-  );
-}
 function TimelineEntry({
   year,
   title,

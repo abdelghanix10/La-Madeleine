@@ -1,112 +1,127 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { useLanguage } from "@/providers/LanguageProvider";
-
-function InstagramIcon({
-  size = 24,
-  className,
-}: {
-  size?: number;
-  className?: string;
-}) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-    </svg>
-  );
-}
+import { ArrowUpRight } from "lucide-react";
 import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
+import { useLanguage } from "@/providers/LanguageProvider";
+import { Eyebrow } from "../ui/Brand";
 
-const galleryItems = [
+const SHOTS = [
   {
-    id: 1,
-    src: "/images/gallery/gallery-1.webp",
-    alt: "Fresh croissants cooling on a tray",
-  },
-  {
-    id: 2,
-    src: "/images/gallery/gallery-2.webp",
-    alt: "A tray of assorted pastries being served",
-  },
-  {
-    id: 3,
-    src: "/images/gallery/gallery-3.webp",
-    alt: "Chocolate chip cookies beside a coffee cup",
-  },
-  {
-    id: 4,
     src: "/images/gallery/gallery-4.webp",
-    alt: "Two croissants with chocolate drizzle",
+    alt: "Croissants au chocolat",
+    tall: true,
   },
   {
-    id: 5,
+    src: "/images/today-specials/today-2.webp",
+    alt: "Croissant sandwich",
+    tall: false,
+  },
+  {
+    src: "/images/gallery/gallery-1.webp",
+    alt: "Croissants du fournil",
+    tall: false,
+  },
+  {
+    src: "/images/today-specials/today-5.webp",
+    alt: "Mille-feuille aux amandes",
+    tall: true,
+  },
+  {
     src: "/images/gallery/gallery-5.webp",
-    alt: "Espresso machine pouring a fresh cup of coffee",
+    alt: "Espresso fraîchement versé",
+    tall: false,
+  },
+  {
+    src: "/images/today-specials/today-4.webp",
+    alt: "Tarte aux fruits de saison",
+    tall: false,
+  },
+  {
+    src: "/images/gallery/gallery-3.webp",
+    alt: "Douceurs et café",
+    tall: true,
+  },
+  {
+    src: "/images/gallery/gallery-2.webp",
+    alt: "Assortiment de pâtisseries",
+    tall: false,
   },
 ];
 
 export default function InstagramGallery() {
-  const { data, t } = useLanguage();
-  const siteConfig = data?.siteConfig;
-  return (
-    <section className="py-24 md:py-32 bg-background">
-      <div className="max-w-7xl mx-auto px-6">
-        <ScrollReveal className="text-center mb-16">
-          <p className="text-primary font-script text-2xl md:text-3xl mb-3">
-            {t("instagramEyebrow")}
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-dark tracking-wide">
-            {t("instagramTitle")}
-          </h2>
-        </ScrollReveal>
+  const { data } = useLanguage();
 
+  return (
+    <section
+      className="bg-background py-24 md:py-32 overflow-hidden"
+      aria-label="Suivez notre aventure sur Instagram"
+    >
+      <div className="max-w-[1400px] mx-auto px-5 md:px-8">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <ScrollReveal>
+            <Eyebrow>@lamadeleine.agadir</Eyebrow>
+            <h2 className="display-section text-dark mt-5">
+              Suivez notre <span className="italic">aventure</span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <a
+              href={data.siteConfig.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 rounded-full border border-dark/20 px-7 py-3.5 text-xs font-sans font-semibold tracking-[0.18em] uppercase text-dark hover:bg-dark hover:text-cream transition-all"
+            >
+              @LaMadeleineAgadir
+              <ArrowUpRight
+                size={16}
+                className="transition-transform group-hover:rotate-45"
+              />
+            </a>
+          </ScrollReveal>
+        </div>
+      </div>
+
+      <div className="max-w-[1400px] mx-auto px-5 md:px-8">
         <StaggerChildren
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
-          staggerDelay={0.08}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 auto-rows-[160px] md:auto-rows-[220px]"
+          staggerDelay={0.06}
         >
-          {galleryItems.map((item) => (
-            <StaggerItem key={item.id}>
-              <motion.a
-                href={siteConfig.social.instagram}
+          {SHOTS.map((s, i) => (
+            <StaggerItem key={i} className={s.tall ? "row-span-2" : ""}>
+              <a
+                href={data.siteConfig.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block aspect-square bg-linear-to-br overflow-hidden group relative"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.3 }}
+                className={`group relative block h-full w-full overflow-hidden rounded-[20px] img-frame ${
+                  i % 3 === 0
+                    ? "md:-rotate-1"
+                    : i % 3 === 2
+                      ? "md:rotate-1"
+                      : ""
+                }`}
+                aria-label={`Voir sur Instagram — ${s.alt}`}
               >
                 <Image
-                  src={item.src}
-                  alt={item.alt}
+                  src={s.src}
+                  alt={s.alt}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  sizes="(max-width: 1024px) 45vw, 22vw"
+                  className="object-cover"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-linear-to-br from-dark/10 via-transparent to-dark/20" />
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/60 transition-all duration-500 flex items-center justify-center">
-                  <InstagramIcon
-                    size={24}
-                    className="text-cream opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  />
-                </div>
-              </motion.a>
+                <span
+                  className="absolute inset-0 bg-dark/0 group-hover:bg-dark/45 transition-colors duration-400 flex items-center justify-center"
+                  aria-hidden="true"
+                >
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-cream text-dark opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300">
+                    <ArrowUpRight size={20} />
+                  </span>
+                </span>
+              </a>
             </StaggerItem>
           ))}
         </StaggerChildren>

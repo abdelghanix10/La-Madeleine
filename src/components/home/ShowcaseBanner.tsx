@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import { Eyebrow } from "../ui/Brand";
 
 export default function ShowcaseBanner() {
   const ref = useRef<HTMLElement | null>(null);
@@ -44,7 +45,7 @@ export default function ShowcaseBanner() {
 
         <div className="relative w-full max-w-350 mx-auto px-5 md:px-8 pb-14 md:pb-20 pt-40">
           <ScrollReveal>
-            <p className="eyebrow text-primary">Du fournil, chaque matin</p>
+            <Eyebrow>Du fournil, chaque matin</Eyebrow>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <h2 className="display-section text-cream mt-5 max-w-4xl text-balance">
