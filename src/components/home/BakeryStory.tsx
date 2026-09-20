@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { useLanguage } from "@/providers/LanguageProvider";
-import { Eyebrow } from "../ui/Brand";
+import { Eyebrow } from "@/components/ui/Brand";
 
 function TimelineEntry({
   year,
@@ -52,7 +52,7 @@ function TimelineEntry({
 
       <motion.div style={{ y }} className={flip ? "md:order-1" : ""}>
         <ScrollReveal variant="scaleUp" duration={1}>
-          <div className="relative aspect-[4/3] w-full overflow-hidden bg-cream">
+          <div className="relative aspect-4/3 w-full overflow-hidden bg-cream">
             <Image
               src={image}
               alt={alt}
@@ -96,7 +96,7 @@ export default function BakeryStory() {
           {/* vertical thread */}
           <span
             aria-hidden="true"
-            className="absolute top-0 bottom-0 left-[3px] hidden w-px bg-dark/12 md:left-1/2 md:block"
+            className="absolute top-0 bottom-0 left-0.75 hidden w-px bg-dark/12 md:left-1/2 md:block"
           />
           <TimelineEntry
             year="2019"

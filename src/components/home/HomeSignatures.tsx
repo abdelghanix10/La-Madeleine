@@ -6,6 +6,7 @@ import { useLanguage } from "@/providers/LanguageProvider";
 import { useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import { Eyebrow } from "@/components/ui/Brand";
 
 
 export default function HomeSignatures() {
@@ -49,7 +50,7 @@ export default function HomeSignatures() {
       <div className="relative max-w-[1400px] mx-auto px-5 md:px-8">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 md:mb-16">
           <ScrollReveal>
-            <p className="eyebrow text-primary">Les incontournables</p>
+            <Eyebrow>Les incontournables</Eyebrow>
             <h2 className="display-section mt-5 text-balance">
               Les signatures <br className="hidden md:block" />
               de <span className="italic text-primary-light">La Madeleine</span>

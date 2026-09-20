@@ -5,14 +5,21 @@ import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { useLanguage } from "@/providers/LanguageProvider";
-import { Eyebrow } from "../ui/Brand";
+import { Eyebrow } from "@/components/ui/Brand";
 
 export default function FinalCTA() {
   const { data } = useLanguage();
 
   return (
-    <section id="contact" className="relative bg-espresso text-cream overflow-hidden scroll-mt-20" aria-label="Une petite pause gourmande ?">
-      <div className="absolute -left-32 top-1/2 -translate-y-1/2 h-[480px] w-[480px] rounded-full bg-primary/10 blur-[130px] pointer-events-none" aria-hidden="true" />
+    <section
+      id="contact"
+      className="relative bg-espresso text-cream overflow-hidden scroll-mt-20"
+      aria-label="Une petite pause gourmande ?"
+    >
+      <div
+        className="absolute -left-32 top-1/2 -translate-y-1/2 h-[480px] w-[480px] rounded-full bg-primary/10 blur-[130px] pointer-events-none"
+        aria-hidden="true"
+      />
       <p
         className="pointer-events-none select-none absolute -top-4 left-1/2 -translate-x-1/2 font-serif italic text-[16vw] leading-none text-cream/[0.04] whitespace-nowrap"
         aria-hidden="true"
@@ -20,12 +27,13 @@ export default function FinalCTA() {
         gourmande
       </p>
 
-      <div className="relative max-w-[1400px] mx-auto px-5 md:px-8 py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="relative max-w-350 mx-auto px-5 md:px-8 py-24 md:py-32 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-7">
           <ScrollReveal>
             <Eyebrow>À tout de suite</Eyebrow>
             <h2 className="display-section mt-5 text-balance">
-              Une petite pause <span className="italic text-primary-light">gourmande ?</span>
+              Une petite pause{" "}
+              <span className="italic text-primary-light">gourmande ?</span>
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
@@ -63,16 +71,30 @@ export default function FinalCTA() {
           <ScrollReveal delay={0.24}>
             <dl className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-xl border-t border-cream/12 pt-8 text-sm">
               <div>
-                <dt className="text-[10px] tracking-[0.28em] uppercase font-sans font-semibold text-cream/45">Adresse</dt>
-                <dd className="mt-2 text-cream/80 leading-relaxed">{data.siteConfig.address}</dd>
+                <dt className="text-[10px] tracking-[0.28em] uppercase font-sans font-semibold text-cream/45">
+                  Adresse
+                </dt>
+                <dd className="mt-2 text-cream/80 leading-relaxed">
+                  {data.siteConfig.address}
+                </dd>
               </div>
               <div>
-                <dt className="text-[10px] tracking-[0.28em] uppercase font-sans font-semibold text-cream/45">Horaires</dt>
-                <dd className="mt-2 text-cream/80">Lun — Dim<br />6h00 — 22h00</dd>
+                <dt className="text-[10px] tracking-[0.28em] uppercase font-sans font-semibold text-cream/45">
+                  Horaires
+                </dt>
+                <dd className="mt-2 text-cream/80">
+                  Lun — Dim
+                  <br />
+                  6h00 — 22h00
+                </dd>
               </div>
               <div>
-                <dt className="text-[10px] tracking-[0.28em] uppercase font-sans font-semibold text-cream/45">Contact</dt>
-                <dd className="mt-2 text-cream/80 break-all">{data.siteConfig.email}</dd>
+                <dt className="text-[10px] tracking-[0.28em] uppercase font-sans font-semibold text-cream/45">
+                  Contact
+                </dt>
+                <dd className="mt-2 text-cream/80 break-all">
+                  {data.siteConfig.email}
+                </dd>
               </div>
             </dl>
           </ScrollReveal>
@@ -89,10 +111,15 @@ export default function FinalCTA() {
                 className="object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-dark/35 via-transparent to-transparent" aria-hidden="true" />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-dark/35 via-transparent to-transparent"
+                aria-hidden="true"
+              />
             </div>
             <div className="absolute -left-4 md:-left-8 -bottom-6 rounded-2xl bg-background text-dark px-6 py-4 shadow-2xl -rotate-3">
-              <p className="font-script text-3xl text-caramel leading-none">bon appétit</p>
+              <p className="font-script text-3xl text-caramel leading-none">
+                bon appétit
+              </p>
               <p className="text-[10px] tracking-[0.28em] uppercase font-sans font-semibold text-dark/55 mt-1.5">
                 Servi chaud · Tous les jours
               </p>

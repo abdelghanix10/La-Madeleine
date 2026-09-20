@@ -6,7 +6,7 @@ import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
-import { Eyebrow } from "../ui/Brand";
+import { Eyebrow } from "@/components/ui/Brand";
 import { ArrowUpRight } from "lucide-react";
 
 type Card = {

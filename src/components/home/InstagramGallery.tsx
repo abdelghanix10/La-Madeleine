@@ -7,7 +7,7 @@ import ScrollReveal, {
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
 import { useLanguage } from "@/providers/LanguageProvider";
-import { Eyebrow } from "../ui/Brand";
+import { Eyebrow } from "@/components/ui/Brand";
 
 const SHOTS = [
   {

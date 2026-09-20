@@ -6,7 +6,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { Eyebrow } from "../ui/Brand";
+import { Eyebrow } from "@/components/ui/Brand";
 
 export default function ShowcaseBanner() {
   const ref = useRef<HTMLElement | null>(null);

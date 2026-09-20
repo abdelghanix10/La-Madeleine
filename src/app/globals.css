@@ -301,6 +301,15 @@ h6 {
   border-color: rgba(28, 22, 19, 0.08);
 }
 
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(201, 162, 75, 0.7),
+    rgba(201, 162, 75, 0.12)
+  );
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
