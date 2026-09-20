@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <>
-      <main className="relative z-10 flex min-h-screen flex-col justify-between bg-dark lg:mb-[62vh]">
+      <main className="relative z-10 flex min-h-screen flex-col justify-between bg-dark lg:mb-[60vh]">
         <NotFoundContent />
       </main>
       <Footer />

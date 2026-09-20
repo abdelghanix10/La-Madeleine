@@ -1,139 +1,84 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+
+import { Quote } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { useLanguage } from "@/providers/LanguageProvider";
+import { Eyebrow } from "@/components/ui/Brand";
 
-export default function Testimonials() {
-  const { data, t } = useLanguage();
-  const testimonials = data.testimonials;
-
-  const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState(1);
-
-  const next = useCallback(() => {
-    setDirection(1);
-    setCurrent((p) => (p + 1) % testimonials.length);
-  }, [testimonials.length]);
-
-  const prev = useCallback(() => {
-    setDirection(-1);
-    setCurrent((p) => (p - 1 + testimonials.length) % testimonials.length);
-  }, [testimonials.length]);
-
-  useEffect(() => {
-    const timer = setInterval(next, 5000);
-    return () => clearInterval(timer);
-  }, [next]);
-
-  const testimonial = testimonials[current];
-
+export default function HomeTestimonials() {
+  const items = [
+    {
+      quote:
+        "Un charmant salon de thé, des pâtisseries excellentes et des jus frais remarquables.",
+      name: "Ryu Z.",
+      role: "Habitué",
+    },
+    {
+      quote:
+        "Service adorable, lieu très propre, nourriture absolument délicieuse. On y revient.",
+      name: "Halima E.",
+      role: "Cliente",
+    },
+    {
+      quote: "Endroit calme, bon service, gens sympathiques. Parfait le matin.",
+      name: "Soufiane",
+      role: "Habitué",
+    },
+  ];
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden">
-      {/* Parallax Background */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('/images/background/background-testimonials.webp')",
-          backgroundAttachment: "fixed",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
-      />
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-dark/20" />
-
-      <div className="max-w-5xl mx-auto px-6 relative z-10">
-        <ScrollReveal className="text-center mb-12">
-          <p className="text-primary font-script text-2xl md:text-3xl mb-3">
-            {t("testimonialsEyebrow")}
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream tracking-wide">
-            {t("testimonialsTitle")}
-          </h2>
-        </ScrollReveal>
-
-        <div className="relative min-h-80 flex items-center justify-center">
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={current}
-              custom={direction}
-              initial={{ opacity: 0, x: direction * 60 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction * -60 }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-center"
-            >
-              <Quote size={40} className="text-primary/40 mx-auto mb-6" />
-
-              {/* Stars */}
-              <div className="flex items-center justify-center gap-1 mb-8">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    className="text-primary fill-primary"
-                  />
-                ))}
-              </div>
-
-              <blockquote className="font-serif text-2xl md:text-3xl lg:text-4xl text-cream/90 leading-relaxed mb-8 max-w-3xl mx-auto italic">
-                &ldquo;{testimonial.quote}&rdquo;
-              </blockquote>
-
-              <div>
-                <p className="text-cream text-sm tracking-[0.3em] uppercase font-medium">
-                  {testimonial.name}
-                </p>
-                <p className="text-primary/70 text-xs tracking-wider mt-1">
-                  {testimonial.role}
-                </p>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+    <section className="bg-ivory py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-6 md:px-10">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <ScrollReveal>
+            <Eyebrow>Ils nous aiment</Eyebrow>
+            <h2 className="display-section mt-5 font-serif font-medium text-dark">
+              Paroles d&apos;habitués.
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <span className="font-serif text-6xl leading-none text-dark/10">
+              &ldquo;
+            </span>
+          </ScrollReveal>
         </div>
-
-        {/* Controls */}
-        <div className="flex items-center justify-center gap-6 mt-12">
-          <button
-            onClick={prev}
-            className="w-10 h-10 border border-cream/20 flex items-center justify-center text-cream/60 hover:text-primary hover:border-primary transition-all duration-300"
-            aria-label="Previous testimonial"
-          >
-            <ChevronLeft size={18} />
-          </button>
-
-          <div className="flex items-center gap-3">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => {
-                  setDirection(i > current ? 1 : -1);
-                  setCurrent(i);
-                }}
-                className={`transition-all duration-300 ${
-                  i === current
-                    ? "w-8 h-0.5 bg-primary"
-                    : "w-4 h-0.5 bg-cream/30 hover:bg-cream/50"
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {items.map((t, i) => (
+            <ScrollReveal key={t.name} delay={i * 0.08}>
+              <figure
+                className={`flex h-full flex-col justify-between rounded-[24px] border p-7 transition-all hover:-translate-y-1 hover:shadow-xl ${
+                  i === 1
+                    ? "border-dark bg-dark text-cream"
+                    : "border-dark/8 bg-[#fffdf9] text-dark"
                 }`}
-                aria-label={`Go to testimonial ${i + 1}`}
-              />
-            ))}
-          </div>
-
-          <button
-            onClick={next}
-            className="w-10 h-10 border border-cream/20 flex items-center justify-center text-cream/60 hover:text-primary hover:border-primary transition-all duration-300"
-            aria-label="Next testimonial"
-          >
-            <ChevronRight size={18} />
-          </button>
+              >
+                <div>
+                  <Quote
+                    size={22}
+                    className={i === 1 ? "text-primary" : "text-primary-dark"}
+                  />
+                  <blockquote
+                    className={`mt-4 font-serif text-[21px] leading-snug ${
+                      i === 1 ? "text-cream" : "text-dark"
+                    }`}
+                  >
+                    {t.quote}
+                  </blockquote>
+                </div>
+                <figcaption
+                  className={`mt-6 border-t pt-4 text-[12px] uppercase tracking-[0.18em] ${
+                    i === 1
+                      ? "border-cream/10 text-cream/60"
+                      : "border-dark/8 text-dark/50"
+                  }`}
+                >
+                  <span className="font-bold">{t.name}</span> — {t.role}
+                </figcaption>
+              </figure>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
     </section>
   );
 }
+

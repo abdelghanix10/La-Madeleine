@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <main className="relative z-10 bg-ivory lg:mb-[62vh]">
+      <main className="relative z-10 bg-ivory lg:mb-[60vh]">
         <PageHero
           variant="contact"
           eyebrow="Contact · Réponse sous 24h"
@@ -40,7 +40,10 @@ export default function ContactPage() {
           image="/images/background/bg-contact.webp"
           meta={
             <div className="flex flex-wrap gap-x-8 gap-y-3 text-[14px] text-cream/75">
-              <a href="tel:0528264344" className="flex items-center gap-2 hover:text-primary">
+              <a
+                href="tel:0528264344"
+                className="flex items-center gap-2 hover:text-primary"
+              >
                 <Phone size={15} className="text-primary" /> 05 28 26 43 44
               </a>
               <span>contact@lamadeleine.ma</span>

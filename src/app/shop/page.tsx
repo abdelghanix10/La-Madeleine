@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default function ShopPage() {
   return (
     <>
-      <main className="relative z-10 bg-ivory lg:mb-[62vh]">
+      <main className="relative z-10 bg-ivory lg:mb-[60vh]">
         <PageHero
           variant="shop"
           eyebrow="Boutique · À emporter"

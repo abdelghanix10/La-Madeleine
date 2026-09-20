@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function FAQPage() {
   return (
     <>
-      <main className="relative z-10 bg-ivory lg:mb-[62vh]">
+      <main className="relative z-10 bg-ivory lg:mb-[60vh]">
         <PageHero
           variant="faq"
           eyebrow="Aide · Réponses claires"

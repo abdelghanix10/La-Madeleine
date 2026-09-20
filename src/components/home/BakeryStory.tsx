@@ -4,109 +4,122 @@ import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import CountUp from "@/components/animations/CountUp";
 import { useLanguage } from "@/providers/LanguageProvider";
+import { Eyebrow } from "../ui/Brand";
+
+function TimelineEntry({
+  year,
+  title,
+  text,
+  image,
+  alt,
+  flip,
+}: {
+  year: string;
+  title: string;
+  text: string;
+  image: string;
+  alt: string;
+  flip?: boolean;
+}) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
+  return (
+    <div
+      ref={ref}
+      className="relative grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-14 lg:gap-20"
+    >
+      <div className={flip ? "md:order-2 md:pl-10" : "md:pr-10"}>
+        <ScrollReveal>
+          <p className="font-serif text-[clamp(4rem,9vw,7.5rem)] leading-none font-light text-primary/80 italic">
+            {year}
+          </p>
+          <div className="mt-6 flex items-center gap-4">
+            <span className="h-px w-12 bg-dark/30" />
+            <span className="h-2 w-2 rounded-full bg-primary" />
+          </div>
+          <h3 className="text-title mt-6 max-w-md font-serif font-medium text-balance text-dark">
+            {title}
+          </h3>
+          <p className="mt-5 max-w-md text-lg leading-7 text-text/60">{text}</p>
+        </ScrollReveal>
+      </div>
+
+      <motion.div style={{ y }} className={flip ? "md:order-1" : ""}>
+        <ScrollReveal variant="scaleUp" duration={1}>
+          <div className="relative aspect-[4/3] w-full overflow-hidden bg-cream">
+            <Image
+              src={image}
+              alt={alt}
+              fill
+              sizes="(max-width: 768px) 92vw, 46vw"
+              className="object-cover"
+            />
+          </div>
+        </ScrollReveal>
+      </motion.div>
+    </div>
+  );
+}
 
 export default function BakeryStory() {
   const { t } = useLanguage();
-  const stats = [
-    {
-      value: new Date().getFullYear() - 2019,
-      suffix: "+",
-      label: t("storyYears"),
-    },
-    { value: 150, suffix: "+", label: t("storyProducts") },
-    { value: 100, suffix: "K+", label: t("storyCustomers") },
-  ];
-  const imageRef = useRef<HTMLDivElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: imageRef,
-    offset: ["start end", "end start"],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
 
   return (
-    <section className="py-24 md:py-32 bg-cream overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <ScrollReveal variant="fadeUp">
-            <div ref={imageRef} className="relative">
-              <div className="aspect-4/5 relative overflow-hidden rounded-4xl shadow-2xl">
-                <motion.div
-                  className="absolute inset-0 will-change-transform"
-                  style={{ y: imageY }}
-                >
-                  <Image
-                    src="/images/background/bg-story.webp"
-                    alt="Bakery background"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
-                </motion.div>
-                <div className="absolute inset-0 bg-linear-to-t from-dark/55 via-dark/15 to-transparent" />
-                <div className="absolute inset-0 flex items-start p-8 md:p-10">
-                <div>
-                    <p className="font-script text-3xl text-cream/90 mb-2">
-                    {t("storySince")}
-                    </p>
-                    <h3 className="font-serif text-5xl md:text-7xl text-cream">
-                    2019
-                    </h3>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute -bottom-4 right-2 sm:-bottom-6 sm:-right-6 bg-primary text-dark p-4 sm:p-6 shadow-xl">
-                <span className="font-script text-2xl sm:text-3xl">{t("storySince")}</span>
-                <br />
-                <span className="font-serif text-3xl sm:text-4xl font-bold">2019</span>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          <div>
-            <ScrollReveal variant="fadeUp">
-              <p className="text-primary font-script text-2xl md:text-3xl mb-3">
-                {t("storyEyebrow")}
-              </p>
-              <h2 className="font-serif text-4xl md:text-5xl text-dark tracking-wide mb-8 leading-tight">
-                {t("storyTitleOne")}
-                <br />
+    <section id="histoire" className="relative overflow-hidden bg-background">
+      <div className="mx-auto max-w-[1600px] px-5 py-24 sm:px-8 md:py-32 lg:px-12">
+        {/* Header */}
+        <div className="mb-20 grid grid-cols-1 gap-8 md:mb-28 lg:grid-cols-12 lg:items-end">
+          <ScrollReveal className="lg:col-span-7">
+            <Eyebrow>{t("storyEyebrow")}</Eyebrow>
+            <h2 className="text-display mt-6 font-serif font-medium text-dark">
+              {t("storyTitleOne")}{" "}
+              <span className="italic font-normal text-primary">
                 {t("storyTitleTwo")}
-              </h2>
-            </ScrollReveal>
+              </span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.15} className="lg:col-span-5 lg:pb-3">
+            <p className="max-w-sm text-lg leading-7 text-text/60">
+              {t("storyDescription")}
+            </p>
+          </ScrollReveal>
+        </div>
 
-            <ScrollReveal variant="fadeUp" delay={0.1}>
-              <p className="text-dark/60 leading-relaxed mb-6">
-                {t("storyDescription")}
-              </p>
-            </ScrollReveal>
-
-            <ScrollReveal variant="fadeUp" delay={0.2}>
-              <p className="text-dark/60 leading-relaxed mb-10">
-                {t("storyDescriptionTwo")}
-              </p>
-            </ScrollReveal>
-
-            <ScrollReveal variant="fadeUp" delay={0.3}>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-dark/10">
-                {stats.map((stat) => (
-                  <div key={stat.label}>
-                    <div className="font-serif text-3xl md:text-4xl text-primary mb-1">
-                      <CountUp
-                        end={stat.value}
-                        suffix={stat.suffix}
-                        duration={2.5}
-                      />
-                    </div>
-                    <p className="text-dark/50 text-xs tracking-wider uppercase">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-          </div>
+        {/* Timeline */}
+        <div className="relative flex flex-col gap-24 md:gap-36">
+          {/* vertical thread */}
+          <span
+            aria-hidden="true"
+            className="absolute top-0 bottom-0 left-[3px] hidden w-px bg-dark/12 md:left-1/2 md:block"
+          />
+          <TimelineEntry
+            year="2019"
+            title="La naissance de La Madeleine"
+            text="Un amour du fait maison ouvre ses portes à Tilila, Agadir — fournil artisanal, salon de thé, café de quartier."
+            image="/images/background/bg-about.webp"
+            alt="La première boutique La Madeleine à Agadir"
+          />
+          <TimelineEntry
+            year="2020+"
+            title="Une passion qui grandit"
+            text="La carte s'étoffe : petits-déjeuners marocains, viennoiseries françaises, jus frais et cafés de spécialité."
+            image="/images/shop/bread.webp"
+            alt="Pains artisanaux sortis du four"
+            flip
+          />
+          <TimelineEntry
+            year="Aujourd'hui"
+            title="Des cafés et des moments partagés"
+            text="Chaque matin, la même promesse : des créations fraîches, un café soigné, un lieu où l'on revient."
+            image="/images/shop/breakfast.webp"
+            alt="Table de brunch La Madeleine"
+          />
         </div>
       </div>
     </section>

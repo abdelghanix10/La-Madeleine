@@ -2,20 +2,18 @@ import type { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import HomeHero from "@/components/home/HomeHero";
-import {
-  HomeIntro,
-  HomeSpecialties,
-  HomeSignatures,
-  HomeStats,
-} from "@/components/home/HomeEditorial";
-import BakeryStory, {
-  HomeStoryPreview,
-  HomeCafesPreview,
-  HomeTestimonials,
-} from "@/components/home/HomeStory";
+import HomeIntro from "@/components/home/HomeIntro";
+import HomeStats from "@/components/home/HomeStats";
+import HomeSignatures from "@/components/home/HomeSignatures";
+import HomeSpecialties from "@/components/home/HomeSpecialties";
+import BakeryStory from "@/components/home/BakeryStory";
+import HomeStoryPreview from "@/components/home/HomeStory";
+import HomeTestimonials from "@/components/home/Testimonials";
 import ShowcaseBanner from "@/components/home/ShowcaseBanner";
 import InstagramGallery from "@/components/home/InstagramGallery";
 import FinalCTA from "@/components/home/FinalCTA";
+import Locations from "@/components/home/Locations";
+import CoffeeMenuPreview from "@/components/home/CoffeeMenuPreview";
 
 export const metadata: Metadata = {
   title: "Accueil — Le goût du fait maison",
@@ -43,12 +41,13 @@ export default function Home() {
         <HomeHero />
         <HomeIntro />
         <HomeSpecialties />
+        <CoffeeMenuPreview />
         <HomeSignatures />
         <HomeStats />
         <HomeStoryPreview />
         <BakeryStory />
         <ShowcaseBanner />
-        <HomeCafesPreview />
+        <Locations />
         <HomeTestimonials />
         <InstagramGallery />
         <FinalCTA />

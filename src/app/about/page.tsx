@@ -12,7 +12,8 @@ export const metadata: Metadata = {
     "Une histoire de passion depuis 2019. Pâtisserie franco-marocaine, savoir-faire artisanal et accueil chaleureux à Agadir.",
   openGraph: {
     title: "Notre histoire | La Madeleine Agadir",
-    description: "Une histoire de passion depuis 2019. L'atelier, les ingrédients, les valeurs.",
+    description:
+      "Une histoire de passion depuis 2019. L'atelier, les ingrédients, les valeurs.",
     images: [
       {
         url: "/images/background/bg-story.webp",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <main className="relative z-10 bg-ivory lg:mb-[62vh]">
+      <main className="relative z-10 bg-ivory lg:mb-[60vh]">
         <PageHero
           variant="about"
           eyebrow="Notre histoire · Depuis 2019"

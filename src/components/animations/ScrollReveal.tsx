@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useSyncExternalStore } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 
 type RevealVariant =
@@ -52,6 +52,26 @@ const variants: Record<RevealVariant, Variants> = {
   },
 };
 
+const MOBILE_MEDIA_QUERY = "(max-width: 1023px)";
+
+function subscribeToMobileQuery(onChange: () => void) {
+  if (typeof window === "undefined") return () => {};
+
+  const media = window.matchMedia(MOBILE_MEDIA_QUERY);
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
+}
+
+function getMobileQuerySnapshot() {
+  return typeof window !== "undefined"
+    ? window.matchMedia(MOBILE_MEDIA_QUERY).matches
+    : false;
+}
+
+function getMobileQueryServerSnapshot() {
+  return false;
+}
+
 export default function ScrollReveal({
   children,
   variant = "fadeUp",
@@ -62,16 +82,11 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, margin: "-80px" });
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const media = window.matchMedia("(max-width: 1023px)");
-    setIsMobile(media.matches);
-
-    const listener = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    media.addEventListener("change", listener);
-    return () => media.removeEventListener("change", listener);
-  }, []);
+  const isMobile = useSyncExternalStore(
+    subscribeToMobileQuery,
+    getMobileQuerySnapshot,
+    getMobileQueryServerSnapshot,
+  );
 
   // On responsive screens (<1024px), map horizontal slide variants (fadeLeft / fadeRight) to fadeUp (bottom to top)
   const activeVariantKey =

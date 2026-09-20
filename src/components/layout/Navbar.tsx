@@ -1,10 +1,14 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
 import { Menu, X, ArrowRight, Phone, MapPin, Clock } from "lucide-react";
 import { useTransitionRouter } from "next-transition-router";
 import { useLanguage, type Language } from "@/providers/LanguageProvider";
@@ -28,9 +32,7 @@ function LanguageSwitcher({
       className={`flex items-center gap-0.5 rounded-full ${
         compact ? "p-0.5 text-[10px]" : "p-1 text-[11px]"
       } font-bold tracking-[0.08em] ${
-        onDark
-          ? "bg-white/10 ring-1 ring-white/15"
-          : "bg-dark"
+        onDark ? "bg-white/10 ring-1 ring-white/15" : "bg-dark"
       } ${className}`}
       role="group"
       aria-label="Language switcher"
@@ -109,11 +111,6 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
-  // Close on route change
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
   const closeMobile = useCallback(() => setMobileOpen(false), []);
 
   const handleNavigate = useCallback(
@@ -170,7 +167,11 @@ export default function Navbar() {
             ? "bg-ivory/92 shadow-[0_10px_40px_-15px_rgba(28,22,19,0.25)] backdrop-blur-xl"
             : "bg-ivory/60 backdrop-blur-md"
         } border-b border-dark/8`}
-        style={{ backgroundColor: scrolled ? "rgba(251,248,242,0.94)" : "rgba(251,248,242,0.75)" }}
+        style={{
+          backgroundColor: scrolled
+            ? "rgba(251,248,242,0.94)"
+            : "rgba(251,248,242,0.75)",
+        }}
       >
         <nav
           aria-label="Navigation principale"

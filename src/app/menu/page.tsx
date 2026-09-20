@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default function MenuPage() {
   return (
     <>
-      <main className="relative z-10 bg-ivory lg:mb-[62vh]">
+      <main className="relative z-10 bg-ivory lg:mb-[60vh]">
         <PageHero
           variant="menu"
           eyebrow="La carte · Fait maison"
@@ -47,10 +47,7 @@ export default function MenuPage() {
               <Link href="/contact" className="btn-gold">
                 Commander <ArrowRight size={15} />
               </Link>
-              <Link
-                href="/shop"
-                className="btn-ghost-light"
-              >
+              <Link href="/shop" className="btn-ghost-light">
                 Voir la boutique
               </Link>
             </div>
