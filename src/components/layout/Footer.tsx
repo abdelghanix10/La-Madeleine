@@ -23,7 +23,6 @@ export default function Footer() {
                 alt={siteConfig.name}
                 width={56}
                 height={56}
-                className="h-14 w-14 object-contain rounded-full bg-cream/10 p-1"
               />
               <span>
                 <span className="block font-serif text-3xl text-cream leading-none">
@@ -93,7 +92,6 @@ export default function Footer() {
                 { label: "Accueil", href: "/" },
                 { label: "Nos produits", href: "/menu" },
                 { label: "Notre histoire", href: "/about" },
-                { label: "Nos cafés", href: "/cafes" },
                 { label: "Commander", href: "/shop" },
                 { label: "Contact", href: "/contact" },
               ].map((link) => (

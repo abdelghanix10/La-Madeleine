@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -339,12 +340,12 @@ export default function ShopPremium() {
                   </span>
                 </span>
                 <span className="mt-7 grid gap-3">
-                  <a href="/contact" className="btn-gold w-full">
+                  <Link href="/contact" className="btn-gold w-full">
                     Commander <ArrowRight size={15} />
-                  </a>
-                  <a href="/menu" className="btn-ghost w-full">
+                  </Link>
+                  <Link href="/menu" className="btn-ghost w-full">
                     Voir dans le menu
-                  </a>
+                  </Link>
                 </span>
               </span>
             </motion.div>

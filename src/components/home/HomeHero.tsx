@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin, Star, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 function GoogleG() {
   return (
@@ -121,7 +122,11 @@ export default function HomeHero() {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.18, duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{
+              delay: 0.18,
+              duration: 0.7,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
             className="display-hero mt-2 font-serif font-medium text-dark"
           >
             Le goût du
@@ -146,11 +151,16 @@ export default function HomeHero() {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="mt-9 flex flex-wrap items-center justify-center gap-4"
           >
-            <a href="/menu" className="btn-primary">
+            <Link href="/menu" className="btn-primary">
               Découvrir notre menu
               <ArrowRight size={16} />
-            </a>
-            <a href="/cafes" className="btn-ghost">
+            </Link>
+            <a
+              href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
+              className="btn-ghost"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <MapPin size={15} />
               Trouver un café
             </a>

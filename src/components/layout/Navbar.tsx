@@ -185,12 +185,12 @@ export default function Navbar() {
             className="group flex shrink-0 items-center gap-3"
             aria-label="La Madeleine — Accueil"
           >
-            <span className="relative block h-10 w-10 overflow-hidden rounded-full ring-1 ring-dark/10 lg:h-11 lg:w-11">
+            <span className="relative block h-10 w-10 overflow-hidden lg:w-11">
               <Image
                 src="/images/logo.webp"
                 alt="La Madeleine Agadir"
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-fit transition-transform duration-500"
                 sizes="48px"
               />
             </span>

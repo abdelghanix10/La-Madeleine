@@ -93,7 +93,9 @@ export default function FinalCTA() {
                   Contact
                 </dt>
                 <dd className="mt-2 text-cream/80 break-all">
-                  {data.siteConfig.email}
+                  <a href={`mailto:${data.siteConfig.email}`} className="hover:text-primary transition-colors">
+                    {data.siteConfig.email}
+                  </a>
                 </dd>
               </div>
             </dl>
