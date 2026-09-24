@@ -150,20 +150,22 @@ export function PageHero({
         </div>
         <div className="border-t border-cream/10 bg-dark">
           <div className="mx-auto flex max-w-7xl items-center gap-8 overflow-x-auto px-6 py-4 no-scrollbar md:px-10">
-            {[
-              "Viennoiseries",
-              "Pâtisseries",
-              "Petit-déjeuner",
-              "Salé",
-              "Café",
-              "Boissons",
-              "Jus frais",
-            ].map((c, i) => (
+            {(
+              [
+                "menuPremiumTabViennoiseries",
+                "menuPremiumTabPastries",
+                "menuPremiumTabBreakfast",
+                "menuPremiumTabSavory",
+                "menuPremiumTabCafe",
+                "menuPremiumTabDrinks",
+                "menuPremiumTabJuices",
+              ] as const
+            ).map((key, i) => (
               <span
-                key={c}
+                key={key}
                 className="flex shrink-0 items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.28em] text-cream/45"
               >
-                <span className="text-primary">0{i + 1}</span> {c}
+                <span className="text-primary">0{i + 1}</span> {t(key)}
               </span>
             ))}
           </div>

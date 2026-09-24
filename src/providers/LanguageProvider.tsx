@@ -374,6 +374,26 @@ export const translations = {
       "Creations prepared every day with passion. Pastries folded at dawn, silky coffee, and juices pressed to order.",
     menuHeroOrderCta: "Order now",
     menuHeroShopCta: "Visit the shop",
+    // Premium (menu list)
+    menuPremiumTabAll: "All",
+    menuPremiumTabViennoiseries: "Viennoiseries",
+    menuPremiumTabPastries: "Pastries",
+    menuPremiumTabBreakfast: "Breakfast",
+    menuPremiumTabSavory: "Savory",
+    menuPremiumTabCafe: "Coffee",
+    menuPremiumTabDrinks: "Drinks",
+    menuPremiumTabJuices: "Fresh juices",
+    menuPremiumSignature: "Signature",
+    menuPremiumCtaScript: "A little craving?",
+    menuPremiumCtaTitle: "Order, we take care of the rest.",
+    menuPremiumCurrentMenu: "Today's menu",
+    menuPremiumCreations: "{count} creations",
+    menuPremiumMoreNote:
+      "+ {count} more creations to discover on site — the display changes every day.",
+    menuPremiumPaperScript: "The paper menu, up close",
+    menuPremiumPaperTitle: "Browse the full menu, page by page.",
+    menuPremiumPaperDescription:
+      "Breakfasts, savory, fresh juices, coffees — 10 pages of treats, with photos and prices.",
 
     // Shop
     // Page Hero
@@ -894,6 +914,26 @@ cookieConsentTitle: "We value your privacy",
       "Des créations préparées chaque jour avec passion. Feuilletés à l'aube, café soyeux, jus pressés à la minute.",
     menuHeroOrderCta: "Commander",
     menuHeroShopCta: "Voir la boutique",
+    // Premium (liste du menu)
+    menuPremiumTabAll: "Tout",
+    menuPremiumTabViennoiseries: "Viennoiseries",
+    menuPremiumTabPastries: "Pâtisseries",
+    menuPremiumTabBreakfast: "Petit-déjeuner",
+    menuPremiumTabSavory: "Salé",
+    menuPremiumTabCafe: "Café",
+    menuPremiumTabDrinks: "Boissons",
+    menuPremiumTabJuices: "Jus frais",
+    menuPremiumSignature: "Signature",
+    menuPremiumCtaScript: "Une petite faim ?",
+    menuPremiumCtaTitle: "Commandez, on s'occupe du reste.",
+    menuPremiumCurrentMenu: "La carte du moment",
+    menuPremiumCreations: "{count} créations",
+    menuPremiumMoreNote:
+      "+ {count} autres créations à découvrir sur place — la vitrine change chaque jour.",
+    menuPremiumPaperScript: "La carte papier, en grand",
+    menuPremiumPaperTitle: "Feuilletez le menu complet, page par page.",
+    menuPremiumPaperDescription:
+      "Petit-déjeuners, salé, jus frais, cafés — 10 pages de gourmandises, avec photos et prix.",
 
     // Shop
     // Page Hero
@@ -1408,6 +1448,26 @@ cookieConsentTitle: "We value your privacy",
       "إبداعات تُحضّر كل يوم بشغف. معجنات تُطوى عند الفجر، وقهوة ناعمة، وعصائر طازجة عند الطلب.",
     menuHeroOrderCta: "اطلب الآن",
     menuHeroShopCta: "زيارة المتجر",
+    // Premium (قائمة الأصناف)
+    menuPremiumTabAll: "الكل",
+    menuPremiumTabViennoiseries: "معجنات فرنسية",
+    menuPremiumTabPastries: "حلويات",
+    menuPremiumTabBreakfast: "فطور",
+    menuPremiumTabSavory: "مالح",
+    menuPremiumTabCafe: "قهوة",
+    menuPremiumTabDrinks: "مشروبات",
+    menuPremiumTabJuices: "عصائر طازجة",
+    menuPremiumSignature: "مميز",
+    menuPremiumCtaScript: "شعور خفيف بالجوع؟",
+    menuPremiumCtaTitle: "اطلب، ونحن نتكفل بالباقي.",
+    menuPremiumCurrentMenu: "قائمة اليوم",
+    menuPremiumCreations: "{count} إبداعات",
+    menuPremiumMoreNote:
+      "+ {count} إبداعات أخرى لاكتشافها في المكان — الواجهة تتغير كل يوم.",
+    menuPremiumPaperScript: "القائمة الورقية بالتفصيل",
+    menuPremiumPaperTitle: "تصفح القائمة الكاملة صفحة بصفحة.",
+    menuPremiumPaperDescription:
+      "فطور، مالح، عصائر طازجة، قهوة — 10 صفحات من اللذائذ مع الصور والأسعار.",
 
     // Shop
     // Page Hero
