@@ -33,11 +33,11 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || "https://lamadeleine.ma",
   ),
   title: {
-    default: "La Madeleine Agadir — Pâtisserie, Boulangerie & Café depuis 2019",
+    default: "La Madeleine Agadir — Pâtisserie, Boulangerie & Café depuis 2018",
     template: "%s | La Madeleine Agadir",
   },
   description:
-    "Depuis 2019, La Madeleine célèbre la pâtisserie, le café et les saveurs qui rassemblent. Viennoiseries, pâtisseries, café de spécialité à Agadir.",
+    "Depuis 2018, La Madeleine célèbre la pâtisserie, le café et les saveurs qui rassemblent. Viennoiseries, pâtisseries, café de spécialité à Agadir.",
   keywords: [
     "La Madeleine Agadir",
     "pâtisserie Agadir",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     siteName: "La Madeleine Agadir",
     title: "La Madeleine Agadir — Le goût du fait maison",
     description:
-      "Depuis 2019, La Madeleine célèbre la pâtisserie, le café et les saveurs qui rassemblent.",
+      "Depuis 2018, La Madeleine célèbre la pâtisserie, le café et les saveurs qui rassemblent.",
     images: [
       {
         url: "/images/background/bg-pastries.webp",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "La Madeleine Agadir — Le goût du fait maison",
     description:
-      "Pâtisserie, boulangerie et café à Agadir depuis 2019. Le goût du fait maison.",
+      "Pâtisserie, boulangerie et café à Agadir depuis 2018. Le goût du fait maison.",
     images: ["/images/background/bg-pastries.webp"],
   },
   robots: {

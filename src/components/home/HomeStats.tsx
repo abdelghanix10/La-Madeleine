@@ -7,7 +7,7 @@ export default function HomeStats() {
     <section className="border-y border-dark/8 bg-ivory">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-14 md:px-10 lg:grid-cols-4">
         {[
-          ["2019", "Naissance à Agadir"],
+          ["2018", "Naissance à Agadir"],
           ["150+", "Produits à la carte"],
           ["16h", "D'ouverture, 7j/7"],
           ["100%", "Fait maison"],

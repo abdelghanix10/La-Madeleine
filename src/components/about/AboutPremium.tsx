@@ -5,79 +5,91 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { Eyebrow } from "@/components/ui/Brand";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 const TIMELINE = [
   {
-    year: "2019",
-    title: "La naissance de La Madeleine",
-    text: "Une petite vitrine à Tilila, un four qui ne dort jamais, et une conviction : marier la viennoiserie française à l'hospitalité marocaine.",
+    year: "2018",
     image: "/images/background/bg-about.webp",
+    titleKey: "aboutPremiumTimelineTitle1",
+    textKey: "aboutPremiumTimelineText1",
   },
   {
     year: "2021",
-    title: "Le rituel du matin",
-    text: "Le petit-déjeuner La Madeleine devient une institution : hssoua fumante, msemmen feuilleté, jus d'orange pressé, café soyeux.",
     image: "/images/background/bg-breakfast.webp",
+    titleKey: "aboutPremiumTimelineTitle2",
+    textKey: "aboutPremiumTimelineText2",
   },
   {
     year: "2023",
-    title: "L'atelier s'agrandit",
-    text: "Nouveaux tours, nouvelles mains, même exigence. La carte s'étoffe : mille-feuille aux amandes, amlou à l'argan, créations de saison.",
     image: "/images/background/bg-pastries.webp",
+    titleKey: "aboutPremiumTimelineTitle3",
+    textKey: "aboutPremiumTimelineText3",
   },
   {
     year: "2026",
-    title: "Une maison de quartier",
-    text: "Familles, étudiants, voyageurs : La Madeleine est devenue le salon d'Agadir. Et chaque matin, tout recommence à 5h30.",
     image: "/images/background/bg-coffee.webp",
+    titleKey: "aboutPremiumTimelineTitle4",
+    textKey: "aboutPremiumTimelineText4",
   },
-];
+] as const;
 
 const VALUES = [
   {
     n: "01",
-    title: "Le fait maison, vraiment",
-    text: "Pâtes feuilletées pliées à la main, pains pétris sur place, jus pressés à la minute. Rien d'industriel, jamais.",
+    titleKey: "aboutPremiumValueTitle1",
+    textKey: "aboutPremiumValueText1",
   },
   {
     n: "02",
-    title: "Deux cultures, une table",
-    text: "Beurre fin et huile d'argan, vanille et fleur d'oranger, baguette et batbout. La rencontre franco-marocaine est notre signature.",
+    titleKey: "aboutPremiumValueTitle2",
+    textKey: "aboutPremiumValueText2",
   },
   {
     n: "03",
-    title: "L'accueil avant tout",
-    text: "On retient votre prénom, votre table préférée, votre café habituel. Ici, on n'est jamais un simple ticket.",
+    titleKey: "aboutPremiumValueTitle3",
+    textKey: "aboutPremiumValueText3",
   },
-];
+] as const;
+
+const INGREDIENTS = [
+  ["aboutPremiumIngredient1", "aboutPremiumIngredient1Description"],
+  ["aboutPremiumIngredient2", "aboutPremiumIngredient2Description"],
+  ["aboutPremiumIngredient3", "aboutPremiumIngredient3Description"],
+  ["aboutPremiumIngredient4", "aboutPremiumIngredient4Description"],
+] as const;
 
 export default function AboutPremium() {
+  const { t } = useLanguage();
+
   return (
     <div className="bg-ivory">
       {/* Philosophy split */}
       <section className="mx-auto max-w-7xl px-6 py-20 md:px-10 md:py-28">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <ScrollReveal>
-            <Eyebrow>Philosophie</Eyebrow>
+            <Eyebrow>{t("aboutPremiumPhilosophyEyebrow")}</Eyebrow>
             <h2 className="display-section mt-5 font-serif font-medium text-dark">
-              Le temps, le geste,
+              {t("aboutPremiumPhilosophyTitleLineOne")}
               <br />
-              la matière.
+              {t("aboutPremiumPhilosophyTitleLineTwo")}
             </h2>
             <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-muted">
-              Nous nous levons avant le soleil pour que vous n&apos;ayez qu&apos;à
-              vous asseoir. Fermentation lente, beurre de qualité, fruits de
-              saison, café maîtrisé : le luxe, pour nous, c&apos;est la justesse.
+              {t("aboutPremiumPhilosophyDescription")}
             </p>
             <div className="mt-8 grid grid-cols-2 gap-6">
               {[
-                ["5h30", "Le four s'allume"],
-                ["100%", "Fait sur place"],
-              ].map(([v, l]) => (
-                <div key={l} className="border-l-2 border-primary pl-5">
-                  <p className="font-serif text-4xl text-dark">{v}</p>
+                ["5h30", "aboutPremiumOvenLabel"],
+                ["100%", "aboutPremiumMadeHereLabel"],
+              ].map(([value, label]) => (
+                <div key={label} className="border-l-2 border-primary pl-5">
+                  <p className="font-serif text-4xl text-dark">{value}</p>
                   <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.2em] text-dark/50">
-                    {l}
+                    {t(
+                      label as
+                        | "aboutPremiumOvenLabel"
+                        | "aboutPremiumMadeHereLabel",
+                    )}
                   </p>
                 </div>
               ))}
@@ -105,10 +117,11 @@ export default function AboutPremium() {
                   />
                 </div>
                 <div className="rounded-3xl bg-dark p-6 text-cream">
-                  <p className="font-script text-2xl text-primary">Savoir-faire</p>
+                  <p className="font-script text-2xl text-primary">
+                    {t("aboutPremiumCraftTitle")}
+                  </p>
                   <p className="mt-1 text-[13px] leading-relaxed text-cream/65">
-                    Feuilletage, pétrissage, torréfaction — transmis, répétés,
-                    perfectionnés.
+                    {t("aboutPremiumCraftDescription")}
                   </p>
                 </div>
               </div>
@@ -121,16 +134,16 @@ export default function AboutPremium() {
       <section className="bg-dark py-20 text-cream md:py-28">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
           <ScrollReveal>
-            <Eyebrow light>Depuis 2019</Eyebrow>
+            <Eyebrow light>{t("aboutPremiumTimelineEyebrow")}</Eyebrow>
             <h2 className="display-section mt-5 font-serif font-medium">
-              L&apos;évolution
+              {t("aboutPremiumTimelineTitleLineOne")}
               <br />
-              de la maison.
+              {t("aboutPremiumTimelineTitleLineTwo")}
             </h2>
           </ScrollReveal>
           <div className="mt-14 space-y-6">
-            {TIMELINE.map((t, i) => (
-              <ScrollReveal key={t.year} delay={0.05}>
+            {TIMELINE.map((item, i) => (
+              <ScrollReveal key={item.year} delay={0.05}>
                 <article
                   className={`grid overflow-hidden rounded-[28px] border border-cream/10 bg-cream/[0.03] lg:grid-cols-2 ${
                     i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
@@ -138,25 +151,25 @@ export default function AboutPremium() {
                 >
                   <div className="relative min-h-[280px] lg:min-h-[360px]">
                     <Image
-                      src={t.image}
-                      alt={t.title}
+                      src={item.image}
+                      alt={t(item.titleKey)}
                       fill
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                     <span className="absolute left-6 top-6 rounded-full bg-primary px-5 py-2 font-serif text-lg font-semibold text-dark">
-                      {t.year}
+                      {item.year}
                     </span>
                   </div>
                   <div className="flex flex-col justify-center p-8 md:p-12">
                     <p className="font-serif text-7xl leading-none text-cream/10 md:text-8xl">
-                      {t.year.slice(2)}
+                      {item.year.slice(2)}
                     </p>
                     <h3 className="-mt-6 font-serif text-3xl md:-mt-8 md:text-4xl">
-                      {t.title}
+                      {t(item.titleKey)}
                     </h3>
                     <p className="mt-4 max-w-md text-[15px] leading-relaxed text-cream/65">
-                      {t.text}
+                      {t(item.textKey)}
                     </p>
                   </div>
                 </article>
@@ -173,32 +186,31 @@ export default function AboutPremium() {
             <div className="relative min-h-[320px] lg:min-h-full">
               <Image
                 src="/images/background/bg-juices.webp"
-                alt="Ingrédients frais"
+                alt={t("aboutPremiumIngredientsEyebrow")}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
             </div>
             <div className="p-8 md:p-12">
-              <Eyebrow>Ingrédients</Eyebrow>
+              <Eyebrow>{t("aboutPremiumIngredientsEyebrow")}</Eyebrow>
               <h2 className="mt-4 font-serif text-3xl font-medium text-dark md:text-[42px] md:leading-[1.02]">
-                Des matières simples,
+                {t("aboutPremiumIngredientsTitleLineOne")}
                 <br />
-                choisies avec obsession.
+                {t("aboutPremiumIngredientsTitleLineTwo")}
               </h2>
               <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-                {[
-                  ["Beurre fin", "Feuilletages caramélisés"],
-                  ["Amlou & argan", "Le Souss dans l'assiette"],
-                  ["Fruits de saison", "Jus pressés minute"],
-                  ["Café maîtrisé", "Extractions précises"],
-                ].map(([t, d]) => (
+                {INGREDIENTS.map(([titleKey, descriptionKey]) => (
                   <li
-                    key={t}
+                    key={titleKey}
                     className="rounded-2xl border border-dark/8 bg-ivory/80 p-5"
                   >
-                    <p className="font-serif text-xl text-dark">{t}</p>
-                    <p className="mt-1 text-[13px] text-muted">{d}</p>
+                    <p className="font-serif text-xl text-dark">
+                      {t(titleKey)}
+                    </p>
+                    <p className="mt-1 text-[13px] text-muted">
+                      {t(descriptionKey)}
+                    </p>
                   </li>
                 ))}
               </ul>
@@ -211,9 +223,11 @@ export default function AboutPremium() {
             <ScrollReveal key={v.n} delay={i * 0.08}>
               <div className="h-full rounded-[24px] border border-dark/8 bg-[#fffdf9] p-8 transition-all hover:-translate-y-1 hover:shadow-xl">
                 <p className="font-serif text-5xl text-primary">{v.n}</p>
-                <h3 className="mt-4 font-serif text-2xl text-dark">{v.title}</h3>
+                <h3 className="mt-4 font-serif text-2xl text-dark">
+                  {t(v.titleKey)}
+                </h3>
                 <p className="mt-3 text-[14px] leading-relaxed text-muted">
-                  {v.text}
+                  {t(v.textKey)}
                 </p>
               </div>
             </ScrollReveal>
@@ -222,13 +236,15 @@ export default function AboutPremium() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-6 rounded-[28px] bg-dark p-8 text-center text-cream md:flex-row md:p-10 md:text-left">
           <div>
-            <p className="font-script text-3xl text-primary">La suite se goûte</p>
+            <p className="font-script text-3xl text-primary">
+              {t("aboutPremiumCtaScript")}
+            </p>
             <p className="mt-1 font-serif text-3xl md:text-4xl">
-              Découvrez nos spécialités.
+              {t("aboutPremiumCtaTitle")}
             </p>
           </div>
           <Link href="/menu" className="btn-gold shrink-0">
-            Découvrir nos spécialités <ArrowRight size={15} />
+            {t("aboutHeroCta")} <ArrowRight size={15} />
           </Link>
         </div>
       </section>

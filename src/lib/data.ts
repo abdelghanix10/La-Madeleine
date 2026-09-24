@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "LaMadeleine Agadir",
   tagline: "Artisan Bakery & Coffee House",
   description:
-    "Handcrafted pastries, artisan bread, and exceptional coffee — an authentic French & Moroccan bakery experience since 2019.",
+    "Handcrafted pastries, artisan bread, and exceptional coffee — an authentic French & Moroccan bakery experience since 2018.",
   phone: "05.28.26.43.44",
   email: "contact@lamadeleine.ma",
   address: "Av. Al Oulfa, Tilila, Agadir 80000",
@@ -11,117 +11,8 @@ export const siteConfig = {
     facebook: "https://facebook.com/lamadeleine.agadir",
   },
   hours: [{ day: "Monday — Sunday", time: "6:00 AM — 10:00 PM" }],
+  science: 2018,
 };
-
-export const heroSlides = [
-  {
-    id: 1,
-    title: "CHOCO PASTRY",
-    subtitle: "Delicious",
-    image: "/images/slider/slide-1/slide-1-image.webp",
-    bgText: "/images/slider/slide-1/slide-1-bg.webp",
-    bgIcon: "/images/slider/slide-1/slide-1-bg-icon.webp",
-    products: [
-      {
-        title: "CHOCOLATE",
-        description:
-          "Rich dark chocolate pastry with Belgian chocolate and flaky dough.",
-        icon: "/images/slider/slide-1/slide-1-product-1.webp",
-      },
-      {
-        title: "SWEET CLASSICS",
-        description:
-          "Fresh croissants, éclairs, and tarts baked daily with premium ingredients.",
-        icon: "/images/slider/slide-1/slide-1-product-2.webp",
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: "NICE BIG BUNS.",
-    subtitle: "Delicious",
-    image: "/images/slider/slide-2/slide-2-image.webp",
-    bgText: "/images/slider/slide-2/slide-2-bg.webp",
-    bgIcon: "/images/slider/slide-2/slide-2-bg-icon.webp",
-    products: [
-      {
-        title: "BAKE THE VERY BEST",
-        description: "Freshly baked daily with a crisp, golden crust.",
-        icon: "/images/slider/slide-2/slide-2-product-1.webp",
-      },
-      {
-        title: "UNSPEAKABLY GOOD",
-        description: "Rich, buttery buns with a melt-in-your-mouth texture.",
-        icon: "/images/slider/slide-2/slide-2-product-2.webp",
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: "SANDWICHES",
-    subtitle: "Delicious",
-    image: "/images/slider/slide-3/slide-3-image.webp",
-    bgText: "/images/slider/slide-3/slide-3-bg.webp",
-    bgIcon: "/images/slider/slide-3/slide-3-bg-icon.webp",
-    products: [
-      {
-        title: "BREAKFAST",
-        description: "Savory breakfast sandwiches.",
-        icon: "/images/slider/slide-3/slide-3-product-1.webp",
-      },
-      {
-        title: "HEALTHY SNACK",
-        description: "Fresh fruit & yogurt parfaits.",
-        icon: "/images/slider/slide-3/slide-3-product-2.webp",
-      },
-    ],
-  },
-];
-
-export const categories = [
-  {
-    id: 1,
-    name: "Breakfast",
-    description: "Start your day the Moroccan way",
-    icon: "sunrise",
-    image: "/images/cat-breakfast.webp",
-  },
-  {
-    id: 2,
-    name: "Artisan Bread",
-    description: "Traditional French & Moroccan breads",
-    icon: "wheat",
-    image: "/images/cat-bread.webp",
-  },
-  {
-    id: 3,
-    name: "Desserts",
-    description: "Indulgent sweet creations",
-    icon: "cherry",
-    image: "/images/cat-desserts.webp",
-  },
-  {
-    id: 4,
-    name: "Coffee",
-    description: "Expertly brewed & roasted",
-    icon: "coffee",
-    image: "/images/cat-coffee.webp",
-  },
-  {
-    id: 5,
-    name: "Pastries",
-    description: "Delicate French & Moroccan pâtisserie",
-    icon: "cake",
-    image: "/images/cat-pastries.webp",
-  },
-  {
-    id: 6,
-    name: "Sandwiches",
-    description: "Fresh, handmade & delicious",
-    icon: "sandwich",
-    image: "/images/cat-sandwiches.webp",
-  },
-];
 
 type TodaysSpecial = {
   id: number;

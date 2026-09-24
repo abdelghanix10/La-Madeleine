@@ -5,38 +5,67 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, Plus, ArrowRight } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import Link from "next/link";
+import { translations, useLanguage } from "@/providers/LanguageProvider";
 
-const CATS = ["Tout", "Commande", "Menu", "Livraison", "Nos cafés", "Produits", "Paiement"] as const;
+const CATS = [
+  "all",
+  "order",
+  "menu",
+  "delivery",
+  "cafes",
+  "products",
+  "payment",
+] as const;
+type Category = (typeof CATS)[number];
 
-const FAQS: { cat: (typeof CATS)[number]; q: string; a: string }[] = [
-  { cat: "Commande", q: "Comment passer une commande ?", a: "Appelez-nous au 05 28 26 43 44 ou passez directement à Tilila. Pour les grandes pièces (mariages, événements), contactez-nous au moins une semaine à l'avance via la page Contact." },
-  { cat: "Commande", q: "Faites-vous des gâteaux sur mesure ?", a: "Oui — pièces d'anniversaire, mariages, événements d'entreprise. Envoyez-nous votre idée (parts, parfums, date) et nous vous proposons un devis sous 24h." },
-  { cat: "Menu", q: "Que proposez-vous le matin ?", a: "Petit-déjeuners marocains et continentaux : hssoua, omelettes, msemmen, harcha, amlou, jus d'orange pressé et café. Servis de 6h00 à 12h, 7j/7." },
-  { cat: "Menu", q: "Avez-vous des options végétariennes ?", a: "Oui, une grande partie de la carte : omelettes, salades de fruits, jus frais, harcha, msemmen, amlou, fromages et la plupart des viennoiseries." },
-  { cat: "Livraison", q: "Livrez-vous à Agadir ?", a: "Pour le moment, le retrait sur place est privilégié pour garantir la fraîcheur. Appelez-nous : nous préparons votre commande à l'avance pour un retrait express." },
-  { cat: "Livraison", q: "Proposez-vous le traiteur événementiel ?", a: "Avec plaisir — mariages, séminaires, fêtes privées. Formules sur mesure, mini-viennoiseries et pièces cocktail. Devis sous 24h." },
-  { cat: "Nos cafés", q: "Où vous trouver ?", a: "Av. Al Oulfa, Tilila, Agadir 80000. Ouvert Lun — Dim, 6h00 — 22h00. Itinéraire direct depuis la page Nos cafés." },
-  { cat: "Nos cafés", q: "Y a-t-il une terrasse ? Peut-on travailler sur place ?", a: "Oui — terrasse ensoleillée et salle calme, parfaite pour travailler, bouquiner ou bruncher en famille." },
-  { cat: "Produits", q: "Tout est-il fait maison ?", a: "Oui, à 100% : pâtes feuilletées, pains, crêpes, jus pressés minute. Rien d'industriel, jamais." },
-  { cat: "Produits", q: "Proposez-vous des produits sans gluten / sans lactose ?", a: "Certaines créations (salades de fruits, jus, amlou) conviennent naturellement. Demandez-nous en boutique : nous vous guidons selon vos intolérances." },
-  { cat: "Paiement", q: "Quels moyens de paiement acceptez-vous ?", a: "Espèces sur place. Pour les grosses commandes événementielles, acompte possible — discutons-en directement." },
-  { cat: "Paiement", q: "Puis-je réserver une table ?", a: "Pas de réservation obligatoire : passez quand vous voulez. Pour les groupes de 8+, un petit appel nous aide à vous garder la plus belle table." },
-];
+const FAQS = [
+  { cat: "order", id: 1 },
+  { cat: "order", id: 2 },
+  { cat: "menu", id: 3 },
+  { cat: "menu", id: 4 },
+  { cat: "delivery", id: 5 },
+  { cat: "delivery", id: 6 },
+  { cat: "cafes", id: 7 },
+  { cat: "cafes", id: 8 },
+  { cat: "products", id: 9 },
+  { cat: "products", id: 10 },
+  { cat: "payment", id: 11 },
+  { cat: "payment", id: 12 },
+] as const;
+
+const CATEGORY_KEYS = {
+  all: "faqCategoryAll",
+  order: "faqCategoryOrder",
+  menu: "faqCategoryMenu",
+  delivery: "faqCategoryDelivery",
+  cafes: "faqCategoryCafes",
+  products: "faqCategoryProducts",
+  payment: "faqCategoryPayment",
+} as const;
+
+const translationKey = (prefix: string, id: number) =>
+  `${prefix}${id}` as keyof typeof translations.en;
 
 export default function FaqPremium() {
-  const [cat, setCat] = useState<(typeof CATS)[number]>("Tout");
+  const { t } = useLanguage();
+  const [cat, setCat] = useState<Category>("all");
   const [q, setQ] = useState("");
   const [open, setOpen] = useState<number | null>(0);
 
   const list = useMemo(() => {
-    return FAQS.map((f, i) => ({ ...f, i })).filter(
+    return FAQS.map((f, i) => ({
+      ...f,
+      i,
+      question: t(translationKey("faqQuestion", f.id)),
+      answer: t(translationKey("faqAnswer", f.id)),
+    })).filter(
       (f) =>
-        (cat === "Tout" || f.cat === cat) &&
+        (cat === "all" || f.cat === cat) &&
         (!q ||
-          f.q.toLowerCase().includes(q.toLowerCase()) ||
-          f.a.toLowerCase().includes(q.toLowerCase())),
+          f.question.toLowerCase().includes(q.toLowerCase()) ||
+          f.answer.toLowerCase().includes(q.toLowerCase())),
     );
-  }, [cat, q]);
+  }, [cat, q, t]);
 
   return (
     <div className="mx-auto max-w-5xl px-6 pb-24 md:px-10">
@@ -44,11 +73,14 @@ export default function FaqPremium() {
       <ScrollReveal className="-mt-2">
         <div className="rounded-[28px] border border-dark/8 bg-[#fffdf9] p-5 shadow-sm md:p-7">
           <div className="relative">
-            <Search size={17} className="absolute left-5 top-1/2 -translate-y-1/2 text-dark/35" />
+            <Search
+              size={17}
+              className="absolute left-5 top-1/2 -translate-y-1/2 text-dark/35"
+            />
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Rechercher une question… (ex : livraison, terrasse)"
+              placeholder={t("faqSearchPlaceholder")}
               className="w-full rounded-full border border-dark/10 bg-ivory py-3.5 pl-12 pr-5 text-[15px] outline-none focus:border-primary focus:ring-4 focus:ring-primary/15"
             />
           </div>
@@ -66,7 +98,7 @@ export default function FaqPremium() {
                     : "border border-dark/10 text-dark/55 hover:text-dark"
                 }`}
               >
-                {c}
+                {t(CATEGORY_KEYS[c])}
               </button>
             ))}
           </div>
@@ -109,14 +141,14 @@ export default function FaqPremium() {
                         isOpen ? "text-primary" : "text-primary-dark"
                       }`}
                     >
-                      {f.cat}
+                      {t(CATEGORY_KEYS[f.cat])}
                     </span>
                     <span
                       className={`mt-1.5 block font-serif text-[22px] leading-snug md:text-2xl ${
                         isOpen ? "text-cream" : "text-dark"
                       }`}
                     >
-                      {f.q}
+                      {f.question}
                     </span>
                   </span>
                   <span
@@ -135,10 +167,13 @@ export default function FaqPremium() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.32, ease: [0.25, 0.1, 0.25, 1] }}
+                      transition={{
+                        duration: 0.32,
+                        ease: [0.25, 0.1, 0.25, 1],
+                      }}
                     >
                       <p className="px-6 pb-7 pl-6 text-[15px] leading-relaxed text-cream/70 sm:pl-[68px] md:px-7 md:pl-[68px]">
-                        {f.a}
+                        {f.answer}
                       </p>
                     </motion.div>
                   )}
@@ -149,21 +184,27 @@ export default function FaqPremium() {
         </AnimatePresence>
         {list.length === 0 && (
           <div className="rounded-3xl border border-dashed border-dark/15 py-16 text-center">
-            <p className="font-serif text-2xl text-dark/50">Aucune réponse trouvée</p>
-            <p className="mt-2 text-[14px] text-muted">Essayez un autre mot-clé, ou écrivez-nous.</p>
+            <p className="font-serif text-2xl text-dark/50">
+              {t("faqNoResultsTitle")}
+            </p>
+            <p className="mt-2 text-[14px] text-muted">
+              {t("faqNoResultsDescription")}
+            </p>
           </div>
         )}
       </div>
 
       <div className="mt-12 flex flex-col items-center justify-between gap-6 rounded-[28px] bg-[#efe6d6] p-8 text-center md:flex-row md:p-10 md:text-left">
         <div>
-          <p className="font-script text-3xl text-primary-dark">Encore une question ?</p>
+          <p className="font-script text-3xl text-primary-dark">
+            {t("faqCtaScript")}
+          </p>
           <p className="mt-1 font-serif text-2xl text-dark md:text-3xl">
-            Écrivez-nous, on répond vite.
+            {t("faqCtaTitle")}
           </p>
         </div>
         <Link href="/contact" className="btn-primary shrink-0">
-          Nous contacter <ArrowRight size={15} />
+          {t("faqCtaButton")} <ArrowRight size={15} />
         </Link>
       </div>
     </div>

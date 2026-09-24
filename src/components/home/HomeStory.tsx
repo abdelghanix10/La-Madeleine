@@ -39,7 +39,7 @@ export default function HomeStoryPreview() {
               de passion.
             </h2>
             <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-muted">
-              En 2019, une conviction simple : Agadir méritait un lieu où la
+              En 2018, une conviction simple : Agadir méritait un lieu où la
               viennoiserie française rencontre l&apos;hospitalité marocaine.
               Depuis, nos fours ne se sont jamais vraiment éteints.
             </p>
@@ -78,4 +78,3 @@ export default function HomeStoryPreview() {
     </section>
   );
 }
-

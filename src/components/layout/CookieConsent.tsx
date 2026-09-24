@@ -44,19 +44,19 @@ export default function CookieConsent() {
                   {t("cookieConsentTitle")}
                 </h3>
                 <p className="text-cream/70 text-xs sm:text-sm leading-normal sm:leading-relaxed">
-                  {t("cookieConsentMessage")}{" "}
+                  {t("cookieConsentText")}{" "}
                   <Link
                     href="/cookie-policy"
                     className="text-primary hover:text-primary-light underline underline-offset-2 transition-colors inline"
                   >
-                    {t("cookiePolicy")}
+                    {t("cookieConsentPolicyLink")}
                   </Link>{" "}
-                  {t("and")}{" "}
+                  {t("cookieConsentAnd")}{" "}
                   <Link
                     href="/privacy-policy"
                     className="text-primary hover:text-primary-light underline underline-offset-2 transition-colors inline"
                   >
-                    {t("privacyPolicy")}
+                    {t("cookieConsentPrivacyLink")}
                   </Link>
                 </p>
               </div>
@@ -66,13 +66,13 @@ export default function CookieConsent() {
                   onClick={handleDecline}
                   className="w-full sm:w-auto px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium text-cream/70 border border-cream/20 rounded-full hover:bg-cream/5 active:scale-95 transition-all duration-300 text-center"
                 >
-                  {t("decline")}
+                  {t("cookieConsentDecline")}
                 </button>
                 <button
                   onClick={handleAccept}
                   className="w-full sm:w-auto px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium text-dark bg-primary rounded-full hover:bg-primary-light active:scale-95 transition-all duration-300 text-center shadow-lg shadow-primary/10"
                 >
-                  {t("accept")}
+                  {t("cookieConsentAccept")}
                 </button>
               </div>
             </div>

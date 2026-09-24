@@ -93,7 +93,7 @@ export default function HomeHero() {
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-dark/10 bg-white/70 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.25em] text-dark/70 backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-              Agadir · Depuis 2019
+              Agadir · Depuis 2018
             </span>
             <span className="hidden items-center gap-1.5 rounded-full border border-dark/8 bg-[#fffdf9] px-3.5 py-2 text-[12px] font-semibold text-dark/60 shadow-sm sm:flex">
               <GoogleG />
@@ -141,7 +141,7 @@ export default function HomeHero() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="mt-6 max-w-md text-[17px] leading-relaxed text-muted md:text-[19px]"
           >
-            Depuis 2019, La Madeleine célèbre la pâtisserie, le café et les
+            Depuis 2018, La Madeleine célèbre la pâtisserie, le café et les
             saveurs qui rassemblent.
           </motion.p>
 
@@ -223,7 +223,7 @@ export default function HomeHero() {
                 Fait maison
               </p>
               <p className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-dark/65 lg:mt-2">
-                Chaque jour · Depuis 2019
+                Chaque jour · Depuis 2018
               </p>
             </motion.div>
 

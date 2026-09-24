@@ -76,17 +76,21 @@ export default function BakeryStory() {
         {/* Header */}
         <div className="mb-20 grid grid-cols-1 gap-8 md:mb-28 lg:grid-cols-12 lg:items-end">
           <ScrollReveal className="lg:col-span-7">
-            <Eyebrow>{t("storyEyebrow")}</Eyebrow>
+            <Eyebrow>Our Story</Eyebrow>
             <h2 className="text-display mt-6 font-serif font-medium text-dark">
-              {t("storyTitleOne")}{" "}
+              A Legacy of{" "}
               <span className="italic font-normal text-primary">
-                {t("storyTitleTwo")}
+                Artisanal Passion
               </span>
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.15} className="lg:col-span-5 lg:pb-3">
             <p className="max-w-sm text-lg leading-7 text-text/60">
-              {t("storyDescription")}
+              In 2019, a deep love for traditional baking brought the charm of a
+              classic French salon de thé to the heart of Agadir. Armed with
+              perfected recipes, a commitment to exceptional coffee, and an
+              uncompromising dedication to quality, La Madeline opened its doors
+              to a community that appreciates the finer details.
             </p>
           </ScrollReveal>
         </div>
@@ -99,7 +103,7 @@ export default function BakeryStory() {
             className="absolute top-0 bottom-0 left-0.75 hidden w-px bg-dark/12 md:left-1/2 md:block"
           />
           <TimelineEntry
-            year="2019"
+            year="2018"
             title="La naissance de La Madeleine"
             text="Un amour du fait maison ouvre ses portes à Tilila, Agadir — fournil artisanal, salon de thé, café de quartier."
             image="/images/background/bg-about.webp"

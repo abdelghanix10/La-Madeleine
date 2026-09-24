@@ -62,17 +62,17 @@ function LanguageSwitcher({
   );
 }
 
-const NAV_LINKS = [
-  { href: "/", label: "Accueil" },
-  { href: "/about", label: "Notre histoire" },
-  { href: "/menu", label: "Menu" },
-  { href: "/shop", label: "Boutique" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" },
-];
-
 export default function Navbar() {
   const pathname = usePathname();
+  const { t } = useLanguage();
+  const NAV_LINKS = [
+    { href: "/", label: t("footerNavHome") },
+    { href: "/about", label: t("footerNavAbout") },
+    { href: "/menu", label: t("footerNavMenu") },
+    { href: "/shop", label: t("footerNavShop") },
+    { href: "/faq", label: t("footerFaq") },
+    { href: "/contact", label: t("footerNavContact") },
+  ];
   const transitionRouter = useTransitionRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -135,16 +135,16 @@ export default function Navbar() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-1 text-[11px] uppercase tracking-[0.2em] lg:px-10">
           <span className="hidden items-center gap-2 lg:flex">
             <MapPin size={12} className="text-primary" />
-            Av. Al Oulfa, Tilila — Agadir
+            {t("navbarAddress")}
           </span>
           <span className="hidden items-center gap-2 md:flex lg:hidden">
             <MapPin size={12} className="text-primary" />
-            Tilila — Agadir
+            {t("navbarAddress")}
           </span>
           <span className="flex items-center gap-4 lg:gap-5">
             <span className="hidden items-center gap-2 xl:flex">
               <Clock size={12} className="text-primary" />
-              Lun — Dim · 6h00 — 22h00
+              {t("navbarHours")}
             </span>
             <a
               href="tel:0528264344"
@@ -183,7 +183,7 @@ export default function Navbar() {
           <button
             onClick={() => handleNavigate("/")}
             className="group flex shrink-0 items-center gap-3"
-            aria-label="La Madeleine — Accueil"
+            aria-label={`${t("footerBrandName")} — ${t("footerNavHome")}`}
           >
             <span className="relative block h-10 w-10 overflow-hidden lg:w-11">
               <Image
@@ -196,10 +196,10 @@ export default function Navbar() {
             </span>
             <span className="flex flex-col items-start leading-none">
               <span className="font-serif text-[22px] font-medium tracking-wide text-dark lg:text-2xl">
-                La Madeleine
+                {t("footerBrandName")}
               </span>
               <span className="mt-1 text-[9px] font-bold uppercase tracking-[0.35em] text-primary-dark">
-                Agadir · Depuis 2019
+                {t("navbarBrandTagline")}
               </span>
             </span>
           </button>
@@ -228,12 +228,14 @@ export default function Navbar() {
               onClick={() => handleNavigate("/menu")}
               className="btn-gold !px-5 !py-2.5 sm:!px-6 sm:!py-3"
             >
-              Commander
+              {t("navbarOrderCta")}
               <ArrowRight size={15} strokeWidth={2.4} />
             </button>
             <button
               onClick={() => setMobileOpen((v) => !v)}
-              aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-label={
+                mobileOpen ? t("navbarMobileClose") : t("navbarMobileOpen")
+              }
               aria-expanded={mobileOpen}
               className="flex h-11 w-11 items-center justify-center rounded-full border border-dark/10 bg-white/70 text-dark transition-all hover:border-dark/25 active:scale-95 lg:hidden"
             >
@@ -296,7 +298,7 @@ export default function Navbar() {
                     />
                   </span>
                   <span className="font-serif text-xl text-dark">
-                    La Madeleine
+                    {t("footerBrandName")}
                   </span>
                 </span>
                 <button
@@ -309,7 +311,9 @@ export default function Navbar() {
               </div>
 
               <nav className="flex-1 overflow-y-auto px-6 py-6">
-                <p className="eyebrow mb-4 text-primary-dark">Navigation</p>
+                <p className="eyebrow mb-4 text-primary-dark">
+                  {t("navbarNavigationLabel")}
+                </p>
                 <ul className="flex flex-col">
                   {NAV_LINKS.map((l, i) => {
                     const active = isActive(l.href);
@@ -350,12 +354,12 @@ export default function Navbar() {
 
                 <div className="mt-6 rounded-2xl bg-dark p-5 text-cream">
                   <p className="font-script text-2xl text-primary">
-                    Fait maison, chaque jour
+                    {t("navbarMenuTagline")}
                   </p>
                   <p className="mt-2 text-[13px] leading-relaxed text-cream/65">
-                    Av. Al Oulfa, Tilila — Agadir
+                    {t("navbarAddress")}
                     <br />
-                    Lun — Dim · 6h00 — 22h00
+                    {t("navbarHours")}
                   </p>
                   <a
                     href="tel:0528264344"
@@ -369,7 +373,7 @@ export default function Navbar() {
               <div className="border-t border-dark/8 bg-ivory p-5">
                 <div className="mb-4 flex items-center justify-between">
                   <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-dark/50">
-                    Langue
+                    {t("navbarLanguageLabel")}
                   </span>
                   <LanguageSwitcher />
                 </div>
@@ -377,13 +381,13 @@ export default function Navbar() {
                   onClick={() => handleNavigate("/menu")}
                   className="btn-gold w-full !py-4"
                 >
-                  Commander <ArrowRight size={16} />
+                  {t("navbarOrderCta")} <ArrowRight size={16} />
                 </button>
                 <button
-                  onClick={() => handleNavigate("/cafes")}
+                  onClick={() => handleNavigate("/contact")}
                   className="btn-ghost mt-3 w-full !py-3.5"
                 >
-                  Trouver un café
+                  {t("navbarFindCafe")}
                 </button>
               </div>
             </motion.aside>

@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "لامادلين أكادير",
   tagline: "مخبز حرفي ومقهى",
   description:
-    "معجنات مصنوعة يدوياً، خبز حرفي، وقهوة استثنائية — تجربة أصيلة للمخبزة الفرنسية والمغربية منذ 2019.",
+    "معجنات مصنوعة يدوياً، خبز حرفي، وقهوة استثنائية — تجربة أصيلة للمخبزة الفرنسية والمغربية منذ 2018.",
   phone: "05.28.26.43.44",
   email: "contact@lamadeleine.ma",
   address: "شارع الألفة، تيليلا، أكادير 80000",
@@ -11,6 +11,7 @@ export const siteConfig = {
     facebook: "https://facebook.com/lamadeleine.agadir",
   },
   hours: [{ day: "الإثنين — الأحد", time: "6:00 صباحاً — 10:00 مساءً" }],
+  science: 2018,
 };
 
 export const heroSlides = [

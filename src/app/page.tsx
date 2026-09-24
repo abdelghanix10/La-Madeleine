@@ -18,11 +18,11 @@ import CoffeeMenuPreview from "@/components/home/CoffeeMenuPreview";
 export const metadata: Metadata = {
   title: "Accueil — Le goût du fait maison",
   description:
-    "Depuis 2019, La Madeleine célèbre la pâtisserie, le café et les saveurs qui rassemblent. Viennoiseries, pâtisseries et café de spécialité à Agadir.",
+    "Depuis 2018, La Madeleine célèbre la pâtisserie, le café et les saveurs qui rassemblent. Viennoiseries, pâtisseries et café de spécialité à Agadir.",
   openGraph: {
     title: "La Madeleine Agadir — Le goût du fait maison",
     description:
-      "Depuis 2019, La Madeleine célèbre la pâtisserie, le café et les saveurs qui rassemblent.",
+      "Depuis 2018, La Madeleine célèbre la pâtisserie, le café et les saveurs qui rassemblent.",
     images: [
       {
         url: "/images/background/bg-pastries.webp",

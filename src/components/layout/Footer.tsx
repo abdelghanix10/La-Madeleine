@@ -26,26 +26,25 @@ export default function Footer() {
               />
               <span>
                 <span className="block font-serif text-3xl text-cream leading-none">
-                  La Madeleine
+                  {t("footerBrandName")}
                 </span>
-                <span className="block text-[10px] tracking-[0.34em] uppercase text-primary font-sans font-semibold mt-2">
-                  Agadir · Depuis 2019
+                <span className="mt-2 block text-[10px] tracking-[0.34em] uppercase text-primary font-sans font-semibold">
+                  {t("footerBrandSince")}
                 </span>
               </span>
             </Link>
-            <p className="text-sm leading-relaxed mt-5 text-cream/55 max-w-xs">
-              Pâtisserie artisanale, boulangerie et café au cœur d&apos;Agadir.
-              Le goût du fait maison, chaque jour.
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-cream/55">
+              {t("footerBrandDescription")}
             </p>
-            <div className="flex gap-3 mt-6">
+            <div className="mt-6 flex gap-3">
               {[
                 {
-                  label: "Instagram",
+                  label: t("footerInstagram"),
                   href: siteConfig.social.instagram,
                   path: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01 M7.5 2h9a5.5 5.5 0 0 1 5.5 5.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2z",
                 },
                 {
-                  label: "Facebook",
+                  label: t("footerFacebook"),
                   href: siteConfig.social.facebook,
                   path: "M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z",
                 },
@@ -56,7 +55,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-11 h-11 rounded-full border border-cream/20 flex items-center justify-center hover:border-primary hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary"
                 >
                   <svg
                     width="17"
@@ -76,8 +75,8 @@ export default function Footer() {
                 href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Google Maps"
-                className="w-11 h-11 rounded-full border border-cream/20 flex items-center justify-center hover:border-primary hover:text-primary hover:-translate-y-0.5 transition-all duration-300"
+                aria-label={t("footerGoogleMaps")}
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary"
               >
                 <MapPin size={17} />
               </a>
@@ -85,22 +84,22 @@ export default function Footer() {
           </div>
 
           {/* Navigation */}
-          <nav aria-label="Pied de page — navigation">
-            <h4 className="eyebrow text-primary mb-6">Explorer</h4>
+          <nav aria-label="Footer navigation">
+            <h4 className="eyebrow mb-6 text-primary">{t("footerExplore")}</h4>
             <ul className="space-y-3">
               {[
-                { label: "Accueil", href: "/" },
-                { label: "Nos produits", href: "/menu" },
-                { label: "Notre histoire", href: "/about" },
-                { label: "Commander", href: "/shop" },
-                { label: "Contact", href: "/contact" },
+                { label: t("footerNavHome"), href: "/" },
+                { label: t("footerNavMenu"), href: "/menu" },
+                { label: t("footerNavAbout"), href: "/about" },
+                { label: t("footerNavShop"), href: "/shop" },
+                { label: t("footerNavContact"), href: "/contact" },
               ].map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-cream/65 hover:text-primary transition-colors inline-flex items-center gap-2 group"
+                    className="inline-flex items-center gap-2 text-sm text-cream/65 transition-colors hover:text-primary group"
                   >
-                    <span className="w-0 group-hover:w-4 h-px bg-primary transition-all duration-300" />
+                    <span className="h-px w-0 bg-primary transition-all duration-300 group-hover:w-4" />
                     {link.label}
                   </Link>
                 </li>
@@ -110,13 +109,13 @@ export default function Footer() {
 
           {/* Cafés */}
           <div>
-            <h4 className="eyebrow text-primary mb-6">Nos cafés</h4>
+            <h4 className="eyebrow mb-6 text-primary">{t("footerOurCafes")}</h4>
             <ul className="space-y-3 text-sm text-cream/65">
               <li className="font-serif text-xl text-cream">
-                La Madeleine — Tilila
+                {t("footerLocationLabel")}
               </li>
               <li className="flex items-start gap-2.5">
-                <MapPin size={15} className="text-primary mt-1 shrink-0" />
+                <MapPin size={15} className="mt-1 shrink-0 text-primary" />
                 {siteConfig.address}
               </li>
               <li>
@@ -124,19 +123,21 @@ export default function Footer() {
                   href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-primary text-xs tracking-[0.2em] uppercase font-sans font-semibold hover:text-cream transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs font-sans font-semibold uppercase tracking-[0.2em] text-primary transition-colors hover:text-cream"
                 >
-                  Voir l&apos;itinéraire <ArrowUpRight size={14} />
+                  {t("footerSeeRoute")} <ArrowUpRight size={14} />
                 </a>
               </li>
             </ul>
-            <h4 className="eyebrow text-primary mt-8 mb-4">Horaires</h4>
+            <h4 className="eyebrow mt-8 mb-4 text-primary">
+              {t("footerHours")}
+            </h4>
             {siteConfig.hours.map((h, i) => (
               <div
                 key={i}
                 className="flex items-center gap-2.5 text-sm text-cream/65"
               >
-                <Clock size={15} className="text-primary shrink-0" />
+                <Clock size={15} className="shrink-0 text-primary" />
                 <span>
                   {h.day} · <span className="text-cream/90">{h.time}</span>
                 </span>
@@ -146,59 +147,58 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="eyebrow text-primary mb-6">{t("contact")}</h4>
+            <h4 className="eyebrow mb-6 text-primary">{t("footerContact")}</h4>
             <ul className="space-y-4 text-sm">
               <li>
                 <a
                   href={`tel:${siteConfig.phone}`}
-                  className="flex items-center gap-3 hover:text-primary transition-colors"
+                  className="flex items-center gap-3 transition-colors hover:text-primary"
                 >
-                  <Phone size={16} className="text-primary shrink-0" />
+                  <Phone size={16} className="shrink-0 text-primary" />
                   {siteConfig.phone}
                 </a>
               </li>
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="flex items-center gap-3 hover:text-primary transition-colors break-all"
+                  className="flex items-center gap-3 break-all transition-colors hover:text-primary"
                 >
-                  <Mail size={16} className="text-primary shrink-0" />
+                  <Mail size={16} className="shrink-0 text-primary" />
                   {siteConfig.email}
                 </a>
               </li>
             </ul>
             <Link
               href="/contact"
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-cream/25 px-6 py-3 text-[11px] font-sans font-semibold tracking-[0.22em] uppercase text-cream hover:border-primary hover:text-primary transition-all"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-cream/25 px-6 py-3 text-[11px] font-sans font-semibold uppercase tracking-[0.22em] text-cream transition-all hover:border-primary hover:text-primary"
             >
-              Nous contacter <ArrowUpRight size={15} />
+              {t("footerContactCta")} <ArrowUpRight size={15} />
             </Link>
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-cream/10 flex flex-col md:flex-row justify-between items-center gap-3">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-cream/10 pt-6 md:flex-row">
           <p className="text-xs text-cream/40">
-            © {new Date().getFullYear()} {siteConfig.name}.{" "}
-            {t("allRightsReserved")}
+            © {new Date().getFullYear()} {siteConfig.name}. {t("footerRights")}
           </p>
           <div className="flex items-center gap-5 text-xs text-cream/40">
             <Link
               href="/cookie-policy"
-              className="hover:text-primary transition-colors"
+              className="transition-colors hover:text-primary"
             >
-              {t("cookiePolicy")}
+              {t("footerCookiePolicy")}
             </Link>
             <Link
               href="/privacy-policy"
-              className="hover:text-primary transition-colors"
+              className="transition-colors hover:text-primary"
             >
-              {t("privacyPolicy")}
+              {t("footerPrivacyPolicy")}
             </Link>
-            <Link href="/faq" className="hover:text-primary transition-colors">
-              FAQ
+            <Link href="/faq" className="transition-colors hover:text-primary">
+              {t("footerFaq")}
             </Link>
             <p className="font-script text-xl text-primary/80">
-              Le goût du fait maison
+              {t("footerTagline")}
             </p>
           </div>
         </div>

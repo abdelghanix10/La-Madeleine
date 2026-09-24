@@ -24,7 +24,7 @@ export default function HomeIntro() {
           <p className="mt-7 max-w-[540px] text-[16.5px] leading-[1.75] text-muted">
             Pâtisseries faites à la main, pain artisanal et café exceptionnel —
             une expérience authentique de boulangerie française et marocaine
-            depuis 2019. Une maison où la tradition française rencontre la
+            depuis 2018. Une maison où la tradition française rencontre la
             générosité marocaine — croissants feuilletés le matin, café qui
             rassemble l&apos;après-midi.
           </p>
@@ -68,7 +68,7 @@ export default function HomeIntro() {
                 Est.
               </span>
               <span className="my-0.5 font-serif text-[26px] font-medium italic leading-none text-dark">
-                2019
+                2018
               </span>
               <span className="text-[9px] font-bold uppercase tracking-[0.24em] text-primary-dark">
                 Agadir
@@ -105,7 +105,3 @@ export default function HomeIntro() {
     </section>
   );
 }
-
-
-
-

@@ -4,8 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function NotFoundContent() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative flex min-h-[85dvh] items-center overflow-hidden bg-dark">
       <div className="absolute inset-0">
@@ -24,7 +27,7 @@ export default function NotFoundContent() {
           animate={{ opacity: 1, y: 0 }}
           className="font-script text-3xl text-primary md:text-4xl"
         >
-          Le four est chaud, mais…
+          {t("notFoundEyebrow")}
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
@@ -32,7 +35,8 @@ export default function NotFoundContent() {
           transition={{ delay: 0.1 }}
           className="display-hero mt-4 font-serif font-medium text-cream"
         >
-          Oups<span className="text-primary">...</span>
+          {t("notFoundTitleLineOne")}
+          <span className="text-primary">{t("notFoundTitleLineTwo")}</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -40,7 +44,7 @@ export default function NotFoundContent() {
           transition={{ delay: 0.2 }}
           className="mx-auto mt-6 max-w-md text-[17px] leading-relaxed text-cream/65"
         >
-          Cette page semble avoir disparu avant même de sortir du four.
+          {t("notFoundDescription")}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -49,10 +53,10 @@ export default function NotFoundContent() {
           className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <Link href="/" className="btn-gold">
-            <ArrowLeft size={16} /> Retour à l&apos;accueil
+            <ArrowLeft size={16} /> {t("notFoundHomeCta")}
           </Link>
           <Link href="/menu" className="btn-ghost-light">
-            Voir le menu <ArrowRight size={15} />
+            {t("notFoundMenuCta")} <ArrowRight size={15} />
           </Link>
         </motion.div>
         <p className="mt-10 font-serif text-7xl leading-none text-cream/10">

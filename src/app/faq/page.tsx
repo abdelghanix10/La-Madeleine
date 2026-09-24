@@ -18,18 +18,7 @@ export default function FAQPage() {
   return (
     <>
       <main className="relative z-10 bg-ivory lg:mb-[60vh]">
-        <PageHero
-          variant="faq"
-          eyebrow="Aide · Réponses claires"
-          title={
-            <>
-              Questions
-              <br />
-              <span className="italic text-primary-dark">fréquentes</span>
-            </>
-          }
-          description="Commande, carte, livraison, cafés, produits, paiement — tout ce que vous nous demandez souvent, au même endroit."
-        />
+        <PageHero variant="faq" />
         <FaqPremium />
       </main>
       <Footer />

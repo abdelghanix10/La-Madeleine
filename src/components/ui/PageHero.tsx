@@ -2,14 +2,16 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight, Mail, Phone } from "lucide-react";
 import { PageTag } from "@/components/ui/Brand";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export type HeroVariant =
   | "home"
   | "menu"
   | "shop"
   | "about"
-  | "cafes"
   | "faq"
   | "contact"
   | "legal";
@@ -21,18 +23,18 @@ export function PageHero({
   description,
   image,
   secondaryImage,
-  meta,
   children,
 }: {
   variant: HeroVariant;
-  eyebrow: string;
-  title: React.ReactNode;
+  eyebrow?: string;
+  title?: React.ReactNode;
   description?: string;
   image?: string;
   secondaryImage?: string;
-  meta?: React.ReactNode;
   children?: React.ReactNode;
 }) {
+  const { data, t } = useLanguage();
+
   if (variant === "faq") {
     return (
       <header className="page-enter relative overflow-hidden bg-cream pt-36 pb-20 md:pt-44 md:pb-28">
@@ -44,16 +46,18 @@ export function PageHero({
         </span>
         <div className="relative mx-auto max-w-4xl px-6 text-center">
           <div className="mb-6 flex justify-center">
-            <PageTag>{eyebrow}</PageTag>
+            <PageTag>{t("faqHeroEyebrow")}</PageTag>
           </div>
           <h1 className="display-page font-serif font-medium text-dark">
-            {title}
+            {t("faqHeroTitleLineOne")}
+            <br />
+            <span className="italic text-primary-dark">
+              {t("faqHeroTitleLineTwo")}
+            </span>
           </h1>
-          {description && (
-            <p className="mx-auto mt-6 max-w-xl text-[17px] leading-relaxed text-muted">
-              {description}
-            </p>
-          )}
+          <p className="mx-auto mt-6 max-w-xl text-[17px] leading-relaxed text-muted">
+            {t("faqHeroDescription")}
+          </p>
           {children}
         </div>
       </header>
@@ -61,15 +65,19 @@ export function PageHero({
   }
 
   if (variant === "legal") {
+    const resolvedEyebrow = eyebrow ?? t("legalPageEyebrow");
+    const resolvedTitle = title ?? t("legalPageTitle");
+    const resolvedDescription = description ?? t("legalPageDescription");
+
     return (
       <header className="page-enter bg-cream pt-36 pb-14 md:pt-44 md:pb-16">
         <div className="mx-auto max-w-3xl px-6">
-          <PageTag>{eyebrow}</PageTag>
+          <PageTag>{resolvedEyebrow}</PageTag>
           <h1 className="mt-6 font-serif text-4xl font-medium text-dark md:text-6xl">
-            {title}
+            {resolvedTitle}
           </h1>
-          {description && (
-            <p className="mt-4 text-muted">{description}</p>
+          {resolvedDescription && (
+            <p className="mt-4 text-muted">{resolvedDescription}</p>
           )}
         </div>
       </header>
@@ -81,16 +89,25 @@ export function PageHero({
       <header className="page-enter relative overflow-hidden bg-dark pt-32 pb-0 md:pt-40">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-14 md:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:pb-20">
           <div>
-            <PageTag>{eyebrow}</PageTag>
+            <PageTag>{t("menuHeroEyebrow")}</PageTag>
             <h1 className="display-page mt-6 font-serif font-medium text-cream">
-              {title}
+              {t("menuHeroTitleLineOne")}
+              <br />
+              <span className="italic text-primary">
+                {t("menuHeroTitleLineTwo")}
+              </span>
             </h1>
-            {description && (
-              <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-cream/65">
-                {description}
-              </p>
-            )}
-            <div className="mt-8">{meta}</div>
+            <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-cream/65">
+              {t("menuHeroDescription")}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/contact" className="btn-gold">
+                {t("menuHeroOrderCta")} <ArrowRight size={15} />
+              </Link>
+              <Link href="/shop" className="btn-ghost-light">
+                {t("menuHeroShopCta")}
+              </Link>
+            </div>
             {children}
           </div>
           <div className="relative">
@@ -164,17 +181,27 @@ export function PageHero({
         </div>
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 md:px-10 lg:grid-cols-[1fr_1fr]">
           <div>
-            <PageTag>{eyebrow}</PageTag>
+            <PageTag>{t("shopHeroEyebrow")}</PageTag>
             <h1 className="display-page mt-6 font-serif font-medium text-dark">
-              {title}
+              {t("shopHeroTitleLineOne")}{" "}
+              <span className="italic text-primary-dark">
+                {t("shopHeroTitleLineTwo")}
+              </span>
             </h1>
-            {description && (
-              <p className="mt-6 max-w-md text-[17px] leading-relaxed text-muted">
-                {description}
-              </p>
-            )}
-            <div className="mt-8 flex flex-wrap gap-4">{children}</div>
-            {meta && <div className="mt-8">{meta}</div>}
+            <p className="mt-6 max-w-md text-[17px] leading-relaxed text-muted">
+              {t("shopHeroDescription")}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/menu" className="btn-primary">
+                {t("shopHeroMenuCta")} <ArrowRight size={15} />
+              </Link>
+              <Link href="/contact" className="btn-ghost">
+                {t("shopHeroOrderCta")}
+              </Link>
+            </div>
+            <p className="mt-8 text-[12px] uppercase tracking-[0.22em] text-dark/45">
+              {t("shopHeroPickup")} · {data.siteConfig.hours[0].time}
+            </p>
           </div>
           {image && (
             <motion.div
@@ -198,7 +225,7 @@ export function PageHero({
                   150<span className="text-primary">+</span>
                 </p>
                 <p className="mt-1 text-[10px] uppercase tracking-[0.25em] text-cream/60">
-                  Créations artisanales
+                  {t("shopHeroCreations")}
                 </p>
               </div>
             </motion.div>
@@ -223,61 +250,28 @@ export function PageHero({
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/45 to-dark/10" />
         <div className="relative mx-auto w-full max-w-7xl px-6 pb-16 pt-20 md:px-10 md:pb-24">
-          <PageTag>{eyebrow}</PageTag>
+          <PageTag>
+            {t("aboutHeroEyebrow")} {data.siteConfig.science}
+          </PageTag>
           <h1 className="display-hero mt-6 max-w-4xl font-serif font-medium text-cream">
-            {title}
+            {t("aboutHeroTitleLineOne")}
+            <br />
+            <span className="italic text-primary">
+              {t("aboutHeroTitleLineTwo")}
+            </span>
           </h1>
-          {description && (
-            <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-cream/75">
-              {description}
-            </p>
-          )}
+          <p className="mt-6 max-w-xl text-[18px] leading-relaxed text-cream/75">
+            {t("aboutHeroDescription")}
+          </p>
           <div className="mt-8 flex flex-wrap items-center gap-6">
-            {meta}
+            <Link href="/menu" className="btn-gold">
+              {t("aboutHeroCta")} <ArrowRight size={15} />
+            </Link>
+            <p className="text-[11px] uppercase tracking-[0.25em] text-cream/55">
+              {t("aboutHeroLocation")} · {data.siteConfig.hours[0].time}
+            </p>
             {children}
           </div>
-        </div>
-      </header>
-    );
-  }
-
-  if (variant === "cafes") {
-    return (
-      <header className="page-enter bg-ivory pt-32 md:pt-40">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 md:px-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-          <div className="pb-4 lg:pb-14">
-            <PageTag>{eyebrow}</PageTag>
-            <h1 className="display-page mt-6 font-serif font-medium text-dark">
-              {title}
-            </h1>
-            {description && (
-              <p className="mt-6 max-w-md text-[17px] leading-relaxed text-muted">
-                {description}
-              </p>
-            )}
-            <div className="mt-8">{children}</div>
-            {meta}
-          </div>
-          {image && (
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              className="img-zoom relative aspect-[16/11] overflow-hidden rounded-[28px] lg:aspect-[4/3]"
-            >
-              <Image
-                src={image}
-                alt="Nos cafés"
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 55vw"
-              />
-              <div className="absolute bottom-4 left-4 rounded-full bg-cream/95 px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] text-dark backdrop-blur">
-                Agadir — Tilila
-              </div>
-            </motion.div>
-          )}
         </div>
       </header>
     );
@@ -288,16 +282,32 @@ export function PageHero({
     <header className="page-enter relative overflow-hidden bg-dark pt-32 pb-16 md:pt-40 md:pb-20">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 md:px-10 lg:grid-cols-2">
         <div>
-          <PageTag>{eyebrow}</PageTag>
+          <PageTag>{t("contactHeroEyebrow")}</PageTag>
           <h1 className="display-page mt-6 font-serif font-medium text-cream">
-            {title}
+            {t("contactHeroTitleLineOne")}
+            <span className="italic text-primary">
+              {t("contactHeroTitleLineTwo")}
+            </span>
           </h1>
-          {description && (
-            <p className="mt-6 max-w-md text-[17px] leading-relaxed text-cream/65">
-              {description}
-            </p>
-          )}
-          <div className="mt-8">{meta}</div>
+          <p className="mt-6 max-w-md text-[17px] leading-relaxed text-cream/65">
+            {t("contactHeroDescription")}
+          </p>
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-[14px] text-cream/75">
+            <a
+              href={`tel:${data.siteConfig.phone.replace(/[.\s-]/g, "")}`}
+              className="flex items-center gap-2 hover:text-primary"
+            >
+              <Phone size={15} className="text-primary" aria-hidden="true" />
+              {data.siteConfig.phone}
+            </a>
+            <a
+              href={`mailto:${data.siteConfig.email}`}
+              className="flex items-center gap-2 hover:text-primary"
+            >
+              <Mail size={15} className="text-primary" aria-hidden="true" />
+              {data.siteConfig.email}
+            </a>
+          </div>
           {children}
         </div>
         {image && (
@@ -318,9 +328,11 @@ export function PageHero({
               />
             </div>
             <div className="absolute -bottom-6 -left-6 max-w-[240px] rounded-2xl bg-primary p-6 text-dark shadow-2xl">
-              <p className="font-script text-2xl leading-none">Fait maison</p>
+              <p className="font-script text-2xl leading-none">
+                {t("contactHeroBadgeTitle")}
+              </p>
               <p className="mt-2 text-[13px] leading-relaxed">
-                Chaque message est lu avec attention. Réponse sous 24h.
+                {t("contactHeroBadgeText")}
               </p>
             </div>
           </motion.div>

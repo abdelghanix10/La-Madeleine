@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "LaMadeleine Agadir",
   tagline: "Boulangerie Artisanale & Salon de Café",
   description:
-    "Pâtisseries faites à la main, pain artisanal et café exceptionnel — une expérience authentique de boulangerie française et marocaine depuis 2019.",
+    "Pâtisseries faites à la main, pain artisanal et café exceptionnel — une expérience authentique de boulangerie française et marocaine depuis 2018.",
   phone: "05.28.26.43.44",
   email: "contact@lamadeleine.ma",
   address: "Av. Al Oulfa, Tilila, Agadir 80000",
@@ -11,6 +11,7 @@ export const siteConfig = {
     facebook: "https://facebook.com/lamadeleine.agadir",
   },
   hours: [{ day: "Lundi — Dimanche", time: "6h00 — 22h00" }],
+  science: 2018,
 };
 
 export const heroSlides = [
