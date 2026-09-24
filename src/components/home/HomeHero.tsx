@@ -34,7 +34,7 @@ function GoogleReviewBadge() {
 
   return (
     <motion.a
-      href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
+      href={data.siteConfig.mapLink}
       target="_blank"
       rel="noopener noreferrer"
       initial={{ opacity: 0, y: 16, rotate: -6 }}
@@ -162,7 +162,7 @@ export default function HomeHero() {
               <ArrowRight size={16} />
             </Link>
             <a
-              href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
+              href={data.siteConfig.mapLink}
               className="btn-ghost"
               target="_blank"
               rel="noopener noreferrer"

@@ -43,7 +43,7 @@ export default function Locations() {
                   {t("homeLocationsViewCafes")} <ArrowRight size={15} />
                 </Link>
                 <a
-                  href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
+                  href={data.siteConfig.mapLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-ghost-light"

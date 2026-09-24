@@ -12,6 +12,7 @@ export const siteConfig = {
   },
   hours: [{ day: "الإثنين — الأحد", time: "6:00 صباحاً — 10:00 مساءً" }],
   science: 2018,
+  mapLink: "https://maps.app.goo.gl/Z5memQUhJrBtShyx7",
 };
 
 export const heroSlides = [

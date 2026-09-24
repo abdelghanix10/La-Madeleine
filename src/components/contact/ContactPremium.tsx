@@ -12,8 +12,44 @@ const inputCls =
 export default function ContactPremium() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const { data, t } = useLanguage();
   const phoneHref = `tel:${data.siteConfig.phone.replace(/[.\s-]/g, "")}`;
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSending(true);
+    setError(null);
+
+    const formValues = Object.fromEntries(
+      new FormData(e.currentTarget).entries(),
+    );
+
+    const formData = {
+      access_key: "b917540a-a17f-4f5c-bd8e-d83443d2a0f4",
+      ...formValues,
+    };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "Submission failed");
+      }
+
+      setSent(true);
+    } catch {
+      setError(t("contactPremiumErrorMessage"));
+    } finally {
+      setSending(false);
+    }
+  }
 
   return (
     <div className="bg-ivory pb-20 md:pb-28">
@@ -76,7 +112,7 @@ export default function ContactPremium() {
                 />
               </div>
               <a
-                href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
+                href={data.siteConfig.mapLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="link-arrow mt-5 text-cream hover:text-primary"
@@ -114,14 +150,7 @@ export default function ContactPremium() {
               </motion.div>
             ) : (
               <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSending(true);
-                  setTimeout(() => {
-                    setSending(false);
-                    setSent(true);
-                  }, 900);
-                }}
+                onSubmit={handleSubmit}
               >
                 <p className="font-script text-3xl text-primary-dark">
                   {t("contactPremiumWriteTitle")}
@@ -136,6 +165,7 @@ export default function ContactPremium() {
                     </span>
                     <input
                       required
+                      name="name"
                       placeholder={t("contactPremiumNamePlaceholder")}
                       className={inputCls}
                     />
@@ -145,6 +175,7 @@ export default function ContactPremium() {
                       {t("contactPremiumPhoneLabel")}
                     </span>
                     <input
+                      name="phone"
                       placeholder={t("contactPremiumPhonePlaceholder")}
                       className={inputCls}
                     />
@@ -158,6 +189,7 @@ export default function ContactPremium() {
                     <input
                       required
                       type="email"
+                      name="email"
                       placeholder={t("contactPremiumEmailPlaceholder")}
                       className={inputCls}
                     />
@@ -166,7 +198,7 @@ export default function ContactPremium() {
                     <span className="mb-2 block text-[11px] font-bold uppercase tracking-[0.18em] text-dark/50">
                       {t("contactPremiumSubjectLabel")}
                     </span>
-                    <select required className={inputCls} defaultValue="">
+                    <select required name="subject" className={inputCls} defaultValue="">
                       <option value="" disabled>
                         {t("contactPremiumSubjectPlaceholder")}
                       </option>
@@ -185,6 +217,7 @@ export default function ContactPremium() {
                   <textarea
                     required
                     rows={5}
+                    name="message"
                     placeholder={t("contactPremiumMessagePlaceholder")}
                     className={`${inputCls} resize-none`}
                   />
@@ -199,6 +232,11 @@ export default function ContactPremium() {
                     : t("contactPremiumSend")}
                   {!sending && <Send size={15} />}
                 </button>
+                {error && (
+                  <p className="mt-4 rounded-2xl border border-red-500/20 bg-red-50 px-4 py-3 text-[13px] leading-relaxed text-red-700">
+                    {error}
+                  </p>
+                )}
                 <p className="mt-4 text-[12px] leading-relaxed text-dark/40">
                   {t("contactPremiumConsent")}
                 </p>

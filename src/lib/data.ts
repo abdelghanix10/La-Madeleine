@@ -12,6 +12,7 @@ export const siteConfig = {
   },
   hours: [{ day: "Monday — Sunday", time: "6:00 AM — 10:00 PM" }],
   science: 2018,
+  mapLink: "https://maps.app.goo.gl/Z5memQUhJrBtShyx7",
 };
 
 type TodaysSpecial = {

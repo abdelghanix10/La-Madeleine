@@ -72,7 +72,7 @@ export default function Footer() {
                 </a>
               ))}
               <a
-                href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
+                href={data.siteConfig.mapLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t("footerGoogleMaps")}
@@ -120,7 +120,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
+                  href={data.siteConfig.mapLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs font-sans font-semibold uppercase tracking-[0.2em] text-primary transition-colors hover:text-cream"

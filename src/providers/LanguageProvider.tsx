@@ -304,6 +304,8 @@ export const translations = {
       "Tell us what you have in mind: date, number of portions, favorite flavors...",
     contactPremiumSend: "Send message",
     contactPremiumSending: "Sending...",
+    contactPremiumErrorMessage:
+      "Something went wrong. Please try again or call us directly.",
     contactPremiumConsent:
       "By sending this form, you agree to be contacted by La Madeleine. See our privacy policy.",
 
@@ -843,6 +845,8 @@ cookieConsentTitle: "We value your privacy",
       "Racontez-nous votre envie : date, nombre de parts, parfums aimés...",
     contactPremiumSend: "Envoyer le message",
     contactPremiumSending: "Envoi...",
+    contactPremiumErrorMessage:
+      "Une erreur est survenue. Réessayez ou appelez-nous directement.",
     contactPremiumConsent:
       "En envoyant ce formulaire, vous acceptez d'être recontacté par La Madeleine. Voir notre politique de confidentialité.",
 
@@ -1378,6 +1382,8 @@ cookieConsentTitle: "We value your privacy",
       "أخبرنا بما تفكر فيه: التاريخ، عدد الحصص، والنكهات المفضلة...",
     contactPremiumSend: "إرسال الرسالة",
     contactPremiumSending: "جارٍ الإرسال...",
+    contactPremiumErrorMessage:
+      "حدث خطأ ما. يرجى المحاولة مرة أخرى أو الاتصال بنا مباشرة.",
     contactPremiumConsent:
       "بإرسال هذا النموذج، توافق على أن تتواصل معك لا مادلين. راجع سياسة الخصوصية.",
 
