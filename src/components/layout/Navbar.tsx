@@ -12,6 +12,7 @@ import {
 import { Menu, X, ArrowRight, Phone, MapPin, Clock } from "lucide-react";
 import { useTransitionRouter } from "next-transition-router";
 import { useLanguage, type Language } from "@/providers/LanguageProvider";
+import { useNavbarVisibility } from "@/providers/NavbarVisibilityProvider";
 
 const LANGS: Language[] = ["fr", "en", "ar"];
 
@@ -78,6 +79,13 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const lastYRef = useRef(0);
+  const { setHidden: publishHidden } = useNavbarVisibility();
+
+  // Share the hide/show state so sticky bars (e.g. menu categories)
+  // can dock to the top of the viewport while the navbar is away.
+  useEffect(() => {
+    publishHidden(hidden);
+  }, [hidden, publishHidden]);
 
   const { scrollY } = useScroll();
 
@@ -226,7 +234,7 @@ export default function Navbar() {
           <div className="flex shrink-0 items-center gap-3">
             <button
               onClick={() => handleNavigate("/menu")}
-              className="btn-gold !px-5 !py-2.5 sm:!px-6 sm:!py-3"
+              className="!hidden md:flex! btn-gold !px-5 !py-2.5 sm:!px-6 sm:!py-3"
             >
               {t("navbarOrderCta")}
               <ArrowRight size={15} strokeWidth={2.4} />

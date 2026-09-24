@@ -22,7 +22,18 @@ export default function SmoothScroll({
 
     requestAnimationFrame(raf);
 
+    // Full-screen overlays (menu book viewer) lock page scroll —
+    // body overflow alone doesn't stop Lenis' smoothed wheel handling.
+    const handleOverlayToggle = (e: Event) => {
+      const open = (e as CustomEvent<{ open: boolean }>).detail?.open;
+      if (open) lenis.stop();
+      else lenis.start();
+    };
+
+    window.addEventListener("menu-book-toggle", handleOverlayToggle);
+
     return () => {
+      window.removeEventListener("menu-book-toggle", handleOverlayToggle);
       lenis.destroy();
     };
   }, []);

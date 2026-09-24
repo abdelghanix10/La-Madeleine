@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import CookieConsent from "@/components/layout/CookieConsent";
 import TransitionProvider from "@/providers/TransitionProvider";
 import { LanguageProvider } from "@/providers/LanguageProvider";
+import { NavbarVisibilityProvider } from "@/providers/NavbarVisibilityProvider";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -101,13 +102,15 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-background text-text font-sans antialiased">
         <LanguageProvider>
-          <TransitionProvider>
+          <NavbarVisibilityProvider>
+            <TransitionProvider>
             <SmoothScroll>
               <Navbar />
               {children}
               <CookieConsent />
             </SmoothScroll>
-          </TransitionProvider>
+            </TransitionProvider>
+          </NavbarVisibilityProvider>
         </LanguageProvider>
       </body>
     </html>

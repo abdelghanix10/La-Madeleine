@@ -396,6 +396,13 @@ export const translations = {
     menuPremiumPaperTitle: "Browse the full menu, page by page.",
     menuPremiumPaperDescription:
       "Breakfasts, savory, fresh juices, coffees — 10 pages of treats, with photos and prices.",
+    menuPremiumShowMore: "Show more",
+    menuPremiumShowLess: "Show less",
+    menuPremiumMenuBookCta: "View menu book",
+    menuPremiumMenuBookTitle: "Menu book",
+    menuPremiumMenuBookClose: "Close",
+    menuPremiumMenuBookPrev: "Previous",
+    menuPremiumMenuBookNext: "Next",
 
     // Shop
     // Page Hero
@@ -939,6 +946,13 @@ cookieConsentTitle: "We value your privacy",
     menuPremiumPaperTitle: "Feuilletez le menu complet, page par page.",
     menuPremiumPaperDescription:
       "Petit-déjeuners, salé, jus frais, cafés — 10 pages de gourmandises, avec photos et prix.",
+    menuPremiumShowMore: "Voir plus",
+    menuPremiumShowLess: "Voir moins",
+    menuPremiumMenuBookCta: "Feuilleter la carte",
+    menuPremiumMenuBookTitle: "La carte",
+    menuPremiumMenuBookClose: "Fermer",
+    menuPremiumMenuBookPrev: "Précédent",
+    menuPremiumMenuBookNext: "Suivant",
 
     // Shop
     // Page Hero
@@ -1476,6 +1490,13 @@ cookieConsentTitle: "We value your privacy",
     menuPremiumPaperTitle: "تصفح القائمة الكاملة صفحة بصفحة.",
     menuPremiumPaperDescription:
       "فطور، مالح، عصائر طازجة، قهوة — 10 صفحات من اللذائذ مع الصور والأسعار.",
+    menuPremiumShowMore: "عرض المزيد",
+    menuPremiumShowLess: "عرض أقل",
+    menuPremiumMenuBookCta: "تصفح القائمة",
+    menuPremiumMenuBookTitle: "القائمة",
+    menuPremiumMenuBookClose: "إغلاق",
+    menuPremiumMenuBookPrev: "السابق",
+    menuPremiumMenuBookNext: "التالي",
 
     // Shop
     // Page Hero

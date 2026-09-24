@@ -7,6 +7,7 @@ export default function BackToTop() {
   const [visible, setVisible] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isPdfOpen, setIsPdfOpen] = useState(false);
+  const [isMenuBookOpen, setIsMenuBookOpen] = useState(false);
   const visibleRef = useRef(false);
 
   useEffect(() => {
@@ -45,17 +46,24 @@ export default function BackToTop() {
       setIsPdfOpen(!!customEvent.detail?.open);
     };
 
+    const handleMenuBookToggle = (e: Event) => {
+      const customEvent = e as CustomEvent<{ open: boolean }>;
+      setIsMenuBookOpen(!!customEvent.detail?.open);
+    };
+
     window.addEventListener("mobile-nav-toggle", handleNavToggle);
     window.addEventListener("pdf-modal-toggle", handlePdfToggle);
+    window.addEventListener("menu-book-toggle", handleMenuBookToggle);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("mobile-nav-toggle", handleNavToggle);
       window.removeEventListener("pdf-modal-toggle", handlePdfToggle);
+      window.removeEventListener("menu-book-toggle", handleMenuBookToggle);
     };
   }, []);
 
-  const shouldShow = visible && !isNavOpen && !isPdfOpen;
+  const shouldShow = visible && !isNavOpen && !isPdfOpen && !isMenuBookOpen;
 
   return (
     <AnimatePresence>
