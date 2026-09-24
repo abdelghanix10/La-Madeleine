@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Clock, ArrowUpRight } from "lucide-react";
@@ -8,9 +9,44 @@ import { useLanguage } from "@/providers/LanguageProvider";
 export default function Footer() {
   const { data, t } = useLanguage();
   const { siteConfig } = data;
+  const footerRef = useRef<HTMLElement>(null);
+
+  // The footer is `lg:fixed`, so the page <main> needs a bottom margin
+  // exactly equal to the footer's rendered height. A hardcoded 60vh breaks
+  // as soon as the content wraps taller than 60vh (narrower screens,
+  // longer translations). Measure the real height and publish it as
+  // `--footer-h` for `lg:mb-[var(--footer-h,60vh)]` on <main>.
+  useEffect(() => {
+    const el = footerRef.current;
+    if (!el) return;
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => {
+      if (mq.matches) {
+        document.documentElement.style.setProperty(
+          "--footer-h",
+          `${el.offsetHeight}px`,
+        );
+      } else {
+        document.documentElement.style.removeProperty("--footer-h");
+      }
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    mq.addEventListener("change", update);
+    window.addEventListener("resize", update);
+    return () => {
+      ro.disconnect();
+      mq.removeEventListener("change", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
   return (
-    <footer className="relative lg:fixed lg:bottom-0 lg:left-0 w-full lg:h-[60lvh] bg-espresso text-cream/70 z-0 lg:overflow-hidden flex flex-col">
+    <footer
+      ref={footerRef}
+      className="relative lg:fixed lg:bottom-0 lg:left-0 w-full lg:min-h-[60vh] bg-espresso text-cream/70 z-0 flex flex-col"
+    >
       <div className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
       <div className="max-w-[1400px] w-full mx-auto px-6 md:px-10 pt-14 md:pt-16 pb-8 flex-1 flex flex-col">

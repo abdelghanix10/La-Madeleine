@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <main className="relative z-10 bg-ivory lg:mb-[60vh]">
+      <main className="relative z-10 bg-ivory lg:mb-[var(--footer-h,60vh)]">
         <PageHero
           variant="contact"
           image="/images/background/bg-contact.webp"
