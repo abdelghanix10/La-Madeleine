@@ -76,21 +76,17 @@ export default function BakeryStory() {
         {/* Header */}
         <div className="mb-20 grid grid-cols-1 gap-8 md:mb-28 lg:grid-cols-12 lg:items-end">
           <ScrollReveal className="lg:col-span-7">
-            <Eyebrow>Our Story</Eyebrow>
+            <Eyebrow>{t("bakeryStoryEyebrow")}</Eyebrow>
             <h2 className="text-display mt-6 font-serif font-medium text-dark">
-              A Legacy of{" "}
+              {t("bakeryStoryTitleLineOne")}{" "}
               <span className="italic font-normal text-primary">
-                Artisanal Passion
+                {t("bakeryStoryTitleEmphasis")}
               </span>
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.15} className="lg:col-span-5 lg:pb-3">
             <p className="max-w-sm text-lg leading-7 text-text/60">
-              In 2019, a deep love for traditional baking brought the charm of a
-              classic French salon de thé to the heart of Agadir. Armed with
-              perfected recipes, a commitment to exceptional coffee, and an
-              uncompromising dedication to quality, La Madeline opened its doors
-              to a community that appreciates the finer details.
+              {t("bakeryStoryIntroduction")}
             </p>
           </ScrollReveal>
         </div>
@@ -104,25 +100,25 @@ export default function BakeryStory() {
           />
           <TimelineEntry
             year="2018"
-            title="La naissance de La Madeleine"
-            text="Un amour du fait maison ouvre ses portes à Tilila, Agadir — fournil artisanal, salon de thé, café de quartier."
+            title={t("bakeryStoryTimelineTitle1")}
+            text={t("bakeryStoryTimelineText1")}
             image="/images/background/bg-about.webp"
-            alt="La première boutique La Madeleine à Agadir"
+            alt={t("bakeryStoryTimelineAlt1")}
           />
           <TimelineEntry
             year="2020+"
-            title="Une passion qui grandit"
-            text="La carte s'étoffe : petits-déjeuners marocains, viennoiseries françaises, jus frais et cafés de spécialité."
+            title={t("bakeryStoryTimelineTitle2")}
+            text={t("bakeryStoryTimelineText2")}
             image="/images/shop/bread.webp"
-            alt="Pains artisanaux sortis du four"
+            alt={t("bakeryStoryTimelineAlt2")}
             flip
           />
           <TimelineEntry
-            year="Aujourd'hui"
-            title="Des cafés et des moments partagés"
-            text="Chaque matin, la même promesse : des créations fraîches, un café soigné, un lieu où l'on revient."
+            year={t("bakeryStoryTimelineYear3")}
+            title={t("bakeryStoryTimelineTitle3")}
+            text={t("bakeryStoryTimelineText3")}
             image="/images/shop/breakfast.webp"
-            alt="Table de brunch La Madeleine"
+            alt={t("bakeryStoryTimelineAlt3")}
           />
         </div>
       </div>

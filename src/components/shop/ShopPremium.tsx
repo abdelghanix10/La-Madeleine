@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Star, X, ArrowRight, Plus } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import { useLanguage } from "@/providers/LanguageProvider";
 import * as dataFR from "@/lib/data-fr";
 
 type Product = (typeof dataFR.shopProducts)[number];
@@ -20,14 +21,33 @@ const COLLECTIONS = [
   { key: "Boissons", label: "Boissons" },
 ];
 
+function translateCollectionLabel(
+  label: string,
+  t: (key: string, params?: Record<string, string | number>) => string,
+) {
+  const labels: Record<string, string> = {
+    Tout: t("shopPremiumFilterAll"),
+    Pâtisseries: t("shopPremiumFilterPastries"),
+    Salé: t("shopPremiumFilterSavory"),
+    Boulangerie: t("shopPremiumFilterBakery"),
+    Cafés: t("shopPremiumFilterCafes"),
+    Jus: t("shopPremiumFilterJuices"),
+    Boissons: t("shopPremiumFilterDrinks"),
+  };
+  return labels[label] ?? label;
+}
+
 function inCollection(p: Product, key: string) {
   if (key === "all") return true;
   if (key === "Boissons")
-    return p.category === "Boissons Chaudes" || p.category === "Boissons Froides";
+    return (
+      p.category === "Boissons Chaudes" || p.category === "Boissons Froides"
+    );
   return p.category === key;
 }
 
 export default function ShopPremium() {
+  const { t } = useLanguage();
   const products = dataFR.shopProducts as Product[];
   const [cat, setCat] = useState("all");
   const [q, setQ] = useState("");
@@ -45,8 +65,10 @@ export default function ShopPremium() {
           p.description.toLowerCase().includes(s),
       );
     }
-    if (sort === "price-asc") list = [...list].sort((a, b) => a.price - b.price);
-    if (sort === "price-desc") list = [...list].sort((a, b) => b.price - a.price);
+    if (sort === "price-asc")
+      list = [...list].sort((a, b) => a.price - b.price);
+    if (sort === "price-desc")
+      list = [...list].sort((a, b) => b.price - a.price);
     if (sort === "rating") list = [...list].sort((a, b) => b.rating - a.rating);
     if (sort === "featured")
       list = [...list].sort((a, b) => b.rating - a.rating);
@@ -74,23 +96,27 @@ export default function ShopPremium() {
                   setQ(e.target.value);
                   setVisible(12);
                 }}
-                placeholder="Rechercher une douceur…"
+                placeholder={t("shopPremiumSearchPlaceholder")}
                 className="w-full rounded-full border border-dark/10 bg-white/80 py-3 pl-11 pr-4 text-[14px] outline-none transition-all placeholder:text-dark/35 focus:border-primary focus:ring-4 focus:ring-primary/15"
               />
             </div>
             <div className="flex items-center gap-3">
               <label className="text-[11px] font-bold uppercase tracking-[0.2em] text-dark/45">
-                Trier
+                {t("shopPremiumSortLabel")}
               </label>
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
                 className="cursor-pointer appearance-none rounded-full border border-dark/10 bg-white/80 px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] outline-none focus:border-primary"
               >
-                <option value="featured">Nos favoris</option>
-                <option value="rating">Mieux notés</option>
-                <option value="price-asc">Prix croissant</option>
-                <option value="price-desc">Prix décroissant</option>
+                <option value="featured">{t("shopPremiumSortFeatured")}</option>
+                <option value="rating">{t("shopPremiumSortRating")}</option>
+                <option value="price-asc">
+                  {t("shopPremiumSortPriceAsc")}
+                </option>
+                <option value="price-desc">
+                  {t("shopPremiumSortPriceDesc")}
+                </option>
               </select>
             </div>
           </div>
@@ -108,7 +134,13 @@ export default function ShopPremium() {
                     : "border border-dark/10 bg-white/60 text-dark/60 hover:text-dark"
                 }`}
               >
-                {c.label}
+                {translateCollectionLabel(
+                  c.label,
+                  t as (
+                    key: string,
+                    params?: Record<string, string | number>,
+                  ) => string,
+                )}
               </button>
             ))}
           </div>
@@ -116,7 +148,7 @@ export default function ShopPremium() {
 
         <p className="mt-8 text-[12px] uppercase tracking-[0.2em] text-dark/45">
           <span className="font-bold text-dark">{filtered.length}</span>{" "}
-          créations — photographiées avec amour
+          {t("shopPremiumResults")}
         </p>
 
         {/* Hero feature */}
@@ -135,7 +167,7 @@ export default function ShopPremium() {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 <span className="absolute left-5 top-5 rounded-full bg-primary px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-dark">
-                  Coup de cœur
+                  {t("shopPremiumHeroBadge")}
                 </span>
               </span>
               <span className="flex flex-col justify-center p-8 md:p-12">
@@ -166,7 +198,7 @@ export default function ShopPremium() {
                     ))}
                   </span>
                   <span className="btn-gold !py-3">
-                    Voir le produit <ArrowRight size={15} />
+                    {t("shopPremiumViewProduct")} <ArrowRight size={15} />
                   </span>
                 </span>
               </span>
@@ -175,7 +207,10 @@ export default function ShopPremium() {
         )}
 
         {/* Commerce grid */}
-        <motion.div layout className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          layout
+          className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+        >
           <AnimatePresence mode="popLayout">
             {gridItems.map((p) => (
               <motion.article
@@ -243,10 +278,10 @@ export default function ShopPremium() {
         {filtered.length === 0 && (
           <div className="rounded-3xl border border-dashed border-dark/15 py-20 text-center">
             <p className="font-serif text-3xl text-dark/40">
-              Rien trouvé pour « {q} »
+              {t("shopPremiumEmptyTitle", { query: q })}
             </p>
             <p className="mt-2 text-[14px] text-muted">
-              Essayez « croissant », « amlou », « jus »…
+              {t("shopPremiumEmptyHint")}
             </p>
           </div>
         )}
@@ -257,7 +292,7 @@ export default function ShopPremium() {
               onClick={() => setVisible((v) => v + 12)}
               className="btn-primary"
             >
-              Voir plus de douceurs
+              {t("shopPremiumLoadMore")}
             </button>
             <p className="mt-3 text-[12px] uppercase tracking-[0.2em] text-dark/40">
               {shown.length} / {filtered.length}
@@ -286,7 +321,7 @@ export default function ShopPremium() {
             >
               <button
                 onClick={() => setSelected(null)}
-                aria-label="Fermer"
+                aria-label={t("shopPremiumQuickViewClose")}
                 className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow transition-all hover:bg-dark hover:text-cream"
               >
                 <X size={18} />
@@ -329,22 +364,22 @@ export default function ShopPremium() {
                 <span className="mt-6 flex items-center justify-between">
                   <span>
                     <span className="block text-[11px] uppercase tracking-[0.2em] text-dark/40">
-                      Prix
+                      {t("shopPremiumPrice")}
                     </span>
                     <span className="font-serif text-4xl font-medium text-primary-dark">
                       {selected.price.toFixed(2).replace(".", ",")} DH
                     </span>
                   </span>
                   <span className="rounded-full bg-emerald-900/10 px-4 py-2 text-[12px] font-bold text-emerald-900">
-                    ● En vitrine
+                    ● {t("shopPremiumInShowcase")}
                   </span>
                 </span>
                 <span className="mt-7 grid gap-3">
                   <Link href="/contact" className="btn-gold w-full">
-                    Commander <ArrowRight size={15} />
+                    {t("shopPremiumOrder")} <ArrowRight size={15} />
                   </Link>
                   <Link href="/menu" className="btn-ghost w-full">
-                    Voir dans le menu
+                    {t("shopPremiumViewMenu")}
                   </Link>
                 </span>
               </span>

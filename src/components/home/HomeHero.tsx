@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin, Star, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 function GoogleG() {
   return (
@@ -29,6 +30,8 @@ function GoogleG() {
 }
 
 function GoogleReviewBadge() {
+  const { t } = useLanguage();
+
   return (
     <motion.a
       href="https://maps.app.goo.gl/Z5memQUhJrBtShyx7"
@@ -38,7 +41,7 @@ function GoogleReviewBadge() {
       animate={{ opacity: 1, y: 0, rotate: -4 }}
       transition={{ delay: 0.55, duration: 0.6 }}
       className="group block w-[228px] rounded-2xl border border-dark/5 bg-[#fffdf9] px-4 py-3 shadow-[0_18px_45px_-15px_rgba(28,22,19,0.35)]"
-      aria-label="Voir nos avis Google — 4,8 sur 5"
+      aria-label={t("homeHeroGoogleReviewAria")}
     >
       <span className="flex items-center gap-2">
         <GoogleG />
@@ -56,13 +59,15 @@ function GoogleReviewBadge() {
         />
       </span>
       <span className="mt-1.5 block text-[12px] font-medium leading-snug text-dark/55">
-        Loved by 80+ guests
+        {t("homeHeroGoogleReviewText")}
       </span>
     </motion.a>
   );
 }
 
 export default function HomeHero() {
+  const { t } = useLanguage();
+
   return (
     <header className="page-enter relative overflow-hidden bg-ivory">
       {/* dotted texture */}
@@ -93,7 +98,7 @@ export default function HomeHero() {
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-dark/10 bg-white/70 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.25em] text-dark/70 backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-              Agadir · Depuis 2018
+              {t("homeHeroLocation")}
             </span>
             <span className="hidden items-center gap-1.5 rounded-full border border-dark/8 bg-[#fffdf9] px-3.5 py-2 text-[12px] font-semibold text-dark/60 shadow-sm sm:flex">
               <GoogleG />
@@ -116,7 +121,7 @@ export default function HomeHero() {
             transition={{ delay: 0.1, duration: 0.6 }}
             className="font-script mt-6 text-3xl text-primary-dark md:text-4xl"
           >
-            Pâtisserie · Boulangerie · Café
+            {t("homeHeroCategory")}
           </motion.p>
 
           <motion.h1
@@ -129,9 +134,11 @@ export default function HomeHero() {
             }}
             className="display-hero mt-2 font-serif font-medium text-dark"
           >
-            Le goût du
+            {t("homeHeroTitleLineOne")}
             <br />
-            <span className="italic text-chocolate">fait maison</span>
+            <span className="italic text-chocolate">
+              {t("homeHeroTitleLineTwo")}
+            </span>
             <span className="text-primary">.</span>
           </motion.h1>
 
@@ -141,8 +148,7 @@ export default function HomeHero() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="mt-6 max-w-md text-[17px] leading-relaxed text-muted md:text-[19px]"
           >
-            Depuis 2018, La Madeleine célèbre la pâtisserie, le café et les
-            saveurs qui rassemblent.
+            {t("homeHeroDescription")}
           </motion.p>
 
           <motion.div
@@ -152,7 +158,7 @@ export default function HomeHero() {
             className="mt-9 flex flex-wrap items-center justify-center gap-4"
           >
             <Link href="/menu" className="btn-primary">
-              Découvrir notre menu
+              {t("homeHeroMenuCta")}
               <ArrowRight size={16} />
             </Link>
             <a
@@ -162,7 +168,7 @@ export default function HomeHero() {
               rel="noopener noreferrer"
             >
               <MapPin size={15} />
-              Trouver un café
+              {t("homeHeroFindCafeCta")}
             </a>
           </motion.div>
 
@@ -173,9 +179,9 @@ export default function HomeHero() {
             className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-dark/10 pt-6"
           >
             {[
-              ["06", "ans de savoir-faire"],
-              ["150+", "créations maison"],
-              ["7j/7", "6h — 22h"],
+              ["06", t("homeHeroStatCraftLabel")],
+              ["150+", t("homeHeroStatCreationsLabel")],
+              ["7j/7", t("homeHeroStatHoursLabel")],
             ].map(([v, l]) => (
               <div key={l}>
                 <dt className="font-serif text-3xl text-dark md:text-4xl">
@@ -203,7 +209,7 @@ export default function HomeHero() {
             >
               <Image
                 src="/images/background/bg-pastries.webp"
-                alt="Pâtisseries La Madeleine — pains au chocolat"
+                alt={t("homeHeroPastryImageAlt")}
                 fill
                 priority
                 className="object-cover"
@@ -220,10 +226,10 @@ export default function HomeHero() {
               className="absolute left-0 top-[15%] z-20 rounded-2xl border border-dark/5 bg-[#fffdf9]/95 px-5 py-3.5 shadow-[0_20px_50px_-15px_rgba(28,22,19,0.35)] backdrop-blur lg:-left-12 lg:px-6 lg:py-4"
             >
               <p className="font-script text-[26px] leading-none text-[#b08a3c] lg:text-[28px]">
-                Fait maison
+                {t("homeHeroHomemadeLabel")}
               </p>
               <p className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-dark/65 lg:mt-2">
-                Chaque jour · Depuis 2018
+                {t("homeHeroHomemadeSince")}
               </p>
             </motion.div>
 
@@ -243,7 +249,7 @@ export default function HomeHero() {
                 <div className="relative aspect-[4/3]">
                   <Image
                     src="/images/shop/croissant.webp"
-                    alt="Viennoiseries — offre après 21h"
+                    alt={t("homeHeroCroissantImageAlt")}
                     fill
                     className="object-cover"
                     sizes="220px"
@@ -262,7 +268,7 @@ export default function HomeHero() {
                 height: "max-content",
               }}
             >
-              Boulangerie · Pâtisserie · Café
+              {t("homeHeroSideLabel")}
             </span>
           </div>
         </div>
@@ -279,13 +285,13 @@ export default function HomeHero() {
                 aria-hidden={k === 1}
               >
                 {[
-                  "Viennoiseries",
-                  "Mille-feuille",
-                  "Café de spécialité",
-                  "Msemmen",
-                  "Amlou",
-                  "Pain au chocolat",
-                  "Jus frais",
+                  t("homeHeroMarqueeViennoiseries"),
+                  t("homeHeroMarqueeMilleFeuille"),
+                  t("homeHeroMarqueeCoffee"),
+                  t("homeHeroMarqueeMsemmen"),
+                  t("homeHeroMarqueeAmlou"),
+                  t("homeHeroMarqueePainAuChocolat"),
+                  t("homeHeroMarqueeJuices"),
                 ].map((w) => (
                   <span key={w} className="flex items-center gap-10">
                     {w} <span className="text-primary">✦</span>

@@ -8,9 +8,8 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { Eyebrow } from "@/components/ui/Brand";
 
-
 export default function HomeSignatures() {
-  const { data } = useLanguage();
+  const { data, t } = useLanguage();
   const items = data.todaysSpecials.slice(0, 6);
 
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -33,7 +32,7 @@ export default function HomeSignatures() {
   return (
     <section
       className="relative bg-dark text-cream py-24 md:py-32 overflow-hidden"
-      aria-label="Les signatures de La Madeleine"
+      aria-label={t("homeSignaturesAriaLabel")}
     >
       {/* ambient glow */}
       <div
@@ -44,35 +43,38 @@ export default function HomeSignatures() {
         className="pointer-events-none select-none absolute top-8 left-1/2 -translate-x-1/2 font-serif italic text-[18vw] leading-none text-cream/[0.04] whitespace-nowrap"
         aria-hidden="true"
       >
-        Signatures
+        {t("homeSignaturesDecorativeWord")}
       </p>
 
       <div className="relative max-w-[1400px] mx-auto px-5 md:px-8">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 md:mb-16">
           <ScrollReveal>
-            <Eyebrow>Les incontournables</Eyebrow>
+            <Eyebrow>{t("homeSignaturesEyebrow")}</Eyebrow>
             <h2 className="display-section mt-5 text-balance">
-              Les signatures <br className="hidden md:block" />
-              de <span className="italic text-primary-light">La Madeleine</span>
+              {t("homeSignaturesTitleLineOne")}{" "}
+              <br className="hidden md:block" />
+              {t("homeSignaturesTitleLineTwo")}{" "}
+              <span className="italic text-primary-light">
+                {t("homeSignaturesTitleEmphasis")}
+              </span>
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.12} className="lg:text-right">
             <div className="flex gap-3">
               <p className="max-w-sm text-cream/60 text-base leading-relaxed lg:ml-auto">
-                Nos meilleures ventes, préparées chaque matin dans notre atelier
-                d&apos;Agadir.
+                {t("homeSignaturesDescription")}
               </p>
               <div className="hidden items-center gap-3 md:flex">
                 <button
                   onClick={() => scrollBy(-1)}
-                  aria-label="Previous"
+                  aria-label={t("homeSignaturesPrevious")}
                   className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-cream/25 text-cream transition-all hover:border-primary hover:bg-primary hover:text-dark"
                 >
                   <ArrowRight size={17} className="rotate-180" />
                 </button>
                 <button
                   onClick={() => scrollBy(1)}
-                  aria-label="Next"
+                  aria-label={t("homeSignaturesNext")}
                   className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-cream/25 text-cream transition-all hover:border-primary hover:bg-primary hover:text-dark"
                 >
                   <ArrowRight size={17} />
@@ -83,7 +85,7 @@ export default function HomeSignatures() {
               href="/menu"
               className="mt-5 inline-flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.22em] uppercase text-primary hover:text-cream transition-colors"
             >
-              Voir toute la carte <ArrowRight size={16} />
+              {t("homeSignaturesViewMenu")} <ArrowRight size={16} />
             </Link>
           </ScrollReveal>
         </div>
@@ -135,7 +137,7 @@ export default function HomeSignatures() {
                       href="/menu"
                       className="inline-flex items-center gap-1.5 font-sans text-[10px] font-semibold tracking-[0.2em] text-cream uppercase transition-colors hover:text-primary"
                     >
-                      Découvrir
+                      {t("homeSignaturesDiscover")}
                       <ArrowUpRight
                         size={14}
                         className="transition-transform duration-300 group-hover:rotate-45"
@@ -170,7 +172,7 @@ export default function HomeSignatures() {
         </div>
 
         <p className="lg:hidden mt-4 text-center text-[11px] tracking-[0.25em] uppercase text-cream/40 font-sans">
-          Faites défiler →
+          {t("homeSignaturesScrollHint")}
         </p>
       </div>
     </section>

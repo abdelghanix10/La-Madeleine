@@ -8,14 +8,35 @@ import ScrollReveal, {
 } from "@/components/animations/ScrollReveal";
 import { Eyebrow } from "@/components/ui/Brand";
 import { ArrowUpRight } from "lucide-react";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 type Card = {
   index: string;
-  label: string;
-  title: string;
-  description: string;
+  labelKey:
+    | "homeSpecialtiesCard1Label"
+    | "homeSpecialtiesCard2Label"
+    | "homeSpecialtiesCard3Label"
+    | "homeSpecialtiesCard4Label"
+    | "homeSpecialtiesCard5Label";
+  titleKey:
+    | "homeSpecialtiesCard1Title"
+    | "homeSpecialtiesCard2Title"
+    | "homeSpecialtiesCard3Title"
+    | "homeSpecialtiesCard4Title"
+    | "homeSpecialtiesCard5Title";
+  descriptionKey:
+    | "homeSpecialtiesCard1Description"
+    | "homeSpecialtiesCard2Description"
+    | "homeSpecialtiesCard3Description"
+    | "homeSpecialtiesCard4Description"
+    | "homeSpecialtiesCard5Description";
+  altKey:
+    | "homeSpecialtiesCard1Alt"
+    | "homeSpecialtiesCard2Alt"
+    | "homeSpecialtiesCard3Alt"
+    | "homeSpecialtiesCard4Alt"
+    | "homeSpecialtiesCard5Alt";
   image: string;
-  alt: string;
   span: string;
   height: string;
 };
@@ -23,74 +44,77 @@ type Card = {
 const CARDS: Card[] = [
   {
     index: "01",
-    label: "Pâtisserie",
-    title: "Douceurs d'atelier",
-    description:
-      "Tartes aux fruits, mille-feuille, entremets — la vitrine qui donne envie.",
+    labelKey: "homeSpecialtiesCard1Label",
+    titleKey: "homeSpecialtiesCard1Title",
+    descriptionKey: "homeSpecialtiesCard1Description",
+    altKey: "homeSpecialtiesCard1Alt",
     image: "/images/today-specials/today-4.webp",
-    alt: "Tarte aux fruits La Madeleine",
     span: "lg:col-span-7",
     height: "h-[420px] md:h-[520px]",
   },
   {
     index: "02",
-    label: "Viennoiserie",
-    title: "Feuilletage du matin",
-    description: "Croissants au beurre, pains au chocolat, pliés à la main.",
+    labelKey: "homeSpecialtiesCard2Label",
+    titleKey: "homeSpecialtiesCard2Title",
+    descriptionKey: "homeSpecialtiesCard2Description",
+    altKey: "homeSpecialtiesCard2Alt",
     image: "/images/today-specials/today-1.webp",
-    alt: "Croissant au beurre artisanal",
     span: "lg:col-span-5",
     height: "h-[420px] md:h-[520px]",
   },
   {
     index: "03",
-    label: "Sandwiches",
-    title: "Frais & généreux",
-    description: "Croissants garnis et pains du jour, préparés minute.",
+    labelKey: "homeSpecialtiesCard3Label",
+    titleKey: "homeSpecialtiesCard3Title",
+    descriptionKey: "homeSpecialtiesCard3Description",
+    altKey: "homeSpecialtiesCard3Alt",
     image: "/images/shop/sandwich.webp",
-    alt: "Sandwich frais La Madeleine",
     span: "lg:col-span-4",
     height: "h-[380px] md:h-[440px]",
   },
   {
     index: "04",
-    label: "Café",
-    title: "Espresso & créations",
-    description:
-      "Cortado signature, cappuccino, flat white — torréfié avec soin.",
+    labelKey: "homeSpecialtiesCard4Label",
+    titleKey: "homeSpecialtiesCard4Title",
+    descriptionKey: "homeSpecialtiesCard4Description",
+    altKey: "homeSpecialtiesCard4Alt",
     image: "/images/today-specials/today-6.webp",
-    alt: "Café signature La Madeleine",
     span: "lg:col-span-4",
     height: "h-[380px] md:h-[440px]",
   },
   {
     index: "05",
-    label: "Salé",
-    title: "Saveurs marocaines",
-    description: "Briouats, pastillas, msemmen — le salé qui rassemble.",
+    labelKey: "homeSpecialtiesCard5Label",
+    titleKey: "homeSpecialtiesCard5Title",
+    descriptionKey: "homeSpecialtiesCard5Description",
+    altKey: "homeSpecialtiesCard5Alt",
     image: "/images/shop/briouat.webp",
-    alt: "Briouats au fromage",
     span: "lg:col-span-4",
     height: "h-[380px] md:h-[440px]",
   },
 ];
 
 export default function HomeSpecialties() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="produits"
       className="bg-cream/50 border-y border-dark/10 py-24 md:py-32 scroll-mt-20"
-      aria-label="Nos spécialités"
+      aria-label={t("homeSpecialtiesAriaLabel")}
     >
       <div className="max-w-[1400px] mx-auto px-5 md:px-8">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
           <ScrollReveal>
-            <Eyebrow light>La carte</Eyebrow>
+            <Eyebrow light>{t("homeSpecialtiesEyebrow")}</Eyebrow>
             <h2 className="display-section text-dark mt-5">
-              Nos <span className="italic">spécialités</span>
+              {t("homeSpecialtiesTitleLineOne")}{" "}
+              <span className="italic">
+                {t("homeSpecialtiesTitleEmphasis")}
+              </span>
             </h2>
             <p className="mt-4 max-w-lg text-dark/60 text-base md:text-lg">
-              Des recettes préparées avec passion, chaque jour.
+              {t("homeSpecialtiesDescription")}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.12}>
@@ -98,7 +122,7 @@ export default function HomeSpecialties() {
               href="/menu"
               className="group inline-flex items-center gap-3 rounded-full border border-dark/20 px-7 py-3.5 text-xs font-sans font-semibold tracking-[0.18em] uppercase text-dark hover:bg-dark hover:text-cream transition-all"
             >
-              Voir la carte
+              {t("homeSpecialtiesViewMenu")}
               <ArrowUpRight
                 size={16}
                 className="transition-transform group-hover:rotate-45"
@@ -116,11 +140,11 @@ export default function HomeSpecialties() {
               <Link
                 href="/menu"
                 className={`group relative block overflow-hidden rounded-[24px] ${card.height} img-frame shadow-[0_24px_60px_-30px_rgba(34,20,16,0.4)]`}
-                aria-label={`${card.label} — ${card.title}`}
+                aria-label={`${t(card.labelKey)} — ${t(card.titleKey)}`}
               >
                 <Image
                   src={card.image}
-                  alt={card.alt}
+                  alt={t(card.altKey)}
                   fill
                   sizes="(max-width: 1024px) 90vw, 40vw"
                   className="object-cover"
@@ -131,17 +155,17 @@ export default function HomeSpecialties() {
                   aria-hidden="true"
                 />
                 <span className="absolute top-5 left-5 rounded-full bg-background/90 backdrop-blur px-4 py-1.5 text-[10px] font-sans font-semibold tracking-[0.25em] uppercase text-dark">
-                  {card.index} · {card.label}
+                  {card.index} · {t(card.labelKey)}
                 </span>
                 <span className="absolute top-5 right-5 flex h-11 w-11 items-center justify-center rounded-full bg-cream/15 backdrop-blur border border-cream/30 text-cream transition-all duration-300 group-hover:bg-primary group-hover:text-dark group-hover:border-primary">
                   <ArrowUpRight size={18} />
                 </span>
                 <span className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
                   <span className="block font-serif text-3xl md:text-4xl text-cream leading-none">
-                    {card.title}
+                    {t(card.titleKey)}
                   </span>
                   <span className="mt-2 block max-w-sm text-sm text-cream/70 leading-relaxed">
-                    {card.description}
+                    {t(card.descriptionKey)}
                   </span>
                 </span>
               </Link>
@@ -157,7 +181,7 @@ export default function HomeSpecialties() {
               <span className="relative h-64 md:h-auto md:w-[42%] shrink-0 overflow-hidden">
                 <Image
                   src="/images/today-specials/today-5.webp"
-                  alt="Mille-feuille aux amandes — spécialité du jour"
+                  alt={t("homeSpecialtiesCard1Alt")}
                   fill
                   sizes="(max-width: 1024px) 90vw, 40vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -166,21 +190,19 @@ export default function HomeSpecialties() {
               </span>
               <span className="flex flex-1 flex-col justify-center p-8 md:p-12">
                 <span className="eyebrow text-primary">
-                  06 · Spécialités du jour
+                  06 · {t("homeSpecialtiesDailyLabel")}
                 </span>
                 <span className="mt-4 block font-serif text-3xl md:text-5xl leading-[1.02]">
-                  La vitrine change,{" "}
+                  {t("homeSpecialtiesDailyTitleLineOne")}{" "}
                   <span className="italic text-primary-light">
-                    l&apos;envie reste.
+                    {t("homeSpecialtiesDailyTitleEmphasis")}
                   </span>
                 </span>
                 <span className="mt-4 block max-w-xl text-sm md:text-base text-cream/65 leading-relaxed">
-                  Chaque jour, nos pâtissiers mettent en avant le meilleur du
-                  fournil — mille-feuille aux amandes, créations de saison,
-                  éditions limitées.
+                  {t("homeSpecialtiesDailyDescription")}
                 </span>
                 <span className="mt-6 inline-flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.22em] uppercase text-primary">
-                  Découvrir
+                  {t("homeSpecialtiesDiscover")}
                   <span className="inline-block transition-transform group-hover:translate-x-1.5">
                     →
                   </span>

@@ -7,8 +7,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { Eyebrow } from "@/components/ui/Brand";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function ShowcaseBanner() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -20,7 +22,7 @@ export default function ShowcaseBanner() {
     <section
       ref={ref}
       className="relative overflow-hidden"
-      aria-label="Chaque matin commence avec une bonne raison"
+      aria-label={t("homeShowcaseAriaLabel")}
     >
       <div className="relative min-h-[85vh] md:min-h-[92vh] flex items-end">
         {/* full-bleed photo */}
@@ -45,12 +47,14 @@ export default function ShowcaseBanner() {
 
         <div className="relative w-full max-w-350 mx-auto px-5 md:px-8 pb-14 md:pb-20 pt-40">
           <ScrollReveal>
-            <Eyebrow>Du fournil, chaque matin</Eyebrow>
+            <Eyebrow>{t("homeShowcaseEyebrow")}</Eyebrow>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <h2 className="display-section text-cream mt-5 max-w-4xl text-balance">
-              Chaque matin commence avec une{" "}
-              <span className="italic text-primary-light">bonne raison.</span>
+              {t("homeShowcaseTitleLineOne")}{" "}
+              <span className="italic text-primary-light">
+                {t("homeShowcaseTitleEmphasis")}
+              </span>
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.18}>
@@ -59,13 +63,13 @@ export default function ShowcaseBanner() {
                 href="/menu"
                 className="group inline-flex items-center gap-3 rounded-full bg-primary text-dark pl-7 pr-2.5 py-2.5 text-xs font-sans font-semibold tracking-[0.18em] uppercase hover:brightness-105 transition-all active:scale-[0.97]"
               >
-                Voir la carte
+                {t("homeShowcaseViewMenu")}
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-dark text-cream transition-transform group-hover:translate-x-1">
                   <ArrowRight size={17} />
                 </span>
               </Link>
               <span className="text-cream/60 text-sm font-sans">
-                Baguettes · Brioches · Pains marocains
+                {t("homeShowcaseProducts")}
               </span>
             </div>
           </ScrollReveal>

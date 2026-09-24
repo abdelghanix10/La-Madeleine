@@ -80,20 +80,22 @@ export default function CoffeeMenuPreview() {
                 className="mb-6 h-20 w-20 text-accent/70"
                 strokeWidth={1.5}
               />
-              <Eyebrow>Crafted with Care</Eyebrow>
+              <Eyebrow>{t("coffeeMenuPreviewEyebrow")}</Eyebrow>
               <h2 className="mt-5 font-serif text-4xl md:text-5xl lg:text-6xl text-dark tracking-wide mb-4">
-                Our <span className="text-primary">Coffees</span>
+                {t("coffeeMenuPreviewTitleLineOne")}{" "}
+                <span className="text-primary">
+                  {t("coffeeMenuPreviewTitleEmphasis")}
+                </span>
               </h2>
               <p className="text-dark/50 mx-auto mt-6">
-                Single-origin beans roasted in-house. Every cup is a journey
-                from farm to flavor.
+                {t("coffeeMenuPreviewDescription")}
               </p>
               <div className="gold-rule my-8 w-full" />
               <Link
                 href="/menu"
                 className="group inline-flex items-center gap-3 rounded-full bg-dark px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-cream transition-all hover:bg-primary hover:text-text active:scale-95"
               >
-                View Menu
+                {t("coffeeMenuPreviewCta")}
                 <ArrowRight
                   size={15}
                   className="transition-transform duration-300 group-hover:translate-x-1"

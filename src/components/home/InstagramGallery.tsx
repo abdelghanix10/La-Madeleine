@@ -6,66 +6,71 @@ import ScrollReveal, {
   StaggerChildren,
   StaggerItem,
 } from "@/components/animations/ScrollReveal";
-import { useLanguage } from "@/providers/LanguageProvider";
+import { useLanguage, type translations } from "@/providers/LanguageProvider";
 import { Eyebrow } from "@/components/ui/Brand";
 
-const SHOTS = [
+const SHOTS: {
+  src: string;
+  altKey: keyof typeof translations.en;
+  tall: boolean;
+}[] = [
   {
     src: "/images/gallery/gallery-4.webp",
-    alt: "Croissants au chocolat",
+    altKey: "homeInstagramAlt1",
     tall: true,
   },
   {
     src: "/images/today-specials/today-2.webp",
-    alt: "Croissant sandwich",
+    altKey: "homeInstagramAlt2",
     tall: false,
   },
   {
     src: "/images/gallery/gallery-1.webp",
-    alt: "Croissants du fournil",
+    altKey: "homeInstagramAlt3",
     tall: false,
   },
   {
     src: "/images/today-specials/today-5.webp",
-    alt: "Mille-feuille aux amandes",
+    altKey: "homeInstagramAlt4",
     tall: true,
   },
   {
     src: "/images/gallery/gallery-5.webp",
-    alt: "Espresso fraîchement versé",
+    altKey: "homeInstagramAlt5",
     tall: false,
   },
   {
     src: "/images/today-specials/today-4.webp",
-    alt: "Tarte aux fruits de saison",
+    altKey: "homeInstagramAlt6",
     tall: false,
   },
   {
     src: "/images/gallery/gallery-3.webp",
-    alt: "Douceurs et café",
+    altKey: "homeInstagramAlt7",
     tall: true,
   },
   {
     src: "/images/gallery/gallery-2.webp",
-    alt: "Assortiment de pâtisseries",
+    altKey: "homeInstagramAlt8",
     tall: false,
   },
 ];
 
 export default function InstagramGallery() {
-  const { data } = useLanguage();
+  const { data, t } = useLanguage();
 
   return (
     <section
       className="bg-background py-24 md:py-32 overflow-hidden"
-      aria-label="Suivez notre aventure sur Instagram"
+      aria-label={t("homeInstagramAriaLabel")}
     >
       <div className="max-w-[1400px] mx-auto px-5 md:px-8">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <ScrollReveal>
             <Eyebrow>@lamadeleine.agadir</Eyebrow>
             <h2 className="display-section text-dark mt-5">
-              Suivez notre <span className="italic">aventure</span>
+              {t("homeInstagramTitleLineOne")}{" "}
+              <span className="italic">{t("homeInstagramTitleEmphasis")}</span>
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
@@ -75,7 +80,7 @@ export default function InstagramGallery() {
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 rounded-full border border-dark/20 px-7 py-3.5 text-xs font-sans font-semibold tracking-[0.18em] uppercase text-dark hover:bg-dark hover:text-cream transition-all"
             >
-              @LaMadeleineAgadir
+              {t("homeInstagramHandle")}
               <ArrowUpRight
                 size={16}
                 className="transition-transform group-hover:rotate-45"
@@ -103,11 +108,11 @@ export default function InstagramGallery() {
                       ? "md:rotate-1"
                       : ""
                 }`}
-                aria-label={`Voir sur Instagram — ${s.alt}`}
+                aria-label={`${t("homeInstagramViewLabel")} — ${t(s.altKey)}`}
               >
                 <Image
                   src={s.src}
-                  alt={s.alt}
+                  alt={t(s.altKey)}
                   fill
                   sizes="(max-width: 1024px) 45vw, 22vw"
                   className="object-cover"

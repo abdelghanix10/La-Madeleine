@@ -1,28 +1,27 @@
 "use client";
 
-
 import { Quote } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { Eyebrow } from "@/components/ui/Brand";
+import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function HomeTestimonials() {
+  const { t } = useLanguage();
   const items = [
     {
-      quote:
-        "Un charmant salon de thé, des pâtisseries excellentes et des jus frais remarquables.",
-      name: "Ryu Z.",
-      role: "Habitué",
+      quote: t("homeTestimonialsQuote1"),
+      name: t("homeTestimonialsName1"),
+      role: t("homeTestimonialsRole1"),
     },
     {
-      quote:
-        "Service adorable, lieu très propre, nourriture absolument délicieuse. On y revient.",
-      name: "Halima E.",
-      role: "Cliente",
+      quote: t("homeTestimonialsQuote2"),
+      name: t("homeTestimonialsName2"),
+      role: t("homeTestimonialsRole2"),
     },
     {
-      quote: "Endroit calme, bon service, gens sympathiques. Parfait le matin.",
-      name: "Soufiane",
-      role: "Habitué",
+      quote: t("homeTestimonialsQuote3"),
+      name: t("homeTestimonialsName3"),
+      role: t("homeTestimonialsRole3"),
     },
   ];
   return (
@@ -30,9 +29,9 @@ export default function HomeTestimonials() {
       <div className="mx-auto max-w-7xl px-6 md:px-10">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <ScrollReveal>
-            <Eyebrow>Ils nous aiment</Eyebrow>
+            <Eyebrow>{t("homeTestimonialsEyebrow")}</Eyebrow>
             <h2 className="display-section mt-5 font-serif font-medium text-dark">
-              Paroles d&apos;habitués.
+              {t("homeTestimonialsTitle")}
             </h2>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
@@ -81,4 +80,3 @@ export default function HomeTestimonials() {
     </section>
   );
 }
-
