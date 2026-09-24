@@ -30,7 +30,7 @@ function GoogleG() {
 }
 
 function GoogleReviewBadge() {
-  const { t } = useLanguage();
+  const { data, t } = useLanguage();
 
   return (
     <motion.a
@@ -66,7 +66,7 @@ function GoogleReviewBadge() {
 }
 
 export default function HomeHero() {
-  const { t } = useLanguage();
+  const { data, t } = useLanguage();
 
   return (
     <header className="page-enter relative overflow-hidden bg-ivory">

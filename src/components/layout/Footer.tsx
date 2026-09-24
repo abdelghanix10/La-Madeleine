@@ -10,7 +10,7 @@ export default function Footer() {
   const { siteConfig } = data;
 
   return (
-    <footer className="relative lg:fixed lg:bottom-0 lg:left-0 w-full lg:h-[60vh] bg-espresso text-cream/70 z-0 lg:overflow-hidden flex flex-col">
+    <footer className="relative lg:fixed lg:bottom-0 lg:left-0 w-full lg:h-[60lvh] bg-espresso text-cream/70 z-0 lg:overflow-hidden flex flex-col">
       <div className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
       <div className="max-w-[1400px] w-full mx-auto px-6 md:px-10 pt-14 md:pt-16 pb-8 flex-1 flex flex-col">

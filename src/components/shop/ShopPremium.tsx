@@ -1,59 +1,100 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Star, X, ArrowRight, Plus } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { useLanguage } from "@/providers/LanguageProvider";
-import * as dataFR from "@/lib/data-fr";
+import { shopProducts as shopProductsEN } from "@/lib/data";
 
-type Product = (typeof dataFR.shopProducts)[number];
+type Product = (typeof shopProductsEN)[number];
 
-const COLLECTIONS = [
-  { key: "all", label: "Tout" },
-  { key: "Pâtisseries et Desserts", label: "Pâtisseries" },
-  { key: "Petit-déjeuner et Salé", label: "Salé" },
-  { key: "Boulangerie", label: "Boulangerie" },
-  { key: "Cafés", label: "Cafés" },
-  { key: "Jus", label: "Jus" },
-  { key: "Boissons", label: "Boissons" },
+type FilterKey =
+  | "all"
+  | "pastries"
+  | "savory"
+  | "bakery"
+  | "cafes"
+  | "juices"
+  | "drinks"
+  | "extras";
+
+// Stable filter keys with translated labels.
+// Filtering is done by product `id` (stable across EN/FR/AR),
+// so switching language never breaks the category match.
+const COLLECTIONS: { key: FilterKey; i18nKey: "shopPremiumFilterAll" | "shopPremiumFilterPastries" | "shopPremiumFilterSavory" | "shopPremiumFilterBakery" | "shopPremiumFilterCafes" | "shopPremiumFilterJuices" | "shopPremiumFilterDrinks" | "shopPremiumFilterExtras" }[] = [
+  { key: "all", i18nKey: "shopPremiumFilterAll" },
+  { key: "pastries", i18nKey: "shopPremiumFilterPastries" },
+  { key: "savory", i18nKey: "shopPremiumFilterSavory" },
+  { key: "bakery", i18nKey: "shopPremiumFilterBakery" },
+  { key: "cafes", i18nKey: "shopPremiumFilterCafes" },
+  { key: "juices", i18nKey: "shopPremiumFilterJuices" },
+  { key: "drinks", i18nKey: "shopPremiumFilterDrinks" },
+  { key: "extras", i18nKey: "shopPremiumFilterExtras" },
 ];
 
-function translateCollectionLabel(
-  label: string,
-  t: (key: string, params?: Record<string, string | number>) => string,
-) {
-  const labels: Record<string, string> = {
-    Tout: t("shopPremiumFilterAll"),
-    Pâtisseries: t("shopPremiumFilterPastries"),
-    Salé: t("shopPremiumFilterSavory"),
-    Boulangerie: t("shopPremiumFilterBakery"),
-    Cafés: t("shopPremiumFilterCafes"),
-    Jus: t("shopPremiumFilterJuices"),
-    Boissons: t("shopPremiumFilterDrinks"),
-  };
-  return labels[label] ?? label;
-}
+// Reference grouping built once from EN (clean category strings).
+// `id` is parallel across data.ts / data-fr.ts / data-ar.ts.
+const PASTRY_IDS = new Set(
+  shopProductsEN
+    .filter((p) => p.category === "Pastries & Desserts")
+    .map((p) => p.id),
+);
+const SAVORY_IDS = new Set(
+  shopProductsEN
+    .filter((p) => p.category === "Breakfast & Savory")
+    .map((p) => p.id),
+);
+const BAKERY_IDS = new Set(
+  shopProductsEN.filter((p) => p.category === "Bakery").map((p) => p.id),
+);
+const CAFE_IDS = new Set(
+  shopProductsEN.filter((p) => p.category === "Coffees").map((p) => p.id),
+);
+const JUICE_IDS = new Set(
+  shopProductsEN.filter((p) => p.category === "Juices").map((p) => p.id),
+);
+const DRINK_IDS = new Set(
+  shopProductsEN
+    .filter((p) => p.category === "Hot Drinks" || p.category === "Cold Drinks")
+    .map((p) => p.id),
+);
+const EXTRA_IDS = new Set(
+  shopProductsEN.filter((p) => p.category === "Extras").map((p) => p.id),
+);
 
-function inCollection(p: Product, key: string) {
+function inCollection(p: Product, key: FilterKey) {
   if (key === "all") return true;
-  if (key === "Boissons")
-    return (
-      p.category === "Boissons Chaudes" || p.category === "Boissons Froides"
-    );
-  return p.category === key;
+  if (key === "pastries") return PASTRY_IDS.has(p.id);
+  if (key === "savory") return SAVORY_IDS.has(p.id);
+  if (key === "bakery") return BAKERY_IDS.has(p.id);
+  if (key === "cafes") return CAFE_IDS.has(p.id);
+  if (key === "juices") return JUICE_IDS.has(p.id);
+  if (key === "drinks") return DRINK_IDS.has(p.id);
+  if (key === "extras") return EXTRA_IDS.has(p.id);
+  return true;
 }
 
 export default function ShopPremium() {
-  const { t } = useLanguage();
-  const products = dataFR.shopProducts as Product[];
-  const [cat, setCat] = useState("all");
+  const { data, t } = useLanguage();
+  // Translated products — switches EN/FR/AR via LanguageProvider.
+  const products = data.shopProducts as Product[];
+  const [cat, setCat] = useState<FilterKey>("all");
   const [q, setQ] = useState("");
   const [sort, setSort] = useState("featured");
   const [selected, setSelected] = useState<Product | null>(null);
   const [visible, setVisible] = useState(12);
+
+  // Keep quick-view in sync when language changes (same product `id`,
+  // translated fields).
+  useEffect(() => {
+    setSelected((prev) =>
+      prev ? (products.find((p) => p.id === prev.id) ?? null) : null,
+    );
+    setVisible(12);
+  }, [products]);
 
   const filtered = useMemo(() => {
     let list = products.filter((p) => inCollection(p, cat));
@@ -134,13 +175,7 @@ export default function ShopPremium() {
                     : "border border-dark/10 bg-white/60 text-dark/60 hover:text-dark"
                 }`}
               >
-                {translateCollectionLabel(
-                  c.label,
-                  t as (
-                    key: string,
-                    params?: Record<string, string | number>,
-                  ) => string,
-                )}
+                {t(c.i18nKey)}
               </button>
             ))}
           </div>
@@ -266,7 +301,7 @@ export default function ShopPremium() {
                       {p.price.toFixed(2).replace(".", ",")} DH
                     </span>
                     <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-dark/50 transition-all group-hover:gap-3 group-hover:text-dark">
-                      Voir →
+                      {t("shopPremiumViewProduct")} →
                     </span>
                   </span>
                 </span>
