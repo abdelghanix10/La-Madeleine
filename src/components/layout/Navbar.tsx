@@ -79,31 +79,192 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const lastYRef = useRef(0);
-  const { setHidden: publishHidden } = useNavbarVisibility();
+  const lastGestureRef = useRef<{ dir: 1 | -1; at: number } | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const [navHeight, setNavHeight] = useState(0);
+  const navHeightRef = useRef(0);
+  const {
+    setHidden: publishHidden,
+    setAtTop: publishAtTop,
+    setNavHeight: publishNavHeight,
+  } = useNavbarVisibility();
+  const [atTop, setAtTop] = useState(true);
 
-  // Share the hide/show state so sticky bars (e.g. menu categories)
-  // can dock to the top of the viewport while the navbar is away.
+  // Refs that mirror the latest value so the scroll handler can do
+  // cheap equality checks without closing over stale state.
+  const hiddenRef = useRef(false);
+  const atTopRef = useRef(true);
+  const lastStateChangeRef = useRef(0);
+  const isResizingRef = useRef(false);
+  const resizeTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Synchronised helpers — update local state AND the shared context in
+  // the same React batch so that the navbar and category bar animations
+  // start on the exact same frame.  Skips no-op updates so every scroll
+  // tick that doesn't change direction is free.
+  const updateHidden = useCallback(
+    (value: boolean) => {
+      if (hiddenRef.current === value) return;
+      hiddenRef.current = value;
+      lastStateChangeRef.current = Date.now();
+      setHidden(value);
+      publishHidden(value);
+    },
+    [publishHidden],
+  );
+  const updateAtTop = useCallback(
+    (value: boolean) => {
+      if (atTopRef.current === value) return;
+      atTopRef.current = value;
+      setAtTop(value);
+      publishAtTop(value);
+    },
+    [publishAtTop],
+  );
+
+  // Guard against window resize events triggering scroll direction flips.
+  // Viewport resize causes layout reflows and scroll anchoring adjustments
+  // that do NOT represent user scroll intent.
   useEffect(() => {
-    publishHidden(hidden);
-  }, [hidden, publishHidden]);
+    const onResize = () => {
+      isResizingRef.current = true;
+      lastYRef.current = window.scrollY;
+      if (resizeTimerRef.current) clearTimeout(resizeTimerRef.current);
+      resizeTimerRef.current = setTimeout(() => {
+        isResizingRef.current = false;
+        lastYRef.current = window.scrollY;
+      }, 250);
+    };
+
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => {
+      window.removeEventListener("resize", onResize);
+      if (resizeTimerRef.current) clearTimeout(resizeTimerRef.current);
+    };
+  }, []);
+
+  // Dynamically track the header height so the negative margin used to
+  // collapse its flow space is always exact (responsive-safe).
+  // Coalesced via requestAnimationFrame so rapid layout passes during resize
+  // run at most once per frame.
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    let rafId: number | null = null;
+    const update = () => {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        if (!headerRef.current) return;
+        const h = headerRef.current.offsetHeight;
+        if (h === navHeightRef.current) return;
+        navHeightRef.current = h;
+        setNavHeight(h);
+        publishNavHeight(h);
+      });
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => {
+      ro.disconnect();
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
+  }, [publishNavHeight]);
 
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 24);
     const prev = lastYRef.current;
     lastYRef.current = latest;
+
+    // ── TOP STATE — highest priority ──────────────────────────────
+    // When the page is at the very top, force the original layout
+    // immediately. Clear any stale gesture so momentum can't re-hide.
+    if (latest <= 0) {
+      updateHidden(false);
+      setScrolled(false);
+      updateAtTop(true);
+      lastGestureRef.current = null;
+      return;
+    }
+
+    updateAtTop(false);
+    // Hysteresis prevents flickering between scrolled states near the threshold.
+    setScrolled((wasScrolled) => (wasScrolled ? latest > 12 : latest > 28));
+
     if (mobileOpen) {
-      setHidden(false);
+      updateHidden(false);
       return;
     }
     if (latest < 120) {
-      setHidden(false);
+      updateHidden(false);
       return;
     }
-    if (latest - prev > 10) setHidden(true);
-    else if (prev - latest > 10) setHidden(false);
+
+    // While the user is resizing the browser window, layout reflows and
+    // scroll adjustments are active — do not toggle hidden state.
+    if (isResizingRef.current) {
+      return;
+    }
+
+    // A recent wheel/touch gesture owns hide/show — scrollY may still carry
+    // old Lenis momentum in the opposite direction, so the fallback stays
+    // out of the way until it settles. It only ever acts for input the
+    // gesture listeners can't see (keyboard, scrollbar, programmatic).
+    const gesture = lastGestureRef.current;
+    if (gesture && Date.now() - gesture.at < 600) return;
+
+    // Require a minimum scroll delta to filter out subpixel jitter,
+    // browser momentum bounce, and layout shifts from animations.
+    const diff = latest - prev;
+    if (Math.abs(diff) < 10) return;
+
+    // Cooldown: if navbar visibility just changed, let its animation complete
+    // before fallback scroll direction can toggle it in reverse.
+    if (Date.now() - lastStateChangeRef.current < 400) return;
+
+    updateHidden(diff > 0);
   });
+
+  // React to scroll INTENT instantly. With Lenis smoothing, window.scrollY
+  // keeps gliding through old downward momentum for ~1s after the user
+  // reverses direction — waiting on scrollY alone is what delayed the
+  // navbar. wheel/touch fire on the same frame as the gesture instead.
+  useEffect(() => {
+    let lastTouchY: number | null = null;
+
+    const noteGesture = (dir: 1 | -1) => {
+      lastGestureRef.current = { dir, at: Date.now() };
+      if (dir === -1) updateHidden(false);
+      else if (window.scrollY >= 120) updateHidden(true);
+    };
+    const onWheel = (e: WheelEvent) => {
+      if (e.ctrlKey || Math.abs(e.deltaY) < 2 || mobileOpen) return;
+      noteGesture(e.deltaY < 0 ? -1 : 1);
+    };
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) lastTouchY = e.touches[0].clientY;
+      else lastTouchY = null;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length !== 1 || lastTouchY === null || mobileOpen) return;
+      const y = e.touches[0].clientY;
+      if (Math.abs(y - lastTouchY) < 4) return;
+      // Dragging down pulls the page toward the top → show immediately.
+      noteGesture(y > lastTouchY ? -1 : 1);
+      lastTouchY = y;
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: true });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+    };
+  }, [mobileOpen, updateHidden]);
 
   useEffect(() => {
     if (mobileOpen) {
@@ -168,9 +329,21 @@ export default function Navbar() {
       </div>
 
       <motion.header
-        animate={{ y: hidden && !mobileOpen ? "-110%" : "0%" }}
-        transition={{ duration: 0.32, ease: [0.25, 0.1, 0.25, 1] }}
-        className={`sticky top-0 z-40 w-full transition-all duration-500 ${
+        ref={headerRef}
+        animate={{
+          y: hidden && !mobileOpen ? "-110%" : "0%",
+          // Collapse the sticky element's reserved flow space at the same
+          // rate it slides out.  Without this, position:sticky keeps the
+          // original height in the document, leaving a visible empty gap.
+          marginBottom: hidden && !mobileOpen ? -navHeight : 0,
+        }}
+        // atTop forces duration 0 so the navbar snaps back instantly when
+        // the user scrolls to the very top (Home key, scrollbar drag, etc).
+        transition={{
+          duration: atTop ? 0 : scrolled ? 0.32 : 0,
+          ease: [0.25, 0.1, 0.25, 1],
+        }}
+        className={`sticky top-0 z-40 w-full transition-[background-color,box-shadow,backdrop-filter] duration-500 ${
           scrolled
             ? "bg-ivory/92 shadow-[0_10px_40px_-15px_rgba(28,22,19,0.25)] backdrop-blur-xl"
             : "bg-ivory/60 backdrop-blur-md"
@@ -234,7 +407,7 @@ export default function Navbar() {
           <div className="flex shrink-0 items-center gap-3">
             <button
               onClick={() => handleNavigate("/menu")}
-              className="!hidden md:flex! btn-gold !px-5 !py-2.5 sm:!px-6 sm:!py-3"
+              className="!hidden xl:flex! btn-gold !px-5 !py-2.5 sm:!px-6 sm:!py-3"
             >
               {t("navbarOrderCta")}
               <ArrowRight size={15} strokeWidth={2.4} />

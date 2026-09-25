@@ -129,6 +129,7 @@ export default function Footer() {
                 { label: t("footerNavAbout"), href: "/about" },
                 { label: t("footerNavShop"), href: "/shop" },
                 { label: t("footerNavContact"), href: "/contact" },
+                { label: t("footerFaq"), href: "/faq" },
               ].map((link) => (
                 <li key={link.label}>
                   <Link
@@ -230,9 +231,9 @@ export default function Footer() {
             >
               {t("footerPrivacyPolicy")}
             </Link>
-            <Link href="/faq" className="transition-colors hover:text-primary">
+            {/* <Link href="/faq" className="transition-colors hover:text-primary">
               {t("footerFaq")}
-            </Link>
+            </Link> */}
             <p className="font-script text-xl text-primary/80">
               {t("footerTagline")}
             </p>

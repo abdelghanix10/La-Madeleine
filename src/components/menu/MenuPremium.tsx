@@ -248,7 +248,11 @@ function MenuBookViewer({ onClose }: { onClose: () => void }) {
 
 export default function MenuPremium() {
   const { data, t } = useLanguage();
-  const { hidden: navHidden } = useNavbarVisibility();
+  const {
+    hidden: navHidden,
+    atTop: navAtTop,
+    navHeight,
+  } = useNavbarVisibility();
   const [tab, setTab] = useState("all");
   const [expanded, setExpanded] = useState(false);
   const [bookOpen, setBookOpen] = useState(false);
@@ -260,11 +264,17 @@ export default function MenuPremium() {
     return [...list].sort((a, b) => Number(b.popular) - Number(a.popular));
   }, [items, tab]);
 
-  const featured = filtered.filter((f) => f.popular).slice(0, 3);
-  const rest = filtered.filter((f) => !featured.includes(f));
+  const { featured, rest } = useMemo(() => {
+    const f = filtered.filter((item) => item.popular).slice(0, 3);
+    const featuredIds = new Set(f.map((x) => x.id));
+    return { featured: f, rest: filtered.filter((item) => !featuredIds.has(item.id)) };
+  }, [filtered]);
 
   const limit = tab === "all" ? 18 : 24;
-  const shownRest = expanded ? rest : rest.slice(0, limit);
+  const shownRest = useMemo(
+    () => (expanded ? rest : rest.slice(0, limit)),
+    [expanded, rest, limit],
+  );
   const activeTab = TABS.find((x) => x.key === tab) ?? TABS[0];
   const sectionTitle =
     tab === "all" ? t("menuPremiumCurrentMenu") : t(activeTab.labelKey);
@@ -274,10 +284,13 @@ export default function MenuPremium() {
     <div className="bg-ivory">
       {/* Sticky category nav — docks to the viewport top while the navbar
           is hidden, slides back underneath it when the navbar returns. */}
-      <div
-        className={`sticky z-30 border-b border-dark/8 bg-ivory/95 shadow-[0_10px_30px_-18px_rgba(28,22,19,0.35)] backdrop-blur-xl transition-[top] duration-300 ease-out ${
-          navHidden ? "top-0" : "top-[64px] lg:top-[72px]"
-        }`}
+      <motion.div
+        className="sticky z-30 border-b border-dark/8 bg-ivory/95 shadow-[0_10px_30px_-18px_rgba(28,22,19,0.35)] backdrop-blur-xl"
+        animate={{ top: navHidden ? 0 : navHeight }}
+        transition={{
+          duration: navAtTop ? 0 : 0.32,
+          ease: [0.25, 0.1, 0.25, 1],
+        }}
       >
         <div className="mx-auto flex max-w-7xl items-center gap-2.5 overflow-x-auto px-6 py-4 no-scrollbar md:px-10">
           {TABS.map((x) => (
@@ -311,7 +324,7 @@ export default function MenuPremium() {
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
       {/* Menu Book Button */}
       <div className="border-b border-dark/8 bg-[#f4ecdc]">
         <div className="mx-auto flex max-w-7xl flex-col items-center px-6 py-7 text-center md:px-10 md:py-8">
@@ -449,8 +462,8 @@ export default function MenuPremium() {
               </div>
 
               <div className="grid gap-x-12 lg:grid-cols-2">
-                {shownRest.map((item, idx) => (
-                  <ScrollReveal key={item.id} delay={Math.min(idx * 0.03, 0.3)}>
+                {shownRest.map((item, idx) => {
+                  const article = (
                     <article className="group flex items-center gap-4 border-b border-dark/8 py-5">
                       <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl">
                         <Image
@@ -482,8 +495,29 @@ export default function MenuPremium() {
                         </span>
                       </span>
                     </article>
-                  </ScrollReveal>
-                ))}
+                  );
+
+                  // First batch: full ScrollReveal with stagger.
+                  // Expanded items: lightweight CSS fade (no IntersectionObserver overhead).
+                  return idx < limit ? (
+                    <ScrollReveal
+                      key={item.id}
+                      delay={Math.min(idx * 0.03, 0.3)}
+                    >
+                      {article}
+                    </ScrollReveal>
+                  ) : (
+                    <div
+                      key={item.id}
+                      className="animate-[fadeRow_0.35s_ease_both]"
+                      style={{
+                        animationDelay: `${Math.min((idx - limit) * 15, 200)}ms`,
+                      }}
+                    >
+                      {article}
+                    </div>
+                  );
+                })}
               </div>
 
               {extraCount > 0 && !expanded && (
@@ -516,12 +550,12 @@ export default function MenuPremium() {
 
         {/* Bottom CTA */}
         <div className="mt-16 overflow-hidden rounded-[32px] bg-[#efe6d6]">
-          <div className="grid items-center gap-8 p-8 md:grid-cols-[1fr_auto] md:p-12">
+          <div className="grid items-center gap-8 p-8 xl:grid-cols-[1fr_auto] xl:p-12">
             <div>
               <p className="font-script text-3xl text-primary-dark">
                 {t("menuPremiumPaperScript")}
               </p>
-              <h3 className="mt-2 font-serif text-3xl text-dark md:text-4xl">
+              <h3 className="mt-2 font-serif text-3xl text-dark xl:text-4xl">
                 {t("menuPremiumPaperTitle")}
               </h3>
               <p className="mt-3 max-w-lg text-[15px] text-muted">
