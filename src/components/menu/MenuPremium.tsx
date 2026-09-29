@@ -7,75 +7,35 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
   BookOpenText,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
-  ChevronUp,
-  Flame,
+  UtensilsCrossed,
   X,
 } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { useLanguage, type translations } from "@/providers/LanguageProvider";
+import { useLanguage } from "@/providers/LanguageProvider";
 import { useNavbarVisibility } from "@/providers/NavbarVisibilityProvider";
 import * as dataFR from "@/lib/data-fr";
 
 type Item = (typeof dataFR.menuItems)[number];
-type TranslationKey = keyof typeof translations.en;
 
-const TABS: { key: string; labelKey: TranslationKey }[] = [
-  { key: "all", labelKey: "menuPremiumTabAll" },
-  { key: "Viennoiseries", labelKey: "menuPremiumTabViennoiseries" },
-  { key: "Pâtisseries", labelKey: "menuPremiumTabPastries" },
-  { key: "Petit-déjeuner et Salé", labelKey: "menuPremiumTabSavory" },
-  { key: "Cafés", labelKey: "menuPremiumTabCafe" },
-  { key: "Boissons", labelKey: "menuPremiumTabDrinks" },
-  { key: "Jus", labelKey: "menuPremiumTabJuices" },
-];
+const ALL_CATEGORY_KEY = "all";
 
-const TAB_MATCH_KEYWORDS: Record<string, string[]> = {
-  Viennoiseries: ["croissant", "pain au chocolat", "pain suisse", "danoise", "brioche", "pithiviers", "triangle"],
-  Pâtisseries: ["mille-feuille", "tarte", "madeleine", "basboussa", "gâteau", "cupcake", "crêpe", "gaufre", "pancake", "beignet", "chausson"],
-};
+// Tabs mirror the catalogue categories 1:1 (src/lib/data*.ts `menuCategories`).
+// Keys are index-based (`cat-0`, `cat-1`, …) so they stay stable across
+// languages — the category arrays are parallel in every locale.
+const tabKeyForIndex = (index: number) => `cat-${index}`;
 
-function matchesFrCatalog(item: Item, tabKey: string): boolean {
-  if (tabKey === "all") return true;
-  if (tabKey === "Petit-déjeuner et Salé") return item.category === "Petit-déjeuner et Salé";
-  if (tabKey === "Cafés") return item.category === "Cafés";
-  if (tabKey === "Jus") return item.category === "Jus";
-  if (tabKey === "Boissons")
-    return item.category === "Boissons Chaudes" || item.category === "Boissons Froides";
-  const match = TAB_MATCH_KEYWORDS[tabKey];
-  if (!match?.length) return item.category === tabKey;
-  const name = item.name.toLowerCase();
-  return match.some((k) => name.includes(k));
+function tabIndexForKey(key: string): number | null {
+  if (!key.startsWith("cat-")) return null;
+  const n = Number(key.slice(4));
+  return Number.isInteger(n) && n >= 0 ? n : null;
 }
 
-// Tab membership is computed once from the French catalogue — item ids are
-// stable across languages (same order, ids 1–156), so filtering by id keeps
-// every language in sync without duplicating match rules per locale.
-const TAB_ITEM_IDS: Record<string, Set<number>> = Object.fromEntries(
-  TABS.map((t) => [
-    t.key,
-    new Set(
-      (dataFR.menuItems as Item[])
-        .filter((i) => matchesFrCatalog(i, t.key))
-        .map((i) => i.id),
-    ),
-  ]),
-);
-
-function matchesTab(item: Item, tabKey: string): boolean {
-  if (tabKey === "all") return true;
-  return TAB_ITEM_IDS[tabKey]?.has(item.id) ?? false;
-}
-
-function Price({ value }: { value: number }) {
-  return (
-    <span className="inline-flex items-baseline gap-1 rounded-full bg-primary/12 px-3.5 py-1.5 font-serif text-[17px] font-semibold text-dark">
-      {value.toFixed(2).replace(".", ",")}
-      <span className="text-[12px] font-sans font-bold">DH</span>
-    </span>
-  );
+function formatPrice(value: number): string {
+  return Number.isInteger(value)
+    ? value.toFixed(0)
+    : value.toFixed(2).replace(".", ",");
 }
 
 // Complete paper menu, page by page — files live in public/menu,
@@ -84,6 +44,112 @@ const MENU_BOOK_PAGES = Array.from(
   { length: 10 },
   (_, i) => `/menu/menu_page-${String(i + 1).padStart(4, "0")}.webp`,
 );
+
+interface CategoryHighlight {
+  image: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+}
+
+function MenuHighlight({
+  categoryLabel,
+  highlight,
+  priority = false,
+}: {
+  categoryLabel: string;
+  highlight: CategoryHighlight;
+  priority?: boolean;
+}) {
+  return (
+    <motion.div
+      key={`${categoryLabel}-highlight`}
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -24 }}
+      transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
+      className="mb-10 overflow-hidden rounded-[24px] border border-dark/10 bg-dark shadow-[0_30px_60px_-30px_rgba(28,22,19,0.45)]"
+    >
+      <div className="relative min-h-[260px] md:min-h-[360px]">
+        <Image
+          src={highlight.image}
+          alt={`${categoryLabel} background`}
+          fill
+          priority={priority}
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
+          quality={70}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-dark/80 via-dark/45 to-dark/10" />
+        <div className="absolute inset-0 flex items-center">
+          <div className="max-w-xl px-6 md:px-12 lg:px-16">
+            <p className="text-primary-light font-script text-xl md:text-3xl mb-3">
+              {highlight.eyebrow}
+            </p>
+            <h3 className="font-serif text-2xl md:text-5xl text-cream tracking-wide mb-4">
+              {highlight.title}
+            </h3>
+            <p className="text-cream/75 max-w-lg leading-relaxed">
+              {highlight.description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// Fixed-height product row: icon thumb, dotted leader, gold DH price,
+// 2-line clamped description + pinned category label so every card
+// in the grid measures exactly the same height.
+function MenuItemRow({ item }: { item: Item }) {
+  return (
+    <motion.div
+      className="group flex h-full min-h-[138px] cursor-pointer items-start gap-4 rounded-2xl border-b border-dark/6 px-3 py-5 transition-all duration-200 hover:border-primary/50 hover:bg-cream/60"
+      whileHover={{ x: 3 }}
+      transition={{ duration: 0.2 }}
+    >
+      <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-cream shadow-xs transition-all duration-300 group-hover:ring-2 group-hover:ring-primary/40">
+        {item.image ? (
+          <Image
+            src={item.image}
+            alt={item.name}
+            width={48}
+            height={48}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <UtensilsCrossed size={18} className="text-primary/70" />
+        )}
+      </div>
+      <div className="flex min-w-0 flex-1 flex-col self-stretch">
+        <div className="flex items-baseline gap-2">
+          <h3 className="truncate font-serif text-lg tracking-wide text-dark transition-colors duration-200 group-hover:text-primary">
+            {item.name}
+          </h3>
+          <span
+            aria-hidden
+            className="mx-1 mb-1 flex-1 border-b border-dotted border-dark/20"
+          />
+          <span className="shrink-0 text-[15px] font-bold text-primary-dark">
+            {formatPrice(item.price)}{" "}
+            <span className="text-[11px] font-bold">DH</span>
+          </span>
+        </div>
+        {item.description ? (
+          <p className="mt-0.5 line-clamp-2 min-h-[2.6em] text-xs leading-relaxed text-dark/55">
+            {item.description}
+          </p>
+        ) : (
+          <span className="mt-0.5 min-h-[2.6em]" aria-hidden />
+        )}
+        <p className="mt-auto pt-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-dark/35">
+          {item.category}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
 
 function MenuBookViewer({ onClose }: { onClose: () => void }) {
   const { t, dir } = useLanguage();
@@ -253,39 +319,125 @@ export default function MenuPremium() {
     atTop: navAtTop,
     navHeight,
   } = useNavbarVisibility();
-  const [tab, setTab] = useState("all");
-  const [expanded, setExpanded] = useState(false);
+  const [activeCategoryKey, setActiveCategoryKey] = useState(ALL_CATEGORY_KEY);
   const [bookOpen, setBookOpen] = useState(false);
 
   const items = data.menuItems as Item[];
+  const categories: string[] = useMemo(() => {
+    const fromData = (data as { menuCategories?: string[] }).menuCategories;
+    if (fromData?.length) return fromData;
+    const seen: string[] = [];
+    for (const i of items) {
+      if (!seen.includes(i.category)) seen.push(i.category);
+    }
+    return seen;
+  }, [data, items]);
+
+  const categoryHighlightsByIndex: Partial<Record<number, CategoryHighlight>> =
+    {
+      0: {
+        image: "/images/background/bg-breakfast.webp",
+        eyebrow: t("breakfastEyebrow"),
+        title: t("breakfastTitle"),
+        description: t("breakfastDescription"),
+      },
+      1: {
+        image: "/images/background/bg-pastries.webp",
+        eyebrow: t("pastriesEyebrow"),
+        title: t("pastriesTitle"),
+        description: t("pastriesDescription"),
+      },
+      2: {
+        image: "/images/background/bg-bread.webp",
+        eyebrow: t("bakeryEyebrow"),
+        title: t("bakeryTitle"),
+        description: t("bakeryDescription"),
+      },
+      3: {
+        image: "/images/background/bg-contact.webp",
+        eyebrow: t("hotDrinksEyebrow"),
+        title: categories[3] ?? "",
+        description: t("hotDrinksDescription"),
+      },
+      4: {
+        image: "/images/background/background-testimonials.webp",
+        eyebrow: t("coldDrinksEyebrow"),
+        title: categories[4] ?? "",
+        description: t("coldDrinksDescription"),
+      },
+      5: {
+        image: "/images/background/bg-coffee.webp",
+        eyebrow: t("coffeesEyebrow"),
+        title: t("coffeesTitle"),
+        description: t("coffeesDescription"),
+      },
+      6: {
+        image: "/images/background/bg-juices.webp",
+        eyebrow: t("juicesEyebrow"),
+        title: t("juicesTitle"),
+        description: t("juicesDescription"),
+      },
+      7: {
+        image: "/images/background/bg-about.webp",
+        eyebrow: t("extrasEyebrow"),
+        title: categories[7] ?? "",
+        description: t("extrasDescription"),
+      },
+    };
+
+  const activeTabIndex = tabIndexForKey(activeCategoryKey);
+
+  // Tabs are the catalogue categories themselves — filter by direct
+  // category equality (items and categories come from the same locale).
+  const tabs = [
+    { key: ALL_CATEGORY_KEY, label: t("menuPremiumTabAll") },
+    ...categories.map((c, i) => ({ key: tabKeyForIndex(i), label: c })),
+  ];
+
   const filtered = useMemo(() => {
-    const list = items.filter((i) => matchesTab(i, tab));
-    // Popular first, then rest
+    const list =
+      activeTabIndex === null
+        ? items
+        : items.filter((i) => i.category === categories[activeTabIndex]);
+    // Popular first, then rest.
     return [...list].sort((a, b) => Number(b.popular) - Number(a.popular));
-  }, [items, tab]);
+  }, [items, categories, activeTabIndex]);
 
-  const { featured, rest } = useMemo(() => {
-    const f = filtered.filter((item) => item.popular).slice(0, 3);
-    const featuredIds = new Set(f.map((x) => x.id));
-    return { featured: f, rest: filtered.filter((item) => !featuredIds.has(item.id)) };
-  }, [filtered]);
+  // Group into categories (keeps the catalogue order) so each section can
+  // carry its own highlight banner. All products are shown — no slicing.
+  const groupedItems = useMemo(() => {
+    const groups = categories.map((category, index) => ({
+      index,
+      category,
+      items: filtered.filter((i) => i.category === category),
+    }));
+    return groups.filter((g) => g.items.length > 0);
+  }, [categories, filtered]);
 
-  const limit = tab === "all" ? 18 : 24;
-  const shownRest = useMemo(
-    () => (expanded ? rest : rest.slice(0, limit)),
-    [expanded, rest, limit],
-  );
-  const activeTab = TABS.find((x) => x.key === tab) ?? TABS[0];
   const sectionTitle =
-    tab === "all" ? t("menuPremiumCurrentMenu") : t(activeTab.labelKey);
-  const extraCount = filtered.length - shownRest.length - featured.length;
+    activeTabIndex === null
+      ? t("menuPremiumCurrentMenu")
+      : (categories[activeTabIndex] ?? t("menuPremiumCurrentMenu"));
 
   return (
-    <div className="bg-ivory">
+    // NOTE: overflow-x-clip (not overflow-hidden) — overflow:hidden creates a
+    // scroll container on this ancestor and breaks the sticky category nav.
+    // overflow:clip still clips the glow without affecting sticky positioning.
+    <div className="relative overflow-x-clip bg-ivory text-dark">
+      {/* Soft ambient glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(900px 420px at 12% 0%, rgba(200,154,43,0.10), transparent 60%), radial-gradient(800px 500px at 88% 8%, rgba(201,111,74,0.08), transparent 60%)",
+        }}
+      />
+
       {/* Sticky category nav — docks to the viewport top while the navbar
           is hidden, slides back underneath it when the navbar returns. */}
       <motion.div
-        className="sticky z-30 border-b border-dark/8 bg-ivory/95 shadow-[0_10px_30px_-18px_rgba(28,22,19,0.35)] backdrop-blur-xl"
+        className="sticky top-0 z-30 border-b border-dark/8 bg-ivory/95 shadow-[0_10px_30px_-18px_rgba(28,22,19,0.35)] backdrop-blur-xl"
         animate={{ top: navHidden ? 0 : navHeight }}
         transition={{
           duration: navAtTop ? 0 : 0.32,
@@ -293,20 +445,19 @@ export default function MenuPremium() {
         }}
       >
         <div className="mx-auto flex max-w-7xl items-center gap-2.5 overflow-x-auto px-6 py-4 no-scrollbar md:px-10">
-          {TABS.map((x) => (
+          {tabs.map((x) => (
             <button
               key={x.key}
               onClick={() => {
-                setTab(x.key);
-                setExpanded(false);
+                setActiveCategoryKey(x.key);
               }}
               className={`shrink-0 rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.18em] transition-all ${
-                tab === x.key
+                activeCategoryKey === x.key
                   ? "bg-dark text-cream shadow-lg"
                   : "border border-dark/10 bg-white/70 text-dark/60 hover:border-dark/25 hover:text-dark"
               }`}
             >
-              {t(x.labelKey)}
+              {x.label}
             </button>
           ))}
           <div className="ml-auto hidden shrink-0 items-center gap-2 md:flex">
@@ -325,8 +476,9 @@ export default function MenuPremium() {
           </div>
         </div>
       </motion.div>
-      {/* Menu Book Button */}
-      <div className="border-b border-dark/8 bg-[#f4ecdc]">
+
+      {/* Paper menu band */}
+      <div className="relative border-b border-dark/8 bg-[#f4ecdc]">
         <div className="mx-auto flex max-w-7xl flex-col items-center px-6 py-7 text-center md:px-10 md:py-8">
           <p className="font-script text-2xl leading-none text-primary-dark md:text-3xl">
             {t("menuPremiumPaperScript")}
@@ -347,206 +499,76 @@ export default function MenuPremium() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 py-14 md:px-10 md:py-20">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={tab}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.35 }}
-          >
-            {/* Editorial featured */}
-            {featured.length > 0 && (
-              <div className="grid gap-5 lg:grid-cols-2">
-                {/* Large feature */}
-                <ScrollReveal className="h-full">
-                  <article className="group relative flex h-full min-h-[420px] flex-col justify-end overflow-hidden rounded-[28px] lg:min-h-[560px]">
-                    <Image
-                      src={featured[0].image}
-                      alt={featured[0].name}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark/85 via-dark/25 to-transparent" />
-                    <div className="relative p-7 md:p-9">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-dark">
-                        <Flame size={12} /> {t("menuPremiumSignature")}
-                      </span>
-                      <h3 className="mt-4 font-serif text-4xl text-cream md:text-5xl">
-                        {featured[0].name}
-                      </h3>
-                      <p className="mt-3 max-w-md text-[14px] leading-relaxed text-cream/70">
-                        {featured[0].description}
-                      </p>
-                      <div className="mt-5 flex flex-wrap items-center gap-4">
-                        <span className="rounded-full bg-cream px-4 py-2 font-serif text-lg font-semibold text-dark">
-                          {featured[0].price.toFixed(2).replace(".", ",")} DH
-                        </span>
-                        <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-cream/60">
-                          {featured[0].category}
-                        </span>
-                      </div>
-                    </div>
-                  </article>
-                </ScrollReveal>
-                <div className="grid gap-5">
-                  {featured.slice(1, 3).map((f) => (
-                    <ScrollReveal key={f.id}>
-                      <article className="group grid grid-cols-[140px_1fr] gap-5 rounded-[24px] border border-dark/8 bg-[#fffdf9] p-4 transition-all hover:-translate-y-1 hover:shadow-xl sm:grid-cols-[200px_1fr]">
-                        <span className="relative block aspect-square overflow-hidden rounded-2xl">
-                          <Image
-                            src={f.image}
-                            alt={f.name}
-                            fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                            sizes="220px"
-                          />
-                        </span>
-                        <span className="flex flex-col justify-center py-1 pr-2">
-                          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary-dark">
-                            {f.category}
-                          </span>
-                          <span className="mt-1.5 block font-serif text-2xl leading-tight text-dark md:text-[28px]">
-                            {f.name}
-                          </span>
-                          <span className="mt-2 line-clamp-2 block text-[13px] leading-relaxed text-muted">
-                            {f.description}
-                          </span>
-                          <span className="mt-3">
-                            <Price value={f.price} />
-                          </span>
-                        </span>
-                      </article>
-                    </ScrollReveal>
-                  ))}
-                  {/* Inline CTA card */}
-                  <div className="flex flex-col justify-center rounded-[24px] bg-dark p-7 text-cream sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                      <p className="font-script text-2xl text-primary">
-                        {t("menuPremiumCtaScript")}
-                      </p>
-                      <p className="mt-1 font-serif text-2xl">
-                        {t("menuPremiumCtaTitle")}
-                      </p>
-                    </div>
-                    <Link
-                      href="/contact"
-                      className="btn-gold mt-5 shrink-0 sm:mt-0"
-                    >
-                      {t("menuHeroOrderCta")} <ArrowRight size={15} />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            )}
+      <div className="relative mx-auto max-w-6xl px-6 py-14 md:px-10 md:py-20">
+        {/* Section heading */}
+        <ScrollReveal>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="font-script text-3xl leading-none text-primary-dark md:text-4xl">
+                {sectionTitle}
+              </p>
+              <div className="gold-rule mt-4 !w-24 !justify-start" />
+            </div>
+            <div className="flex items-center gap-4">
+              <p className="hidden text-[12px] uppercase tracking-[0.2em] text-dark/45 sm:block">
+                {t("menuPremiumCreations", { count: filtered.length })}
+              </p>
+              <button
+                onClick={() => setBookOpen(true)}
+                className="btn-ghost shrink-0 !px-5 !py-2.5 !text-[11px]"
+              >
+                <BookOpenText size={14} /> {t("menuPremiumMenuBookCta")}
+              </button>
+            </div>
+          </div>
+        </ScrollReveal>
 
-            {/* Editorial list — dotted leaders (desktop) / cards (mobile) */}
-            <div className="mt-14">
-              <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-                <h2 className="font-serif text-3xl text-dark md:text-4xl">
-                  {sectionTitle}
-                </h2>
-                <div className="flex items-center gap-4">
-                  <p className="hidden text-[12px] uppercase tracking-[0.2em] text-dark/45 sm:block">
-                    {t("menuPremiumCreations", { count: filtered.length })}
-                  </p>
-                  <button
-                    onClick={() => setBookOpen(true)}
-                    className="btn-ghost shrink-0 !px-5 !py-2.5 !text-[11px]"
-                  >
-                    <BookOpenText size={14} /> {t("menuPremiumMenuBookCta")}
-                  </button>
-                </div>
-              </div>
-
-              <div className="grid gap-x-12 lg:grid-cols-2">
-                {shownRest.map((item, idx) => {
-                  const article = (
-                    <article className="group flex items-center gap-4 border-b border-dark/8 py-5">
-                      <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl">
-                        <Image
-                          src={item.image}
-                          alt={item.name}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
-                          sizes="64px"
+        <div className="mt-10">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategoryKey}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -16 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+            >
+              <div className="space-y-14">
+                {groupedItems.map(({ index, category, items: group }) => (
+                  <div key={category}>
+                    {categoryHighlightsByIndex[index] ? (
+                      <MenuHighlight
+                        categoryLabel={category}
+                        highlight={categoryHighlightsByIndex[index]!}
+                        priority={index === 0}
+                      />
+                    ) : (
+                      <div className="mb-6 flex items-baseline gap-4">
+                        <h3 className="shrink-0 font-serif text-2xl text-dark md:text-3xl">
+                          {category}
+                        </h3>
+                        <span
+                          aria-hidden
+                          className="mb-1 hidden flex-1 border-b border-dotted border-dark/20 sm:block"
                         />
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="flex items-baseline gap-3">
-                          <span className="truncate font-serif text-[22px] text-dark transition-colors group-hover:text-primary-dark">
-                            {item.name}
-                          </span>
-                          <span
-                            aria-hidden
-                            className="mx-1 hidden flex-1 border-b border-dotted border-dark/20 sm:block"
-                          />
-                          <span className="shrink-0 font-serif text-[18px] font-semibold text-primary-dark">
-                            {item.price.toFixed(2).replace(".", ",")} DH
-                          </span>
-                        </span>
-                        <span className="mt-1 line-clamp-1 block text-[13px] text-muted">
-                          {item.description}
-                        </span>
-                        <span className="mt-1.5 block text-[10px] font-bold uppercase tracking-[0.2em] text-dark/35">
-                          {item.category}
-                        </span>
-                      </span>
-                    </article>
-                  );
-
-                  // First batch: full ScrollReveal with stagger.
-                  // Expanded items: lightweight CSS fade (no IntersectionObserver overhead).
-                  return idx < limit ? (
-                    <ScrollReveal
-                      key={item.id}
-                      delay={Math.min(idx * 0.03, 0.3)}
-                    >
-                      {article}
-                    </ScrollReveal>
-                  ) : (
-                    <div
-                      key={item.id}
-                      className="animate-[fadeRow_0.35s_ease_both]"
-                      style={{
-                        animationDelay: `${Math.min((idx - limit) * 15, 200)}ms`,
-                      }}
-                    >
-                      {article}
+                      </div>
+                    )}
+                    <div className="grid grid-cols-1 items-stretch gap-x-12 gap-y-3 md:grid-cols-2">
+                      {group.map((item) => (
+                        <MenuItemRow key={item.id} item={item} />
+                      ))}
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
 
-              {extraCount > 0 && !expanded && (
-                <p className="mt-10 text-center text-[13px] text-dark/50">
-                  {t("menuPremiumMoreNote", { count: extraCount })}
+              {groupedItems.length === 0 && (
+                <p className="mt-10 text-center text-[14px] text-dark/50">
+                  {t("menuPremiumCreations", { count: 0 })}
                 </p>
               )}
-
-              {rest.length > limit && (
-                <div className="mt-8 text-center">
-                  <button
-                    onClick={() => setExpanded((v) => !v)}
-                    className={expanded ? "btn-ghost" : "btn-gold"}
-                    aria-expanded={expanded}
-                  >
-                    {expanded
-                      ? t("menuPremiumShowLess")
-                      : t("menuPremiumShowMore")}
-                    {expanded ? (
-                      <ChevronUp size={15} />
-                    ) : (
-                      <ChevronDown size={15} />
-                    )}
-                  </button>
-                </div>
-              )}
-            </div>
-          </motion.div>
-        </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
         {/* Bottom CTA */}
         <div className="mt-16 overflow-hidden rounded-[32px] bg-[#efe6d6]">

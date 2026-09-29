@@ -151,21 +151,16 @@ export function PageHero({
         <div className="border-t border-cream/10 bg-dark">
           <div className="mx-auto flex max-w-7xl items-center gap-8 overflow-x-auto px-6 py-4 no-scrollbar md:px-10">
             {(
-              [
-                "menuPremiumTabViennoiseries",
-                "menuPremiumTabPastries",
-                "menuPremiumTabBreakfast",
-                "menuPremiumTabSavory",
-                "menuPremiumTabCafe",
-                "menuPremiumTabDrinks",
-                "menuPremiumTabJuices",
-              ] as const
-            ).map((key, i) => (
+              (data as { menuCategories?: string[] }).menuCategories ?? []
+            ).map((category, i) => (
               <span
-                key={key}
+                key={category}
                 className="flex shrink-0 items-center gap-8 text-[11px] font-semibold uppercase tracking-[0.28em] text-cream/45"
               >
-                <span className="text-primary">0{i + 1}</span> {t(key)}
+                <span className="text-primary">
+                  {String(i + 1).padStart(2, "0")}
+                </span>{" "}
+                {category}
               </span>
             ))}
           </div>

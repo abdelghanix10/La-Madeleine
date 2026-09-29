@@ -378,13 +378,6 @@ export const translations = {
     menuHeroShopCta: "Visit the shop",
     // Premium (menu list)
     menuPremiumTabAll: "All",
-    menuPremiumTabViennoiseries: "Viennoiseries",
-    menuPremiumTabPastries: "Pastries",
-    menuPremiumTabBreakfast: "Breakfast",
-    menuPremiumTabSavory: "Savory",
-    menuPremiumTabCafe: "Coffee",
-    menuPremiumTabDrinks: "Drinks",
-    menuPremiumTabJuices: "Fresh juices",
     menuPremiumSignature: "Signature",
     menuPremiumCtaScript: "A little craving?",
     menuPremiumCtaTitle: "Order, we take care of the rest.",
@@ -396,13 +389,40 @@ export const translations = {
     menuPremiumPaperTitle: "Browse the full menu, page by page.",
     menuPremiumPaperDescription:
       "Breakfasts, savory, fresh juices, coffees — 10 pages of treats, with photos and prices.",
-    menuPremiumShowMore: "Show more",
-    menuPremiumShowLess: "Show less",
     menuPremiumMenuBookCta: "View menu book",
     menuPremiumMenuBookTitle: "Menu book",
     menuPremiumMenuBookClose: "Close",
     menuPremiumMenuBookPrev: "Previous",
     menuPremiumMenuBookNext: "Next",
+    breakfastEyebrow: "Fresh mornings",
+    breakfastTitle: "Breakfast & Savory",
+    breakfastDescription:
+      "Barley soup, fluffy omelettes, Moroccan pancakes and generous breakfasts to start the day right.",
+    pastriesEyebrow: "From the atelier",
+    pastriesTitle: "Pastries & Desserts",
+    pastriesDescription:
+      "Fruit tarts, mille-feuille, crepes and soft cakes — prepared every morning.",
+    bakeryEyebrow: "Baked at dawn",
+    bakeryTitle: "Bakery",
+    bakeryDescription:
+      "Butter croissants, pains au chocolat and farmhouse breads, folded by hand.",
+    coffeesEyebrow: "Roasted with care",
+    coffeesTitle: "Coffees",
+    coffeesDescription:
+      "Espresso, cappuccino, flat white and signature creations.",
+    juicesEyebrow: "Pressed to order",
+    juicesTitle: "Fresh Juices",
+    juicesDescription:
+      "Orange, avocado, panaché and seasonal blends — pressed at the minute.",
+    hotDrinksEyebrow: "Warm & fragrant",
+    hotDrinksDescription:
+      "Teas, hot chocolate, spiced milk and fragrant infusions.",
+    coldDrinksEyebrow: "Iced & sparkling",
+    coldDrinksDescription:
+      "Sodas, iced teas, milkshakes and fresh coolers.",
+    extrasEyebrow: "The finishing touch",
+    extrasDescription:
+      "Honey, Amlou, olive oil, cheese and olives — to complete every table.",
 
     // Shop
     // Page Hero
@@ -928,13 +948,6 @@ cookieConsentTitle: "We value your privacy",
     menuHeroShopCta: "Voir la boutique",
     // Premium (liste du menu)
     menuPremiumTabAll: "Tout",
-    menuPremiumTabViennoiseries: "Viennoiseries",
-    menuPremiumTabPastries: "Pâtisseries",
-    menuPremiumTabBreakfast: "Petit-déjeuner",
-    menuPremiumTabSavory: "Salé",
-    menuPremiumTabCafe: "Café",
-    menuPremiumTabDrinks: "Boissons",
-    menuPremiumTabJuices: "Jus frais",
     menuPremiumSignature: "Signature",
     menuPremiumCtaScript: "Une petite faim ?",
     menuPremiumCtaTitle: "Commandez, on s'occupe du reste.",
@@ -946,13 +959,40 @@ cookieConsentTitle: "We value your privacy",
     menuPremiumPaperTitle: "Feuilletez le menu complet, page par page.",
     menuPremiumPaperDescription:
       "Petit-déjeuners, salé, jus frais, cafés — 10 pages de gourmandises, avec photos et prix.",
-    menuPremiumShowMore: "Voir plus",
-    menuPremiumShowLess: "Voir moins",
     menuPremiumMenuBookCta: "Feuilleter la carte",
     menuPremiumMenuBookTitle: "La carte",
     menuPremiumMenuBookClose: "Fermer",
     menuPremiumMenuBookPrev: "Précédent",
     menuPremiumMenuBookNext: "Suivant",
+    breakfastEyebrow: "Matins gourmands",
+    breakfastTitle: "Petit-déjeuner et Salé",
+    breakfastDescription:
+      "Soupe d'orge, omelettes moelleuses, crêpes marocaines et petits-déjeuners généreux pour bien commencer la journée.",
+    pastriesEyebrow: "De l'atelier",
+    pastriesTitle: "Pâtisseries et Desserts",
+    pastriesDescription:
+      "Tartes aux fruits, mille-feuille, crêpes et gâteaux moelleux — préparés chaque matin.",
+    bakeryEyebrow: "Cuit à l'aube",
+    bakeryTitle: "Boulangerie",
+    bakeryDescription:
+      "Croissants au beurre, pains au chocolat et pains de campagne, pliés à la main.",
+    coffeesEyebrow: "Torréfié avec soin",
+    coffeesTitle: "Cafés",
+    coffeesDescription:
+      "Espresso, cappuccino, flat white et créations signature.",
+    juicesEyebrow: "Pressés à la minute",
+    juicesTitle: "Jus Frais",
+    juicesDescription:
+      "Orange, avocat, panaché et mélanges de saison — pressés à la minute.",
+    hotDrinksEyebrow: "Chaudes & parfumées",
+    hotDrinksDescription:
+      "Thés, chocolat chaud, lait épicé et infusions parfumées.",
+    coldDrinksEyebrow: "Glacées & pétillantes",
+    coldDrinksDescription:
+      "Sodas, thés glacés, milkshakes et boissons bien fraîches.",
+    extrasEyebrow: "La touche finale",
+    extrasDescription:
+      "Miel, Amlou, huile d'olive, fromage et olives — pour parfaire chaque table.",
 
     // Shop
     // Page Hero
@@ -1472,13 +1512,6 @@ cookieConsentTitle: "We value your privacy",
     menuHeroShopCta: "زيارة المتجر",
     // Premium (قائمة الأصناف)
     menuPremiumTabAll: "الكل",
-    menuPremiumTabViennoiseries: "معجنات فرنسية",
-    menuPremiumTabPastries: "حلويات",
-    menuPremiumTabBreakfast: "فطور",
-    menuPremiumTabSavory: "مالح",
-    menuPremiumTabCafe: "قهوة",
-    menuPremiumTabDrinks: "مشروبات",
-    menuPremiumTabJuices: "عصائر طازجة",
     menuPremiumSignature: "مميز",
     menuPremiumCtaScript: "شعور خفيف بالجوع؟",
     menuPremiumCtaTitle: "اطلب، ونحن نتكفل بالباقي.",
@@ -1490,13 +1523,40 @@ cookieConsentTitle: "We value your privacy",
     menuPremiumPaperTitle: "تصفح القائمة الكاملة صفحة بصفحة.",
     menuPremiumPaperDescription:
       "فطور، مالح، عصائر طازجة، قهوة — 10 صفحات من اللذائذ مع الصور والأسعار.",
-    menuPremiumShowMore: "عرض المزيد",
-    menuPremiumShowLess: "عرض أقل",
     menuPremiumMenuBookCta: "تصفح القائمة",
     menuPremiumMenuBookTitle: "القائمة",
     menuPremiumMenuBookClose: "إغلاق",
     menuPremiumMenuBookPrev: "السابق",
     menuPremiumMenuBookNext: "التالي",
+    breakfastEyebrow: "صباحات طازجة",
+    breakfastTitle: "فطور ومالح",
+    breakfastDescription:
+      "شوربة الشعير، أومليت هش، فطائر مغربية ووجبات فطور سخية لبداية يوم موفقة.",
+    pastriesEyebrow: "من الورشة",
+    pastriesTitle: "حلويات وحلويات فرنسية",
+    pastriesDescription:
+      "تارت الفواكه، ميل فوي، كريب وكيك هش — تُحضّر كل صباح.",
+    bakeryEyebrow: "يُخبز عند الفجر",
+    bakeryTitle: "مخبز",
+    bakeryDescription:
+      "كرواسون بالزبدة، بان أو شوكولا وخبز تقليدي، يُطوى يدوياً.",
+    coffeesEyebrow: "محمصة بعناية",
+    coffeesTitle: "قهوة",
+    coffeesDescription:
+      "إسبريسو، كابتشينو، فلات وايت وإبداعات مميزة.",
+    juicesEyebrow: "يُعصر عند الطلب",
+    juicesTitle: "عصائر طازجة",
+    juicesDescription:
+      "برتقال، أفوكادو، باناشي وخلطات موسمية — تُعصر في الحين.",
+    hotDrinksEyebrow: "ساخنة وعطرة",
+    hotDrinksDescription:
+      "شاي، شوكولاتة ساخنة، حليب بالتوابل ومنقوعات عطرة.",
+    coldDrinksEyebrow: "مثلجة ومنعشة",
+    coldDrinksDescription:
+      "مشروبات غازية، شاي مثلج، ميلك شيك ومنعشات باردة.",
+    extrasEyebrow: "اللمسة الأخيرة",
+    extrasDescription:
+      "عسل، أملو، زيت زيتون، جبن وزيتون — لتكتمل كل مائدة.",
 
     // Shop
     // Page Hero
