@@ -13,7 +13,7 @@ import {
   X,
 } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { useLanguage } from "@/providers/LanguageProvider";
+import { useLanguage, type Language } from "@/providers/LanguageProvider";
 import { useNavbarVisibility } from "@/providers/NavbarVisibilityProvider";
 import * as dataFR from "@/lib/data-fr";
 
@@ -313,7 +313,7 @@ function MenuBookViewer({ onClose }: { onClose: () => void }) {
 }
 
 export default function MenuPremium() {
-  const { data, t } = useLanguage();
+  const { data, t, language } = useLanguage();
   const {
     hidden: navHidden,
     atTop: navAtTop,
@@ -333,57 +333,140 @@ export default function MenuPremium() {
     return seen;
   }, [data, items]);
 
-  const categoryHighlightsByIndex: Partial<Record<number, CategoryHighlight>> =
-    {
-      0: {
-        image: "/images/background/bg-breakfast.webp",
-        eyebrow: t("breakfastEyebrow"),
-        title: t("breakfastTitle"),
-        description: t("breakfastDescription"),
-      },
-      1: {
-        image: "/images/background/bg-pastries.webp",
-        eyebrow: t("pastriesEyebrow"),
-        title: t("pastriesTitle"),
-        description: t("pastriesDescription"),
-      },
-      2: {
-        image: "/images/background/bg-bread.webp",
-        eyebrow: t("bakeryEyebrow"),
-        title: t("bakeryTitle"),
-        description: t("bakeryDescription"),
-      },
-      3: {
-        image: "/images/background/bg-contact.webp",
-        eyebrow: t("hotDrinksEyebrow"),
-        title: categories[3] ?? "",
-        description: t("hotDrinksDescription"),
-      },
-      4: {
-        image: "/images/background/background-testimonials.webp",
-        eyebrow: t("coldDrinksEyebrow"),
-        title: categories[4] ?? "",
-        description: t("coldDrinksDescription"),
-      },
-      5: {
-        image: "/images/background/bg-coffee.webp",
-        eyebrow: t("coffeesEyebrow"),
-        title: t("coffeesTitle"),
-        description: t("coffeesDescription"),
-      },
-      6: {
-        image: "/images/background/bg-juices.webp",
-        eyebrow: t("juicesEyebrow"),
-        title: t("juicesTitle"),
-        description: t("juicesDescription"),
-      },
-      7: {
-        image: "/images/background/bg-about.webp",
-        eyebrow: t("extrasEyebrow"),
-        title: categories[7] ?? "",
-        description: t("extrasDescription"),
-      },
+  // Parent sections: several original item categories merge into one
+  // board section (e.g. "Coffee" + "Iced Coffee" → "Coffee"), while the
+  // original category is kept as the item's subcategory and shown as a
+  // sub-header inside the section.
+  type SectionKey = "breakfast" | "pastry" | "coffee" | "milkTea" | "cold";
+
+ const SECTION_LABEL: Record<SectionKey, Record<Language, string>> = {
+   breakfast: {
+     en: "Breakfast",
+     fr: "Petit-Déjeuner",
+     ar: "وجبات الفطور",
+   },
+   pastry: {
+     en: "Pastry",
+     fr: "Pâtisserie",
+     ar: "المعجنات والحلويات",
+   },
+   coffee: {
+     en: "Coffee",
+     fr: "Cafés",
+     ar: "القهوة",
+   },
+   milkTea: {
+     en: "Milk & Tea",
+     fr: "Laits & Thés",
+     ar: "الحليب والشاي",
+   },
+   cold: {
+     en: "Cold Drinks",
+     fr: "Boissons Fraîches",
+     ar: "المشروبات الباردة",
+   },
+ };
+
+ const SECTION_OF: Record<Language, Record<string, SectionKey>> = {
+   en: {
+     Breakfast: "breakfast",
+     Omelets: "breakfast",
+     Soup: "breakfast",
+     Extras: "breakfast",
+     "Waffles, Crepes & Pancakes": "pastry",
+     "Pastries & Desserts": "pastry",
+     Coffee: "coffee",
+     "Iced Coffee": "coffee",
+     "Milk & Tea": "milkTea",
+     "Smoothies & Milkshakes": "cold",
+     Mojito: "cold",
+     Juices: "cold",
+     "Cocktails & Fruit Salads": "cold",
+     "Soft Drinks": "cold",
+   },
+   fr: {
+     "Petit-Déjeuner": "breakfast",
+     Omelettes: "breakfast",
+     Soupes: "breakfast",
+     Suppléments: "breakfast",
+     "Gaufres, Crêpes & Pancakes": "pastry",
+     "Pâtisseries & Desserts": "pastry",
+     Cafés: "coffee",
+     "Cafés Glacés": "coffee",
+     "Laits & Thés": "milkTea",
+     "Smoothies & Milkshakes": "cold",
+     Mojitos: "cold",
+     "Jus Frais": "cold",
+     "Cocktails & Salades de Fruits": "cold",
+     "Boissons Gazeuses & Eaux": "cold",
+   },
+   ar: {
+     "وجبات الفطور": "breakfast",
+     الأومليت: "breakfast",
+     "الشوربة والحساء": "breakfast",
+     إضافات: "breakfast",
+     "الوافل، الكريب والبانكيك": "pastry",
+     "المعجنات والحلويات": "pastry",
+     القهوة: "coffee",
+     "القهوة المثلجة": "coffee",
+     "الحليب والشاي": "milkTea",
+     "السموذي والميلك شيك": "cold",
+     الموهيتو: "cold",
+     "العصائر الطبيعية": "cold",
+     "الكوكتيلات وسلطات الفواكه": "cold",
+     "المشروبات الغازية والمياه": "cold",
+   },
+ };
+
+  // Resolve an item's original category to its parent section label.
+  // Unknown categories fall back to a section of their own name.
+  const resolveSection = (
+    category: string,
+  ): { label: string; sub: string | null } => {
+    const key = SECTION_OF[language]?.[category];
+    if (!key) return { label: category, sub: null };
+    return { label: SECTION_LABEL[key][language] || category, sub: category };
+  };
+
+  // Highlight banners keyed by section label (titles always match the
+  // localized section name, so they stay correct in every language).
+  const highlightsByLabel = useMemo(() => {
+    const map: Record<string, CategoryHighlight> = {};
+    const put = (
+      key: SectionKey,
+      highlight: Omit<CategoryHighlight, "title">,
+    ) => {
+      const label = SECTION_LABEL[key][language];
+      if (label) map[label] = { ...highlight, title: label };
     };
+    put("breakfast", {
+      image: "/images/background/bg-breakfast.webp",
+      eyebrow: t("breakfastEyebrow"),
+      description: t("breakfastDescription"),
+    });
+    put("pastry", {
+      image: "/images/background/bg-pastries.webp",
+      eyebrow: t("pastriesEyebrow"),
+      description: t("pastriesDescription"),
+    });
+    put("coffee", {
+      image: "/images/background/bg-coffee.webp",
+      eyebrow: t("coffeesEyebrow"),
+      description: t("coffeesDescription"),
+    });
+    put("milkTea", {
+      image: "/images/background/bg-contact.webp",
+      eyebrow: t("milkTeaEyebrow"),
+      description: t("milkTeaDescription"),
+    });
+    put("cold", {
+      image: "/images/background/bg-juices.webp",
+      eyebrow: t("juicesEyebrow"),
+      description: t("juicesDescription"),
+    });
+    return map;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language, t]);
 
   const activeTabIndex = tabIndexForKey(activeCategoryKey);
 
@@ -395,24 +478,53 @@ export default function MenuPremium() {
   ];
 
   const filtered = useMemo(() => {
+    const section = activeTabIndex === null ? null : categories[activeTabIndex];
     const list =
-      activeTabIndex === null
+      section == null
         ? items
-        : items.filter((i) => i.category === categories[activeTabIndex]);
+        : items.filter((i) => resolveSection(i.category).label === section);
     // Popular first, then rest.
     return [...list].sort((a, b) => Number(b.popular) - Number(a.popular));
-  }, [items, categories, activeTabIndex]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items, categories, activeTabIndex, language]);
 
-  // Group into categories (keeps the catalogue order) so each section can
-  // carry its own highlight banner. All products are shown — no slicing.
-  const groupedItems = useMemo(() => {
-    const groups = categories.map((category, index) => ({
-      index,
-      category,
-      items: filtered.filter((i) => i.category === category),
-    }));
-    return groups.filter((g) => g.items.length > 0);
-  }, [categories, filtered]);
+  interface SubGroup {
+    sub: string | null;
+    items: Item[];
+  }
+
+  interface SectionGroup {
+    category: string;
+    subGroups: SubGroup[];
+    showSubs: boolean;
+  }
+
+  // Group into parent sections (keeps the catalogue order) so each section
+  // can carry its own highlight banner. Inside a section, items are split
+  // by their original (sub)category — sub-headers render only when a
+  // section holds more than one subcategory. All products are shown.
+  const groupedItems = useMemo<SectionGroup[]>(() => {
+    return categories
+      .map((category) => {
+        const inSection = filtered.filter(
+          (i) => resolveSection(i.category).label === category,
+        );
+        const subs: SubGroup[] = [];
+        for (const item of inSection) {
+          const { sub } = resolveSection(item.category);
+          const existing = subs.find((s) => s.sub === sub);
+          if (existing) existing.items.push(item);
+          else subs.push({ sub, items: [item] });
+        }
+        return {
+          category,
+          subGroups: subs,
+          showSubs: subs.filter((s) => s.sub !== null).length > 1,
+        };
+      })
+      .filter((g) => g.subGroups.length > 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categories, filtered, language]);
 
   const sectionTitle =
     activeTabIndex === null
@@ -533,13 +645,13 @@ export default function MenuPremium() {
               transition={{ duration: 0.35, ease: "easeOut" }}
             >
               <div className="space-y-14">
-                {groupedItems.map(({ index, category, items: group }) => (
+                {groupedItems.map(({ category, subGroups, showSubs }, gi) => (
                   <div key={category}>
-                    {categoryHighlightsByIndex[index] ? (
+                    {highlightsByLabel[category] ? (
                       <MenuHighlight
                         categoryLabel={category}
-                        highlight={categoryHighlightsByIndex[index]!}
-                        priority={index === 0}
+                        highlight={highlightsByLabel[category]!}
+                        priority={gi === 0}
                       />
                     ) : (
                       <div className="mb-6 flex items-baseline gap-4">
@@ -552,11 +664,34 @@ export default function MenuPremium() {
                         />
                       </div>
                     )}
-                    <div className="grid grid-cols-1 items-stretch gap-x-12 gap-y-3 md:grid-cols-2">
-                      {group.map((item) => (
-                        <MenuItemRow key={item.id} item={item} />
-                      ))}
-                    </div>
+                    {showSubs ? (
+                      <div className="space-y-9">
+                        {subGroups.map((sg) => (
+                          <div key={sg.sub ?? category}>
+                            <h4 className="mb-3 flex items-center gap-3 text-[14px] md:text-[16px] lg:text-[18px] font-bold uppercase tracking-[0.22em] text-primary-dark">
+                              <span className="shrink-0">{sg.sub}</span>
+                              <span
+                                aria-hidden
+                                className="h-px flex-1 bg-gradient-to-r from-primary/40 to-transparent"
+                              />
+                            </h4>
+                            <div className="grid grid-cols-1 items-stretch gap-x-12 gap-y-3 md:grid-cols-2">
+                              {sg.items.map((item) => (
+                                <MenuItemRow key={item.id} item={item} />
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 items-stretch gap-x-12 gap-y-3 md:grid-cols-2">
+                        {subGroups
+                          .flatMap((sg) => sg.items)
+                          .map((item) => (
+                            <MenuItemRow key={item.id} item={item} />
+                          ))}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

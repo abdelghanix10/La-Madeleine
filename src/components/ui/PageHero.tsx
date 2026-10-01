@@ -149,7 +149,7 @@ export function PageHero({
           </div>
         </div>
         <div className="border-t border-cream/10 bg-dark">
-          <div className="mx-auto flex max-w-7xl items-center gap-8 overflow-x-auto px-6 py-4 no-scrollbar md:px-10">
+          <div className="mx-auto hidden lg:flex max-w-7xl items-center justify-center gap-8 overflow-x-auto px-6 py-4 no-scrollbar md:px-10">
             {(
               (data as { menuCategories?: string[] }).menuCategories ?? []
             ).map((category, i) => (

@@ -147,17 +147,17 @@ export const coffeeMenu = [
   },
   {
     id: 10,
-    name: "Latte Macchiato",
-    description: "Steamed milk marked with a shot of espresso.",
-    price: 16.0,
-    icon: "Wine",
-  },
-  {
-    id: 11,
     name: "Americano",
     description: "Espresso diluted with hot water.",
     price: 14.0,
     icon: "Coffee",
+  },
+  {
+    id: 11,
+    name: "Latte Macchiato",
+    description: "Steamed milk marked with a shot of espresso.",
+    price: 16.0,
+    icon: "Wine",
   },
   {
     id: 12,
@@ -169,23 +169,18 @@ export const coffeeMenu = [
 ];
 
 export const menuCategories = [
-  "Breakfast & Savory",
+  "Breakfast",
+  "Pastry",
   "Coffee",
-  "Iced Coffee",
   "Milk & Tea",
-  "Waffles, Crepes & Pancakes",
-  "Smoothies & Milkshakes",
-  "Mojito",
-  "Juices",
-  "Cocktails & Fruit Salads",
-  "Soft Drinks",
+  "Cold Drinks",
 ];
 
 export const menuItems = [
   {
-    id: 2,
+    id: 1,
     name: "Express Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Hssoua, a hot drink, fresh orange juice, a basket of viennoiseries, yogurt, and mineral water.",
     price: 26.0,
@@ -193,9 +188,9 @@ export const menuItems = [
     image: "/images/menu/breakfast-express.webp",
   },
   {
-    id: 3,
+    id: 2,
     name: "Beldi Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Hssoua, a hot drink, fresh orange juice, msemen or meloui, harcha, honey, jben cheese, and mineral water.",
     price: 28.0,
@@ -203,9 +198,9 @@ export const menuItems = [
     image: "/images/menu/breakfast-beldi.webp",
   },
   {
-    id: 4,
+    id: 3,
     name: "Continental Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Hssoua, a hot drink, fresh orange juice, cheese omelet, olive oil, olives, jben cheese, a bread basket, mineral water, and yogurt.",
     price: 35.0,
@@ -213,9 +208,9 @@ export const menuItems = [
     image: "/images/menu/breakfast-continental.webp",
   },
   {
-    id: 5,
+    id: 4,
     name: "Fassi Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Hssoua, a hot drink, fresh orange juice, dried-beef (khliî) omelet, olive oil, olives, jben cheese, a bread basket, mineral water, and yogurt.",
     price: 37.0,
@@ -223,9 +218,9 @@ export const menuItems = [
     image: "/images/menu/breakfast-fassi.webp",
   },
   {
-    id: 6,
+    id: 5,
     name: "Soussi Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Hssoua, a hot drink, fresh orange juice, amlou, olive oil, jben cheese, black and green olives, honey, jam, and mineral water.",
     price: 38.0,
@@ -233,9 +228,9 @@ export const menuItems = [
     image: "/images/menu/breakfast-soussi.webp",
   },
   {
-    id: 7,
+    id: 6,
     name: "Gourmand Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Hssoua, a hot drink, fresh orange juice, olive oil, amlou, black olives, honey, a bread basket, yogurt, and mineral water.",
     price: 26.0,
@@ -243,9 +238,9 @@ export const menuItems = [
     image: "/images/menu/breakfast-gourmand.webp",
   },
   {
-    id: 8,
+    id: 7,
     name: "La Madeleine Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Our signature spread: hssoua, a hot drink, fresh orange juice, omelet (cheese / charcuterie / tomato), olive oil, olives, honey, jben cheese, amlou, a bread basket, crepe, chocolate spread, American cake, mineral water, and yogurt.",
     price: 55.0,
@@ -253,9 +248,9 @@ export const menuItems = [
     image: "/images/menu/breakfast-la-madeleine.webp",
   },
   {
-    id: 9,
+    id: 8,
     name: "Kids Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Chocolate milk, fresh orange juice, a bread roll, vanilla cake, mineral water, and yogurt.",
     price: 25.0,
@@ -263,27 +258,27 @@ export const menuItems = [
     image: "/images/menu/breakfast-kids.webp",
   },
   {
-    id: 10,
+    id: 9,
     name: "Plain Omelet (2 eggs)",
-    category: "Breakfast & Savory",
+    category: "Omelets",
     description: "Simple two-egg omelet, served with olives and olive oil.",
     price: 13.0,
     popular: false,
     image: "/images/menu/omelet-nature.webp",
   },
   {
-    id: 11,
+    id: 10,
     name: "Plain Omelet (4 eggs)",
-    category: "Breakfast & Savory",
+    category: "Omelets",
     description: "Hearty four-egg omelet, served with olives and olive oil.",
     price: 18.0,
     popular: false,
     image: "/images/menu/omelet-nature.webp",
   },
   {
-    id: 12,
+    id: 11,
     name: "Tomato Omelet (2 eggs)",
-    category: "Breakfast & Savory",
+    category: "Omelets",
     description:
       "Two-egg omelet with fresh tomato, served with olives and olive oil.",
     price: 16.0,
@@ -291,9 +286,9 @@ export const menuItems = [
     image: "/images/menu/omelet-tomato.webp",
   },
   {
-    id: 13,
+    id: 12,
     name: "Tomato Omelet (4 eggs)",
-    category: "Breakfast & Savory",
+    category: "Omelets",
     description:
       "Four-egg omelet with fresh tomato, served with olives and olive oil.",
     price: 20.0,
@@ -301,9 +296,9 @@ export const menuItems = [
     image: "/images/menu/omelet-tomato.webp",
   },
   {
-    id: 14,
+    id: 13,
     name: "Cheese Omelet (2 eggs)",
-    category: "Breakfast & Savory",
+    category: "Omelets",
     description:
       "Fluffy two-egg omelet loaded with melted cheese, served with olives and olive oil.",
     price: 16.0,
@@ -311,9 +306,9 @@ export const menuItems = [
     image: "/images/menu/omelet-cheese.webp",
   },
   {
-    id: 15,
+    id: 14,
     name: "Cheese Omelet (4 eggs)",
-    category: "Breakfast & Savory",
+    category: "Omelets",
     description:
       "Fluffy four-egg omelet loaded with melted cheese, served with olives and olive oil.",
     price: 22.0,
@@ -321,9 +316,9 @@ export const menuItems = [
     image: "/images/menu/omelet-cheese.webp",
   },
   {
-    id: 16,
+    id: 15,
     name: "Dried Beef Omelet (Khliî, 2 eggs)",
-    category: "Breakfast & Savory",
+    category: "Omelets",
     description:
       "Two-egg omelet with khliî (Moroccan spiced dried beef), served with olives and olive oil.",
     price: 18.0,
@@ -331,9 +326,9 @@ export const menuItems = [
     image: "/images/menu/omelet-khlii.webp",
   },
   {
-    id: 17,
+    id: 16,
     name: "Dried Beef Omelet (Khliî, 4 eggs)",
-    category: "Breakfast & Savory",
+    category: "Omelets",
     description:
       "Four-egg omelet with khliî (Moroccan spiced dried beef), served with olives and olive oil.",
     price: 24.0,
@@ -341,9 +336,9 @@ export const menuItems = [
     image: "/images/menu/omelet-khlii.webp",
   },
   {
-    id: 18,
+    id: 17,
     name: "Charcuterie Omelet (2 eggs)",
-    category: "Breakfast & Savory",
+    category: "Omelets",
     description:
       "Two-egg omelet with charcuterie, served with olives and olive oil.",
     price: 17.0,
@@ -351,9 +346,9 @@ export const menuItems = [
     image: "/images/menu/omelet-charcuterie.webp",
   },
   {
-    id: 19,
+    id: 18,
     name: "Charcuterie Omelet (4 eggs)",
-    category: "Breakfast & Savory",
+    category: "Omelets",
     description:
       "Four-egg omelet with charcuterie, served with olives and olive oil.",
     price: 23.0,
@@ -361,9 +356,9 @@ export const menuItems = [
     image: "/images/menu/omelet-charcuterie.webp",
   },
   {
-    id: 20,
+    id: 19,
     name: "Amlou",
-    category: "Breakfast & Savory",
+    category: "Extras",
     description:
       "Traditional almond, argan oil and honey spread, served with bread.",
     price: 8.0,
@@ -371,9 +366,9 @@ export const menuItems = [
     image: "/images/menu/amlou.webp",
   },
   {
-    id: 21,
+    id: 20,
     name: "Amlou with Almonds",
-    category: "Breakfast & Savory",
+    category: "Extras",
     description:
       "Amlou spread topped with extra whole almonds, served with bread.",
     price: 12.0,
@@ -381,72 +376,94 @@ export const menuItems = [
     image: "/images/menu/amlou-almonds.webp",
   },
   {
-    id: 22,
+    id: 21,
     name: "Honey",
-    category: "Breakfast & Savory",
+    category: "Extras",
     description: "Natural honey, served with bread.",
     price: 6.0,
     popular: false,
     image: "/images/menu/honey.webp",
   },
   {
-    id: 23,
+    id: 22,
     name: "Jam",
-    category: "Breakfast & Savory",
+    category: "Extras",
     description: "Fruit jam, served with bread.",
     price: 6.0,
     popular: false,
     image: "/images/menu/jam.webp",
   },
   {
-    id: 24,
+    id: 23,
     name: "Jben (Fresh Cheese)",
-    category: "Breakfast & Savory",
+    category: "Extras",
     description: "Traditional Moroccan fresh cheese, served with bread.",
     price: 8.0,
     popular: false,
     image: "/images/menu/jben.webp",
   },
   {
-    id: 25,
+    id: 24,
     name: "Cheese",
-    category: "Breakfast & Savory",
+    category: "Extras",
     description: "A portion of cheese, served with bread.",
     price: 3.0,
     popular: false,
     image: "/images/menu/cheese.webp",
   },
   {
-    id: 26,
+    id: 25,
     name: "Olive Oil",
-    category: "Breakfast & Savory",
+    category: "Extras",
     description: "Extra portion of olive oil, served with bread.",
     price: 8.0,
     popular: false,
     image: "/images/menu/olive-oil.webp",
   },
   {
-    id: 27,
+    id: 26,
     name: "Black & Green Olives",
-    category: "Breakfast & Savory",
+    category: "Extras",
     description: "A mix of black and green olives, served with bread.",
     price: 5.0,
     popular: false,
     image: "/images/menu/olives.webp",
   },
   {
-    id: 28,
+    id: 27,
     name: "Nutella",
-    category: "Breakfast & Savory",
+    category: "Extras",
     description: "A generous portion of Nutella, served with bread.",
     price: 10.0,
     popular: false,
     image: "/images/menu/nutella-side.webp",
   },
 
-  // ---------- Coffee ----------
+  // ---------- Soup ----------
+  {
+    id: 28,
+    name: "Barley Soup (Hesewa)",
+    category: "Soup",
+    description:
+      "Warm and comforting traditional Moroccan barley and milk soup.",
+    price: 7.0,
+    popular: false,
+    image: "/images/menu/hesewa.webp",
+  },
   {
     id: 29,
+    name: "Harira Soup",
+    category: "Soup",
+    description:
+      "Traditional hearty Moroccan tomato, lentil, and chickpea soup.",
+    price: 10.0,
+    popular: false,
+    image: "/images/menu/soup.webp",
+  },
+
+  // ---------- Coffee ----------
+  {
+    id: 30,
     name: "Espresso",
     category: "Coffee",
     description: "Classic short shot of rich Italian-style espresso.",
@@ -455,7 +472,7 @@ export const menuItems = [
     image: "/images/menu/espresso.webp",
   },
   {
-    id: 30,
+    id: 31,
     name: "Espresso illy",
     category: "Coffee",
     description: "Premium espresso made with illy coffee beans.",
@@ -464,7 +481,7 @@ export const menuItems = [
     image: "/images/menu/espresso-illy.webp",
   },
   {
-    id: 31,
+    id: 32,
     name: "Café Crème",
     category: "Coffee",
     description: "Espresso topped with warm, creamy milk foam.",
@@ -473,7 +490,7 @@ export const menuItems = [
     image: "/images/menu/cafe-creme.webp",
   },
   {
-    id: 32,
+    id: 33,
     name: "Nespresso Coffee",
     category: "Coffee",
     description: "Smooth coffee brewed from Nespresso capsules.",
@@ -482,7 +499,7 @@ export const menuItems = [
     image: "/images/menu/cafe-nespresso.webp",
   },
   {
-    id: 33,
+    id: 34,
     name: "Café Américain",
     category: "Coffee",
     description: "Espresso lengthened with hot water for a milder cup.",
@@ -491,7 +508,7 @@ export const menuItems = [
     image: "/images/menu/cafe-americain.webp",
   },
   {
-    id: 34,
+    id: 35,
     name: "Café Séparé",
     category: "Coffee",
     description: "Espresso served separately with steamed milk on the side.",
@@ -500,7 +517,7 @@ export const menuItems = [
     image: "/images/menu/cafe-separe.webp",
   },
   {
-    id: 35,
+    id: 36,
     name: "Double Espresso",
     category: "Coffee",
     description: "A double shot of concentrated espresso.",
@@ -509,7 +526,7 @@ export const menuItems = [
     image: "/images/menu/double-espresso.webp",
   },
   {
-    id: 36,
+    id: 37,
     name: "Cappuccino",
     category: "Coffee",
     description: "Espresso with steamed milk and a thick layer of milk foam.",
@@ -518,7 +535,7 @@ export const menuItems = [
     image: "/images/menu/cappuccino.webp",
   },
   {
-    id: 37,
+    id: 38,
     name: "Morcha",
     category: "Coffee",
     description: "Traditional strong Moroccan-style black coffee.",
@@ -527,7 +544,7 @@ export const menuItems = [
     image: "/images/menu/morcha.webp",
   },
   {
-    id: 38,
+    id: 39,
     name: "Cortado",
     category: "Coffee",
     description: "Espresso cut with a small amount of warm milk.",
@@ -536,7 +553,7 @@ export const menuItems = [
     image: "/images/menu/cortado.webp",
   },
   {
-    id: 39,
+    id: 40,
     name: "Latte Macchiato",
     category: "Coffee",
     description: "Steamed milk lightly marked with a shot of espresso.",
@@ -545,7 +562,7 @@ export const menuItems = [
     image: "/images/menu/latte-macchiato.webp",
   },
   {
-    id: 40,
+    id: 41,
     name: "Flat White",
     category: "Coffee",
     description: "Espresso with a thin layer of velvety micro-foam milk.",
@@ -554,7 +571,7 @@ export const menuItems = [
     image: "/images/menu/flat-white.webp",
   },
   {
-    id: 41,
+    id: 42,
     name: "Chocolat Viennois",
     category: "Coffee",
     description: "Rich hot chocolate topped with whipped cream.",
@@ -565,7 +582,7 @@ export const menuItems = [
 
   // ---------- Iced Coffee ----------
   {
-    id: 42,
+    id: 43,
     name: "Café Affogato",
     category: "Iced Coffee",
     description: "A scoop of ice cream “drowned” in a hot shot of espresso.",
@@ -574,7 +591,7 @@ export const menuItems = [
     image: "/images/menu/affogato.webp",
   },
   {
-    id: 43,
+    id: 44,
     name: "Iced Mocha",
     category: "Iced Coffee",
     description: "Chilled espresso blended with chocolate and cold milk.",
@@ -583,7 +600,7 @@ export const menuItems = [
     image: "/images/menu/iced-mocha.webp",
   },
   {
-    id: 44,
+    id: 45,
     name: "Iced Caramel Macchiato",
     category: "Iced Coffee",
     description: "Cold milk and espresso layered with sweet caramel drizzle.",
@@ -592,7 +609,7 @@ export const menuItems = [
     image: "/images/menu/iced-caramel-macchiato.webp",
   },
   {
-    id: 45,
+    id: 46,
     name: "Iced Frappuccino",
     category: "Iced Coffee",
     description:
@@ -602,7 +619,7 @@ export const menuItems = [
     image: "/images/menu/iced-frappuccino.webp",
   },
   {
-    id: 46,
+    id: 47,
     name: "Iced Coffee",
     category: "Iced Coffee",
     description:
@@ -612,7 +629,7 @@ export const menuItems = [
     image: "/images/menu/iced-coffee.webp",
   },
   {
-    id: 47,
+    id: 48,
     name: "Iced Latte",
     category: "Iced Coffee",
     description:
@@ -624,7 +641,7 @@ export const menuItems = [
 
   // ---------- Milk & Tea ----------
   {
-    id: 48,
+    id: 49,
     name: "Chocolate Milk",
     category: "Milk & Tea",
     description: "Warm milk blended with rich chocolate.",
@@ -633,7 +650,7 @@ export const menuItems = [
     image: "/images/menu/lait-chocolat.webp",
   },
   {
-    id: 49,
+    id: 50,
     name: "Hot Milk",
     category: "Milk & Tea",
     description: "A simple glass of warm milk.",
@@ -642,7 +659,7 @@ export const menuItems = [
     image: "/images/menu/lait-chaud.webp",
   },
   {
-    id: 50,
+    id: 51,
     name: "Verbena Milk",
     category: "Milk & Tea",
     description: "Warm milk infused with fragrant verbena.",
@@ -651,7 +668,7 @@ export const menuItems = [
     image: "/images/menu/lait-verveine.webp",
   },
   {
-    id: 51,
+    id: 52,
     name: "Milk with Syrup",
     category: "Milk & Tea",
     description: "Warm milk sweetened with flavored syrup.",
@@ -660,7 +677,7 @@ export const menuItems = [
     image: "/images/menu/lait-sirop.webp",
   },
   {
-    id: 52,
+    id: 53,
     name: "Lipton Milk",
     category: "Milk & Tea",
     description: "Warm milk infused with Lipton tea.",
@@ -669,25 +686,25 @@ export const menuItems = [
     image: "/images/menu/lait-lipton.webp",
   },
   {
-    id: 53,
+    id: 54,
     name: "Verbena Tea",
     category: "Milk & Tea",
     description: "Soothing infusion of natural verbena leaves.",
-    price: 12.0,
+    price: 11.0,
     popular: false,
     image: "/images/menu/verveine-nature.webp",
   },
   {
-    id: 54,
+    id: 55,
     name: "Lipton Tea",
     category: "Milk & Tea",
     description: "Classic Lipton black tea.",
-    price: 12.0,
+    price: 11.0,
     popular: false,
     image: "/images/menu/lipton-nature.webp",
   },
   {
-    id: 55,
+    id: 56,
     name: "Moroccan Mint Tea",
     category: "Milk & Tea",
     description: "Traditional sweet green tea with fresh mint.",
@@ -698,7 +715,7 @@ export const menuItems = [
 
   // ---------- Waffles, Crepes & Pancakes ----------
   {
-    id: 56,
+    id: 57,
     name: "Caramel Waffle",
     category: "Waffles, Crepes & Pancakes",
     description: "Crisp golden waffle drizzled with caramel sauce.",
@@ -707,7 +724,7 @@ export const menuItems = [
     image: "/images/menu/waffle-caramel.webp",
   },
   {
-    id: 57,
+    id: 58,
     name: "Nutella Waffle",
     category: "Waffles, Crepes & Pancakes",
     description: "Crisp golden waffle generously topped with Nutella.",
@@ -716,7 +733,7 @@ export const menuItems = [
     image: "/images/menu/waffle-nutella.webp",
   },
   {
-    id: 58,
+    id: 59,
     name: "Nutella Banana Waffle",
     category: "Waffles, Crepes & Pancakes",
     description: "Golden waffle topped with Nutella and fresh banana slices.",
@@ -725,7 +742,7 @@ export const menuItems = [
     image: "/images/menu/waffle-nutella-banane.webp",
   },
   {
-    id: 59,
+    id: 60,
     name: "Nutella Seasonal Fruit Waffle",
     category: "Waffles, Crepes & Pancakes",
     description: "Golden waffle topped with Nutella and fresh seasonal fruit.",
@@ -734,7 +751,7 @@ export const menuItems = [
     image: "/images/menu/waffle-nutella-fruits.webp",
   },
   {
-    id: 60,
+    id: 61,
     name: "Caramel Crepe",
     category: "Waffles, Crepes & Pancakes",
     description: "Thin crepe folded with sweet caramel sauce.",
@@ -743,7 +760,7 @@ export const menuItems = [
     image: "/images/menu/crepe-caramel.webp",
   },
   {
-    id: 61,
+    id: 62,
     name: "Nutella Crepe",
     category: "Waffles, Crepes & Pancakes",
     description: "Thin crepe filled with melted Nutella.",
@@ -752,7 +769,7 @@ export const menuItems = [
     image: "/images/menu/crepe-nutella.webp",
   },
   {
-    id: 62,
+    id: 63,
     name: "Nutella Banana Crepe",
     category: "Waffles, Crepes & Pancakes",
     description: "Thin crepe filled with Nutella and fresh banana.",
@@ -761,7 +778,7 @@ export const menuItems = [
     image: "/images/menu/crepe-nutella-banane.webp",
   },
   {
-    id: 63,
+    id: 64,
     name: "Nutella Oreo Crepe",
     category: "Waffles, Crepes & Pancakes",
     description: "Thin crepe filled with Nutella and crushed Oreo cookies.",
@@ -770,7 +787,7 @@ export const menuItems = [
     image: "/images/menu/crepe-nutella-oreo.webp",
   },
   {
-    id: 64,
+    id: 65,
     name: "Nutella Seasonal Fruit Crepe",
     category: "Waffles, Crepes & Pancakes",
     description: "Thin crepe filled with Nutella and fresh seasonal fruit.",
@@ -779,7 +796,7 @@ export const menuItems = [
     image: "/images/menu/crepe-nutella-fruits.webp",
   },
   {
-    id: 65,
+    id: 66,
     name: "Honey Pancakes",
     category: "Waffles, Crepes & Pancakes",
     description: "Fluffy stacked pancakes drizzled with honey.",
@@ -788,7 +805,7 @@ export const menuItems = [
     image: "/images/menu/pancakes-miel.webp",
   },
   {
-    id: 66,
+    id: 67,
     name: "Amlou Pancakes",
     category: "Waffles, Crepes & Pancakes",
     description: "Fluffy stacked pancakes topped with traditional amlou.",
@@ -797,7 +814,7 @@ export const menuItems = [
     image: "/images/menu/pancakes-amlou.webp",
   },
   {
-    id: 67,
+    id: 68,
     name: "Nutella Pancakes",
     category: "Waffles, Crepes & Pancakes",
     description: "Fluffy stacked pancakes topped with Nutella.",
@@ -806,7 +823,7 @@ export const menuItems = [
     image: "/images/menu/pancakes-nutella.webp",
   },
   {
-    id: 68,
+    id: 69,
     name: "Nutella Banana Pancakes",
     category: "Waffles, Crepes & Pancakes",
     description: "Fluffy stacked pancakes topped with Nutella and banana.",
@@ -815,9 +832,298 @@ export const menuItems = [
     image: "/images/menu/pancakes-nutella-banane.webp",
   },
 
+  // ---------- Pastries & Desserts -----------
+  {
+    id: 70,
+    name: "Seafood Cigar",
+    category: "Pastries & Desserts",
+    description: "Crispy rolled pastry filled with savory mixed seafood.",
+    price: 12.0,
+    popular: false,
+    image: "/images/menu/cigar.webp",
+  },
+  {
+    id: 71,
+    name: "Seafood Pastilla",
+    category: "Pastries & Desserts",
+    description:
+      "Flaky savory pie filled with seasoned mixed seafood and vermicelli.",
+    price: 12.0,
+    popular: false,
+    image: "/images/menu/pastilla.webp",
+  },
+  {
+    id: 72,
+    name: "Sandwich",
+    category: "Pastries & Desserts",
+    description: "Freshly made savory sandwich.",
+    price: 8.0,
+    popular: false,
+    image: "/images/menu/sandwich.webp",
+  },
+  {
+    id: 73,
+    name: "Mini Pizza",
+    category: "Pastries & Desserts",
+    description:
+      "Personal-sized savory pizza topped with cheese and tomato sauce.",
+    price: 6.0,
+    popular: false,
+    image: "/images/menu/pizza.webp",
+  },
+  {
+    id: 74,
+    name: "Hot Dog Pastry",
+    category: "Pastries & Desserts",
+    description: "Savory sausage wrapped and baked in soft dough.",
+    price: 9.0,
+    popular: false,
+    image: "/images/menu/hot-dog.webp",
+  },
+  {
+    id: 75,
+    name: "Chicken Pastilla",
+    category: "Pastries & Desserts",
+    description:
+      "Sweet and savory pie filled with spiced chicken and toasted almonds.",
+    price: 10.0,
+    popular: false,
+    image: "/images/menu/pastilla.webp",
+  },
+  {
+    id: 76,
+    name: "Cheese Briouat",
+    category: "Pastries & Desserts",
+    description: "Crispy Moroccan pastry triangles filled with savory cheese.",
+    price: 7.0,
+    popular: false,
+    image: "/images/menu/briouat.webp",
+  },
+  {
+    id: 77,
+    name: "Almond Tart",
+    category: "Pastries & Desserts",
+    description: "Crisp sweet pastry shell filled with dense almond cream.",
+    price: 10.0,
+    popular: false,
+    image: "/images/menu/tart.webp",
+  },
+  {
+    id: 78,
+    name: "Apple Turnover",
+    category: "Pastries & Desserts",
+    description: "Flaky puff pastry filled with sweet spiced apple compote.",
+    price: 6.0,
+    popular: false,
+    image: "/images/menu/apple-turnover.webp",
+  },
+  {
+    id: 79,
+    name: "Chocolate Basbousa",
+    category: "Pastries & Desserts",
+    description: "Sweet semolina cake flavored with rich chocolate.",
+    price: 8.0,
+    popular: false,
+    image: "/images/menu/basbousa.webp",
+  },
+  {
+    id: 80,
+    name: "Chocolate Madeleine",
+    category: "Pastries & Desserts",
+    description: "Small, shell-shaped sponge cake flavored with chocolate.",
+    price: 2.5,
+    popular: false,
+    image: "/images/menu/madeleine.webp",
+  },
+  {
+    id: 81,
+    name: "Donut",
+    category: "Pastries & Desserts",
+    description: "Soft, sweet, and classic fried dough ring.",
+    price: 4.0,
+    popular: false,
+    image: "/images/menu/donut.webp",
+  },
+  {
+    id: 82,
+    name: "Frangipane Tart",
+    category: "Pastries & Desserts",
+    description: "Sweet pastry tart filled with rich almond cream.",
+    price: 8.0,
+    popular: false,
+    image: "/images/menu/frangipane-tart.webp",
+  },
+  {
+    id: 83,
+    name: "Fruit Pithiviers",
+    category: "Pastries & Desserts",
+    description: "Puff pastry pie filled with sweet fruit compote.",
+    price: 6.0,
+    popular: false,
+    image: "/images/menu/pithiviers.webp",
+  },
+  {
+    id: 84,
+    name: "Fruit Tartlet",
+    category: "Pastries & Desserts",
+    description: "Small, sweet tart crust filled with custard and fresh fruit.",
+    price: 7.0,
+    popular: false,
+    image: "/images/menu/fruit-tartlet.webp",
+  },
+  {
+    id: 85,
+    name: "Vanilla Basbousa",
+    category: "Pastries & Desserts",
+    description: "Classic sweet semolina cake soaked in vanilla syrup.",
+    price: 6.0,
+    popular: false,
+    image: "/images/menu/basbousa.webp",
+  },
+  {
+    id: 86,
+    name: "Vanilla Madeleine",
+    category: "Pastries & Desserts",
+    description: "Classic, buttery, shell-shaped French sponge cake.",
+    price: 1.5,
+    popular: false,
+    image: "/images/menu/madeleine.webp",
+  },
+  {
+    id: 87,
+    name: "Almond Croissant",
+    category: "Pastries & Desserts",
+    description:
+      "Flaky croissant filled with almond cream and topped with sliced almonds.",
+    price: 5.0,
+    popular: false,
+    image: "/images/menu/croissant.webp",
+  },
+  {
+    id: 88,
+    name: "Almond Triangle",
+    category: "Pastries & Desserts",
+    description:
+      "Flaky, triangle-shaped pastry filled with sweet almond paste.",
+    price: 6.0,
+    popular: false,
+    image: "/images/menu/triangle.webp",
+  },
+  {
+    id: 89,
+    name: "Chocolate Danish",
+    category: "Pastries & Desserts",
+    description: "Flaky Danish pastry swirled with rich chocolate.",
+    price: 4.0,
+    popular: false,
+    image: "/images/menu/danish.webp",
+  },
+  {
+    id: 90,
+    name: "Danish Pastry",
+    category: "Pastries & Desserts",
+    description: "Flaky, buttery, and sweet traditional Danish pastry.",
+    price: 3.5,
+    popular: false,
+    image: "/images/menu/danish.webp",
+  },
+  {
+    id: 91,
+    name: "Harcha",
+    category: "Pastries & Desserts",
+    description: "Traditional Moroccan pan-fried semolina flatbread.",
+    price: 2.5,
+    popular: false,
+    image: "/images/menu/harcha.webp",
+  },
+  {
+    id: 92,
+    name: "Msemmen",
+    category: "Pastries & Desserts",
+    description: "Traditional Moroccan flaky, layered square flatbread.",
+    price: 4.0,
+    popular: false,
+    image: "/images/menu/msemmen.webp",
+  },
+  {
+    id: 93,
+    name: "Olive Oil Harcha",
+    category: "Pastries & Desserts",
+    description: "Savory semolina flatbread prepared with rich olive oil.",
+    price: 3.5,
+    popular: false,
+    image: "/images/menu/oil-harcha.webp",
+  },
+  {
+    id: 94,
+    name: "Pain Suisse",
+    category: "Pastries & Desserts",
+    description:
+      "Flaky pastry rolled with vanilla custard and chocolate chips.",
+    price: 3.0,
+    popular: false,
+    image: "/images/menu/pain-suisse.webp",
+  },
+  {
+    id: 95,
+    name: "Pain au Chocolat / Croissant",
+    category: "Pastries & Desserts",
+    description: "Classic flaky and buttery French breakfast pastry.",
+    price: 2.5,
+    popular: false,
+    image: "/images/menu/pain-au-chocolat.webp",
+  },
+  {
+    id: 96,
+    name: "Pithiviers",
+    category: "Pastries & Desserts",
+    description:
+      "Round, enclosed pie made of puff pastry with a sweet filling.",
+    price: 5.0,
+    popular: false,
+    image: "/images/menu/pithiviers.webp",
+  },
+  {
+    id: 97,
+    name: "Raspberry Mini Cake",
+    category: "Pastries & Desserts",
+    description: "Small cake infused with sweet raspberry flavor.",
+    price: 8.0,
+    popular: false,
+    image: "/images/menu/minicake.webp",
+  },
+  {
+    id: 98,
+    name: "Mille-Feuille",
+    category: "Pastries & Desserts",
+    description:
+      "Classic French pastry with layers of puff pastry and vanilla cream.",
+    price: 8.0,
+    popular: false,
+    image: "/images/menu/millefeuille.webp",
+  },
+  {
+    id: 99,
+    name: "Mini Cake",
+    category: "Pastries & Desserts",
+    description: "Small, moist, and sweet personal cake.",
+    price: 7.0,
+    popular: false,
+    image: "/images/menu/minicake.webp",
+  },
+  {
+    id: 100,
+    name: "Mini Cupcake",
+    category: "Pastries & Desserts",
+    description: "Bite-sized fluffy cake with sweet frosting.",
+    price: 4.0,
+    popular: false,
+    image: "/images/menu/cupcake.webp",
+  },
+
   // ---------- Smoothies & Milkshakes ----------
   {
-    id: 69,
+    id: 101,
     name: "Strawberry Smoothie",
     category: "Smoothies & Milkshakes",
     description: "Fresh strawberries blended into a smooth, fruity drink.",
@@ -826,7 +1132,7 @@ export const menuItems = [
     image: "/images/menu/smoothie-fraise.webp",
   },
   {
-    id: 70,
+    id: 102,
     name: "Banana Smoothie",
     category: "Smoothies & Milkshakes",
     description: "Creamy blended smoothie made with ripe banana.",
@@ -835,7 +1141,7 @@ export const menuItems = [
     image: "/images/menu/smoothie-banane.webp",
   },
   {
-    id: 71,
+    id: 103,
     name: "Mango Smoothie",
     category: "Smoothies & Milkshakes",
     description: "Smooth and tropical blended mango smoothie.",
@@ -844,7 +1150,7 @@ export const menuItems = [
     image: "/images/menu/smoothie-mangue.webp",
   },
   {
-    id: 72,
+    id: 104,
     name: "Exotic Smoothie",
     category: "Smoothies & Milkshakes",
     description: "A blend of exotic fruits for a refreshing tropical smoothie.",
@@ -853,7 +1159,7 @@ export const menuItems = [
     image: "/images/menu/smoothie-exotique.webp",
   },
   {
-    id: 73,
+    id: 105,
     name: "Chocolate Milkshake",
     category: "Smoothies & Milkshakes",
     description: "Thick and creamy chocolate milkshake.",
@@ -862,7 +1168,7 @@ export const menuItems = [
     image: "/images/menu/milkshake-choco.webp",
   },
   {
-    id: 74,
+    id: 106,
     name: "Vanilla Milkshake",
     category: "Smoothies & Milkshakes",
     description: "Thick and creamy vanilla milkshake.",
@@ -871,7 +1177,7 @@ export const menuItems = [
     image: "/images/menu/milkshake-vanille.webp",
   },
   {
-    id: 75,
+    id: 107,
     name: "Banana Milkshake",
     category: "Smoothies & Milkshakes",
     description: "Thick and creamy banana milkshake.",
@@ -880,7 +1186,7 @@ export const menuItems = [
     image: "/images/menu/milkshake-banane.webp",
   },
   {
-    id: 76,
+    id: 108,
     name: "Strawberry Milkshake",
     category: "Smoothies & Milkshakes",
     description: "Thick and creamy strawberry milkshake.",
@@ -889,7 +1195,7 @@ export const menuItems = [
     image: "/images/menu/milkshake-fraise.webp",
   },
   {
-    id: 77,
+    id: 109,
     name: "Oreo Milkshake",
     category: "Smoothies & Milkshakes",
     description: "Creamy milkshake blended with crushed Oreo cookies.",
@@ -900,7 +1206,7 @@ export const menuItems = [
 
   // ---------- Mojito ----------
   {
-    id: 78,
+    id: 110,
     name: "Virgin Mojito",
     category: "Mojito",
     description: "Refreshing alcohol-free mojito with lime and mint.",
@@ -909,7 +1215,7 @@ export const menuItems = [
     image: "/images/menu/mojito-virgin.webp",
   },
   {
-    id: 79,
+    id: 111,
     name: "Blue Mojito",
     category: "Mojito",
     description: "Refreshing blue-hued mojito with lime and mint.",
@@ -918,7 +1224,7 @@ export const menuItems = [
     image: "/images/menu/mojito-blue.webp",
   },
   {
-    id: 80,
+    id: 112,
     name: "Rose Mojito",
     category: "Mojito",
     description: "Refreshing rose-flavored mojito with lime and mint.",
@@ -929,7 +1235,7 @@ export const menuItems = [
 
   // ---------- Juices ----------
   {
-    id: 81,
+    id: 113,
     name: "Orange Juice",
     category: "Juices",
     description: "Freshly squeezed orange juice.",
@@ -938,7 +1244,7 @@ export const menuItems = [
     image: "/images/menu/jus-orange.webp",
   },
   {
-    id: 82,
+    id: 114,
     name: "Banana Juice",
     category: "Juices",
     description: "Freshly blended banana juice.",
@@ -947,7 +1253,7 @@ export const menuItems = [
     image: "/images/menu/jus-banane.webp",
   },
   {
-    id: 83,
+    id: 115,
     name: "Apple Juice",
     category: "Juices",
     description: "Freshly pressed apple juice.",
@@ -956,7 +1262,7 @@ export const menuItems = [
     image: "/images/menu/jus-pomme.webp",
   },
   {
-    id: 84,
+    id: 116,
     name: "Avocado Juice",
     category: "Juices",
     description: "Creamy blended avocado juice.",
@@ -965,7 +1271,7 @@ export const menuItems = [
     image: "/images/menu/jus-avocat.webp",
   },
   {
-    id: 85,
+    id: 117,
     name: "Strawberry Juice",
     category: "Juices",
     description: "Freshly blended strawberry juice.",
@@ -974,7 +1280,7 @@ export const menuItems = [
     image: "/images/menu/jus-fraise.webp",
   },
   {
-    id: 86,
+    id: 118,
     name: "Mango Juice",
     category: "Juices",
     description: "Freshly blended mango juice.",
@@ -983,7 +1289,7 @@ export const menuItems = [
     image: "/images/menu/jus-mangue.webp",
   },
   {
-    id: 87,
+    id: 119,
     name: "Pineapple Juice",
     category: "Juices",
     description: "Freshly blended pineapple juice.",
@@ -992,7 +1298,7 @@ export const menuItems = [
     image: "/images/menu/jus-ananas.webp",
   },
   {
-    id: 88,
+    id: 120,
     name: "Mixed Juice with Milk",
     category: "Juices",
     description: "Blended fruit juice mixed with milk.",
@@ -1001,7 +1307,7 @@ export const menuItems = [
     image: "/images/menu/jus-panache-lait.webp",
   },
   {
-    id: 89,
+    id: 121,
     name: "Mixed Juice with Orange",
     category: "Juices",
     description: "Blended fruit juice mixed with fresh orange juice.",
@@ -1010,7 +1316,7 @@ export const menuItems = [
     image: "/images/menu/jus-panache-orange.webp",
   },
   {
-    id: 90,
+    id: 122,
     name: "Avocado Juice with Dried Fruits",
     category: "Juices",
     description: "Creamy avocado juice topped with a mix of dried fruits.",
@@ -1021,7 +1327,7 @@ export const menuItems = [
 
   // ---------- Cocktails & Fruit Salads ----------
   {
-    id: 91,
+    id: 123,
     name: "Fruit Salad with Yogurt",
     category: "Cocktails & Fruit Salads",
     description: "Fresh mixed fruit salad served on a yogurt base.",
@@ -1030,7 +1336,7 @@ export const menuItems = [
     image: "/images/menu/salade-fruits-yaourt.webp",
   },
   {
-    id: 92,
+    id: 124,
     name: "Fruit Salad with Orange",
     category: "Cocktails & Fruit Salads",
     description: "Fresh mixed fruit salad served in orange juice.",
@@ -1039,7 +1345,7 @@ export const menuItems = [
     image: "/images/menu/salade-fruits-orange.webp",
   },
   {
-    id: 93,
+    id: 125,
     name: "Tropical Cocktail",
     category: "Cocktails & Fruit Salads",
     description: "A blend of mango, kiwi and pineapple.",
@@ -1048,7 +1354,7 @@ export const menuItems = [
     image: "/images/menu/cocktail-tropical.webp",
   },
   {
-    id: 94,
+    id: 126,
     name: "Oriental Cocktail",
     category: "Cocktails & Fruit Salads",
     description: "A blend of banana, apple and orange.",
@@ -1057,7 +1363,7 @@ export const menuItems = [
     image: "/images/menu/cocktail-oriental.webp",
   },
   {
-    id: 95,
+    id: 127,
     name: "Exotic Cocktail",
     category: "Cocktails & Fruit Salads",
     description: "A blend of mango, orange and pineapple.",
@@ -1068,7 +1374,7 @@ export const menuItems = [
 
   // ---------- Soft Drinks ----------
   {
-    id: 96,
+    id: 128,
     name: "Soda (35cl)",
     category: "Soft Drinks",
     description: "Choice of chilled soft drink, 35cl.",
@@ -1077,7 +1383,7 @@ export const menuItems = [
     image: "/images/menu/soda.webp",
   },
   {
-    id: 97,
+    id: 129,
     name: "Mineral Water (33cl)",
     category: "Soft Drinks",
     description: "Small bottle of still or sparkling mineral water.",
@@ -1086,7 +1392,7 @@ export const menuItems = [
     image: "/images/menu/eau-minerale-33.webp",
   },
   {
-    id: 98,
+    id: 130,
     name: "Mineral Water (50cl)",
     category: "Soft Drinks",
     description: "Large bottle of still or sparkling mineral water.",
@@ -1097,11 +1403,11 @@ export const menuItems = [
 ];
 
 export const shopProducts = [
-  // BREAKFAST & SAVORY
+  // Breakfast
   {
     id: 1,
     name: "Barley Soup (Hesewa)",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Warm and comforting traditional Moroccan barley and milk soup.",
     price: 7.0,
@@ -1112,7 +1418,7 @@ export const shopProducts = [
   {
     id: 2,
     name: "Cheese Omelet",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Fluffy omelet loaded with melted cheese, served with olives and olive oil.",
     price: 16.0,
@@ -1123,7 +1429,7 @@ export const shopProducts = [
   {
     id: 3,
     name: "Continental Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Barley soup, hot drink, orange juice, cheese omelet, olive oil, olives, cheese, bread, yogurt, and water.",
     price: 35.0,
@@ -1134,7 +1440,7 @@ export const shopProducts = [
   {
     id: 4,
     name: "Deli Meat Omelet",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Omelet packed with cold cuts, served with olives and olive oil.",
     price: 17.0,
@@ -1145,7 +1451,7 @@ export const shopProducts = [
   {
     id: 5,
     name: "Express Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Barley soup, hot drink, orange juice, pastries, yogurt, and mineral water.",
     price: 26.0,
@@ -1156,7 +1462,7 @@ export const shopProducts = [
   {
     id: 6,
     name: "Fassi Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Barley soup, hot drink, orange juice, dried meat omelet, olive oil, olives, cheese, bread, yogurt, and water.",
     price: 37.0,
@@ -1167,7 +1473,7 @@ export const shopProducts = [
   {
     id: 7,
     name: "Gourmet Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Barley soup, hot drink, orange juice, olive oil, Amlou, olives, honey, bread, yogurt, and water.",
     price: 26.0,
@@ -1178,7 +1484,7 @@ export const shopProducts = [
   {
     id: 8,
     name: "Harira Soup",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Traditional hearty Moroccan tomato, lentil, and chickpea soup.",
     price: 10.0,
@@ -1189,7 +1495,7 @@ export const shopProducts = [
   {
     id: 9,
     name: "Khlii Omelet",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Traditional omelet with Moroccan preserved meat, served with olives and olive oil.",
     price: 24.0,
@@ -1200,7 +1506,7 @@ export const shopProducts = [
   {
     id: 10,
     name: "Kids Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Chocolate milk, orange juice, chocolate bread, vanilla cake, yogurt, and water.",
     price: 25.0,
@@ -1211,7 +1517,7 @@ export const shopProducts = [
   {
     id: 11,
     name: "La Madeleine Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Barley soup, hot drink, orange juice, choice of omelet, olive oil, olives, honey, cheese, Amlou, bread, crepe, chocolate, cake, yogurt, and water.",
     price: 55.0,
@@ -1222,7 +1528,7 @@ export const shopProducts = [
   {
     id: 12,
     name: "Plain Omelet",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description: "Simple, fluffy egg omelet served with olives and olive oil.",
     price: 13.0,
     inStock: true,
@@ -1232,7 +1538,7 @@ export const shopProducts = [
   {
     id: 13,
     name: "Soussi Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Barley soup, hot drink, orange juice, Amlou, olive oil, cheese, olives, honey, jam, and water.",
     price: 38.0,
@@ -1243,7 +1549,7 @@ export const shopProducts = [
   {
     id: 14,
     name: "Tomato Omelet",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Fluffy omelet with fresh tomatoes, served with olives and olive oil.",
     price: 16.0,
@@ -1254,7 +1560,7 @@ export const shopProducts = [
   {
     id: 15,
     name: "Traditional Breakfast",
-    category: "Breakfast & Savory",
+    category: "Breakfast",
     description:
       "Barley soup, hot drink, orange juice, Moroccan pancakes, Harcha, honey, fresh cheese, and water.",
     price: 28.0,
@@ -2053,7 +2359,7 @@ export const shopProducts = [
     name: "Black Tea (Lipton)",
     category: "Hot Drinks",
     description: "Classic Lipton black tea.",
-    price: 12.0,
+    price: 11.0,
     inStock: true,
     rating: 4.2,
     image: "/images/shop/lipton.webp",
@@ -2083,7 +2389,7 @@ export const shopProducts = [
     name: "Lemon Verbena Tea",
     category: "Hot Drinks",
     description: "Herbal tea made with natural lemon verbena leaves.",
-    price: 12.0,
+    price: 11.0,
     inStock: true,
     rating: 4.7,
     image: "/images/shop/lemon-verbena-tea.webp",
@@ -2700,92 +3006,5 @@ export const shopProducts = [
     inStock: true,
     rating: 4.8,
     image: "/images/shop/olive-oil.webp",
-  },
-];
-
-export const testimonials = [
-  {
-    id: 1,
-    name: "Ryu Zaki",
-    role: "Regular Customer",
-    quote:
-      "A lovely tea room serving very good baked goods and pastries. The fruit juices are excellent.",
-    rating: 5,
-  },
-  {
-    id: 2,
-    name: "Halima Elmkiess",
-    role: "Regular Customer",
-    quote:
-      "A great place where you can find everything you want. The staff is wonderful 😊 Very clean establishment. The food is absolutely delicious. I really, really love it. Thank you so much for your service! ☺️",
-    rating: 5,
-  },
-  {
-    id: 3,
-    name: "Soufiane Driver",
-    role: "Regular Customer",
-    quote: "A very calm place with good service and friendly people !",
-    rating: 4,
-  },
-];
-
-export const locations = [
-  {
-    id: 1,
-    name: "La Madeleine — Tilila",
-    address: "Av. Al Oulfa, Tilila, Agadir 80000",
-    phone: "05.28.26.43.44",
-    hours: "Mon–Sun 6am–10pm",
-    mapUrl: "https://maps.app.goo.gl/Z5memQUhJrBtShyx7",
-  },
-];
-
-export const faqData = [
-  {
-    id: 1,
-    category: "General",
-    question: "What are your opening hours?",
-    answer: "We're open Monday to Sunday from 6:00 AM to 10:00 PM.",
-  },
-  {
-    id: 2,
-    category: "General",
-    question: "Do you offer dine-in or is it takeaway only?",
-    answer:
-      "Both! We have a beautiful seating area with indoor and outdoor tables. Enjoy your freshly baked pastries and coffee in our warm, inviting space.",
-  },
-  {
-    id: 3,
-    category: "Products",
-    question: "Are your products made with organic ingredients?",
-    answer:
-      "We source the finest ingredients available. While not everything is certified organic, we prioritize quality, sustainability.",
-  },
-  {
-    id: 4,
-    category: "Ordering",
-    question: "What payment methods do you accept?",
-    answer: "We currently accept cash payments only.",
-  },
-  {
-    id: 5,
-    category: "Ordering",
-    question: "Can I place an order for delivery?",
-    answer:
-      "At the moment, we do not offer delivery or online ordering. To place an order, simply call us directly or visit our bakery, and our team will be happy to assist you.",
-  },
-  {
-    id: 6,
-    category: "Ordering",
-    question: "Do you cater for events and weddings?",
-    answer:
-      "We'd love to be part of your special day! We offer bespoke catering packages for weddings, corporate events, and private parties. Contact us at least one week in advance for custom orders.",
-  },
-  {
-    id: 7,
-    category: "General",
-    question: "Is parking available near your bakery?",
-    answer:
-      "Parking is available nearby, and our bakery is easily accessible by public transport or car.",
   },
 ];

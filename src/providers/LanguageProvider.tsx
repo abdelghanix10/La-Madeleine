@@ -395,34 +395,20 @@ export const translations = {
     menuPremiumMenuBookPrev: "Previous",
     menuPremiumMenuBookNext: "Next",
     breakfastEyebrow: "Fresh mornings",
-    breakfastTitle: "Breakfast & Savory",
     breakfastDescription:
       "Barley soup, fluffy omelettes, Moroccan pancakes and generous breakfasts to start the day right.",
     pastriesEyebrow: "From the atelier",
-    pastriesTitle: "Pastries & Desserts",
     pastriesDescription:
       "Fruit tarts, mille-feuille, crepes and soft cakes — prepared every morning.",
-    bakeryEyebrow: "Baked at dawn",
-    bakeryTitle: "Bakery",
-    bakeryDescription:
-      "Butter croissants, pains au chocolat and farmhouse breads, folded by hand.",
     coffeesEyebrow: "Roasted with care",
-    coffeesTitle: "Coffees",
     coffeesDescription:
       "Espresso, cappuccino, flat white and signature creations.",
     juicesEyebrow: "Pressed to order",
-    juicesTitle: "Fresh Juices",
     juicesDescription:
       "Orange, avocado, panaché and seasonal blends — pressed at the minute.",
-    hotDrinksEyebrow: "Warm & fragrant",
-    hotDrinksDescription:
-      "Teas, hot chocolate, spiced milk and fragrant infusions.",
-    coldDrinksEyebrow: "Iced & sparkling",
-    coldDrinksDescription:
-      "Sodas, iced teas, milkshakes and fresh coolers.",
-    extrasEyebrow: "The finishing touch",
-    extrasDescription:
-      "Honey, Amlou, olive oil, cheese and olives — to complete every table.",
+    milkTeaEyebrow: "Warm & milky",
+    milkTeaDescription:
+      "Hot milk, spiced milk, verbena and Moroccan mint tea.",
 
     // Shop
     // Page Hero
@@ -486,7 +472,7 @@ export const translations = {
     cookiePolicySectionText5:
       "Have a question? contact@lamadeleine.ma — Av. Al Oulfa, Tilila, Agadir.",
     // Cookie Consent
-cookieConsentTitle: "We value your privacy",
+    cookieConsentTitle: "We value your privacy",
     cookieConsentText:
       "We use cookies to enhance your browsing experience. By continuing to use our site, you agree to our",
     cookieConsentAnd: "and",
@@ -965,34 +951,20 @@ cookieConsentTitle: "We value your privacy",
     menuPremiumMenuBookPrev: "Précédent",
     menuPremiumMenuBookNext: "Suivant",
     breakfastEyebrow: "Matins gourmands",
-    breakfastTitle: "Petit-déjeuner et Salé",
     breakfastDescription:
       "Soupe d'orge, omelettes moelleuses, crêpes marocaines et petits-déjeuners généreux pour bien commencer la journée.",
     pastriesEyebrow: "De l'atelier",
-    pastriesTitle: "Pâtisseries et Desserts",
     pastriesDescription:
       "Tartes aux fruits, mille-feuille, crêpes et gâteaux moelleux — préparés chaque matin.",
-    bakeryEyebrow: "Cuit à l'aube",
-    bakeryTitle: "Boulangerie",
-    bakeryDescription:
-      "Croissants au beurre, pains au chocolat et pains de campagne, pliés à la main.",
     coffeesEyebrow: "Torréfié avec soin",
-    coffeesTitle: "Cafés",
     coffeesDescription:
       "Espresso, cappuccino, flat white et créations signature.",
     juicesEyebrow: "Pressés à la minute",
-    juicesTitle: "Jus Frais",
     juicesDescription:
       "Orange, avocat, panaché et mélanges de saison — pressés à la minute.",
-    hotDrinksEyebrow: "Chaudes & parfumées",
-    hotDrinksDescription:
-      "Thés, chocolat chaud, lait épicé et infusions parfumées.",
-    coldDrinksEyebrow: "Glacées & pétillantes",
-    coldDrinksDescription:
-      "Sodas, thés glacés, milkshakes et boissons bien fraîches.",
-    extrasEyebrow: "La touche finale",
-    extrasDescription:
-      "Miel, Amlou, huile d'olive, fromage et olives — pour parfaire chaque table.",
+    milkTeaEyebrow: "Chaud & lacté",
+    milkTeaDescription:
+      "Lait chaud, lait épicé, verveine et thé à la menthe.",
 
     // Shop
     // Page Hero
@@ -1529,34 +1501,20 @@ cookieConsentTitle: "We value your privacy",
     menuPremiumMenuBookPrev: "السابق",
     menuPremiumMenuBookNext: "التالي",
     breakfastEyebrow: "صباحات طازجة",
-    breakfastTitle: "فطور ومالح",
     breakfastDescription:
       "شوربة الشعير، أومليت هش، فطائر مغربية ووجبات فطور سخية لبداية يوم موفقة.",
     pastriesEyebrow: "من الورشة",
-    pastriesTitle: "حلويات وحلويات فرنسية",
     pastriesDescription:
       "تارت الفواكه، ميل فوي، كريب وكيك هش — تُحضّر كل صباح.",
-    bakeryEyebrow: "يُخبز عند الفجر",
-    bakeryTitle: "مخبز",
-    bakeryDescription:
-      "كرواسون بالزبدة، بان أو شوكولا وخبز تقليدي، يُطوى يدوياً.",
     coffeesEyebrow: "محمصة بعناية",
-    coffeesTitle: "قهوة",
     coffeesDescription:
       "إسبريسو، كابتشينو، فلات وايت وإبداعات مميزة.",
     juicesEyebrow: "يُعصر عند الطلب",
-    juicesTitle: "عصائر طازجة",
     juicesDescription:
       "برتقال، أفوكادو، باناشي وخلطات موسمية — تُعصر في الحين.",
-    hotDrinksEyebrow: "ساخنة وعطرة",
-    hotDrinksDescription:
-      "شاي، شوكولاتة ساخنة، حليب بالتوابل ومنقوعات عطرة.",
-    coldDrinksEyebrow: "مثلجة ومنعشة",
-    coldDrinksDescription:
-      "مشروبات غازية، شاي مثلج، ميلك شيك ومنعشات باردة.",
-    extrasEyebrow: "اللمسة الأخيرة",
-    extrasDescription:
-      "عسل، أملو، زيت زيتون، جبن وزيتون — لتكتمل كل مائدة.",
+    milkTeaEyebrow: "دافئ بالحليب",
+    milkTeaDescription:
+      "حليب ساخن وحليب بالتوابل واللويزة وشاي مغربي بالنعناع.",
 
     // Shop
     // Page Hero
