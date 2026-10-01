@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -322,6 +322,65 @@ export default function MenuPremium() {
   const [activeCategoryKey, setActiveCategoryKey] = useState(ALL_CATEGORY_KEY);
   const [bookOpen, setBookOpen] = useState(false);
 
+  // Horizontal scroll tracking for category navbar
+  const navScrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const updateScrollState = useCallback(() => {
+    const el = navScrollRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    const maxScroll = scrollWidth - clientWidth;
+
+    if (maxScroll <= 1) {
+      setCanScrollLeft(false);
+      setCanScrollRight(false);
+      return;
+    }
+
+    const isRtl = document.dir === "rtl" || language === "ar";
+    if (isRtl) {
+      const abs = Math.abs(scrollLeft);
+      setCanScrollLeft(abs < maxScroll - 4 || scrollLeft > 4);
+      setCanScrollRight(abs > 4);
+    } else {
+      setCanScrollLeft(scrollLeft > 4);
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 4);
+    }
+  }, [language]);
+
+  const scrollNav = (direction: "left" | "right") => {
+    const el = navScrollRef.current;
+    if (!el) return;
+    const scrollAmount = 280;
+    const isRtl = document.dir === "rtl" || language === "ar";
+    const delta =
+      direction === "left"
+        ? isRtl
+          ? scrollAmount
+          : -scrollAmount
+        : isRtl
+          ? -scrollAmount
+          : scrollAmount;
+    el.scrollBy({ left: delta, behavior: "smooth" });
+  };
+
+  const scrollToTab = (buttonEl: HTMLElement) => {
+    const container = navScrollRef.current;
+    if (!container) return;
+    const containerRect = container.getBoundingClientRect();
+    const elRect = buttonEl.getBoundingClientRect();
+    const currentScroll = container.scrollLeft;
+    const targetOffset =
+      elRect.left -
+      containerRect.left +
+      currentScroll -
+      containerRect.width / 2 +
+      elRect.width / 2;
+    container.scrollTo({ left: targetOffset, behavior: "smooth" });
+  };
+
   const items = data.menuItems as Item[];
   const categories: string[] = useMemo(() => {
     const fromData = (data as { menuCategories?: string[] }).menuCategories;
@@ -477,6 +536,29 @@ export default function MenuPremium() {
     ...categories.map((c, i) => ({ key: tabKeyForIndex(i), label: c })),
   ];
 
+  useEffect(() => {
+    const el = navScrollRef.current;
+    if (!el) return;
+
+    updateScrollState();
+
+    const handleScroll = () => updateScrollState();
+    el.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    let ro: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(() => updateScrollState());
+      ro.observe(el);
+    }
+
+    return () => {
+      el.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      ro?.disconnect();
+    };
+  }, [updateScrollState, tabs]);
+
   const filtered = useMemo(() => {
     const section = activeTabIndex === null ? null : categories[activeTabIndex];
     const list =
@@ -556,35 +638,100 @@ export default function MenuPremium() {
           ease: [0.25, 0.1, 0.25, 1],
         }}
       >
-        <div className="mx-auto flex max-w-7xl items-center gap-2.5 overflow-x-auto px-6 py-4 no-scrollbar md:px-10">
-          {tabs.map((x) => (
-            <button
-              key={x.key}
-              onClick={() => {
-                setActiveCategoryKey(x.key);
+        <div className="relative mx-auto max-w-7xl">
+          {/* Left shadow fade + scroll arrow */}
+          <div
+            className={`pointer-events-none absolute left-0 top-0 bottom-0 z-20 flex items-center pl-2 md:pl-4 transition-all duration-300 ${
+              canScrollLeft
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-2 pointer-events-none"
+            }`}
+            aria-hidden={!canScrollLeft}
+          >
+            {/* Pure ivory gradient fade without dark inset shadow (prevents color distortion) */}
+            <div
+              className="pointer-events-none absolute inset-y-0 left-0 w-20 md:w-28"
+              style={{
+                background:
+                  "linear-gradient(to right, #fbf8f2 0%, rgba(251, 248, 242, 0.92) 50%, rgba(251, 248, 242, 0) 100%)",
               }}
-              className={`shrink-0 rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.18em] transition-all ${
-                activeCategoryKey === x.key
-                  ? "bg-dark text-cream shadow-lg"
-                  : "border border-dark/10 bg-white/70 text-dark/60 hover:border-dark/25 hover:text-dark"
-              }`}
-            >
-              {x.label}
-            </button>
-          ))}
-          <div className="ml-auto hidden shrink-0 items-center gap-2 md:flex">
+            />
             <button
-              onClick={() => setBookOpen(true)}
-              className="btn-ghost shrink-0 !px-5 !py-2.5 !text-[11px]"
+              type="button"
+              onClick={() => scrollNav("left")}
+              disabled={!canScrollLeft}
+              tabIndex={canScrollLeft ? 0 : -1}
+              aria-label="Défiler vers la gauche"
+              className="pointer-events-auto relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-primary/40 bg-dark text-primary shadow-[0_4px_16px_rgba(28,22,19,0.25),0_0_10px_rgba(200,154,43,0.18)] transition-all duration-200 hover:scale-110 hover:border-primary hover:bg-[#2b1d14] hover:text-primary-light hover:shadow-[0_6px_22px_rgba(200,154,43,0.35)] active:scale-95 disabled:pointer-events-none cursor-pointer md:h-8.5 md:w-8.5"
             >
-              <BookOpenText size={14} /> {t("menuPremiumMenuBookCta")}
+              <ChevronLeft size={16} strokeWidth={2.5} />
             </button>
-            <Link
-              href="/contact"
-              className="btn-gold shrink-0 !px-5 !py-2.5 !text-[11px]"
+          </div>
+
+          {/* Right shadow fade + scroll arrow */}
+          <div
+            className={`pointer-events-none absolute right-0 top-0 bottom-0 z-20 flex items-center justify-end pr-2 md:pr-4 transition-all duration-300 ${
+              canScrollRight
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-2 pointer-events-none"
+            }`}
+            aria-hidden={!canScrollRight}
+          >
+            {/* Pure ivory gradient fade without dark inset shadow (prevents color distortion) */}
+            <div
+              className="pointer-events-none absolute inset-y-0 right-0 w-20 md:w-28"
+              style={{
+                background:
+                  "linear-gradient(to left, #fbf8f2 0%, rgba(251, 248, 242, 0.92) 50%, rgba(251, 248, 242, 0) 100%)",
+              }}
+            />
+            <button
+              type="button"
+              onClick={() => scrollNav("right")}
+              disabled={!canScrollRight}
+              tabIndex={canScrollRight ? 0 : -1}
+              aria-label="Défiler vers la droite"
+              className="pointer-events-auto relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-primary/40 bg-dark text-primary shadow-[0_4px_16px_rgba(28,22,19,0.25),0_0_10px_rgba(200,154,43,0.18)] transition-all duration-200 hover:scale-110 hover:border-primary hover:bg-[#2b1d14] hover:text-primary-light hover:shadow-[0_6px_22px_rgba(200,154,43,0.35)] active:scale-95 disabled:pointer-events-none cursor-pointer md:h-8.5 md:w-8.5"
             >
-              {t("menuHeroOrderCta")} <ArrowRight size={14} />
-            </Link>
+              <ChevronRight size={16} strokeWidth={2.5} />
+            </button>
+          </div>
+
+          {/* Scrollable category list */}
+          <div
+            ref={navScrollRef}
+            className="flex items-center gap-2.5 overflow-x-auto px-6 py-4 no-scrollbar scroll-smooth md:px-10"
+          >
+            {tabs.map((x) => (
+              <button
+                key={x.key}
+                onClick={(e) => {
+                  setActiveCategoryKey(x.key);
+                  scrollToTab(e.currentTarget);
+                }}
+                className={`shrink-0 rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.18em] transition-all ${
+                  activeCategoryKey === x.key
+                    ? "bg-dark text-cream shadow-lg"
+                    : "border border-dark/10 bg-white/70 text-dark/60 hover:border-dark/25 hover:text-dark"
+                }`}
+              >
+                {x.label}
+              </button>
+            ))}
+            <div className="ml-auto hidden shrink-0 items-center gap-2 md:flex">
+              <button
+                onClick={() => setBookOpen(true)}
+                className="btn-ghost shrink-0 !px-5 !py-2.5 !text-[11px]"
+              >
+                <BookOpenText size={14} /> {t("menuPremiumMenuBookCta")}
+              </button>
+              <Link
+                href="/contact"
+                className="btn-gold shrink-0 !px-5 !py-2.5 !text-[11px]"
+              >
+                {t("menuHeroOrderCta")} <ArrowRight size={14} />
+              </Link>
+            </div>
           </div>
         </div>
       </motion.div>

@@ -194,7 +194,7 @@ export const menuItems = [
     description:
       "Hssoua, a hot drink, fresh orange juice, msemen or meloui, harcha, honey, jben cheese, and mineral water.",
     price: 28.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/breakfast-beldi.webp",
   },
   {
@@ -587,7 +587,7 @@ export const menuItems = [
     category: "Iced Coffee",
     description: "A scoop of ice cream “drowned” in a hot shot of espresso.",
     price: 18.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/affogato.webp",
   },
   {
@@ -765,7 +765,7 @@ export const menuItems = [
     category: "Waffles, Crepes & Pancakes",
     description: "Thin crepe filled with melted Nutella.",
     price: 19.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/crepe-nutella.webp",
   },
   {
@@ -1164,7 +1164,7 @@ export const menuItems = [
     category: "Smoothies & Milkshakes",
     description: "Thick and creamy chocolate milkshake.",
     price: 23.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/milkshake-choco.webp",
   },
   {
@@ -1191,7 +1191,7 @@ export const menuItems = [
     category: "Smoothies & Milkshakes",
     description: "Thick and creamy strawberry milkshake.",
     price: 23.0,
-    popular: false,
+    popular: true,
     image: "/images/menu/milkshake-fraise.webp",
   },
   {
@@ -1200,7 +1200,7 @@ export const menuItems = [
     category: "Smoothies & Milkshakes",
     description: "Creamy milkshake blended with crushed Oreo cookies.",
     price: 26.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/milkshake-oreo.webp",
   },
 
