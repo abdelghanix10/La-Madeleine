@@ -379,6 +379,10 @@ export const translations = {
     // Premium (menu list)
     menuPremiumTabAll: "All",
     menuPremiumSignature: "Signature",
+    menuFeaturedBadge: "Chef's Selection",
+    menuFeaturedTitle: "House Favorites",
+    menuFeaturedSubtitle:
+      "Discover our most celebrated signature creations, handcrafted every day with noble ingredients.",
     menuPremiumCtaScript: "A little craving?",
     menuPremiumCtaTitle: "Order, we take care of the rest.",
     menuPremiumCurrentMenu: "Today's menu",
@@ -935,6 +939,10 @@ export const translations = {
     // Premium (liste du menu)
     menuPremiumTabAll: "Tout",
     menuPremiumSignature: "Signature",
+    menuFeaturedBadge: "Sélection Signature",
+    menuFeaturedTitle: "Les Incontournables",
+    menuFeaturedSubtitle:
+      "Découvrez les créations phares les plus plébiscitées de notre Maison, préparées chaque jour avec passion.",
     menuPremiumCtaScript: "Une petite faim ?",
     menuPremiumCtaTitle: "Commandez, on s'occupe du reste.",
     menuPremiumCurrentMenu: "La carte du moment",
@@ -1485,6 +1493,10 @@ export const translations = {
     // Premium (قائمة الأصناف)
     menuPremiumTabAll: "الكل",
     menuPremiumSignature: "مميز",
+    menuFeaturedBadge: "مختارات الشيف",
+    menuFeaturedTitle: "الأطباق الأكثر طلباً",
+    menuFeaturedSubtitle:
+      "اكتشفوا إبداعاتنا المميزة الأكثر تفضيلاً، محضرة يومياً بكل شغف ومكونات أصيلة.",
     menuPremiumCtaScript: "شعور خفيف بالجوع؟",
     menuPremiumCtaTitle: "اطلب، ونحن نتكفل بالباقي.",
     menuPremiumCurrentMenu: "قائمة اليوم",

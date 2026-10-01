@@ -9,6 +9,7 @@ import {
   BookOpenText,
   ChevronLeft,
   ChevronRight,
+  Sparkles,
   UtensilsCrossed,
   X,
 } from "lucide-react";
@@ -313,7 +314,7 @@ function MenuBookViewer({ onClose }: { onClose: () => void }) {
 }
 
 export default function MenuPremium() {
-  const { data, t, language } = useLanguage();
+  const { data, t, language, dir } = useLanguage();
   const {
     hidden: navHidden,
     atTop: navAtTop,
@@ -333,36 +334,37 @@ export default function MenuPremium() {
     const { scrollLeft, scrollWidth, clientWidth } = el;
     const maxScroll = scrollWidth - clientWidth;
 
-    if (maxScroll <= 1) {
+    if (maxScroll <= 2) {
       setCanScrollLeft(false);
       setCanScrollRight(false);
       return;
     }
 
-    const isRtl = document.dir === "rtl" || language === "ar";
-    if (isRtl) {
+    const isRtl = dir === "rtl" || language === "ar" || document.dir === "rtl";
+    if (!isRtl) {
+      setCanScrollLeft(scrollLeft > 4);
+      setCanScrollRight(scrollLeft < maxScroll - 4);
+      return;
+    }
+
+    // In RTL:
+    // Chromium/Firefox/Safari modern standard: scrollLeft is 0 at start (right) and negative as it scrolls left.
+    if (scrollLeft <= 0) {
       const abs = Math.abs(scrollLeft);
-      setCanScrollLeft(abs < maxScroll - 4 || scrollLeft > 4);
+      setCanScrollLeft(abs < maxScroll - 4);
       setCanScrollRight(abs > 4);
     } else {
+      // Legacy WebKit positive RTL (maxScroll at right, 0 at left):
       setCanScrollLeft(scrollLeft > 4);
-      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 4);
+      setCanScrollRight(scrollLeft < maxScroll - 4);
     }
-  }, [language]);
+  }, [language, dir]);
 
   const scrollNav = (direction: "left" | "right") => {
     const el = navScrollRef.current;
     if (!el) return;
     const scrollAmount = 280;
-    const isRtl = document.dir === "rtl" || language === "ar";
-    const delta =
-      direction === "left"
-        ? isRtl
-          ? scrollAmount
-          : -scrollAmount
-        : isRtl
-          ? -scrollAmount
-          : scrollAmount;
+    const delta = direction === "left" ? -scrollAmount : scrollAmount;
     el.scrollBy({ left: delta, behavior: "smooth" });
   };
 
@@ -569,6 +571,82 @@ export default function MenuPremium() {
     return [...list].sort((a, b) => Number(b.popular) - Number(a.popular));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items, categories, activeTabIndex, language]);
+
+  // Featured popular products (popular: true)
+  const popularItems = useMemo(() => {
+    if (activeTabIndex !== null) {
+      const inCat = filtered.filter((i) => i.popular);
+      if (inCat.length > 0) return inCat;
+    }
+    return items.filter((i) => i.popular);
+  }, [items, filtered, activeTabIndex]);
+
+  // Horizontal scroll tracking for featured products carousel
+  const featuredScrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollFeaturedLeft, setCanScrollFeaturedLeft] = useState(false);
+  const [canScrollFeaturedRight, setCanScrollFeaturedRight] = useState(false);
+
+  const updateFeaturedScrollState = useCallback(() => {
+    const el = featuredScrollRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    const maxScroll = scrollWidth - clientWidth;
+    if (maxScroll <= 2) {
+      setCanScrollFeaturedLeft(false);
+      setCanScrollFeaturedRight(false);
+      return;
+    }
+
+    const isRtl = dir === "rtl" || language === "ar" || document.dir === "rtl";
+    if (!isRtl) {
+      setCanScrollFeaturedLeft(scrollLeft > 4);
+      setCanScrollFeaturedRight(scrollLeft < maxScroll - 4);
+      return;
+    }
+
+    // In RTL:
+    if (scrollLeft <= 0) {
+      const abs = Math.abs(scrollLeft);
+      setCanScrollFeaturedLeft(abs < maxScroll - 4);
+      setCanScrollFeaturedRight(abs > 4);
+    } else {
+      setCanScrollFeaturedLeft(scrollLeft > 4);
+      setCanScrollFeaturedRight(scrollLeft < maxScroll - 4);
+    }
+  }, [language, dir]);
+
+  const scrollFeatured = (direction: "left" | "right") => {
+    const el = featuredScrollRef.current;
+    if (!el) return;
+    const scrollAmount = 340;
+    const delta = direction === "left" ? -scrollAmount : scrollAmount;
+    el.scrollBy({ left: delta, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const el = featuredScrollRef.current;
+    if (!el) return;
+    updateFeaturedScrollState();
+    const handleScroll = () => updateFeaturedScrollState();
+    el.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      el.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [updateFeaturedScrollState, popularItems]);
+
+  // Reset scroll to start when language changes
+  useEffect(() => {
+    if (navScrollRef.current) {
+      navScrollRef.current.scrollTo({ left: 0, behavior: "instant" });
+      updateScrollState();
+    }
+    if (featuredScrollRef.current) {
+      featuredScrollRef.current.scrollTo({ left: 0, behavior: "instant" });
+      updateFeaturedScrollState();
+    }
+  }, [language, dir, updateScrollState, updateFeaturedScrollState]);
 
   interface SubGroup {
     sub: string | null;
@@ -781,6 +859,135 @@ export default function MenuPremium() {
             </div>
           </div>
         </ScrollReveal>
+
+        {/* Featured Popular Products Showcase */}
+        {popularItems.length > 0 && (
+          <div className="mt-10 mb-14">
+            <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-primary-dark">
+                  <Sparkles size={12} className="text-primary" />
+                  <span>{t("menuFeaturedBadge")}</span>
+                </div>
+                <h3 className="mt-2.5 font-serif text-2xl font-medium tracking-tight text-dark md:text-3xl">
+                  {t("menuFeaturedTitle")}
+                </h3>
+                <p className="mt-1 max-w-xl text-xs text-dark/60 md:text-sm">
+                  {t("menuFeaturedSubtitle")}
+                </p>
+              </div>
+
+              {/* Slider controls */}
+              <div className="flex items-center gap-2" dir="ltr">
+                <button
+                  type="button"
+                  onClick={() => scrollFeatured("left")}
+                  disabled={!canScrollFeaturedLeft}
+                  aria-label={language === "ar" ? "السابق" : "Précédent"}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-dark/12 bg-white/90 text-dark/75 shadow-[0_2px_8px_rgba(28,22,19,0.06)] backdrop-blur-md transition-all duration-200 hover:scale-105 hover:border-dark hover:bg-dark hover:text-cream active:scale-95 disabled:pointer-events-none disabled:opacity-25 cursor-pointer"
+                >
+                  <ChevronLeft size={16} strokeWidth={2.5} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollFeatured("right")}
+                  disabled={!canScrollFeaturedRight}
+                  aria-label={language === "ar" ? "التالي" : "Suivant"}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-dark/12 bg-white/90 text-dark/75 shadow-[0_2px_8px_rgba(28,22,19,0.06)] backdrop-blur-md transition-all duration-200 hover:scale-105 hover:border-dark hover:bg-dark hover:text-cream active:scale-95 disabled:pointer-events-none disabled:opacity-25 cursor-pointer"
+                >
+                  <ChevronRight size={16} strokeWidth={2.5} />
+                </button>
+              </div>
+            </div>
+
+            {/* Featured Cards Track */}
+            <div className="relative">
+              <div
+                ref={featuredScrollRef}
+                className="flex gap-2 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-4 pt-2 -mx-2 px-2"
+              >
+              {popularItems.map((item, idx) => (
+                <div
+                  key={item.id}
+                  className="group relative flex w-[285px] sm:w-[325px] md:w-[355px] shrink-0 snap-start flex-col overflow-hidden rounded-[26px] border border-primary/20 bg-gradient-to-b from-white/95 via-[#fcfaf7] to-[#f7f2ea]/90 p-4 shadow-[0_12px_36px_-16px_rgba(28,22,19,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/45 hover:shadow-[0_24px_50px_-16px_rgba(200,154,43,0.25)]"
+                >
+                  {/* Photo Stage */}
+                  <div className="relative aspect-[16/11] w-full overflow-hidden rounded-[20px] bg-cream/70 shadow-xs">
+                    {item.image ? (
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        sizes="(max-width: 640px) 285px, 355px"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-ivory">
+                        <UtensilsCrossed size={32} className="text-primary/40" />
+                      </div>
+                    )}
+
+                    {/* Ambient subtle vignette */}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
+
+                    {/* Popular Star Badge */}
+                    <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-primary/35 bg-dark/85 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#d9b25e] shadow-md backdrop-blur-md">
+                      <Sparkles size={11} className="text-primary animate-pulse" />
+                      <span>{t("menuPremiumSignature")}</span>
+                    </div>
+
+                    {/* Price Tag Pill */}
+                    <div className="absolute right-3 bottom-3 inline-flex items-baseline rounded-full border border-dark/8 bg-white/95 px-3.5 py-1 text-[13px] font-bold text-dark shadow-md backdrop-blur-md">
+                      <span className="font-extrabold text-primary-dark">
+                        {formatPrice(item.price)}
+                      </span>
+                      <span className="ml-1 text-[10px] font-bold text-dark/60">DH</span>
+                    </div>
+                  </div>
+
+                  {/* Body Content */}
+                  <div className="mt-3.5 flex flex-1 flex-col">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary-dark/85">
+                      {item.category}
+                    </span>
+                    <h4 className="mt-1 line-clamp-1 font-serif text-xl font-medium tracking-tight text-dark transition-colors duration-200 group-hover:text-primary">
+                      {item.name}
+                    </h4>
+                    {item.description && (
+                      <p className="mt-1.5 line-clamp-2 min-h-[2.5em] text-xs leading-relaxed text-dark/65">
+                        {item.description}
+                      </p>
+                    )}
+
+                    {/* Action Footer */}
+                    <div className="mt-auto flex items-center justify-between border-t border-dark/6 pt-3.5">
+                      <Link
+                        href="/contact"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-dark px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-cream shadow-sm transition-all duration-200 group-hover:bg-primary group-hover:text-dark"
+                      >
+                        <span>{t("menuHeroOrderCta")}</span>
+                        <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
+                      </Link>
+                      <span className="font-serif text-xs italic text-dark/40">
+                        № {String(idx + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              </div>
+            </div>
+
+            {/* Subtle decorative separator before catalogue categories */}
+            <div className="mt-12 flex items-center gap-4">
+              <span className="h-px flex-1 bg-gradient-to-r from-transparent via-dark/12 to-transparent" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-dark/40">
+                {t("menuPremiumPaperTitle")}
+              </span>
+              <span className="h-px flex-1 bg-gradient-to-r from-transparent via-dark/12 to-transparent" />
+            </div>
+          </div>
+        )}
 
         <div className="mt-10">
           <AnimatePresence mode="wait">
