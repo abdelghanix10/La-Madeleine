@@ -10,17 +10,32 @@ export default function SmoothScroll({
 }) {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.85,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
 
+    (window as unknown as { __lenis: Lenis }).__lenis = lenis;
+
+    lenis.on("scroll", (e) => {
+      window.dispatchEvent(
+        new CustomEvent("lenis-scroll", {
+          detail: {
+            scroll: e.scroll,
+            direction: e.direction,
+            velocity: e.velocity,
+          },
+        }),
+      );
+    });
+
+    let rafId: number;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     // Full-screen overlays (menu book viewer) lock page scroll —
     // body overflow alone doesn't stop Lenis' smoothed wheel handling.
@@ -34,7 +49,9 @@ export default function SmoothScroll({
 
     return () => {
       window.removeEventListener("menu-book-toggle", handleOverlayToggle);
+      cancelAnimationFrame(rafId);
       lenis.destroy();
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
     };
   }, []);
 

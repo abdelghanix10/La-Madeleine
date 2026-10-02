@@ -3,30 +3,54 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/providers/LanguageProvider";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { Eyebrow } from "@/components/ui/Brand";
 
 export default function HomeSignatures() {
-  const { data, t } = useLanguage();
+  const { data, t, dir, language } = useLanguage();
   const items = data.todaysSpecials.slice(0, 6);
 
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0);
+  const [prevDir, setPrevDir] = useState(dir);
 
-  const scrollBy = (dir: 1 | -1) => {
+  const isRtl = dir === "rtl" || language === "ar";
+
+  if (prevDir !== dir) {
+    setPrevDir(dir);
+    setProgress(0);
+  }
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (track) {
+      track.scrollLeft = 0;
+    }
+  }, [language, dir]);
+
+  const scrollBy = (step: 1 | -1) => {
     const track = trackRef.current;
     if (!track) return;
     const amount = Math.min(track.clientWidth * 0.8, 480);
-    track.scrollBy({ left: dir * amount, behavior: "smooth" });
+    // In RTL, "next" (step = 1) scrolls towards the left (negative delta),
+    // and "prev" (step = -1) scrolls towards the right (positive delta).
+    const scrollDelta = isRtl ? -step * amount : step * amount;
+    track.scrollBy({ left: scrollDelta, behavior: "smooth" });
   };
 
   const onScrollTrack = () => {
     const track = trackRef.current;
     if (!track) return;
     const max = track.scrollWidth - track.clientWidth;
-    setProgress(max > 0 ? track.scrollLeft / max : 0);
+    if (max <= 0) {
+      setProgress(0);
+      return;
+    }
+    const current = Math.abs(track.scrollLeft);
+    const ratio = Math.min(1, Math.max(0, current / max));
+    setProgress(ratio);
   };
 
   return (
@@ -70,14 +94,14 @@ export default function HomeSignatures() {
                   aria-label={t("homeSignaturesPrevious")}
                   className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-cream/25 text-cream transition-all hover:border-primary hover:bg-primary hover:text-dark"
                 >
-                  <ArrowRight size={17} className="rotate-180" />
+                  <ArrowRight size={17} className={isRtl ? "" : "rotate-180"} />
                 </button>
                 <button
                   onClick={() => scrollBy(1)}
                   aria-label={t("homeSignaturesNext")}
                   className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-cream/25 text-cream transition-all hover:border-primary hover:bg-primary hover:text-dark"
                 >
-                  <ArrowRight size={17} />
+                  <ArrowRight size={17} className={isRtl ? "rotate-180" : ""} />
                 </button>
               </div>
             </div>
@@ -85,7 +109,11 @@ export default function HomeSignatures() {
               href="/menu"
               className="mt-5 inline-flex items-center gap-2 text-xs font-sans font-semibold tracking-[0.22em] uppercase text-primary hover:text-cream transition-colors"
             >
-              {t("homeSignaturesViewMenu")} <ArrowRight size={16} />
+              {t("homeSignaturesViewMenu")}{" "}
+              <ArrowRight
+                size={16}
+                className={isRtl ? "rotate-180" : ""}
+              />
             </Link>
           </ScrollReveal>
         </div>
@@ -94,7 +122,6 @@ export default function HomeSignatures() {
         <div
           ref={trackRef}
           onScroll={onScrollTrack}
-          data-lenis-prevent
           className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 lg:-mx-12 lg:px-12"
         >
           {items.map((item, i) => (

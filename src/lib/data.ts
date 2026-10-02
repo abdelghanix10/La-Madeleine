@@ -1128,7 +1128,7 @@ export const menuItems = [
     category: "Smoothies & Milkshakes",
     description: "Fresh strawberries blended into a smooth, fruity drink.",
     price: 23.0,
-    popular: false,
+    popular: true,
     image: "/images/menu/smoothie-fraise.webp",
   },
   {
@@ -1191,7 +1191,7 @@ export const menuItems = [
     category: "Smoothies & Milkshakes",
     description: "Thick and creamy strawberry milkshake.",
     price: 23.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/milkshake-fraise.webp",
   },
   {
@@ -1240,7 +1240,7 @@ export const menuItems = [
     category: "Juices",
     description: "Freshly squeezed orange juice.",
     price: 16.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/jus-orange.webp",
   },
   {
@@ -1312,7 +1312,7 @@ export const menuItems = [
     category: "Juices",
     description: "Blended fruit juice mixed with fresh orange juice.",
     price: 23.0,
-    popular: false,
+    popular: true,
     image: "/images/menu/jus-panache-orange.webp",
   },
   {

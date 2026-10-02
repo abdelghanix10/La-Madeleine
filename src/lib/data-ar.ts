@@ -194,7 +194,7 @@ export const menuItems = [
     description:
       "حسوة، مشروب ساخن، عصير برتقال طازج، مسمن أو ملوي، حرشة، عسل، جبن بلدي، وماء معدني.",
     price: 28.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/breakfast-beldi.webp",
   },
   {
@@ -587,7 +587,7 @@ export const menuItems = [
     description:
       "كرة من آيس كريم الفانيليا مغمورة في جرعة إسبريسو ساخنة ولذيذة.",
     price: 18.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/affogato.webp",
   },
   {
@@ -766,7 +766,7 @@ export const menuItems = [
     category: "الوافل، الكريب والبانكيك",
     description: "كريب رقيق محشو بسخاء بشوكولاتة نوتيلا اللذيذة.",
     price: 19.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/crepe-nutella.webp",
   },
   {
@@ -1129,7 +1129,7 @@ export const menuItems = [
     category: "السموذي والميلك شيك",
     description: "فراولة طازجة مخفوقة في مشروب فاكهي ناعم ومنعش.",
     price: 23.0,
-    popular: false,
+    popular: true,
     image: "/images/menu/smoothie-fraise.webp",
   },
   {
@@ -1165,7 +1165,7 @@ export const menuItems = [
     category: "السموذي والميلك شيك",
     description: "ميلك شيك شوكولاتة كثيف وكريمي فائق اللذة.",
     price: 23.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/milkshake-choco.webp",
   },
   {
@@ -1201,7 +1201,7 @@ export const menuItems = [
     category: "السموذي والميلك شيك",
     description: "ميلك شيك كريمي ممزوج بقطع بسكويت الأوريو المقرمشة.",
     price: 26.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/milkshake-oreo.webp",
   },
 
@@ -1241,7 +1241,7 @@ export const menuItems = [
     category: "العصائر الطبيعية",
     description: "عصير برتقال طازج معصور فور الطلب.",
     price: 16.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/jus-orange.webp",
   },
   {
@@ -1313,7 +1313,7 @@ export const menuItems = [
     category: "العصائر الطبيعية",
     description: "تشكيلة من الفواكه الطازجة المخفوقة مع عصير البرتقال المنعش.",
     price: 23.0,
-    popular: false,
+    popular: true,
     image: "/images/menu/jus-panache-orange.webp",
   },
   {

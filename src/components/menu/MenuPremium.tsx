@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback, memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -103,13 +103,9 @@ function MenuHighlight({
 // Fixed-height product row: icon thumb, dotted leader, gold DH price,
 // 2-line clamped description + pinned category label so every card
 // in the grid measures exactly the same height.
-function MenuItemRow({ item }: { item: Item }) {
+const MenuItemRow = memo(function MenuItemRow({ item }: { item: Item }) {
   return (
-    <motion.div
-      className="group flex h-full min-h-[138px] cursor-pointer items-start gap-4 rounded-2xl border-b border-dark/6 px-3 py-5 transition-all duration-200 hover:border-primary/50 hover:bg-cream/60"
-      whileHover={{ x: 3 }}
-      transition={{ duration: 0.2 }}
-    >
+    <div className="group flex h-full min-h-[138px] cursor-pointer items-start gap-4 rounded-2xl border-b border-dark/6 px-3 py-5 transition-all duration-200 hover:translate-x-[3px] hover:border-primary/50 hover:bg-cream/60">
       <div className="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-cream shadow-xs transition-all duration-300 group-hover:ring-2 group-hover:ring-primary/40">
         {item.image ? (
           <Image
@@ -148,9 +144,9 @@ function MenuItemRow({ item }: { item: Item }) {
           {item.category}
         </p>
       </div>
-    </motion.div>
+    </div>
   );
-}
+});
 
 function MenuBookViewer({ onClose }: { onClose: () => void }) {
   const { t, dir } = useLanguage();
@@ -313,13 +309,183 @@ function MenuBookViewer({ onClose }: { onClose: () => void }) {
   );
 }
 
+interface StickyCategoryNavProps {
+  canScrollLeft: boolean;
+  canScrollRight: boolean;
+  scrollNav: (direction: "left" | "right") => void;
+  navScrollRef: React.RefObject<HTMLDivElement | null>;
+  tabs: Array<{ key: string; label: string }>;
+  activeCategoryKey: string;
+  setActiveCategoryKey: (key: string) => void;
+  scrollToTab: (buttonEl: HTMLElement) => void;
+  setBookOpen: (open: boolean) => void;
+  t: ReturnType<typeof useLanguage>["t"];
+}
+
+function StickyCategoryNav({
+  canScrollLeft,
+  canScrollRight,
+  scrollNav,
+  navScrollRef,
+  tabs,
+  activeCategoryKey,
+  setActiveCategoryKey,
+  scrollToTab,
+  setBookOpen,
+  t,
+}: StickyCategoryNavProps) {
+  const { hidden: navHidden } = useNavbarVisibility();
+
+  // Detect when the bar is actually pinned. The bar always sticks at the
+  // navbar's height (top = --nav-h) and slides up with a transform when the
+  // navbar hides — instead of animating `top`, which forced layout every
+  // frame and was never in sync with the navbar's own animation.
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const [stuck, setStuck] = useState(false);
+
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const mq = window.matchMedia("(min-width: 1024px)");
+    let io: IntersectionObserver | null = null;
+
+    const setup = () => {
+      io?.disconnect();
+      const offset = mq.matches ? 72 : 64;
+      io = new IntersectionObserver(
+        ([entry]) =>
+          setStuck(
+            !entry.isIntersecting && entry.boundingClientRect.top < offset,
+          ),
+        { rootMargin: `-${offset}px 0px 0px 0px`, threshold: 0 },
+      );
+      io.observe(el);
+    };
+
+    setup();
+    mq.addEventListener("change", setup);
+    return () => {
+      mq.removeEventListener("change", setup);
+      io?.disconnect();
+    };
+  }, []);
+
+  return (
+    <>
+      <div ref={sentinelRef} aria-hidden className="-mb-px h-px" />
+      <div
+        className="sticky z-30 border-b border-dark/8 bg-[#fbf8f2] shadow-[0_10px_30px_-18px_rgba(28,22,19,0.25)] [--nav-h:64px] lg:[--nav-h:72px]"
+        style={{
+          top: "var(--nav-h)",
+          transform:
+            stuck && navHidden
+              ? "translate3d(0,calc(-1 * var(--nav-h)),0)"
+              : "translate3d(0,0,0)",
+          transition: "transform 300ms cubic-bezier(0.25,0.1,0.25,1)",
+          willChange: "transform",
+        }}
+      >
+        <div className="relative mx-auto max-w-7xl">
+          {/* Left shadow fade + scroll arrow */}
+          <div
+            className={`pointer-events-none absolute left-0 top-0 bottom-0 z-20 flex items-center pl-2 md:pl-4 transition-all duration-300 ${
+              canScrollLeft
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-2 pointer-events-none"
+            }`}
+            aria-hidden={!canScrollLeft}
+          >
+            <div
+              className="pointer-events-none absolute inset-y-0 left-0 w-20 md:w-28"
+              style={{
+                background:
+                  "linear-gradient(to right, #fbf8f2 0%, rgba(251, 248, 242, 0.92) 50%, rgba(251, 248, 242, 0) 100%)",
+              }}
+            />
+            <button
+              type="button"
+              onClick={() => scrollNav("left")}
+              disabled={!canScrollLeft}
+              tabIndex={canScrollLeft ? 0 : -1}
+              aria-label="Défiler vers la gauche"
+              className="pointer-events-auto relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-primary/40 bg-dark text-primary shadow-[0_4px_16px_rgba(28,22,19,0.25),0_0_10px_rgba(200,154,43,0.18)] transition-all duration-200 hover:scale-110 hover:border-primary hover:bg-[#2b1d14] hover:text-primary-light hover:shadow-[0_6px_22px_rgba(200,154,43,0.35)] active:scale-95 disabled:pointer-events-none cursor-pointer md:h-8.5 md:w-8.5"
+            >
+              <ChevronLeft size={16} strokeWidth={2.5} />
+            </button>
+          </div>
+
+          {/* Right shadow fade + scroll arrow */}
+          <div
+            className={`pointer-events-none absolute right-0 top-0 bottom-0 z-20 flex items-center justify-end pr-2 md:pr-4 transition-all duration-300 ${
+              canScrollRight
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-2 pointer-events-none"
+            }`}
+            aria-hidden={!canScrollRight}
+          >
+            <div
+              className="pointer-events-none absolute inset-y-0 right-0 w-20 md:w-28"
+              style={{
+                background:
+                  "linear-gradient(to left, #fbf8f2 0%, rgba(251, 248, 242, 0.92) 50%, rgba(251, 248, 242, 0) 100%)",
+              }}
+            />
+            <button
+              type="button"
+              onClick={() => scrollNav("right")}
+              disabled={!canScrollRight}
+              tabIndex={canScrollRight ? 0 : -1}
+              aria-label="Défiler vers la droite"
+              className="pointer-events-auto relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-primary/40 bg-dark text-primary shadow-[0_4px_16px_rgba(28,22,19,0.25),0_0_10px_rgba(200,154,43,0.18)] transition-all duration-200 hover:scale-110 hover:border-primary hover:bg-[#2b1d14] hover:text-primary-light hover:shadow-[0_6px_22px_rgba(200,154,43,0.35)] active:scale-95 disabled:pointer-events-none cursor-pointer md:h-8.5 md:w-8.5"
+            >
+              <ChevronRight size={16} strokeWidth={2.5} />
+            </button>
+          </div>
+
+          {/* Scrollable category list */}
+          <div
+            ref={navScrollRef}
+            className="flex items-center gap-2.5 overflow-x-auto px-6 py-4 no-scrollbar scroll-smooth md:px-10"
+          >
+            {tabs.map((x) => (
+              <button
+                key={x.key}
+                onClick={(e) => {
+                  setActiveCategoryKey(x.key);
+                  scrollToTab(e.currentTarget);
+                }}
+                className={`shrink-0 rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.18em] transition-all ${
+                  activeCategoryKey === x.key
+                    ? "bg-dark text-cream shadow-lg"
+                    : "border border-dark/10 bg-white/70 text-dark/60 hover:border-dark/25 hover:text-dark"
+                }`}
+              >
+                {x.label}
+              </button>
+            ))}
+            <div className="ml-auto hidden shrink-0 items-center gap-2 md:flex">
+              <button
+                onClick={() => setBookOpen(true)}
+                className="btn-ghost shrink-0 !px-5 !py-2.5 !text-[11px]"
+              >
+                <BookOpenText size={14} /> {t("menuPremiumMenuBookCta")}
+              </button>
+              <Link
+                href="/contact"
+                className="btn-gold shrink-0 !px-5 !py-2.5 !text-[11px]"
+              >
+                {t("menuHeroOrderCta")} <ArrowRight size={14} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
 export default function MenuPremium() {
   const { data, t, language, dir } = useLanguage();
-  const {
-    hidden: navHidden,
-    atTop: navAtTop,
-    navHeight,
-  } = useNavbarVisibility();
   const [activeCategoryKey, setActiveCategoryKey] = useState(ALL_CATEGORY_KEY);
   const [bookOpen, setBookOpen] = useState(false);
 
@@ -400,84 +566,84 @@ export default function MenuPremium() {
   // sub-header inside the section.
   type SectionKey = "breakfast" | "pastry" | "coffee" | "milkTea" | "cold";
 
- const SECTION_LABEL: Record<SectionKey, Record<Language, string>> = {
-   breakfast: {
-     en: "Breakfast",
-     fr: "Petit-Déjeuner",
-     ar: "وجبات الفطور",
-   },
-   pastry: {
-     en: "Pastry",
-     fr: "Pâtisserie",
-     ar: "المعجنات والحلويات",
-   },
-   coffee: {
-     en: "Coffee",
-     fr: "Cafés",
-     ar: "القهوة",
-   },
-   milkTea: {
-     en: "Milk & Tea",
-     fr: "Laits & Thés",
-     ar: "الحليب والشاي",
-   },
-   cold: {
-     en: "Cold Drinks",
-     fr: "Boissons Fraîches",
-     ar: "المشروبات الباردة",
-   },
- };
+  const SECTION_LABEL: Record<SectionKey, Record<Language, string>> = {
+    breakfast: {
+      en: "Breakfast",
+      fr: "Petit-Déjeuner",
+      ar: "وجبات الفطور",
+    },
+    pastry: {
+      en: "Pastry",
+      fr: "Pâtisserie",
+      ar: "المعجنات والحلويات",
+    },
+    coffee: {
+      en: "Coffee",
+      fr: "Cafés",
+      ar: "القهوة",
+    },
+    milkTea: {
+      en: "Milk & Tea",
+      fr: "Laits & Thés",
+      ar: "الحليب والشاي",
+    },
+    cold: {
+      en: "Cold Drinks",
+      fr: "Boissons Fraîches",
+      ar: "المشروبات الباردة",
+    },
+  };
 
- const SECTION_OF: Record<Language, Record<string, SectionKey>> = {
-   en: {
-     Breakfast: "breakfast",
-     Omelets: "breakfast",
-     Soup: "breakfast",
-     Extras: "breakfast",
-     "Waffles, Crepes & Pancakes": "pastry",
-     "Pastries & Desserts": "pastry",
-     Coffee: "coffee",
-     "Iced Coffee": "coffee",
-     "Milk & Tea": "milkTea",
-     "Smoothies & Milkshakes": "cold",
-     Mojito: "cold",
-     Juices: "cold",
-     "Cocktails & Fruit Salads": "cold",
-     "Soft Drinks": "cold",
-   },
-   fr: {
-     "Petit-Déjeuner": "breakfast",
-     Omelettes: "breakfast",
-     Soupes: "breakfast",
-     Suppléments: "breakfast",
-     "Gaufres, Crêpes & Pancakes": "pastry",
-     "Pâtisseries & Desserts": "pastry",
-     Cafés: "coffee",
-     "Cafés Glacés": "coffee",
-     "Laits & Thés": "milkTea",
-     "Smoothies & Milkshakes": "cold",
-     Mojitos: "cold",
-     "Jus Frais": "cold",
-     "Cocktails & Salades de Fruits": "cold",
-     "Boissons Gazeuses & Eaux": "cold",
-   },
-   ar: {
-     "وجبات الفطور": "breakfast",
-     الأومليت: "breakfast",
-     "الشوربة والحساء": "breakfast",
-     إضافات: "breakfast",
-     "الوافل، الكريب والبانكيك": "pastry",
-     "المعجنات والحلويات": "pastry",
-     القهوة: "coffee",
-     "القهوة المثلجة": "coffee",
-     "الحليب والشاي": "milkTea",
-     "السموذي والميلك شيك": "cold",
-     الموهيتو: "cold",
-     "العصائر الطبيعية": "cold",
-     "الكوكتيلات وسلطات الفواكه": "cold",
-     "المشروبات الغازية والمياه": "cold",
-   },
- };
+  const SECTION_OF: Record<Language, Record<string, SectionKey>> = {
+    en: {
+      Breakfast: "breakfast",
+      Omelets: "breakfast",
+      Soup: "breakfast",
+      Extras: "breakfast",
+      "Waffles, Crepes & Pancakes": "pastry",
+      "Pastries & Desserts": "pastry",
+      Coffee: "coffee",
+      "Iced Coffee": "coffee",
+      "Milk & Tea": "milkTea",
+      "Smoothies & Milkshakes": "cold",
+      Mojito: "cold",
+      Juices: "cold",
+      "Cocktails & Fruit Salads": "cold",
+      "Soft Drinks": "cold",
+    },
+    fr: {
+      "Petit-Déjeuner": "breakfast",
+      Omelettes: "breakfast",
+      Soupes: "breakfast",
+      Suppléments: "breakfast",
+      "Gaufres, Crêpes & Pancakes": "pastry",
+      "Pâtisseries & Desserts": "pastry",
+      Cafés: "coffee",
+      "Cafés Glacés": "coffee",
+      "Laits & Thés": "milkTea",
+      "Smoothies & Milkshakes": "cold",
+      Mojitos: "cold",
+      "Jus Frais": "cold",
+      "Cocktails & Salades de Fruits": "cold",
+      "Boissons Gazeuses & Eaux": "cold",
+    },
+    ar: {
+      "وجبات الفطور": "breakfast",
+      الأومليت: "breakfast",
+      "الشوربة والحساء": "breakfast",
+      إضافات: "breakfast",
+      "الوافل، الكريب والبانكيك": "pastry",
+      "المعجنات والحلويات": "pastry",
+      القهوة: "coffee",
+      "القهوة المثلجة": "coffee",
+      "الحليب والشاي": "milkTea",
+      "السموذي والميلك شيك": "cold",
+      الموهيتو: "cold",
+      "العصائر الطبيعية": "cold",
+      "الكوكتيلات وسلطات الفواكه": "cold",
+      "المشروبات الغازية والمياه": "cold",
+    },
+  };
 
   // Resolve an item's original category to its parent section label.
   // Unknown categories fall back to a section of their own name.
@@ -531,12 +697,13 @@ export default function MenuPremium() {
 
   const activeTabIndex = tabIndexForKey(activeCategoryKey);
 
-  // Tabs are the catalogue categories themselves — filter by direct
-  // category equality (items and categories come from the same locale).
-  const tabs = [
-    { key: ALL_CATEGORY_KEY, label: t("menuPremiumTabAll") },
-    ...categories.map((c, i) => ({ key: tabKeyForIndex(i), label: c })),
-  ];
+  const tabs = useMemo(
+    () => [
+      { key: ALL_CATEGORY_KEY, label: t("menuPremiumTabAll") },
+      ...categories.map((c, i) => ({ key: tabKeyForIndex(i), label: c })),
+    ],
+    [t, categories],
+  );
 
   useEffect(() => {
     const el = navScrollRef.current;
@@ -706,113 +873,19 @@ export default function MenuPremium() {
         }}
       />
 
-      {/* Sticky category nav — docks to the viewport top while the navbar
-          is hidden, slides back underneath it when the navbar returns. */}
-      <motion.div
-        className="sticky top-0 z-30 border-b border-dark/8 bg-ivory/95 shadow-[0_10px_30px_-18px_rgba(28,22,19,0.35)] backdrop-blur-xl"
-        animate={{ top: navHidden ? 0 : navHeight }}
-        transition={{
-          duration: navAtTop ? 0 : 0.32,
-          ease: [0.25, 0.1, 0.25, 1],
-        }}
-      >
-        <div className="relative mx-auto max-w-7xl">
-          {/* Left shadow fade + scroll arrow */}
-          <div
-            className={`pointer-events-none absolute left-0 top-0 bottom-0 z-20 flex items-center pl-2 md:pl-4 transition-all duration-300 ${
-              canScrollLeft
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-2 pointer-events-none"
-            }`}
-            aria-hidden={!canScrollLeft}
-          >
-            {/* Pure ivory gradient fade without dark inset shadow (prevents color distortion) */}
-            <div
-              className="pointer-events-none absolute inset-y-0 left-0 w-20 md:w-28"
-              style={{
-                background:
-                  "linear-gradient(to right, #fbf8f2 0%, rgba(251, 248, 242, 0.92) 50%, rgba(251, 248, 242, 0) 100%)",
-              }}
-            />
-            <button
-              type="button"
-              onClick={() => scrollNav("left")}
-              disabled={!canScrollLeft}
-              tabIndex={canScrollLeft ? 0 : -1}
-              aria-label="Défiler vers la gauche"
-              className="pointer-events-auto relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-primary/40 bg-dark text-primary shadow-[0_4px_16px_rgba(28,22,19,0.25),0_0_10px_rgba(200,154,43,0.18)] transition-all duration-200 hover:scale-110 hover:border-primary hover:bg-[#2b1d14] hover:text-primary-light hover:shadow-[0_6px_22px_rgba(200,154,43,0.35)] active:scale-95 disabled:pointer-events-none cursor-pointer md:h-8.5 md:w-8.5"
-            >
-              <ChevronLeft size={16} strokeWidth={2.5} />
-            </button>
-          </div>
-
-          {/* Right shadow fade + scroll arrow */}
-          <div
-            className={`pointer-events-none absolute right-0 top-0 bottom-0 z-20 flex items-center justify-end pr-2 md:pr-4 transition-all duration-300 ${
-              canScrollRight
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-2 pointer-events-none"
-            }`}
-            aria-hidden={!canScrollRight}
-          >
-            {/* Pure ivory gradient fade without dark inset shadow (prevents color distortion) */}
-            <div
-              className="pointer-events-none absolute inset-y-0 right-0 w-20 md:w-28"
-              style={{
-                background:
-                  "linear-gradient(to left, #fbf8f2 0%, rgba(251, 248, 242, 0.92) 50%, rgba(251, 248, 242, 0) 100%)",
-              }}
-            />
-            <button
-              type="button"
-              onClick={() => scrollNav("right")}
-              disabled={!canScrollRight}
-              tabIndex={canScrollRight ? 0 : -1}
-              aria-label="Défiler vers la droite"
-              className="pointer-events-auto relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-primary/40 bg-dark text-primary shadow-[0_4px_16px_rgba(28,22,19,0.25),0_0_10px_rgba(200,154,43,0.18)] transition-all duration-200 hover:scale-110 hover:border-primary hover:bg-[#2b1d14] hover:text-primary-light hover:shadow-[0_6px_22px_rgba(200,154,43,0.35)] active:scale-95 disabled:pointer-events-none cursor-pointer md:h-8.5 md:w-8.5"
-            >
-              <ChevronRight size={16} strokeWidth={2.5} />
-            </button>
-          </div>
-
-          {/* Scrollable category list */}
-          <div
-            ref={navScrollRef}
-            className="flex items-center gap-2.5 overflow-x-auto px-6 py-4 no-scrollbar scroll-smooth md:px-10"
-          >
-            {tabs.map((x) => (
-              <button
-                key={x.key}
-                onClick={(e) => {
-                  setActiveCategoryKey(x.key);
-                  scrollToTab(e.currentTarget);
-                }}
-                className={`shrink-0 rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.18em] transition-all ${
-                  activeCategoryKey === x.key
-                    ? "bg-dark text-cream shadow-lg"
-                    : "border border-dark/10 bg-white/70 text-dark/60 hover:border-dark/25 hover:text-dark"
-                }`}
-              >
-                {x.label}
-              </button>
-            ))}
-            <div className="ml-auto hidden shrink-0 items-center gap-2 md:flex">
-              <button
-                onClick={() => setBookOpen(true)}
-                className="btn-ghost shrink-0 !px-5 !py-2.5 !text-[11px]"
-              >
-                <BookOpenText size={14} /> {t("menuPremiumMenuBookCta")}
-              </button>
-              <Link
-                href="/contact"
-                className="btn-gold shrink-0 !px-5 !py-2.5 !text-[11px]"
-              >
-                {t("menuHeroOrderCta")} <ArrowRight size={14} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </motion.div>
+      {/* Sticky category nav */}
+      <StickyCategoryNav
+        canScrollLeft={canScrollLeft}
+        canScrollRight={canScrollRight}
+        scrollNav={scrollNav}
+        navScrollRef={navScrollRef}
+        tabs={tabs}
+        activeCategoryKey={activeCategoryKey}
+        setActiveCategoryKey={setActiveCategoryKey}
+        scrollToTab={scrollToTab}
+        setBookOpen={setBookOpen}
+        t={t}
+      />
 
       {/* Paper menu band */}
       <div className="relative border-b border-dark/8 bg-[#f4ecdc]">
@@ -884,7 +957,7 @@ export default function MenuPremium() {
                   onClick={() => scrollFeatured("left")}
                   disabled={!canScrollFeaturedLeft}
                   aria-label={language === "ar" ? "السابق" : "Précédent"}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-dark/12 bg-white/90 text-dark/75 shadow-[0_2px_8px_rgba(28,22,19,0.06)] backdrop-blur-md transition-all duration-200 hover:scale-105 hover:border-dark hover:bg-dark hover:text-cream active:scale-95 disabled:pointer-events-none disabled:opacity-25 cursor-pointer"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-dark/12 bg-white/90 text-dark/75 shadow-[0_2px_8px_rgba(28,22,19,0.06)] transition-all duration-200 hover:scale-105 hover:border-dark hover:bg-dark hover:text-cream active:scale-95 disabled:pointer-events-none disabled:opacity-25 cursor-pointer"
                 >
                   <ChevronLeft size={16} strokeWidth={2.5} />
                 </button>
@@ -893,7 +966,7 @@ export default function MenuPremium() {
                   onClick={() => scrollFeatured("right")}
                   disabled={!canScrollFeaturedRight}
                   aria-label={language === "ar" ? "التالي" : "Suivant"}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-dark/12 bg-white/90 text-dark/75 shadow-[0_2px_8px_rgba(28,22,19,0.06)] backdrop-blur-md transition-all duration-200 hover:scale-105 hover:border-dark hover:bg-dark hover:text-cream active:scale-95 disabled:pointer-events-none disabled:opacity-25 cursor-pointer"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-dark/12 bg-white/90 text-dark/75 shadow-[0_2px_8px_rgba(28,22,19,0.06)] transition-all duration-200 hover:scale-105 hover:border-dark hover:bg-dark hover:text-cream active:scale-95 disabled:pointer-events-none disabled:opacity-25 cursor-pointer"
                 >
                   <ChevronRight size={16} strokeWidth={2.5} />
                 </button>
@@ -906,75 +979,86 @@ export default function MenuPremium() {
                 ref={featuredScrollRef}
                 className="flex gap-2 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-4 pt-2 -mx-2 px-2"
               >
-              {popularItems.map((item, idx) => (
-                <div
-                  key={item.id}
-                  className="group relative flex w-[285px] sm:w-[325px] md:w-[355px] shrink-0 snap-start flex-col overflow-hidden rounded-[26px] border border-primary/20 bg-gradient-to-b from-white/95 via-[#fcfaf7] to-[#f7f2ea]/90 p-4 shadow-[0_12px_36px_-16px_rgba(28,22,19,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/45 hover:shadow-[0_24px_50px_-16px_rgba(200,154,43,0.25)]"
-                >
-                  {/* Photo Stage */}
-                  <div className="relative aspect-[16/11] w-full overflow-hidden rounded-[20px] bg-cream/70 shadow-xs">
-                    {item.image ? (
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        fill
-                        sizes="(max-width: 640px) 285px, 355px"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
-                      />
-                    ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-ivory">
-                        <UtensilsCrossed size={32} className="text-primary/40" />
+                {popularItems.map((item, idx) => (
+                  <div
+                    key={item.id}
+                    className="group relative flex w-[285px] sm:w-[325px] md:w-[355px] shrink-0 snap-start flex-col overflow-hidden rounded-[26px] border border-primary/20 bg-gradient-to-b from-white/95 via-[#fcfaf7] to-[#f7f2ea]/90 p-4 shadow-[0_12px_36px_-16px_rgba(28,22,19,0.08)] transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/45 hover:shadow-[0_24px_50px_-16px_rgba(200,154,43,0.25)]"
+                  >
+                    {/* Photo Stage */}
+                    <div className="relative aspect-[16/11] w-full overflow-hidden rounded-[20px] bg-cream/70 shadow-xs">
+                      {item.image ? (
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          fill
+                          sizes="(max-width: 640px) 285px, 355px"
+                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-ivory">
+                          <UtensilsCrossed
+                            size={32}
+                            className="text-primary/40"
+                          />
+                        </div>
+                      )}
+
+                      {/* Ambient subtle vignette */}
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
+
+                      {/* Popular Star Badge */}
+                      <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-primary/35 bg-dark/85 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#d9b25e] shadow-md">
+                        <Sparkles
+                          size={11}
+                          className="text-primary animate-pulse"
+                        />
+                        <span>{t("menuPremiumSignature")}</span>
                       </div>
-                    )}
 
-                    {/* Ambient subtle vignette */}
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
-
-                    {/* Popular Star Badge */}
-                    <div className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-primary/35 bg-dark/85 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#d9b25e] shadow-md backdrop-blur-md">
-                      <Sparkles size={11} className="text-primary animate-pulse" />
-                      <span>{t("menuPremiumSignature")}</span>
+                      {/* Price Tag Pill */}
+                      <div className="absolute right-3 bottom-3 inline-flex items-baseline rounded-full border border-dark/8 bg-white/95 px-3.5 py-1 text-[13px] font-bold text-dark shadow-md">
+                        <span className="font-extrabold text-primary-dark">
+                          {formatPrice(item.price)}
+                        </span>
+                        <span className="ml-1 text-[10px] font-bold text-dark/60">
+                          DH
+                        </span>
+                      </div>
                     </div>
 
-                    {/* Price Tag Pill */}
-                    <div className="absolute right-3 bottom-3 inline-flex items-baseline rounded-full border border-dark/8 bg-white/95 px-3.5 py-1 text-[13px] font-bold text-dark shadow-md backdrop-blur-md">
-                      <span className="font-extrabold text-primary-dark">
-                        {formatPrice(item.price)}
+                    {/* Body Content */}
+                    <div className="mt-3.5 flex flex-1 flex-col">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary-dark/85">
+                        {item.category}
                       </span>
-                      <span className="ml-1 text-[10px] font-bold text-dark/60">DH</span>
+                      <h4 className="mt-1 line-clamp-1 font-serif text-xl font-medium tracking-tight text-dark transition-colors duration-200 group-hover:text-primary">
+                        {item.name}
+                      </h4>
+                      {item.description && (
+                        <p className="mt-1.5 line-clamp-2 min-h-[2.5em] text-xs leading-relaxed text-dark/65">
+                          {item.description}
+                        </p>
+                      )}
+
+                      {/* Action Footer */}
+                      <div className="mt-auto flex items-center justify-between border-t border-dark/6 pt-3.5">
+                        <Link
+                          href="/contact"
+                          className="inline-flex items-center gap-1.5 rounded-full bg-dark px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-cream shadow-sm transition-all duration-200 group-hover:bg-primary group-hover:text-dark"
+                        >
+                          <span>{t("menuHeroOrderCta")}</span>
+                          <ArrowRight
+                            size={12}
+                            className="transition-transform group-hover:translate-x-0.5"
+                          />
+                        </Link>
+                        <span className="font-serif text-xs italic text-dark/40">
+                          № {String(idx + 1).padStart(2, "0")}
+                        </span>
+                      </div>
                     </div>
                   </div>
-
-                  {/* Body Content */}
-                  <div className="mt-3.5 flex flex-1 flex-col">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-primary-dark/85">
-                      {item.category}
-                    </span>
-                    <h4 className="mt-1 line-clamp-1 font-serif text-xl font-medium tracking-tight text-dark transition-colors duration-200 group-hover:text-primary">
-                      {item.name}
-                    </h4>
-                    {item.description && (
-                      <p className="mt-1.5 line-clamp-2 min-h-[2.5em] text-xs leading-relaxed text-dark/65">
-                        {item.description}
-                      </p>
-                    )}
-
-                    {/* Action Footer */}
-                    <div className="mt-auto flex items-center justify-between border-t border-dark/6 pt-3.5">
-                      <Link
-                        href="/contact"
-                        className="inline-flex items-center gap-1.5 rounded-full bg-dark px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-cream shadow-sm transition-all duration-200 group-hover:bg-primary group-hover:text-dark"
-                      >
-                        <span>{t("menuHeroOrderCta")}</span>
-                        <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
-                      </Link>
-                      <span className="font-serif text-xs italic text-dark/40">
-                        № {String(idx + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))}
               </div>
             </div>
 

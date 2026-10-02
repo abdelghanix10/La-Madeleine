@@ -196,7 +196,7 @@ export const menuItems = [
     description:
       "Hssoua, une boisson chaude, jus d'orange frais, msemen ou meloui, harcha, miel, jben et eau minérale.",
     price: 28.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/breakfast-beldi.webp",
   },
   {
@@ -598,7 +598,7 @@ export const menuItems = [
     description:
       "Une boule de glace vanille « noyée » dans un shot d'espresso brûlant.",
     price: 18.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/affogato.webp",
   },
   {
@@ -780,7 +780,7 @@ export const menuItems = [
     category: "Gaufres, Crêpes & Pancakes",
     description: "Fine crêpe généreusement fourrée au Nutella fondant.",
     price: 19.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/crepe-nutella.webp",
   },
   {
@@ -1164,7 +1164,7 @@ export const menuItems = [
     category: "Smoothies & Milkshakes",
     description: "Fraises fraîches mixées en une boisson douce et fruitée.",
     price: 23.0,
-    popular: false,
+    popular: true,
     image: "/images/menu/smoothie-fraise.webp",
   },
   {
@@ -1201,7 +1201,7 @@ export const menuItems = [
     category: "Smoothies & Milkshakes",
     description: "Milkshake épais et très crémeux au chocolat gourmand.",
     price: 23.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/milkshake-choco.webp",
   },
   {
@@ -1237,7 +1237,7 @@ export const menuItems = [
     category: "Smoothies & Milkshakes",
     description: "Milkshake crémeux mixé avec des brisures de biscuits Oreo.",
     price: 26.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/milkshake-oreo.webp",
   },
 
@@ -1280,7 +1280,7 @@ export const menuItems = [
     category: "Jus Frais",
     description: "Jus d'oranges fraîches pressées à la commande.",
     price: 16.0,
-    popular: true,
+    popular: false,
     image: "/images/menu/jus-orange.webp",
   },
   {
@@ -1352,7 +1352,7 @@ export const menuItems = [
     category: "Jus Frais",
     description: "Mélange de fruits frais mixés avec du jus d'orange pressé.",
     price: 23.0,
-    popular: false,
+    popular: true,
     image: "/images/menu/jus-panache-orange.webp",
   },
   {
