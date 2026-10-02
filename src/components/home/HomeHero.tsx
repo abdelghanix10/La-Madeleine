@@ -179,7 +179,10 @@ export default function HomeHero() {
             className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-dark/10 pt-6"
           >
             {[
-              ["06", t("homeHeroStatCraftLabel")],
+              [
+                new Date().getFullYear() - data.siteConfig.science,
+                t("homeHeroStatCraftLabel"),
+              ],
               ["150+", t("homeHeroStatCreationsLabel")],
               ["7j/7", t("homeHeroStatHoursLabel")],
             ].map(([v, l]) => (

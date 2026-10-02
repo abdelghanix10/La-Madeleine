@@ -8,7 +8,7 @@ import { Eyebrow } from "@/components/ui/Brand";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function HomeIntro() {
-  const { t } = useLanguage();
+  const { data, t } = useLanguage();
 
   return (
     <section className="overflow-visible bg-ivory py-20 md:py-28">
@@ -43,7 +43,7 @@ export default function HomeIntro() {
             <span className="h-12 w-px bg-dark/10" aria-hidden />
             <div className="flex items-center gap-3">
               <span className="font-serif text-[44px] font-medium leading-none text-dark">
-                7+
+                {new Date().getFullYear() - data.siteConfig.science}
               </span>
               <span className="text-[11px] font-semibold uppercase leading-[1.5] tracking-[0.22em] text-dark/50">
                 {t("homeIntroYearsLabel")}
@@ -67,7 +67,7 @@ export default function HomeIntro() {
                 Est.
               </span>
               <span className="my-0.5 font-serif text-[26px] font-medium italic leading-none text-dark">
-                2018
+                {data.siteConfig.science}
               </span>
               <span className="text-[9px] font-bold uppercase tracking-[0.24em] text-primary-dark">
                 Agadir

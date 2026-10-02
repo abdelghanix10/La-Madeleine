@@ -6,7 +6,7 @@ import { Eyebrow, ArrowLink } from "@/components/ui/Brand";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function HomeStoryPreview() {
-  const { t } = useLanguage();
+  const { data, t } = useLanguage();
 
   return (
     <section className="bg-ivory py-20 md:py-28">
@@ -25,7 +25,9 @@ export default function HomeStoryPreview() {
             />
           </div>
           <div className="absolute -bottom-6 left-6 right-6 flex items-center gap-5 rounded-2xl bg-dark p-5 text-cream shadow-2xl md:left-10 md:right-auto">
-            <p className="font-serif text-5xl leading-none text-primary">06</p>
+            <p className="font-serif text-5xl leading-none text-primary">
+              {new Date().getFullYear() - data.siteConfig.science}
+            </p>
             <p className="text-[12px] uppercase leading-relaxed tracking-[0.18em] text-cream/70">
               {t("homeStoryYearsLabel")}
               <br />
