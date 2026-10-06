@@ -13,67 +13,81 @@ type Product = (typeof shopProductsEN)[number];
 
 type FilterKey =
   | "all"
-  | "pastries"
-  | "savory"
-  | "bakery"
-  | "cafes"
+  | "breakfast"
+  | "pastries_desserts"
+  | "coffees"
+  | "cold_drinks"
+  | "hot_drinks"
   | "juices"
-  | "drinks"
-  | "extras";
+  | "extras"
+  | "bakery";
 
 // Stable filter keys with translated labels.
 // Filtering is done by product `id` (stable across EN/FR/AR),
 // so switching language never breaks the category match.
-const COLLECTIONS: { key: FilterKey; i18nKey: "shopPremiumFilterAll" | "shopPremiumFilterPastries" | "shopPremiumFilterSavory" | "shopPremiumFilterBakery" | "shopPremiumFilterCafes" | "shopPremiumFilterJuices" | "shopPremiumFilterDrinks" | "shopPremiumFilterExtras" }[] = [
+const COLLECTIONS: {
+  key: FilterKey;
+  i18nKey:
+    | "shopPremiumFilterAll"
+    | "shopPremiumFilterBreakfast"
+    | "shopPremiumFilterPastries"
+    | "shopPremiumFilterCoffees"
+    | "shopPremiumFilterColdDrinks"
+    | "shopPremiumFilterHotDrinks"
+    | "shopPremiumFilterJuices"
+    | "shopPremiumFilterExtras"
+    | "shopPremiumFilterBakery";
+}[] = [
   { key: "all", i18nKey: "shopPremiumFilterAll" },
-  { key: "pastries", i18nKey: "shopPremiumFilterPastries" },
-  { key: "savory", i18nKey: "shopPremiumFilterSavory" },
-  { key: "bakery", i18nKey: "shopPremiumFilterBakery" },
-  { key: "cafes", i18nKey: "shopPremiumFilterCafes" },
+  { key: "breakfast", i18nKey: "shopPremiumFilterBreakfast" },
+  { key: "pastries_desserts", i18nKey: "shopPremiumFilterPastries" },
+  { key: "coffees", i18nKey: "shopPremiumFilterCoffees" },
+  { key: "cold_drinks", i18nKey: "shopPremiumFilterColdDrinks" },
+  { key: "hot_drinks", i18nKey: "shopPremiumFilterHotDrinks" },
   { key: "juices", i18nKey: "shopPremiumFilterJuices" },
-  { key: "drinks", i18nKey: "shopPremiumFilterDrinks" },
   { key: "extras", i18nKey: "shopPremiumFilterExtras" },
+  { key: "bakery", i18nKey: "shopPremiumFilterBakery" },
 ];
 
 // Reference grouping built once from EN (clean category strings).
 // `id` is parallel across data.ts / data-fr.ts / data-ar.ts.
+const BREAKFAST_IDS = new Set(
+  shopProductsEN.filter((p) => p.category === "Breakfast").map((p) => p.id),
+);
 const PASTRY_IDS = new Set(
   shopProductsEN
     .filter((p) => p.category === "Pastries & Desserts")
     .map((p) => p.id),
 );
-const SAVORY_IDS = new Set(
-  shopProductsEN
-    .filter((p) => p.category === "Breakfast & Savory")
-    .map((p) => p.id),
-);
-const BAKERY_IDS = new Set(
-  shopProductsEN.filter((p) => p.category === "Bakery").map((p) => p.id),
-);
-const CAFE_IDS = new Set(
+const COFFEES_IDS = new Set(
   shopProductsEN.filter((p) => p.category === "Coffees").map((p) => p.id),
+);
+const COLD_DRINKS_IDS = new Set(
+  shopProductsEN.filter((p) => p.category === "Cold Drinks").map((p) => p.id),
+);
+const HOT_DRINKS_IDS = new Set(
+  shopProductsEN.filter((p) => p.category === "Hot Drinks").map((p) => p.id),
 );
 const JUICE_IDS = new Set(
   shopProductsEN.filter((p) => p.category === "Juices").map((p) => p.id),
 );
-const DRINK_IDS = new Set(
-  shopProductsEN
-    .filter((p) => p.category === "Hot Drinks" || p.category === "Cold Drinks")
-    .map((p) => p.id),
-);
 const EXTRA_IDS = new Set(
   shopProductsEN.filter((p) => p.category === "Extras").map((p) => p.id),
+);
+const BAKERY_IDS = new Set(
+  shopProductsEN.filter((p) => p.category === "Bakery").map((p) => p.id),
 );
 
 function inCollection(p: Product, key: FilterKey) {
   if (key === "all") return true;
-  if (key === "pastries") return PASTRY_IDS.has(p.id);
-  if (key === "savory") return SAVORY_IDS.has(p.id);
-  if (key === "bakery") return BAKERY_IDS.has(p.id);
-  if (key === "cafes") return CAFE_IDS.has(p.id);
+  if (key === "breakfast") return BREAKFAST_IDS.has(p.id);
+  if (key === "pastries_desserts") return PASTRY_IDS.has(p.id);
+  if (key === "coffees") return COFFEES_IDS.has(p.id);
+  if (key === "cold_drinks") return COLD_DRINKS_IDS.has(p.id);
+  if (key === "hot_drinks") return HOT_DRINKS_IDS.has(p.id);
   if (key === "juices") return JUICE_IDS.has(p.id);
-  if (key === "drinks") return DRINK_IDS.has(p.id);
   if (key === "extras") return EXTRA_IDS.has(p.id);
+  if (key === "bakery") return BAKERY_IDS.has(p.id);
   return true;
 }
 
@@ -111,8 +125,7 @@ export default function ShopPremium() {
     if (sort === "price-desc")
       list = [...list].sort((a, b) => b.price - a.price);
     if (sort === "rating") list = [...list].sort((a, b) => b.rating - a.rating);
-    if (sort === "featured")
-      list = [...list].sort((a, b) => b.rating - a.rating);
+    if (sort === "featured") list = [...list];
     return list;
   }, [products, cat, q, sort]);
 
