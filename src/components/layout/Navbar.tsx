@@ -60,7 +60,7 @@ function LanguageSwitcher({
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { t } = useLanguage();
+  const { data, t } = useLanguage();
   const NAV_LINKS = [
     { href: "/", label: t("footerNavHome") },
     { href: "/about", label: t("footerNavAbout") },
@@ -480,7 +480,7 @@ export default function Navbar() {
                     href="tel:0528264344"
                     className="mt-3 inline-flex items-center gap-2 text-[13px] font-semibold text-cream hover:text-primary"
                   >
-                    <Phone size={14} /> 05 28 26 43 44
+                    <Phone size={14} /> {data.siteConfig.phone}
                   </a>
                 </div>
               </nav>

@@ -214,7 +214,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-cream/10 pt-6 md:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-cream/10 pt-6 lg:flex-row">
           <p className="text-xs text-cream/40">
             © {new Date().getFullYear()} {siteConfig.name}. {t("footerRights")}
           </p>
@@ -234,10 +234,10 @@ export default function Footer() {
             {/* <Link href="/faq" className="transition-colors hover:text-primary">
               {t("footerFaq")}
             </Link> */}
+          </div>
             <p className="font-script text-xl text-primary/80">
               {t("footerTagline")}
             </p>
-          </div>
         </div>
       </div>
     </footer>

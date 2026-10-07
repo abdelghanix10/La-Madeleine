@@ -13,24 +13,31 @@ const sfProAR = localFont({
   src: "../../public/fonts/SFProAR_semibold.ttf",
   variable: "--font-sf-arabic",
   display: "swap",
+  declarations: [
+    {
+      prop: "unicode-range",
+      value:
+        "U+0600-06FF, U+0750-077F, U+0870-089F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+10E60-10E7E, U+1EE00-1EEFF",
+    },
+  ],
 });
 
 const cormorant = Cormorant_Garamond({
-  variable: "--font-serif",
+  variable: "--font-cormorant",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
 const inter = Inter({
-  variable: "--font-sans",
+  variable: "--font-inter",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
 const greatVibes = Great_Vibes({
-  variable: "--font-script",
+  variable: "--font-great-vibes",
   subsets: ["latin"],
   weight: "400",
   display: "swap",
