@@ -89,12 +89,12 @@ export default function HomeHero() {
       </span>
       <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pb-16 pt-10 md:px-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:gap-6 lg:pb-24 lg:pt-14">
         {/* Copy */}
-        <div className="relative z-10 pt-4 flex flex-col items-center text-center lg:items-start lg:text-left">
+        <div className="relative z-10 pt-4 flex flex-col items-center text-center lg:items-start lg:text-start rtl:items-start rtl:text-right">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex flex-wrap items-center gap-3"
+            className="flex flex-wrap items-center justify-center gap-3 lg:justify-start"
           >
             <span className="inline-flex items-center gap-2 rounded-full border border-dark/10 bg-white/70 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.25em] text-dark/70 backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-primary" />
@@ -119,7 +119,7 @@ export default function HomeHero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.6 }}
-            className="font-script mt-6 text-3xl text-primary-dark md:text-4xl"
+            className="font-script mt-6 w-full text-center text-3xl text-primary-dark md:text-4xl lg:text-start rtl:text-right"
           >
             {t("homeHeroCategory")}
           </motion.p>
@@ -132,7 +132,7 @@ export default function HomeHero() {
               duration: 0.7,
               ease: [0.25, 0.1, 0.25, 1],
             }}
-            className="display-hero mt-2 font-serif font-medium text-dark"
+            className="display-hero mt-2 w-full font-serif font-medium text-dark text-center lg:text-start rtl:text-right"
           >
             {t("homeHeroTitleLineOne")}
             <br />
@@ -146,7 +146,7 @@ export default function HomeHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="mt-6 max-w-md text-[17px] leading-relaxed text-muted md:text-[19px]"
+            className="mt-6 max-w-md text-center text-[17px] leading-relaxed text-muted md:text-[19px] lg:text-start rtl:text-right"
           >
             {t("homeHeroDescription")}
           </motion.p>
@@ -155,11 +155,11 @@ export default function HomeHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="mt-9 flex flex-wrap items-center justify-center gap-4"
+            className="mt-9 flex w-full flex-wrap items-center justify-center gap-4 lg:justify-start"
           >
             <Link href="/menu" className="btn-primary">
               {t("homeHeroMenuCta")}
-              <ArrowRight size={16} />
+              <ArrowRight size={16} className="rtl:rotate-180" />
             </Link>
             <a
               href={data.siteConfig.mapLink}
@@ -176,7 +176,7 @@ export default function HomeHero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.55, duration: 0.6 }}
-            className="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-dark/10 pt-6"
+            className="mt-12 grid w-full max-w-md grid-cols-3 gap-6 border-t border-dark/10 pt-6 text-center lg:text-start rtl:text-right"
           >
             {[
               [

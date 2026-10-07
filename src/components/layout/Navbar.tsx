@@ -260,11 +260,11 @@ export default function Navbar() {
               {t("navbarHours")}
             </span>
             <a
-              href="tel:0528264344"
+              href={`tel:${data.siteConfig.phone}`}
               className="flex items-center gap-2 transition-colors hover:text-primary"
             >
               <Phone size={12} className="text-primary" />
-              05 28 26 43 44
+              {data.siteConfig.phone}
             </a>
             <span className="h-4 w-px bg-cream/15" aria-hidden />
             <LanguageSwitcher tone="onDark" size="sm" />
@@ -477,7 +477,7 @@ export default function Navbar() {
                     {t("navbarHours")}
                   </p>
                   <a
-                    href="tel:0528264344"
+                    href={`tel:${data.siteConfig.phone}`}
                     className="mt-3 inline-flex items-center gap-2 text-[13px] font-semibold text-cream hover:text-primary"
                   >
                     <Phone size={14} /> {data.siteConfig.phone}

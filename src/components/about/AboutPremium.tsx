@@ -234,8 +234,8 @@ export default function AboutPremium() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-6 rounded-[28px] bg-dark p-8 text-center text-cream md:flex-row md:p-10 md:text-left">
-          <div>
+        <div className="mt-14 flex flex-col items-center justify-between gap-6 rounded-[28px] bg-dark p-8 text-center text-cream md:flex-row md:p-10 md:text-start">
+          <div className="text-center md:text-start">
             <p className="font-script text-3xl text-primary">
               {t("aboutPremiumCtaScript")}
             </p>
@@ -244,7 +244,7 @@ export default function AboutPremium() {
             </p>
           </div>
           <Link href="/menu" className="btn-gold shrink-0">
-            {t("aboutHeroCta")} <ArrowRight size={15} />
+            {t("aboutHeroCta")} <ArrowRight size={15} className="rtl:rotate-180" />
           </Link>
         </div>
       </section>
