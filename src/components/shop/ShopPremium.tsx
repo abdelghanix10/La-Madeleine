@@ -133,8 +133,41 @@ export default function ShopPremium() {
   const hero = cat === "all" && !q ? filtered[0] : null;
   const gridItems = hero ? shown.slice(1) : shown;
 
+  const handleLoadMore = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const btn = e.currentTarget;
+    // 1. Save scroll position and button top before appending items
+    const savedButtonTop = btn.getBoundingClientRect().top;
+    const savedScrollY = window.scrollY;
+
+    // Append items
+    setVisible((v) => v + 12);
+
+    // 2. Restore scroll position inside requestAnimationFrame so viewport doesn't move
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: savedScrollY, behavior: "instant" });
+      const lenis = (
+        window as unknown as {
+          __lenis?: {
+            scrollTo: (target: number, opts?: { immediate?: boolean }) => void;
+          };
+        }
+      ).__lenis;
+      if (lenis) {
+        lenis.scrollTo(savedScrollY, { immediate: true });
+      }
+
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: savedScrollY, behavior: "instant" });
+        if (lenis) {
+          lenis.scrollTo(savedScrollY, { immediate: true });
+        }
+      });
+    });
+  };
+
   return (
-    <div className="bg-ivory">
+    <div className="bg-ivory" style={{ overflowAnchor: "auto" }}>
       <div className="mx-auto max-w-7xl px-6 py-14 md:px-10">
         {/* Toolbar */}
         <ScrollReveal>
@@ -177,6 +210,7 @@ export default function ShopPremium() {
           <div className="mt-5 flex gap-2.5 overflow-x-auto pb-1 no-scrollbar">
             {COLLECTIONS.map((c) => (
               <button
+                type="button"
                 key={c.key}
                 onClick={() => {
                   setCat(c.key);
@@ -203,6 +237,7 @@ export default function ShopPremium() {
         {hero && (
           <ScrollReveal className="mt-6">
             <button
+              type="button"
               onClick={() => setSelected(hero)}
               className="group grid w-full overflow-hidden rounded-[32px] bg-dark text-left text-cream lg:grid-cols-2"
             >
@@ -211,6 +246,8 @@ export default function ShopPremium() {
                   src={hero.image}
                   alt={hero.name}
                   fill
+                  loading="lazy"
+                  decoding="async"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
@@ -255,73 +292,87 @@ export default function ShopPremium() {
         )}
 
         {/* Commerce grid */}
-        <motion.div
-          layout
+        <div
           className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          style={{ overflowAnchor: "auto" }}
         >
-          <AnimatePresence mode="popLayout">
-            {gridItems.map((p) => (
-              <motion.article
-                layout
-                key={p.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.97 }}
-                transition={{ duration: 0.35 }}
-                className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-[26px] border border-dark/8 bg-[#fffdf9] transition-all hover:-translate-y-1.5 hover:shadow-[0_25px_60px_-20px_rgba(28,22,19,0.3)]"
-                onClick={() => setSelected(p)}
+          {gridItems.map((p) => (
+            <motion.article
+              key={p.id}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-[26px] border border-dark/8 bg-[#fffdf9] transition-[transform,box-shadow] duration-300 hover:-translate-y-1.5 hover:shadow-[0_25px_60px_-20px_rgba(28,22,19,0.3)]"
+              onClick={() => setSelected(p)}
+              style={{ willChange: "transform, opacity", overflowAnchor: "auto" }}
+            >
+              <span
+                className="relative block w-full overflow-hidden bg-[#f0e9df]"
+                style={{ width: "100%", aspectRatio: "4 / 3" }}
               >
-                <span className="relative block aspect-[4/3] overflow-hidden bg-cream">
-                  <Image
-                    src={p.image}
-                    alt={p.name}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-107"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <span className="absolute left-4 top-4 rounded-full bg-dark/80 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-cream backdrop-blur">
-                    {p.category}
-                  </span>
-                  <span className="absolute bottom-4 right-4 flex h-11 w-11 translate-y-2 items-center justify-center rounded-full bg-primary text-dark opacity-0 shadow-xl transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    <Plus size={18} strokeWidth={2.5} />
+                {/* Skeleton placeholder with exact dimensions to eliminate layout shift */}
+                <span
+                  className="absolute inset-0 block bg-[#f0e9df] pointer-events-none"
+                  aria-hidden="true"
+                />
+                <Image
+                  src={p.image}
+                  alt={p.name}
+                  width={400}
+                  height={300}
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="relative h-full w-full object-cover transition-transform duration-700 group-hover:scale-107"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    aspectRatio: "4 / 3",
+                  }}
+                />
+                <span className="absolute left-4 top-4 rounded-full bg-dark/80 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-cream backdrop-blur pointer-events-none">
+                  {p.category}
+                </span>
+                <span className="absolute bottom-4 right-4 flex h-11 w-11 translate-y-2 items-center justify-center rounded-full bg-primary text-dark opacity-0 shadow-xl transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 pointer-events-none">
+                  <Plus size={18} strokeWidth={2.5} />
+                </span>
+              </span>
+              <span className="flex flex-1 flex-col p-6">
+                <span className="flex items-center gap-1">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      size={13}
+                      className={
+                        i < Math.round(p.rating)
+                          ? "fill-primary text-primary"
+                          : "text-dark/15"
+                      }
+                    />
+                  ))}
+                  <span className="ml-1.5 text-[12px] font-semibold text-dark/45">
+                    {p.rating.toFixed(1)}
                   </span>
                 </span>
-                <span className="flex flex-1 flex-col p-6">
-                  <span className="flex items-center gap-1">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        size={13}
-                        className={
-                          i < Math.round(p.rating)
-                            ? "fill-primary text-primary"
-                            : "text-dark/15"
-                        }
-                      />
-                    ))}
-                    <span className="ml-1.5 text-[12px] font-semibold text-dark/45">
-                      {p.rating.toFixed(1)}
-                    </span>
+                <span className="mt-2.5 block min-h-[3.8rem] font-serif text-[26px] leading-tight text-dark transition-colors group-hover:text-primary-dark line-clamp-2">
+                  {p.name}
+                </span>
+                <span className="mt-2 block min-h-[2.6rem] text-[13.5px] leading-relaxed text-muted line-clamp-2">
+                  {p.description}
+                </span>
+                <span className="mt-auto flex items-center justify-between border-t border-dark/8 pt-4">
+                  <span className="font-serif text-[22px] font-semibold text-primary-dark">
+                    {p.price.toFixed(2).replace(".", ",")} DH
                   </span>
-                  <span className="mt-2.5 block font-serif text-[26px] leading-tight text-dark transition-colors group-hover:text-primary-dark">
-                    {p.name}
-                  </span>
-                  <span className="mt-2 line-clamp-2 block text-[13.5px] leading-relaxed text-muted">
-                    {p.description}
-                  </span>
-                  <span className="mt-5 flex items-center justify-between border-t border-dark/8 pt-4">
-                    <span className="font-serif text-[22px] font-semibold text-primary-dark">
-                      {p.price.toFixed(2).replace(".", ",")} DH
-                    </span>
-                    <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-dark/50 transition-all group-hover:gap-3 group-hover:text-dark">
-                      {t("shopPremiumViewProduct")} →
-                    </span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-dark/50 transition-all group-hover:gap-3 group-hover:text-dark">
+                    {t("shopPremiumViewProduct")} →
                   </span>
                 </span>
-              </motion.article>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+              </span>
+            </motion.article>
+          ))}
+        </div>
 
         {filtered.length === 0 && (
           <div className="rounded-3xl border border-dashed border-dark/15 py-20 text-center">
@@ -334,19 +385,26 @@ export default function ShopPremium() {
           </div>
         )}
 
-        {visible < filtered.length && (
-          <div className="mt-12 text-center">
-            <button
-              onClick={() => setVisible((v) => v + 12)}
-              className="btn-primary"
-            >
-              {t("shopPremiumLoadMore")}
-            </button>
-            <p className="mt-3 text-[12px] uppercase tracking-[0.2em] text-dark/40">
+        <div className="mt-12 text-center" style={{ overflowAnchor: "auto" }}>
+          {visible < filtered.length ? (
+            <div>
+              <button
+                type="button"
+                onClick={handleLoadMore}
+                className="btn-primary"
+              >
+                {t("shopPremiumLoadMore")}
+              </button>
+              <p className="mt-3 text-[12px] uppercase tracking-[0.2em] text-dark/40">
+                {shown.length} / {filtered.length}
+              </p>
+            </div>
+          ) : (
+            <p className="text-[12px] uppercase tracking-[0.2em] text-dark/40">
               {shown.length} / {filtered.length}
             </p>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       {/* Quick view */}
@@ -368,6 +426,7 @@ export default function ShopPremium() {
               className="relative z-10 grid max-h-[92dvh] w-full max-w-3xl overflow-y-auto rounded-t-[28px] bg-ivory sm:rounded-[28px] md:grid-cols-2"
             >
               <button
+                type="button"
                 onClick={() => setSelected(null)}
                 aria-label={t("shopPremiumQuickViewClose")}
                 className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 shadow transition-all hover:bg-dark hover:text-cream"
