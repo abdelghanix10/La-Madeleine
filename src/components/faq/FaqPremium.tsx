@@ -75,13 +75,13 @@ export default function FaqPremium() {
           <div className="relative">
             <Search
               size={17}
-              className="absolute left-5 top-1/2 -translate-y-1/2 text-dark/35"
+              className="absolute left-5 top-1/2 -translate-y-1/2 text-dark/35 rtl:left-auto rtl:right-5"
             />
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder={t("faqSearchPlaceholder")}
-              className="w-full rounded-full border border-dark/10 bg-ivory py-3.5 pl-12 pr-5 text-[15px] outline-none focus:border-primary focus:ring-4 focus:ring-primary/15"
+              className="w-full rounded-full border border-dark/10 bg-ivory py-3.5 pl-12 pr-5 text-start text-[15px] outline-none focus:border-primary focus:ring-4 focus:ring-primary/15 rtl:pl-5 rtl:pr-12"
             />
           </div>
           <div className="mt-4 flex gap-2 overflow-x-auto no-scrollbar">
@@ -125,7 +125,7 @@ export default function FaqPremium() {
               >
                 <button
                   onClick={() => setOpen(isOpen ? null : f.i)}
-                  className="flex w-full items-center gap-5 p-6 text-left md:p-7"
+                  className="flex w-full items-center gap-5 p-6 text-start md:p-7"
                   aria-expanded={isOpen}
                 >
                   <span
@@ -135,7 +135,7 @@ export default function FaqPremium() {
                   >
                     {String(f.i + 1).padStart(2, "0")}
                   </span>
-                  <span className="flex-1">
+                  <span className="flex-1 text-start">
                     <span
                       className={`block text-[10px] font-bold uppercase tracking-[0.22em] ${
                         isOpen ? "text-primary" : "text-primary-dark"
@@ -172,7 +172,7 @@ export default function FaqPremium() {
                         ease: [0.25, 0.1, 0.25, 1],
                       }}
                     >
-                      <p className="px-6 pb-7 pl-6 text-[15px] leading-relaxed text-cream/70 sm:pl-[68px] md:px-7 md:pl-[68px]">
+                      <p className="px-6 pb-7 pl-6 text-start text-[15px] leading-relaxed text-cream/70 sm:pl-[68px] md:px-7 md:pl-[68px] rtl:pl-6 rtl:pr-6 rtl:sm:pl-6 rtl:sm:pr-[68px] rtl:md:pl-7 rtl:md:pr-[68px]">
                         {f.answer}
                       </p>
                     </motion.div>
@@ -194,8 +194,8 @@ export default function FaqPremium() {
         )}
       </div>
 
-      <div className="mt-12 flex flex-col items-center justify-between gap-6 rounded-[28px] bg-[#efe6d6] p-8 text-center md:flex-row md:p-10 md:text-left">
-        <div>
+      <div className="mt-12 flex flex-col items-center justify-between gap-6 rounded-[28px] bg-[#efe6d6] p-8 text-center md:flex-row md:p-10 md:text-start">
+        <div className="text-center md:text-start">
           <p className="font-script text-3xl text-primary-dark">
             {t("faqCtaScript")}
           </p>
@@ -204,7 +204,7 @@ export default function FaqPremium() {
           </p>
         </div>
         <Link href="/contact" className="btn-primary shrink-0">
-          {t("faqCtaButton")} <ArrowRight size={15} />
+          {t("faqCtaButton")} <ArrowRight size={15} className="rtl:rotate-180" />
         </Link>
       </div>
     </div>
