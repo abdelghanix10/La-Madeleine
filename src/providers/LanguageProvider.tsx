@@ -1718,6 +1718,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     document.documentElement.dir = dir;
     document.documentElement.lang = language;
+    document.documentElement.setAttribute("data-lang", language);
+    if (language === "ar") {
+      document.documentElement.classList.add("lang-ar");
+    } else {
+      document.documentElement.classList.remove("lang-ar");
+    }
   }, [language, dir]);
 
   const data = language === "ar" ? dataAR : language === "fr" ? dataFR : dataEN;
@@ -1736,7 +1742,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, dir, data, t }}>
-      <div dir={dir}>{children}</div>
+      <div dir={dir} className={language === "ar" ? "lang-ar" : undefined}>
+        {children}
+      </div>
     </LanguageContext.Provider>
   );
 }

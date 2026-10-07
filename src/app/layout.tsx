@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, Great_Vibes } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import Navbar from "@/components/layout/Navbar";
@@ -7,6 +8,12 @@ import CookieConsent from "@/components/layout/CookieConsent";
 import TransitionProvider from "@/providers/TransitionProvider";
 import { LanguageProvider } from "@/providers/LanguageProvider";
 import { NavbarVisibilityProvider } from "@/providers/NavbarVisibilityProvider";
+
+const sfProAR = localFont({
+  src: "../../public/fonts/SFProAR_semibold.ttf",
+  variable: "--font-sf-arabic",
+  display: "swap",
+});
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -95,10 +102,24 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${cormorant.variable} ${inter.variable} ${greatVibes.variable}`}
+      className={`${cormorant.variable} ${inter.variable} ${greatVibes.variable} ${sfProAR.variable}`}
     >
       <head>
         <link rel="canonical" href="https://lamadeleine.ma" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var savedLang = localStorage.getItem('lamadeleine_lang');
+                if (savedLang === 'ar') {
+                  document.documentElement.lang = 'ar';
+                  document.documentElement.dir = 'rtl';
+                  document.documentElement.classList.add('lang-ar');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
       </head>
       <body className="min-h-screen bg-background text-text font-sans antialiased">
         <LanguageProvider>
