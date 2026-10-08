@@ -44,16 +44,6 @@ const SHOTS: {
     altKey: "homeInstagramAlt6",
     tall: false,
   },
-  {
-    src: "/images/gallery/gallery-3.webp",
-    altKey: "homeInstagramAlt7",
-    tall: true,
-  },
-  {
-    src: "/images/gallery/gallery-2.webp",
-    altKey: "homeInstagramAlt8",
-    tall: false,
-  },
 ];
 
 export default function InstagramGallery() {
