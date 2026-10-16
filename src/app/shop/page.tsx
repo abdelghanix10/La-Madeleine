@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import { PageHero } from "@/components/ui/PageHero";
 import ShopPremium from "@/components/shop/ShopPremium";
@@ -30,7 +29,6 @@ export default function ShopPage() {
         <PageHero variant="shop" image="/images/background/bg-shop.webp" />
         <ShopPremium />
       </main>
-      <Footer />
       <BackToTop />
     </>
   );

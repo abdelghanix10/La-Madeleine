@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import { PageHero } from "@/components/ui/PageHero";
 import FaqPremium from "@/components/faq/FaqPremium";
@@ -21,7 +20,6 @@ export default function FAQPage() {
         <PageHero variant="faq" />
         <FaqPremium />
       </main>
-      <Footer />
       <BackToTop />
     </>
   );

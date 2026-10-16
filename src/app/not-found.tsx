@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import NotFoundContent from "@/components/not-found/NotFoundContent";
 
@@ -19,7 +18,6 @@ export default function NotFound() {
       <main className="relative z-10 flex min-h-screen flex-col justify-between bg-dark lg:mb-[60vh]">
         <NotFoundContent />
       </main>
-      <Footer />
       <BackToTop />
     </>
   );

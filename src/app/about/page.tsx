@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import { PageHero } from "@/components/ui/PageHero";
 import AboutPremium from "@/components/about/AboutPremium";
@@ -30,7 +29,6 @@ export default function AboutPage() {
         <PageHero variant="about" image="/images/background/bg-story.webp" />
         <AboutPremium />
       </main>
-      <Footer />
       <BackToTop />
     </>
   );

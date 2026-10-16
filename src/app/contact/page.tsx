@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import { PageHero } from "@/components/ui/PageHero";
 import ContactPremium from "@/components/contact/ContactPremium";
@@ -32,7 +31,6 @@ export default function ContactPage() {
         />
         <ContactPremium />
       </main>
-      <Footer />
       <BackToTop />
     </>
   );

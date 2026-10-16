@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, Phone, MapPin, Clock } from "lucide-react";
-import { useTransitionRouter } from "next-transition-router";
+import Link from "next/link";
 import { useLanguage, type Language } from "@/providers/LanguageProvider";
 import { useNavbarVisibility } from "@/providers/NavbarVisibilityProvider";
 
@@ -69,7 +69,6 @@ export default function Navbar() {
     { href: "/faq", label: t("footerFaq") },
     { href: "/contact", label: t("footerNavContact") },
   ];
-  const transitionRouter = useTransitionRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -226,17 +225,6 @@ export default function Navbar() {
 
   const closeMobile = useCallback(() => setMobileOpen(false), []);
 
-  const handleNavigate = useCallback(
-    (href: string) => {
-      if (pathname === href) {
-        closeMobile();
-        return;
-      }
-      closeMobile();
-      setTimeout(() => transitionRouter.push(href), 80);
-    },
-    [pathname, closeMobile, transitionRouter],
-  );
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname?.startsWith(href);
@@ -278,6 +266,7 @@ export default function Navbar() {
           scrolled ? "shadow-[0_10px_40px_-15px_rgba(28,22,19,0.22)]" : ""
         }`}
         style={{
+          viewTransitionName: "navbar",
           // Pure CSS transform transition: runs on the compositor, so it
           // stays smooth even when the main thread is busy.
           transform:
@@ -295,8 +284,8 @@ export default function Navbar() {
           className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-8 lg:h-[72px] lg:px-10"
         >
           {/* LEFT: logo */}
-          <button
-            onClick={() => handleNavigate("/")}
+          <Link
+            href="/"
             className="group flex shrink-0 items-center gap-3"
             aria-label={`${t("footerBrandName")} — ${t("footerNavHome")}`}
           >
@@ -317,14 +306,14 @@ export default function Navbar() {
                 {t("navbarBrandTagline")}
               </span>
             </span>
-          </button>
+          </Link>
 
           {/* CENTER: desktop nav */}
           <ul className="hidden items-center gap-6 lg:flex xl:gap-7">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <button
-                  onClick={() => handleNavigate(l.href)}
+                <Link
+                  href={l.href}
                   className={`nav-link whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.16em] transition-colors ${
                     isActive(l.href)
                       ? "active text-primary-dark"
@@ -332,20 +321,20 @@ export default function Navbar() {
                   }`}
                 >
                   {l.label}
-                </button>
+                </Link>
               </li>
             ))}
           </ul>
 
           {/* RIGHT: CTA + burger */}
           <div className="flex shrink-0 items-center gap-3">
-            <button
-              onClick={() => handleNavigate("/menu")}
-              className="!hidden xl:flex! btn-gold !px-5 !py-2.5 sm:!px-6 sm:!py-3"
+            <Link
+              href="/menu"
+              className="!hidden xl:flex! btn-gold !px-5 !py-2.5 sm:!px-6 sm:!py-3 items-center gap-2"
             >
               {t("navbarOrderCta")}
               <ArrowRight size={15} strokeWidth={2.4} />
-            </button>
+            </Link>
             <button
               onClick={() => setMobileOpen((v) => !v)}
               aria-label={
@@ -439,8 +428,9 @@ export default function Navbar() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.05 + i * 0.05 }}
                       >
-                        <button
-                          onClick={() => handleNavigate(l.href)}
+                        <Link
+                          href={l.href}
+                          onClick={closeMobile}
                           className={`group flex w-full items-center justify-between border-b border-dark/6 py-4 text-left ${
                             active ? "text-primary-dark" : "text-dark"
                           }`}
@@ -461,7 +451,7 @@ export default function Navbar() {
                             size={18}
                             className={`${active ? "text-primary" : "text-dark/25 group-hover:text-dark"} transition-colors`}
                           />
-                        </button>
+                        </Link>
                       </motion.li>
                     );
                   })}
@@ -492,18 +482,20 @@ export default function Navbar() {
                   </span>
                   <LanguageSwitcher />
                 </div>
-                <button
-                  onClick={() => handleNavigate("/menu")}
-                  className="btn-gold w-full !py-4"
+                <Link
+                  href="/menu"
+                  onClick={closeMobile}
+                  className="btn-gold w-full !py-4 flex items-center justify-center gap-2"
                 >
                   {t("navbarOrderCta")} <ArrowRight size={16} />
-                </button>
-                <button
-                  onClick={() => handleNavigate("/contact")}
-                  className="btn-ghost mt-3 w-full !py-3.5"
+                </Link>
+                <Link
+                  href="/contact"
+                  onClick={closeMobile}
+                  className="btn-ghost mt-3 w-full !py-3.5 text-center flex items-center justify-center"
                 >
                   {t("navbarFindCafe")}
-                </button>
+                </Link>
               </div>
             </motion.aside>
           </div>

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import CookiePolicyHero from "@/components/cookie-policy/CookiePolicyHero";
 import CookiePolicyContent from "@/components/cookie-policy/CookiePolicyContent";
@@ -17,7 +16,6 @@ export default function CookiePolicyPage() {
         <CookiePolicyHero />
         <CookiePolicyContent />
       </main>
-      <Footer />
       <BackToTop />
     </>
   );

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import HomeHero from "@/components/home/HomeHero";
 import HomeIntro from "@/components/home/HomeIntro";
@@ -52,7 +51,6 @@ export default function Home() {
         <InstagramGallery />
         <FinalCTA />
       </main>
-      <Footer />
       <BackToTop />
     </>
   );

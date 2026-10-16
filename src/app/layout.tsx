@@ -5,7 +5,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import Navbar from "@/components/layout/Navbar";
 import CookieConsent from "@/components/layout/CookieConsent";
-import TransitionProvider from "@/providers/TransitionProvider";
+import Footer from "@/components/layout/Footer";
 import { LanguageProvider } from "@/providers/LanguageProvider";
 import { NavbarVisibilityProvider } from "@/providers/NavbarVisibilityProvider";
 
@@ -109,6 +109,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
+      data-scroll-behavior="smooth"
       className={`${cormorant.variable} ${inter.variable} ${greatVibes.variable} ${sfProAR.variable}`}
     >
       <head>
@@ -131,13 +132,12 @@ export default function RootLayout({
       <body className="min-h-screen bg-background text-text font-sans antialiased">
         <LanguageProvider>
           <NavbarVisibilityProvider>
-            <TransitionProvider>
             <SmoothScroll>
               <Navbar />
               {children}
+              <Footer />
               <CookieConsent />
             </SmoothScroll>
-            </TransitionProvider>
           </NavbarVisibilityProvider>
         </LanguageProvider>
       </body>

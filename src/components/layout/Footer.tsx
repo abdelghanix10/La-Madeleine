@@ -1,26 +1,29 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Phone, Mail, MapPin, Clock, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/providers/LanguageProvider";
 
 export default function Footer() {
+  const pathname = usePathname();
   const { data, t } = useLanguage();
   const { siteConfig } = data;
   const footerRef = useRef<HTMLElement>(null);
 
-  // The footer is `lg:fixed`, so the page <main> needs a bottom margin
-  // exactly equal to the footer's rendered height. A hardcoded 60vh breaks
-  // as soon as the content wraps taller than 60vh (narrower screens,
-  // longer translations). Measure the real height and publish it as
-  // `--footer-h` for `lg:mb-[var(--footer-h,60vh)]` on <main>.
+  const [isNavigating, setIsNavigating] = useState(false);
+  const [isNearBottom, setIsNearBottom] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Measure rendered footer height and publish as --footer-h for page bottom margin
   useEffect(() => {
     const el = footerRef.current;
     if (!el) return;
     const mq = window.matchMedia("(min-width: 1024px)");
     const update = () => {
+      setIsDesktop(mq.matches);
       if (mq.matches) {
         document.documentElement.style.setProperty(
           "--footer-h",
@@ -42,10 +45,104 @@ export default function Footer() {
     };
   }, []);
 
+  // When pathname changes, hide the footer immediately for the view-transition duration (1100ms)
+  useEffect(() => {
+    setIsNavigating(true);
+    setIsNearBottom(false);
+
+    if (typeof window !== "undefined") {
+      (
+        window as unknown as {
+          __lenis?: { scrollTo: (y: number, opts?: { immediate: boolean }) => void };
+        }
+      ).__lenis?.scrollTo(0, { immediate: true });
+    }
+
+    const timer = setTimeout(() => {
+      setIsNavigating(false);
+    }, 1100);
+
+    return () => clearTimeout(timer);
+  }, [pathname]);
+
+  // Intercept internal link clicks and back/forward navigation to immediately hide footer
+  useEffect(() => {
+    const handleLinkClick = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest("a");
+      if (!target) return;
+      const href = target.getAttribute("href");
+      if (href && (href.startsWith("/") || href.startsWith("#"))) {
+        if (!href.startsWith("#") && href !== pathname) {
+          setIsNavigating(true);
+          setIsNearBottom(false);
+        }
+      }
+    };
+
+    const handlePopState = () => {
+      setIsNavigating(true);
+      setIsNearBottom(false);
+    };
+
+    document.addEventListener("click", handleLinkClick, { capture: true });
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      document.removeEventListener("click", handleLinkClick, { capture: true });
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [pathname]);
+
+  // Track scroll position on desktop to only reveal sticky footer when reaching the bottom curtain
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    setIsDesktop(mq.matches);
+
+    const checkScroll = () => {
+      if (!mq.matches) {
+        setIsNearBottom(true);
+        return;
+      }
+      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      const windowH = window.innerHeight;
+      const docH = document.documentElement.scrollHeight;
+      const footerH = footerRef.current?.offsetHeight || 500;
+
+      // Reveal footer only when within footer height + 60px buffer of the bottom
+      const near = scrollY + windowH >= docH - footerH - 60;
+      setIsNearBottom(near);
+    };
+
+    checkScroll();
+
+    window.addEventListener("scroll", checkScroll, { passive: true });
+    window.addEventListener("resize", checkScroll, { passive: true });
+    window.addEventListener("lenis-scroll", checkScroll, { passive: true });
+
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setIsDesktop(e.matches);
+      checkScroll();
+    };
+    mq.addEventListener("change", handleMediaChange);
+
+    return () => {
+      window.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+      window.removeEventListener("lenis-scroll", checkScroll);
+      mq.removeEventListener("change", handleMediaChange);
+    };
+  }, []);
+
+  const isVisible = !isNavigating && (!isDesktop || isNearBottom);
+
   return (
     <footer
       ref={footerRef}
-      className="relative lg:fixed lg:bottom-0 lg:left-0 w-full lg:min-h-[60vh] bg-espresso text-cream/70 z-0 flex flex-col"
+      className={`relative lg:fixed lg:bottom-0 lg:left-0 w-full lg:min-h-[60vh] bg-espresso text-cream/70 z-0 flex flex-col transition-opacity duration-200 ${
+        isVisible
+          ? "opacity-100 visible pointer-events-auto"
+          : "opacity-0 invisible pointer-events-none"
+      }`}
     >
       <div className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 

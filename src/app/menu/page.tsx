@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import { PageHero } from "@/components/ui/PageHero";
 import MenuPremium from "@/components/menu/MenuPremium";
@@ -34,7 +33,6 @@ export default function MenuPage() {
         />
         <MenuPremium />
       </main>
-      <Footer />
       <BackToTop />
     </>
   );

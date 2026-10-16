@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/layout/BackToTop";
 import PrivacyPolicyHero from "@/components/privacy-policy/PrivacyPolicyHero";
 import PrivacyPolicyContent from "@/components/privacy-policy/PrivacyPolicyContent";
@@ -17,7 +16,6 @@ export default function PrivacyPolicyPage() {
         <PrivacyPolicyHero />
         <PrivacyPolicyContent />
       </main>
-      <Footer />
       <BackToTop />
     </>
   );
