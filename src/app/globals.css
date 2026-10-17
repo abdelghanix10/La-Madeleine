@@ -467,59 +467,126 @@ html {
   background-color: var(--color-background, #fbf8f2);
 }
 
-::view-transition {
-  background-color: var(--color-background, #fbf8f2);
+/* ==========================================================================
+   Page Transition & Animated Logo (GSAP Curtain & Brand Animation)
+   ========================================================================== */
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  display: flex;
+  pointer-events: none;
+  z-index: 99998;
 }
 
-::view-transition-group(navbar) {
-  animation: none;
-  z-index: 100;
+.transition-block {
+  flex: 1;
+  height: 100%;
+  background: var(--color-dark, #1c1613);
+  transform: scaleX(0);
+  transform-origin: left;
+  will-change: transform;
 }
 
-footer {
-  view-transition-name: none !important;
+.logo-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-dark, #1c1613);
+  pointer-events: none;
+  opacity: 0;
 }
 
-::view-transition-old(.page-exit) {
-  animation: 1000ms cubic-bezier(0.75, 0, 0.1, 1) both
-    page-out;
+.logo-container {
+  width: min(86vw, 420px);
+  max-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
 }
 
-::view-transition-new(.page-enter) {
-  animation: 1000ms cubic-bezier(0.75, 0, 0.1, 1) both
-    page-in;
+.logo-animated-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+  --gold: #EEB01F;
+  --brown: #552413;
 }
 
-@keyframes page-out {
-  0% {
-    transform: translateX(0%) translateY(0%) rotate(0deg) scale(1);
+.logo-animated-svg #bg {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+}
+
+.logo-animated-svg .draw {
+  fill: transparent;
+  stroke: var(--gold);
+  stroke-width: 2.2;
+  stroke-linejoin: round;
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+}
+
+.logo-animated-svg.play #bg {
+  animation: logo-bgin 0.28s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+.logo-animated-svg.play .draw {
+  animation:
+    logo-draw var(--dur) cubic-bezier(0.45, 0.05, 0.25, 1) var(--delay) forwards,
+    logo-fill 0.15s ease calc(var(--delay) + var(--dur) - 0.05s) forwards;
+}
+
+@keyframes logo-bgin {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes logo-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes logo-fill {
+  to {
+    fill: var(--gold);
+    stroke-width: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-animated-svg #bg {
     opacity: 1;
   }
-
-  40% {
-    transform: translateX(0%) translateY(0%) rotate(0deg) scale(0.8);
-    opacity: 0.5;
+  .logo-animated-svg .draw {
+    fill: var(--gold);
+    stroke: none;
+    stroke-dasharray: none;
   }
-
-  100% {
-    transform: translateX(-50%) translateY(20%) rotate(-10deg) scale(0.65);
-    opacity: 0.25;
-  }
-}
-
-@keyframes page-in {
-  from {
-    transform: translateX(100%) translateY(20%);
-    -webkit-clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%);
-    clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%);
-  }
-
-  to {
-    transform: translateX(0%) translateY(0%);
-    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  .logo-animated-svg.play #bg,
+  .logo-animated-svg.play .draw {
+    animation: none;
   }
 }
+
 
 /* Lightweight fade for dynamically expanded menu rows (no JS overhead) */
 @keyframes fadeRow {

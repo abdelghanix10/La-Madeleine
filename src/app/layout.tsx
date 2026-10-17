@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, Great_Vibes } from "next/font/google";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import Navbar from "@/components/layout/Navbar";
@@ -8,6 +9,7 @@ import CookieConsent from "@/components/layout/CookieConsent";
 import Footer from "@/components/layout/Footer";
 import { LanguageProvider } from "@/providers/LanguageProvider";
 import { NavbarVisibilityProvider } from "@/providers/NavbarVisibilityProvider";
+import TransitionProvider from "@/providers/TransitionProvider";
 
 const sfProAR = localFont({
   src: "../../public/fonts/SFProAR_semibold.ttf",
@@ -47,6 +49,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "https://lamadeleine.ma",
   ),
+  alternates: {
+    canonical: "https://lamadeleine.ma",
+  },
   title: {
     default: "La Madeleine Agadir — Pâtisserie, Boulangerie & Café depuis 2018",
     template: "%s | La Madeleine Agadir",
@@ -112,9 +117,11 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${cormorant.variable} ${inter.variable} ${greatVibes.variable} ${sfProAR.variable}`}
     >
-      <head>
-        <link rel="canonical" href="https://lamadeleine.ma" />
-        <script
+      <head />
+      <body className="min-h-screen bg-background text-text font-sans antialiased">
+        <Script
+          id="lang-init"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               try {
@@ -128,15 +135,15 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body className="min-h-screen bg-background text-text font-sans antialiased">
         <LanguageProvider>
           <NavbarVisibilityProvider>
             <SmoothScroll>
-              <Navbar />
-              {children}
-              <Footer />
-              <CookieConsent />
+              <TransitionProvider>
+                <Navbar />
+                {children}
+                <Footer />
+                <CookieConsent />
+              </TransitionProvider>
             </SmoothScroll>
           </NavbarVisibilityProvider>
         </LanguageProvider>
