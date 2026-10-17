@@ -9,8 +9,10 @@ interface PageTransitionProps {
   children: ReactNode;
 }
 
-// Exact time in ms for the fast logo animation (ring, lettering, wheat, gold fill) to complete
-const LOGO_ANIM_DURATION = 700;
+const BLOCKS_COUNT = 20;
+
+// Duration in ms for the fast handwriting drawing animation ("La Madeleine Boulanger & Café")
+const LOGO_ANIM_DURATION = 680;
 
 export default function PageTransition({ children }: PageTransitionProps) {
   const router = useRouter();
@@ -19,15 +21,16 @@ export default function PageTransition({ children }: PageTransitionProps) {
   const logoOverlayRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<LogoAnimatedRef>(null);
   const blocksRef = useRef<HTMLDivElement[]>([]);
-  const isTransitioning = useRef(false);
+  const isTransitioning = useRef(true);
   const logoFinishedRef = useRef(false);
   const routeReadyRef = useRef(false);
   const targetPathRef = useRef<string | null>(null);
   const safetyTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const logoTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const isInitialMount = useRef(true);
 
   const revealPage = useCallback(() => {
-    // Scroll to top immediately behind the blocks before revealing new page
+    // Scroll to top behind the blocks before revealing new page
     if (typeof window !== "undefined") {
       window.scrollTo(0, 0);
       const lenis = (
@@ -47,8 +50,8 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
     gsap.to(blocksRef.current, {
       scaleX: 0,
-      duration: 0.22,
-      stagger: 0.007,
+      duration: 0.35,
+      stagger: 0.012,
       ease: "power2.out",
       transformOrigin: "right",
       onComplete: () => {
@@ -76,7 +79,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
     gsap.to(logoOverlayRef.current, {
       opacity: 0,
-      duration: 0.14,
+      duration: 0.16,
       ease: "power2.out",
       onComplete: () => {
         revealPage();
@@ -107,11 +110,11 @@ export default function PageTransition({ children }: PageTransitionProps) {
         router.prefetch(url);
       } catch {}
 
-      // 2. Animate curtain blocks closed (fast: ~0.22s)
+      // 2. Animate curtain blocks closed (staggered from left to right)
       gsap.to(blocksRef.current, {
         scaleX: 1,
-        duration: 0.2,
-        stagger: 0.007,
+        duration: 0.28,
+        stagger: 0.01,
         ease: "power2.out",
         transformOrigin: "left",
         onComplete: () => {
@@ -120,17 +123,17 @@ export default function PageTransition({ children }: PageTransitionProps) {
         },
       });
 
-      // 3. Fade in logo overlay and trigger fast logo drawing animation
+      // 3. Fade in logo overlay and trigger fast handwriting drawing
       gsap.to(logoOverlayRef.current, {
         opacity: 1,
-        duration: 0.12,
+        duration: 0.14,
         ease: "power2.out",
         onStart: () => {
           logoRef.current?.play();
         },
       });
 
-      // 4. Timer: Wait until the logo animation has fully completed
+      // 4. Timer: Wait until the handwriting animation has fully completed
       logoTimerRef.current = setTimeout(() => {
         logoFinishedRef.current = true;
         // If route already loaded in background, finish and reveal immediately!
@@ -139,7 +142,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
         }
       }, LOGO_ANIM_DURATION);
 
-      // Safety timeout: never hang forever if route fails
+      // Safety timeout: never hang forever if route takes unusually long
       safetyTimeoutRef.current = setTimeout(() => {
         if (isTransitioning.current) {
           logoFinishedRef.current = true;
@@ -151,37 +154,57 @@ export default function PageTransition({ children }: PageTransitionProps) {
     [router, finishTransition]
   );
 
+  // Play intro transition on initial website open / refresh
+  const playIntro = useCallback(() => {
+    isTransitioning.current = true;
+    if (overlayRef.current) overlayRef.current.style.pointerEvents = "auto";
+    if (logoOverlayRef.current) {
+      logoOverlayRef.current.style.pointerEvents = "auto";
+      logoOverlayRef.current.style.opacity = "1";
+    }
+
+    // Curtains start covering the screen
+    gsap.set(blocksRef.current, { scaleX: 1, transformOrigin: "right" });
+
+    // Play handwriting text animation
+    logoRef.current?.play();
+
+    // After handwriting completes, fade out overlay and peel open curtain
+    setTimeout(() => {
+      if (!logoOverlayRef.current) {
+        revealPage();
+        return;
+      }
+      gsap.to(logoOverlayRef.current, {
+        opacity: 0,
+        duration: 0.16,
+        ease: "power2.out",
+        onComplete: () => {
+          revealPage();
+        },
+      });
+    }, LOGO_ANIM_DURATION);
+  }, [revealPage]);
+
   // When pathname changes (Next.js background render completes):
   useEffect(() => {
+    if (isInitialMount.current) return;
     if (!isTransitioning.current) return;
 
     // Mark route as ready in background
     routeReadyRef.current = true;
 
-    // CRITICAL: DO NOT switch / reveal until the logo animation has completely finished!
+    // CRITICAL: DO NOT switch / reveal until the handwriting animation has completely finished!
     if (logoFinishedRef.current) {
       finishTransition();
     }
   }, [pathname, finishTransition]);
 
-  // Initialize 20 blocks once on mount
+  // Trigger intro on initial website open
   useEffect(() => {
-    const createBlocks = () => {
-      if (!overlayRef.current) return;
-      overlayRef.current.innerHTML = "";
-      blocksRef.current = [];
-
-      for (let i = 0; i < 20; i++) {
-        const block = document.createElement("div");
-        block.className = "transition-block";
-        overlayRef.current.appendChild(block);
-        blocksRef.current.push(block);
-      }
-    };
-
-    createBlocks();
-    gsap.set(blocksRef.current, { scaleX: 0, transformOrigin: "left" });
-  }, []);
+    playIntro();
+    isInitialMount.current = false;
+  }, [playIntro]);
 
   // Global anchor click listener in capture phase
   useEffect(() => {
@@ -254,8 +277,27 @@ export default function PageTransition({ children }: PageTransitionProps) {
 
   return (
     <>
-      <div ref={overlayRef} className="transition-overlay" />
-      <div ref={logoOverlayRef} className="logo-overlay">
+      <div
+        ref={overlayRef}
+        className="transition-overlay"
+        style={{ pointerEvents: "auto" }}
+      >
+        {Array.from({ length: BLOCKS_COUNT }).map((_, i) => (
+          <div
+            key={i}
+            ref={(el) => {
+              if (el) blocksRef.current[i] = el;
+            }}
+            className="transition-block"
+            style={{ transform: "scaleX(1)", transformOrigin: "right" }}
+          />
+        ))}
+      </div>
+      <div
+        ref={logoOverlayRef}
+        className="logo-overlay"
+        style={{ opacity: 1, pointerEvents: "auto" }}
+      >
         <div className="logo-container">
           <LogoAnimated ref={logoRef} />
         </div>

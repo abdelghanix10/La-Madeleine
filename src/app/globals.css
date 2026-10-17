@@ -506,7 +506,7 @@ html {
 }
 
 .logo-container {
-  width: min(86vw, 420px);
+  width: min(92vw, 680px);
   max-height: 80vh;
   display: flex;
   justify-content: center;
@@ -514,76 +514,137 @@ html {
   padding: 1.5rem;
 }
 
-.logo-animated-svg {
+.writing-logo-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.writing-logo-svg {
   width: 100%;
   height: auto;
-  display: block;
   overflow: visible;
-  --gold: #EEB01F;
-  --brown: #552413;
 }
 
-.logo-animated-svg #bg {
-  transform-box: fill-box;
-  transform-origin: center;
-  opacity: 0;
-}
-
-.logo-animated-svg .draw {
+/* 1. Main Cursive Handwriting Title ("La Madeleine") */
+.writing-script-title {
+  font-family: var(--font-great-vibes), "Great Vibes", cursive;
+  font-size: clamp(68px, 11vw, 94px);
   fill: transparent;
-  stroke: var(--gold);
-  stroke-width: 2.2;
-  stroke-linejoin: round;
-  stroke-dasharray: var(--len);
-  stroke-dashoffset: var(--len);
+  stroke: var(--color-primary, #EEB01F);
+  stroke-width: 1.6;
+  stroke-dasharray: 650;
+  stroke-dashoffset: 650;
+  filter: drop-shadow(0 0 14px rgba(238, 176, 31, 0.45));
 }
 
-.logo-animated-svg.play #bg {
-  animation: logo-bgin 0.28s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+/* 2. Calligraphy Flourish */
+.writing-flourish-line {
+  fill: none;
+  stroke: var(--color-primary, #EEB01F);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  filter: drop-shadow(0 0 8px rgba(238, 176, 31, 0.4));
 }
 
-.logo-animated-svg.play .draw {
+/* 3. Subtitle ("Boulanger & Café") */
+.writing-subtitle {
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(18px, 3.2vw, 24px);
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  fill: #f5efeb;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.28s ease 0.3s, transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s;
+}
+
+.writing-sub-line {
+  stroke: rgba(238, 176, 31, 0.6);
+  stroke-width: 1;
+  stroke-dasharray: 85;
+  stroke-dashoffset: 85;
+  transition: stroke-dashoffset 0.28s ease 0.32s;
+}
+
+/* Write-on mask sweep (pen moving across paper from left to right) */
+#write-mask rect {
+  width: 0;
+}
+
+.play #write-mask rect {
+  animation: writeSweepMask 0.46s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.play .writing-script-title {
   animation:
-    logo-draw var(--dur) cubic-bezier(0.45, 0.05, 0.25, 1) var(--delay) forwards,
-    logo-fill 0.15s ease calc(var(--delay) + var(--dur) - 0.05s) forwards;
+    writeStroke 0.46s cubic-bezier(0.3, 0, 0.2, 1) forwards,
+    writeFillIn 0.2s ease 0.32s forwards;
 }
 
-@keyframes logo-bgin {
-  from {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.play .writing-flourish-line {
+  animation: writeFlourish 0.36s cubic-bezier(0.2, 0.7, 0.2, 1) 0.24s forwards;
 }
 
-@keyframes logo-draw {
-  to {
+.play .writing-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.play .writing-sub-line {
+  stroke-dashoffset: 0;
+}
+
+@keyframes writeSweepMask {
+  from { width: 0; }
+  to { width: 760px; }
+}
+
+@keyframes writeStroke {
+  0% {
+    stroke-dashoffset: 650;
+    fill: transparent;
+  }
+  80% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  100% {
     stroke-dashoffset: 0;
   }
 }
 
-@keyframes logo-fill {
-  to {
-    fill: var(--gold);
-    stroke-width: 0.4;
-  }
+@keyframes writeFillIn {
+  from { fill: transparent; }
+  to { fill: var(--color-primary, #EEB01F); }
+}
+
+@keyframes writeFlourish {
+  to { stroke-dashoffset: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .logo-animated-svg #bg {
-    opacity: 1;
+  #write-mask rect {
+    width: 760px;
   }
-  .logo-animated-svg .draw {
-    fill: var(--gold);
+  .writing-script-title {
+    fill: var(--color-primary, #EEB01F);
     stroke: none;
     stroke-dasharray: none;
   }
-  .logo-animated-svg.play #bg,
-  .logo-animated-svg.play .draw {
-    animation: none;
+  .writing-flourish-line {
+    stroke-dashoffset: 0;
+  }
+  .writing-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .writing-sub-line {
+    stroke-dashoffset: 0;
   }
 }
 
