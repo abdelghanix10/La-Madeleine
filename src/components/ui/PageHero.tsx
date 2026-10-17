@@ -171,6 +171,7 @@ export function PageHero({
                     src={secondaryImage}
                     alt=""
                     fill
+                    sizes="(max-width: 1024px) 176px, 224px"
                     className="object-cover"
                   />
                 </div>

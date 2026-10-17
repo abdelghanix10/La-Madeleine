@@ -289,12 +289,12 @@ export default function Navbar() {
             className="group flex shrink-0 items-center gap-3"
             aria-label={`${t("footerBrandName")} — ${t("footerNavHome")}`}
           >
-            <span className="relative block h-10 w-10 overflow-hidden lg:w-11">
+            <span className="relative block h-10 w-10 overflow-hidden lg:h-11 lg:w-11">
               <Image
                 src="/images/logo.webp"
                 alt="La Madeleine Agadir"
                 fill
-                className="object-fit transition-transform duration-500"
+                className="object-contain transition-transform duration-500"
                 sizes="48px"
               />
             </span>
@@ -398,6 +398,7 @@ export default function Navbar() {
                       src="/images/logo.webp"
                       alt=""
                       fill
+                      sizes="36px"
                       className="object-cover"
                     />
                   </span>

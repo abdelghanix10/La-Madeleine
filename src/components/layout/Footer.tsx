@@ -151,12 +151,15 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Link href="/" className="flex items-center gap-3">
-              <Image
-                src="/images/logo.webp"
-                alt={siteConfig.name}
-                width={56}
-                height={56}
-              />
+              <span className="relative block h-14 w-14 shrink-0 overflow-hidden">
+                <Image
+                  src="/images/logo.webp"
+                  alt={siteConfig.name}
+                  fill
+                  sizes="56px"
+                  className="object-contain"
+                />
+              </span>
               <span>
                 <span className="block font-serif text-3xl text-cream leading-none">
                   {t("footerBrandName")}
