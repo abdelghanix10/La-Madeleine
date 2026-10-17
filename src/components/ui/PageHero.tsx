@@ -14,6 +14,7 @@ export type HeroVariant =
   | "about"
   | "faq"
   | "contact"
+  | "review"
   | "legal";
 
 export function PageHero({
@@ -57,6 +58,35 @@ export function PageHero({
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-[17px] leading-relaxed text-muted">
             {t("faqHeroDescription")}
+          </p>
+          {children}
+        </div>
+      </header>
+    );
+  }
+
+  if (variant === "review") {
+    return (
+      <header className="page-enter relative overflow-hidden bg-cream pt-36 pb-20 md:pt-44 md:pb-28">
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 select-none font-serif text-[26vw] leading-none text-dark/[0.04] md:text-[18vw]"
+        >
+          {t("reviewUsHeroDecorative")}
+        </span>
+        <div className="relative mx-auto max-w-4xl px-6 text-center">
+          <div className="mb-6 flex justify-center">
+            <PageTag>{t("reviewUsHeroEyebrow")}</PageTag>
+          </div>
+          <h1 className="display-page font-serif font-medium text-dark">
+            {t("reviewUsHeroTitleLineOne")}
+            <br />
+            <span className="italic text-primary-dark">
+              {t("reviewUsHeroTitleLineTwo")}
+            </span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-xl text-[17px] leading-relaxed text-muted">
+            {t("reviewUsHeroDescription")}
           </p>
           {children}
         </div>

@@ -540,6 +540,7 @@ export const translations = {
     footerNavAbout: "Our story",
     footerNavShop: "Order",
     footerNavContact: "Contact",
+    footerNavReview: "Review us",
     footerOurCafes: "Our cafés",
     footerLocationLabel: "La Madeleine — Tilila",
     footerSeeRoute: "See the route",
@@ -554,6 +555,85 @@ export const translations = {
     footerInstagram: "Instagram",
     footerFacebook: "Facebook",
     footerGoogleMaps: "Google Maps",
+
+    // Review Us
+    // Page Hero
+    reviewUsHeroDecorative: "Thank you",
+    reviewUsHeroEyebrow: "Your opinion · It matters",
+    reviewUsHeroTitleLineOne: "Tell us how",
+    reviewUsHeroTitleLineTwo: "we did.",
+    reviewUsHeroDescription:
+      "Thank you for visiting La Madeleine. Your feedback — the good and the not so good — helps our team serve you better, every single day.",
+    // Google CTA
+    reviewUsGoogleScript: "Thank you kindly",
+    reviewUsGoogleTitle: "A review on Google makes all the difference.",
+    reviewUsGoogleDescription:
+      "Loved your visit? Sharing it on Google takes half a minute, helps other food lovers in Agadir find our little corner of France, and keeps our team improving.",
+    reviewUsGoogleButton: "Leave us a review on Google Maps",
+    reviewUsGoogleNote: "It only takes 30 seconds and helps us a lot!",
+    reviewUsGoogleAria:
+      "Leave La Madeleine a review on Google Maps — opens in a new tab",
+    reviewUsGoogleRatingLabel: "Rated 4.2/5 by 80+ guests",
+    // Form
+    reviewUsFormScript: "Share the details",
+    reviewUsFormTitle: "Your visit, in a few words.",
+    reviewUsFormDescription:
+      "Five quick ratings and a few optional details — it only takes a minute, and every answer is read by the team.",
+    reviewUsSectionAboutLabel: "About you",
+    reviewUsSectionRatingsLabel: "Rate your experience",
+    reviewUsSectionRatingsDescription:
+      "1 = we can do better, 5 = absolutely perfect. Rating just one category is enough.",
+    reviewUsSectionExtraLabel: "One last thing",
+    reviewUsNameLabel: "Name *",
+    reviewUsNamePlaceholder: "Your name",
+    reviewUsEmailLabel: "Email",
+    reviewUsEmailPlaceholder: "you@example.com",
+    reviewUsPhoneLabel: "Phone",
+    reviewUsPhonePlaceholder: "06 XX XX XX XX",
+    reviewUsDateLabel: "Date of visit",
+    reviewUsRatingWaitstaffLabel: "Waitstaff service",
+    reviewUsRatingWaitstaffHint: "Friendliness, speed, attentiveness",
+    reviewUsRatingWaitstaffPlaceholder:
+      "Tell us more about the waitstaff service",
+    reviewUsRatingFoodPrepLabel: "Food preparation",
+    reviewUsRatingFoodPrepHint: "Presentation, temperature, freshness, cooking",
+    reviewUsRatingFoodPrepPlaceholder:
+      "Tell us more about how your food was prepared",
+    reviewUsRatingFoodQualityLabel: "Food quality",
+    reviewUsRatingFoodQualityHint: "Taste, ingredients, portion size",
+    reviewUsRatingFoodQualityPlaceholder: "Tell us more about the food itself",
+    reviewUsRatingBakeryLabel: "Bakery counter service",
+    reviewUsRatingBakeryHint: "The boulangerie section",
+    reviewUsRatingBakeryPlaceholder: "Tell us more about the bakery counter",
+    reviewUsRatingOverallLabel: "Overall experience",
+    reviewUsRatingOverallHint: "The full picture",
+    reviewUsRatingOverallPlaceholder: "Tell us more about your overall visit",
+    reviewUsStarsValueLabel: "out of 5 stars",
+    reviewUsStarsHelp: "Use the ← → arrow keys to choose a rating",
+    reviewUsRecommendLabel:
+      "Would you recommend La Madeleine to friends and family?",
+    reviewUsRecommendYes: "Yes",
+    reviewUsRecommendMaybe: "Maybe",
+    reviewUsRecommendNo: "No",
+    reviewUsOrderedLabel: "What did you order?",
+    reviewUsOrderedPlaceholder: "e.g. cappuccino, croissant aux amandes, msemen…",
+    reviewUsSuggestionsLabel: "Any suggestions to help us improve?",
+    reviewUsSuggestionsPlaceholder:
+      "Ideas, wishes, small details — we read everything.",
+    reviewUsSend: "Send my review",
+    reviewUsSending: "Sending...",
+    reviewUsConsent:
+      "By sending this form, you agree that La Madeleine may contact you about your feedback. See our privacy policy.",
+    reviewUsSuccessTitle: "Thank you!",
+    reviewUsSuccessMessage: "Your feedback helps us serve you better.",
+    reviewUsSuccessSubtitle:
+      "See you soon at the bakery — hopefully with a few more five-star moments.",
+    reviewUsSendAnother: "Send another review",
+    reviewUsErrorName: "Please tell us your name.",
+    reviewUsErrorRatings:
+      "Please give 1 to 5 stars to at least one category.",
+    reviewUsErrorMessage:
+      "Oops — your review didn't make it through. Please try again, or call us directly.",
 
     // Navbar
     navbarAddress: "Av. Al Oulfa, Tilila — Agadir",
@@ -1100,6 +1180,7 @@ export const translations = {
     footerNavAbout: "Notre histoire",
     footerNavShop: "Commander",
     footerNavContact: "Contact",
+    footerNavReview: "Avis clients",
     footerOurCafes: "Nos cafés",
     footerLocationLabel: "La Madeleine — Tilila",
     footerSeeRoute: "Voir l'itinéraire",
@@ -1114,6 +1195,82 @@ export const translations = {
     footerInstagram: "Instagram",
     footerFacebook: "Facebook",
     footerGoogleMaps: "Google Maps",
+
+    // Avis clients (Review Us)
+    // Héro de page
+    reviewUsHeroDecorative: "Merci",
+    reviewUsHeroEyebrow: "Votre avis · Il compte",
+    reviewUsHeroTitleLineOne: "Dites-nous",
+    reviewUsHeroTitleLineTwo: "comment ça s'est passé.",
+    reviewUsHeroDescription:
+      "Merci d'avoir poussé la porte de La Madeleine. Votre avis — le bon comme le perfectible — aide notre équipe à mieux vous servir, chaque jour.",
+    // CTA Google
+    reviewUsGoogleScript: "Merci infiniment",
+    reviewUsGoogleTitle: "Un avis Google change tout.",
+    reviewUsGoogleDescription:
+      "Une visite réussie ? Partagez-la sur Google : cela prend une demi-minute, aide les gourmands d'Agadir à nous trouver, et motive notre équipe à progresser.",
+    reviewUsGoogleButton: "Nous laisser un avis sur Google Maps",
+    reviewUsGoogleNote: "Cela prend seulement 30 secondes et nous aide énormément !",
+    reviewUsGoogleAria:
+      "Laisser un avis à La Madeleine sur Google Maps — s'ouvre dans un nouvel onglet",
+    reviewUsGoogleRatingLabel: "Noté 4,2/5 par plus de 80 clients",
+    // Formulaire
+    reviewUsFormScript: "Racontez-nous",
+    reviewUsFormTitle: "Votre visite, en quelques mots.",
+    reviewUsFormDescription:
+      "Cinq notes rapides et quelques détails facultatifs — une minute suffit, et l'équipe lit chaque réponse.",
+    reviewUsSectionAboutLabel: "À propos de vous",
+    reviewUsSectionRatingsLabel: "Notez votre expérience",
+    reviewUsSectionRatingsDescription:
+      "1 = on peut mieux faire, 5 = parfait. Noter une seule catégorie suffit.",
+    reviewUsSectionExtraLabel: "Une dernière chose",
+    reviewUsNameLabel: "Nom *",
+    reviewUsNamePlaceholder: "Votre nom",
+    reviewUsEmailLabel: "Email",
+    reviewUsEmailPlaceholder: "vous@exemple.com",
+    reviewUsPhoneLabel: "Téléphone",
+    reviewUsPhonePlaceholder: "06 XX XX XX XX",
+    reviewUsDateLabel: "Date de visite",
+    reviewUsRatingWaitstaffLabel: "Service en salle",
+    reviewUsRatingWaitstaffHint: "Amabilité, rapidité, disponibilité",
+    reviewUsRatingWaitstaffPlaceholder: "Parlez-nous du service en salle…",
+    reviewUsRatingFoodPrepLabel: "Préparation des plats",
+    reviewUsRatingFoodPrepHint: "Présentation, température, fraîcheur, cuisson",
+    reviewUsRatingFoodPrepPlaceholder:
+      "Parlez-nous de la préparation de vos plats…",
+    reviewUsRatingFoodQualityLabel: "Qualité des plats",
+    reviewUsRatingFoodQualityHint: "Goût, ingrédients, générosité des portions",
+    reviewUsRatingFoodQualityPlaceholder: "Parlez-nous des plats eux-mêmes…",
+    reviewUsRatingBakeryLabel: "Service au comptoir de boulangerie",
+    reviewUsRatingBakeryHint: "La partie boulangerie / pâtisserie",
+    reviewUsRatingBakeryPlaceholder: "Parlez-nous du comptoir boulangerie…",
+    reviewUsRatingOverallLabel: "Expérience globale",
+    reviewUsRatingOverallHint: "L'impression d'ensemble",
+    reviewUsRatingOverallPlaceholder: "Parlez-nous de votre visite en général…",
+    reviewUsStarsValueLabel: "étoiles sur 5",
+    reviewUsStarsHelp: "Utilisez les flèches ← → pour choisir une note",
+    reviewUsRecommendLabel: "Recommanderiez-vous La Madeleine à vos proches ?",
+    reviewUsRecommendYes: "Oui",
+    reviewUsRecommendMaybe: "Peut-être",
+    reviewUsRecommendNo: "Non",
+    reviewUsOrderedLabel: "Qu'avez-vous commandé ?",
+    reviewUsOrderedPlaceholder: "ex. cappuccino, croissant aux amandes, msemen…",
+    reviewUsSuggestionsLabel: "Des suggestions pour nous améliorer ?",
+    reviewUsSuggestionsPlaceholder: "Idées, envies, petits détails — on lit tout.",
+    reviewUsSend: "Envoyer mon avis",
+    reviewUsSending: "Envoi...",
+    reviewUsConsent:
+      "En envoyant ce formulaire, vous acceptez que La Madeleine vous recontacte au sujet de vos remarques. Voir notre politique de confidentialité.",
+    reviewUsSuccessTitle: "Merci !",
+    reviewUsSuccessMessage: "Votre avis nous aide à mieux vous servir.",
+    reviewUsSuccessSubtitle:
+      "À très vite au café — avec, espérons-le, quelques étoiles de plus.",
+    reviewUsSendAnother: "Envoyer un autre avis",
+    reviewUsErrorName: "Merci d'indiquer votre nom.",
+    reviewUsErrorRatings:
+      "Merci de noter au moins une catégorie de 1 à 5 étoiles.",
+    reviewUsErrorMessage:
+      "Oups — votre avis n'est pas passé. Réessayez, ou appelez-nous directement.",
 
     // Navbar
     navbarAddress: "Av. Al Oulfa, Tilila — Agadir",
@@ -1653,6 +1810,7 @@ export const translations = {
     footerNavAbout: "قصتنا",
     footerNavShop: "اطلب",
     footerNavContact: "تواصل",
+    footerNavReview: "قيّمنا",
     footerOurCafes: "مقاهينا",
     footerLocationLabel: "لا مادلين — تيليلا",
     footerSeeRoute: "عرض الاتجاهات",
@@ -1667,6 +1825,80 @@ export const translations = {
     footerInstagram: "إنستغرام",
     footerFacebook: "فيسبوك",
     footerGoogleMaps: "خرائط جوجل",
+
+    // تقييم العملاء (Review Us)
+    // بطل الصفحة
+    reviewUsHeroDecorative: "شكرًا",
+    reviewUsHeroEyebrow: "رأيك · يهمّنا",
+    reviewUsHeroTitleLineOne: "أخبرنا",
+    reviewUsHeroTitleLineTwo: "كيف كانت تجربتك؟",
+    reviewUsHeroDescription:
+      "شكرًا لزيارتك لمادلين. ملاحظاتك — الإيجابية وتلك التي يمكننا التحسّن فيها — تساعد فريقنا على خدمتك بشكل أفضل كل يوم.",
+    // دعوة جوجل
+    reviewUsGoogleScript: "شكرًا جزيلًا",
+    reviewUsGoogleTitle: "تقييمك على جوجل يصنع فرقًا كبيرًا.",
+    reviewUsGoogleDescription:
+      "أعجبتك زيارتك؟ شارك رأيك على جوجل — نصف دقيقة فقط تساعد عشاق الطعام في أكادير على اكتشافنا، وتحفّز فريقنا على التحسّن.",
+    reviewUsGoogleButton: "اترك لنا تقييمًا على خرائط جوجل",
+    reviewUsGoogleNote: "لا يستغرق سوى 30 ثانية ويساعدنا كثيرًا!",
+    reviewUsGoogleAria:
+      "اترك تقييمًا للا مادلين على خرائط جوجل — يفتح في تبويب جديد",
+    reviewUsGoogleRatingLabel: "تقييم 4.2/5 من أكثر من 80 زائرًا",
+    // النموذج
+    reviewUsFormScript: "شاركنا التفاصيل",
+    reviewUsFormTitle: "زيارتك في كلمات قليلة.",
+    reviewUsFormDescription:
+      "خمسة تقييمات سريعة وبعض التفاصيل الاختيارية — دقيقة واحدة تكفي، وفريقنا يقرأ كل إجابة.",
+    reviewUsSectionAboutLabel: "عنك",
+    reviewUsSectionRatingsLabel: "قيّم تجربتك",
+    reviewUsSectionRatingsDescription:
+      "1 = يمكننا التحسّن، 5 = مثالي. تقييم فئة واحدة يكفي.",
+    reviewUsSectionExtraLabel: "سؤال أخير",
+    reviewUsNameLabel: "الاسم *",
+    reviewUsNamePlaceholder: "اسمك",
+    reviewUsEmailLabel: "البريد الإلكتروني",
+    reviewUsEmailPlaceholder: "you@example.com",
+    reviewUsPhoneLabel: "الهاتف",
+    reviewUsPhonePlaceholder: "06 XX XX XX XX",
+    reviewUsDateLabel: "تاريخ الزيارة",
+    reviewUsRatingWaitstaffLabel: "خدمة الصالة",
+    reviewUsRatingWaitstaffHint: "اللطف والسرعة والاهتمام",
+    reviewUsRatingWaitstaffPlaceholder: "أخبرنا أكثر عن خدمة الصالة…",
+    reviewUsRatingFoodPrepLabel: "تحضير الأطباق",
+    reviewUsRatingFoodPrepHint: "التقديم والحرارة والطزاجة والطهي",
+    reviewUsRatingFoodPrepPlaceholder: "أخبرنا أكثر عن تحضير أطباقك…",
+    reviewUsRatingFoodQualityLabel: "جودة الأطباق",
+    reviewUsRatingFoodQualityHint: "النكهة والمكونات وحجم الحصة",
+    reviewUsRatingFoodQualityPlaceholder: "أخبرنا أكثر عن الأطباق نفسها…",
+    reviewUsRatingBakeryLabel: "خدمة رصيف المخبز",
+    reviewUsRatingBakeryHint: "قسم المخبوزات",
+    reviewUsRatingBakeryPlaceholder: "أخبرنا أكثر عن رصيف المخبز…",
+    reviewUsRatingOverallLabel: "التجربة العامة",
+    reviewUsRatingOverallHint: "الانطباع الكامل",
+    reviewUsRatingOverallPlaceholder: "أخبرنا أكثر عن زيارتك عمومًا…",
+    reviewUsStarsValueLabel: "نجوم من 5",
+    reviewUsStarsHelp: "استخدم مفاتيح الأسهم ← → لاختيار التقييم",
+    reviewUsRecommendLabel: "هل تنصح بزيارة لا مادلين لأصدقائك وعائلتك؟",
+    reviewUsRecommendYes: "نعم",
+    reviewUsRecommendMaybe: "ربما",
+    reviewUsRecommendNo: "لا",
+    reviewUsOrderedLabel: "ماذا طلبت؟",
+    reviewUsOrderedPlaceholder: "مثال: كابتشينو، كرواسان باللوز، مسمّن…",
+    reviewUsSuggestionsLabel: "هل لديك اقتراحات لتحسين خدماتنا؟",
+    reviewUsSuggestionsPlaceholder: "أفكار ورغبات وتفاصيل صغيرة — نقرأ كل شيء.",
+    reviewUsSend: "أرسل تقييمي",
+    reviewUsSending: "جارٍ الإرسال...",
+    reviewUsConsent:
+      "بإرسال هذا النموذج، توافق على أن يتواصل معك فريق لا مادلين بخصوص ملاحظاتك. اطّلع على سياسة الخصوصية.",
+    reviewUsSuccessTitle: "شكرًا لك!",
+    reviewUsSuccessMessage: "ملاحظاتك تساعدنا على خدمتك بشكل أفضل.",
+    reviewUsSuccessSubtitle:
+      "نراك قريبًا في المخبز — مع المزيد من النجوم إن شاء الله.",
+    reviewUsSendAnother: "إرسال تقييم آخر",
+    reviewUsErrorName: "يرجى كتابة اسمك.",
+    reviewUsErrorRatings: "يرجى تقييم فئة واحدة على الأقل من 1 إلى 5 نجوم.",
+    reviewUsErrorMessage:
+      "عذراً — لم يصل تقييمك. حاول مرة أخرى، أو اتصل بنا مباشرة.",
 
     // Navbar
     navbarAddress: "شارع الألفة، تيليلا — أكادير",

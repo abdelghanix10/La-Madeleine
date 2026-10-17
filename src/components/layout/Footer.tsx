@@ -225,6 +225,7 @@ export default function Footer() {
                 { label: t("footerNavMenu"), href: "/menu" },
                 { label: t("footerNavAbout"), href: "/about" },
                 { label: t("footerNavShop"), href: "/shop" },
+                { label: t("footerNavReview"), href: "/review-us" },
                 { label: t("footerNavContact"), href: "/contact" },
                 { label: t("footerFaq"), href: "/faq" },
               ].map((link) => (
